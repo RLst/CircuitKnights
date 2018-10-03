@@ -17,7 +17,7 @@ public class Lean : MonoBehaviour {
         var y = Input.GetAxis("Horizontal") * Time.deltaTime * player_lean_speed;
 
 
-        transform.Rotate(y, 0, 0);
+        transform.Rotate(-y, 0, 0);
 
 
     }
