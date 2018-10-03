@@ -14,11 +14,21 @@ public class Lean : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        var y = Input.GetAxis("Horizontal") * Time.deltaTime * player_lean_speed;
+        if (Input.GetKey(KeyCode.A))
+        {
+            //var y = Input.GetAxis("Horizontal") * Time.deltaTime * player_lean_speed;
 
 
-        transform.Rotate(-y, 0, 0);
+            Debug.Log("leeen");
+            transform.Rotate(0, 0, player_lean_speed);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            //var y = Input.GetAxis("Horizontal") * Time.deltaTime * player_lean_speed;
 
 
+            Debug.Log("leeen");
+            transform.Rotate(0, 0, -player_lean_speed);
+        }
     }
 }
