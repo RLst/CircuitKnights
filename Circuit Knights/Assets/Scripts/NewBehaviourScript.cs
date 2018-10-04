@@ -6,20 +6,25 @@ public class NewBehaviourScript : MonoBehaviour {
     
     public float player_speed;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+
+	
 	
 	// Update is called once per frame
 	void Update () {
 
-        
-        var x = Input.GetAxis("Vertical") * Time.deltaTime * player_speed;
+        //sets foward movment to w
+        if (Input.GetKey(KeyCode.W))
+        {
 
-      
-        transform.Translate(x, 0, 0);
-     
+            transform.Translate(player_speed, 0, 0);
+        }
+        //sets backward movment to s
+        if (Input.GetKey(KeyCode.S))
+        {
+
+            transform.Translate(-player_speed, 0, 0);
+        }
+
 
     }
 }
