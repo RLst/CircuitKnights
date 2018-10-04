@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace CircuitKnights
+{
+
 public class Quit : MonoBehaviour {
 
 	// Use this for initialization
@@ -16,4 +19,6 @@ public class Quit : MonoBehaviour {
             Application.Quit();
         }
     }
+}
+
 }

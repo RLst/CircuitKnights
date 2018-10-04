@@ -1,6 +1,13 @@
-﻿using System.Collections;
+﻿//Tony Le
+//2 Oct 2018
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+
+namespace CircuitKnights
+{
 
 public class BasicPlayerController : MonoBehaviour {
 	//Attached object needs a rigidbody
@@ -56,5 +63,7 @@ public class BasicPlayerController : MonoBehaviour {
 
 
 	}
+
+}
 
 }

@@ -1,6 +1,11 @@
-﻿using System.Collections;
+﻿//Tony Le
+//3 Oct 2018
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+namespace CircuitKnights {
 
 public class LanceControl : MonoBehaviour {
 
@@ -20,4 +25,6 @@ public class LanceControl : MonoBehaviour {
 		transform.Rotate(-horizontal, 0, 0);
 
 	}
+}
+
 }

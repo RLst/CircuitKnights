@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace CircuitKnights
+{
+
 public class SheildBlock : MonoBehaviour {
 
 	// Use this for initialization
@@ -13,4 +16,6 @@ public class SheildBlock : MonoBehaviour {
 	void Update () {
 		
 	}
+}
+
 }

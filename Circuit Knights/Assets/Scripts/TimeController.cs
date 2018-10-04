@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public class Timecontroler : MonoBehaviour {
+namespace CircuitKnights
+{
+
+public class TimeController : MonoBehaviour {
 
     public float slowdown_Factor = 0.05f;
     public float slowdown_length = 2f;
@@ -15,4 +18,6 @@ public class Timecontroler : MonoBehaviour {
         Time.timeScale = slowdown_Factor;
         Time.fixedDeltaTime = Time.timeScale * .02f;
     }
+}
+
 }
