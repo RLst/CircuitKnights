@@ -10,6 +10,7 @@ public class TimeController : MonoBehaviour {
 
      void Update()
     {
+            
         Time.timeScale += (1f / slowdown_length) * Time.unscaledDeltaTime;
     
     }
@@ -18,6 +19,11 @@ public class TimeController : MonoBehaviour {
         Time.timeScale = slowdown_Factor;
         Time.fixedDeltaTime = Time.timeScale * .02f;
     }
-}
+
+      //  private void OnTriggerEnter(Collider other)
+      //  {
+      //      Slowmotion();
+      //  }
+    }
 
 }
