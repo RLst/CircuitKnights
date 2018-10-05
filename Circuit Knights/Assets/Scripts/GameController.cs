@@ -2,12 +2,18 @@
 //5 Oct 2018
 
 using System;
-using UnityEditor.UI;
+using UnityEngine.UI;
 using UnityEngine;
 
 
 namespace CircuitKnights
 {
+
+public enum ControllerAxis
+{
+	LeftThumbStick,
+	RightThumbStick,	
+}
 
 public class GameController : MonoBehaviour 
 {
@@ -16,7 +22,7 @@ public class GameController : MonoBehaviour
 	public float timeBeforeCountdown = 2f; 		//Seconds
 	public float countDownLength = 3f;			//Seconds
 
-	// public Text countDownText;
+	public Text countDownText;
 
 	public Vector3[] playerStartPositions;
 
@@ -35,8 +41,6 @@ public class GameController : MonoBehaviour
 
 			//Start the actual countdown
 			StartCountDown();
-
-
 		}
 
 
