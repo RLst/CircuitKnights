@@ -52,16 +52,17 @@ public class BasicPlayerController : MonoBehaviour {
 		// Debug.Log("Turn: " + turn);
 
 		//Acceleration pulse
-		if (Input.GetKey(KeyCode.W))
-		{
-			rb.AddForce(transform.forward * accelForce);
-		}
-		if (Input.GetKey(KeyCode.S))
-		{
-			rb.AddForce(-transform.forward * accelForce);
-		}
+		rb.AddForce(transform.forward * Input.GetAxis("Right Trigger") * accelForce);
+		rb.AddForce(-transform.forward * Input.GetAxis("Left Trigger") * accelForce);
 
-
+		// if (Input.GetKey(KeyCode.W))
+		// {
+		// 	rb.AddForce(transform.forward * accelForce);
+		// }
+		// if (Input.GetKey(KeyCode.S))
+		// {
+		// 	rb.AddForce(-transform.forward * accelForce);
+		// }
 	}
 
 }
