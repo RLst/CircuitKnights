@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.007
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.028920496, g: 0.03111814, b: 0.028183734, a: 0.007}
+  m_IndirectSpecularColor: {r: 0.02892138, g: 0.031160235, b: 0.02831442, a: 0.007}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -271,13 +271,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 28296928}
-  m_LocalRotation: {x: -0.26987413, y: -0.30808562, z: 0.6208308, w: -0.6684463}
-  m_LocalPosition: {x: 83, y: 16.3, z: -47.4}
+  m_LocalRotation: {x: -0.29074827, y: -0.756892, z: 0.30391684, w: -0.5002146}
+  m_LocalPosition: {x: 126, y: -1.4, z: 74.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 48.016003, y: 726.591, z: 277.169}
+  m_LocalEulerAnglesHint: {x: 48.672, y: 838.474, z: 371.892}
 --- !u!1001 &71023482
 Prefab:
   m_ObjectHideFlags: 0
@@ -3699,7 +3699,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 802486862}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8213efa3d8d3b84fb072d6e0b0c5153, type: 3}
   m_Name: 
@@ -4028,7 +4028,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh11924
+  m_Name: pb_Mesh14612
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -10818,8 +10818,8 @@ GameObject:
   - component: {fileID: 1477008962}
   - component: {fileID: 1477008961}
   - component: {fileID: 1477008960}
-  - component: {fileID: 1477008959}
   - component: {fileID: 1477008963}
+  - component: {fileID: 1477008959}
   m_Layer: 0
   m_Name: Lance
   m_TagString: Untagged
@@ -10844,17 +10844,14 @@ Transform:
 --- !u!114 &1477008959
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114801510568978964, guid: 5107a64568be75c47b9cabff4d2820a8,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1477008957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d930cfe953e314cb6af6f5ed234d41, type: 3}
+  m_Script: {fileID: 11500000, guid: d42f6325e73c9d8499edcb4ce4e65d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lanceHorizontalSpeed: 5
-  lanceVerticalSpeed: 5
 --- !u!95 &1477008960
 Animator:
   serializedVersion: 3
@@ -13023,6 +13020,7 @@ GameObject:
   - component: {fileID: 2109353215}
   - component: {fileID: 2109353216}
   - component: {fileID: 2109353211}
+  - component: {fileID: 2109353217}
   m_Layer: 0
   m_Name: Horse_1
   m_TagString: Untagged
@@ -13053,7 +13051,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2109353209}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d407601fb50a8343aadbb6debc6afa7, type: 3}
   m_Name: 
@@ -13151,6 +13149,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6014395, y: 2.286843, z: 2.407276}
   m_Center: {x: 0, y: 1.1607867, z: 0.47234893}
+--- !u!114 &2109353217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2109353209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e142d70d3026544b80b5e8a5f91568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSpeed: 0.2
 --- !u!1001 &2115430191
 Prefab:
   m_ObjectHideFlags: 0
