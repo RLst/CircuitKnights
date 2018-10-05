@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace CircuitKnights
+{
+
 public class lance_Ray_cast : MonoBehaviour {
 
     RaycastHit hit;
@@ -19,4 +22,6 @@ public class lance_Ray_cast : MonoBehaviour {
             print(Distance + " " + hit.collider.gameObject.name);
         }
     }
+}
+
 }

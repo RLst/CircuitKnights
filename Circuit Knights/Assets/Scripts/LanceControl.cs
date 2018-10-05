@@ -40,6 +40,7 @@ public class LanceControl : MonoBehaviour {
 			var horizontal = Input.GetAxis("Right TS Horizontal") * lanceHorizontalSpeed;
 			transform.Rotate(-horizontal, 0, 0);
 		}
+		
 	}
 }
 

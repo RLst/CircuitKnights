@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace CircuitKnights
+{
+
 public class Lean : MonoBehaviour {
    
     public float player_lean_speed = 2.0f;
@@ -26,4 +29,6 @@ public class Lean : MonoBehaviour {
             transform.Rotate(0, 0, -player_lean_speed);
         }
     }
+}
+
 }
