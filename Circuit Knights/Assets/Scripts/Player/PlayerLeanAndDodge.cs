@@ -1,6 +1,7 @@
 ﻿//Tony Le
 //5 Oct 2018
 
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,9 +39,9 @@ public class PlayerLeanAndDodge : MonoBehaviour
 	{
 		Lean();
 	}
-	
 
-	private void Lean()
+
+        private void Lean()
 	{
 		Vector3 dodgeOffset;
 		
