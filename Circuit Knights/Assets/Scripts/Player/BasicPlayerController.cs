@@ -36,6 +36,11 @@ public class BasicPlayerController : MonoBehaviour {
 	{
 		var rb = GetComponent<Rigidbody>();
 
+		//Acceleration pulse
+		rb.AddForce(transform.forward * Input.GetAxis("Right Trigger") * accelForce);
+		rb.AddForce(-transform.forward * Input.GetAxis("Left Trigger") * accelForce);
+
+
 		//DEBUG CONTROLS - Turning
 		// if (Input.GetKey(KeyCode.LeftArrow))
 		// {
@@ -46,14 +51,9 @@ public class BasicPlayerController : MonoBehaviour {
 		// 	transform.Rotate(0, turnSpeed, 0);
 		// }
 
-
 		// var turn = Input.GetAxis("Horizontal");
 		// rb.AddTorque(transform.forward * turnTorque *turn);
 		// Debug.Log("Turn: " + turn);
-
-		//Acceleration pulse
-		rb.AddForce(transform.forward * Input.GetAxis("Right Trigger") * accelForce);
-		rb.AddForce(-transform.forward * Input.GetAxis("Left Trigger") * accelForce);
 
 		// if (Input.GetKey(KeyCode.W))
 		// {

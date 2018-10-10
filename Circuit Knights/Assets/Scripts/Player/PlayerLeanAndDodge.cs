@@ -24,7 +24,6 @@ public class PlayerLeanAndDodge : MonoBehaviour
 	public float leanMultiplier = 30f;			//Degrees
 	// public float leanSmoothness = 0.5f;			//Lower is more smooth, Higher is less
 
-
 	private Rigidbody playerRB;
 
 
@@ -41,7 +40,7 @@ public class PlayerLeanAndDodge : MonoBehaviour
 	}
 
 
-        private void Lean()
+    private void Lean()
 	{
 		Vector3 dodgeOffset;
 		
