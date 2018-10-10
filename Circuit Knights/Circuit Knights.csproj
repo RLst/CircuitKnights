@@ -331,9 +331,11 @@
     <Compile Include="Assets\Scripts\Lean.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerLean.cs" />
+    <Compile Include="Assets\Scripts\PlayerLeanAndDodge.cs" />
     <Compile Include="Assets\Scripts\PlayMenu.cs" />
     <Compile Include="Assets\Scripts\Quit.cs" />
     <Compile Include="Assets\Scripts\ShieldBlock.cs" />
+    <Compile Include="Assets\Scripts\temporary\Movment.cs" />
     <Compile Include="Assets\Scripts\TimeController.cs" />
   </ItemGroup>
   <ItemGroup>
