@@ -3,7 +3,7 @@ using XInputDotNetPure;
 
 namespace CircuitKnights {
 
-public class dbgVibrateController : MonoBehaviour {
+public class GamePadTest : MonoBehaviour {
 	//This only tests the vibration
 	//Code just copied from XInputTestCS.cs
 

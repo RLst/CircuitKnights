@@ -12,8 +12,8 @@ namespace CircuitKnights
 
     public class CountDown : MonoBehaviour
     {
-
-        public Text countDownText;
+        //Attach directly to the countdown text object?
+        private Text countDownText;         //Don't need to be public
 
         public float countDownDuration = 3f;
 
