@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Jack Dawes
+//11th of October, 2018
+
 namespace CircuitKnights
 {
     public class CameraRotation : MonoBehaviour
