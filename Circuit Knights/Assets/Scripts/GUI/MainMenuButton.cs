@@ -21,11 +21,11 @@ namespace CircuitKnights
 
         public Button PlayButton;
 
-        bool MenuActive = true;
+        public bool MenuActive = true;
 
-        bool PlayerCamerasActive = false;
+        public bool PlayerCamerasActive = false;
 
-        bool CountDownActive = false;
+        public bool CountDownActive = false;
 
         private void Start()
         {
