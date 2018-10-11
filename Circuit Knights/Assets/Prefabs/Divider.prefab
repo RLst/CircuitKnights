@@ -9,74 +9,74 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1833066111942654}
+  m_RootGameObject: {fileID: 1422878753419342}
   m_IsPrefabParent: 1
---- !u!1 &1833066111942654
+--- !u!1 &1422878753419342
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4251512140682940}
+  - component: {fileID: 4008123923951076}
   m_Layer: 0
-  m_Name: Environment_Tree_001
+  m_Name: Divider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1910629038134744
+--- !u!1 &1506196035388038
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4306880835157830}
-  - component: {fileID: 33927384369288174}
-  - component: {fileID: 23108330218118428}
-  - component: {fileID: 95303919907337582}
+  - component: {fileID: 4809239249649602}
+  - component: {fileID: 33024325143902360}
+  - component: {fileID: 23323630910896534}
+  - component: {fileID: 95128425251115518}
   m_Layer: 0
-  m_Name: Environment_Tree_001
+  m_Name: Arena_Wood_Divider_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4251512140682940
+--- !u!4 &4008123923951076
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1833066111942654}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.763824, y: 2.06, z: 15.513153}
+  m_GameObject: {fileID: 1422878753419342}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 48.85309, y: 61.553368, z: 76.16307}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4306880835157830}
+  - {fileID: 4809239249649602}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4306880835157830
+--- !u!4 &4809239249649602
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1910629038134744}
+  m_GameObject: {fileID: 1506196035388038}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.2569122, y: -1.3770485, z: 2.0869293}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
-  m_Father: {fileID: 4251512140682940}
+  m_Father: {fileID: 4008123923951076}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23108330218118428
+--- !u!23 &23323630910896534
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1910629038134744}
+  m_GameObject: {fileID: 1506196035388038}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,7 +85,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 517b1b64e1bdb69429808555c876d98f, type: 3}
+  - {fileID: 2100000, guid: 0b2f170fab0ecb040af8ff6c9c6bfb4d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,22 +105,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33927384369288174
+--- !u!33 &33024325143902360
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1910629038134744}
-  m_Mesh: {fileID: 4300000, guid: 517b1b64e1bdb69429808555c876d98f, type: 3}
---- !u!95 &95303919907337582
+  m_GameObject: {fileID: 1506196035388038}
+  m_Mesh: {fileID: 4300000, guid: 0b2f170fab0ecb040af8ff6c9c6bfb4d, type: 3}
+--- !u!95 &95128425251115518
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1910629038134744}
+  m_GameObject: {fileID: 1506196035388038}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 517b1b64e1bdb69429808555c876d98f, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 0b2f170fab0ecb040af8ff6c9c6bfb4d, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
