@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class ResultsScreen : MonoBehaviour {
 
-    public GameObject VictoryScreen;
-    public GameObject DefeatScreen;
+    public GameObject ResultScreen;
 
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.V))
         {
-            DefeatScreen.SetActive(true);
+            ResultScreen.SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.V))
-        {
-            VictoryScreen.SetActive(true);
-        }
-        
 	}
 }
