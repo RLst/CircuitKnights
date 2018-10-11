@@ -51,8 +51,8 @@ public class PlayerLeanAndDodge : MonoBehaviour
 		{
 			if (canDodge) {
 				//Get the lean offset from horizontal and verticals
-				dodgeOffset.x = Input.GetAxis("Horizontal") * dodgeMultiplier;
-				dodgeOffset.z = -Input.GetAxis("Vertical") * dodgeMultiplier;
+				dodgeOffset.x = Input.GetAxis("Horizontal Left") * dodgeMultiplier;
+				dodgeOffset.z = -Input.GetAxis("Vertical Left") * dodgeMultiplier;
 				dodgeOffset.y = transform.localPosition.y;
 
 				// Debug.Log("Lean offset: " + leanOffset);
@@ -63,9 +63,9 @@ public class PlayerLeanAndDodge : MonoBehaviour
 			{
 				///Apply torque on the rigidbodies
 				//Horizontal (Z axis)
-				leanTorque.x = -Input.GetAxis("Horizontal") * leanMultiplier;
+				leanTorque.x = -Input.GetAxis("Horizontal Left") * leanMultiplier;
 				//Vertical (X axis)
-				leanTorque.z = Input.GetAxis("Vertical") * leanMultiplier;
+				leanTorque.z = Input.GetAxis("Vertical Left") * leanMultiplier;
 				leanTorque.y = 0;
 
                 Debug.Log("LeanTorque: " + leanTorque);
@@ -77,8 +77,8 @@ public class PlayerLeanAndDodge : MonoBehaviour
 			if (canDodge)
 			{
 				//Get the lean offset from horizontal and verticals
-				dodgeOffset.x = Input.GetAxis("Right TS Horizontal") * dodgeMultiplier;
-				dodgeOffset.z = -Input.GetAxis("Right TS Vertical") * dodgeMultiplier;
+				dodgeOffset.x = Input.GetAxis("Horizontal Right") * dodgeMultiplier;
+				dodgeOffset.z = -Input.GetAxis("Vertical Right") * dodgeMultiplier;
 				dodgeOffset.y = transform.localPosition.y;
 
 				transform.localPosition = dodgeOffset;
@@ -88,9 +88,9 @@ public class PlayerLeanAndDodge : MonoBehaviour
 			{
 				///Apply torque on the rigidbodies
 				//Horizontal (Z axis)
-				leanTorque.x = -Input.GetAxis("Right TS Horizontal") * leanMultiplier;
+				leanTorque.x = -Input.GetAxis("Horizontal Right") * leanMultiplier;
 				//Vertical (X axis)
-				leanTorque.z = Input.GetAxis("Right TS Vertical") * leanMultiplier;
+				leanTorque.z = Input.GetAxis("Vertical Right") * leanMultiplier;
 				leanTorque.y = 0;
 
                 Debug.Log("LeanTorque: " + leanTorque);

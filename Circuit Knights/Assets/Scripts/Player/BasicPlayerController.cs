@@ -37,8 +37,8 @@ public class BasicPlayerController : MonoBehaviour {
 		var rb = GetComponent<Rigidbody>();
 
 		//Acceleration pulse
-		rb.AddForce(transform.forward * Input.GetAxis("Right Trigger") * accelForce);
-		rb.AddForce(-transform.forward * Input.GetAxis("Left Trigger") * accelForce);
+		rb.AddForce(transform.forward * Input.GetAxis("Boost") * accelForce);
+		rb.AddForce(-transform.forward * Input.GetAxis("B") * accelForce);
 
 
 		//DEBUG CONTROLS - Turning

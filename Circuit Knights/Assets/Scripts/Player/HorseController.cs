@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HorseController : MonoBehaviour {
-	////Attach this to the horse
+	////(Should be) attached to the horse
 	//Controls the movement of the horse
 	//Manual physics
 
@@ -27,15 +27,15 @@ public class HorseController : MonoBehaviour {
 	
 	void Update() {
 		//Move forward
-		if (Input.GetButton("Go Forward")) {
-			Debug.Log("Space pressed");
+		if (Input.GetButton("Boost")) {
+			Debug.Log("Boost button press");
 			AddForce(transform.forward * linearForce * Time.deltaTime);
 		}
 		// AddForce(transform.forward * linearForce * Input.GetAxis("Right Trigger") * Time.deltaTime);
 
 		//Move backward
-		if (Input.GetButton("Go Backward")) {
-			Debug.Log("B pressed");
+		if (Input.GetButton("B")) {
+			Debug.Log("B button press");
 			AddForce(-transform.forward * linearForce * Time.deltaTime);
 		}
 		// AddForce(-transform.forward * linearForce * Input.GetAxis("Left Trigger") * Time.deltaTime);

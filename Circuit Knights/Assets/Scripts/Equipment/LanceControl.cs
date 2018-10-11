@@ -22,22 +22,22 @@ public class LanceControl : MonoBehaviour {
 		if (axis == ControllerAxis.LeftThumbStick)
 		{
 			//Vertical
-			var vertical = Input.GetAxis("Vertical") * lanceVerticalSpeed;
+			var vertical = Input.GetAxis("Vertical Left") * lanceVerticalSpeed;
 			transform.Rotate(0, 0, -vertical);
 			
 			//Horizontal
-			var horizontal = Input.GetAxis("Horizontal") * lanceHorizontalSpeed;
+			var horizontal = Input.GetAxis("Horizontal Left") * lanceHorizontalSpeed;
 			transform.Rotate(-horizontal, 0, 0);
 		}
 		////Right Thumb Stick
 		else if (axis == ControllerAxis.RightThumbStick)
 		{
 			//Vertical
-			var vertical = Input.GetAxis("Right TS Vertical") * lanceVerticalSpeed;
+			var vertical = Input.GetAxis("Vertical Right") * lanceVerticalSpeed;
 			transform.Rotate(0, 0, -vertical);
 			
 			//Horizontal
-			var horizontal = Input.GetAxis("Right TS Horizontal") * lanceHorizontalSpeed;
+			var horizontal = Input.GetAxis("Horizontal Right") * lanceHorizontalSpeed;
 			transform.Rotate(-horizontal, 0, 0);
 		}
 		
