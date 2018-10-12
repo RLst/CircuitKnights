@@ -324,17 +324,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Core\dbgVibrateController.cs" />
     <Compile Include="Assets\Scripts\Core\GameController.cs" />
+    <Compile Include="Assets\Scripts\Core\GamePadTest.cs" />
     <Compile Include="Assets\Scripts\Core\TimeController.cs" />
     <Compile Include="Assets\Scripts\Equipment\LanceControl.cs" />
     <Compile Include="Assets\Scripts\Equipment\LanceRayCast.cs" />
     <Compile Include="Assets\Scripts\Equipment\ShieldBlock.cs" />
+    <Compile Include="Assets\Scripts\Equipment\ShieldController.cs" />
+    <Compile Include="Assets\Scripts\GUI\CameraRotation.cs" />
     <Compile Include="Assets\Scripts\GUI\CountDown.cs" />
     <Compile Include="Assets\Scripts\GUI\ExitButton.cs" />
+    <Compile Include="Assets\Scripts\GUI\MainMenuButton.cs" />
+    <Compile Include="Assets\Scripts\GUI\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\GUI\PlayMenu.cs" />
     <Compile Include="Assets\Scripts\GUI\Quit.cs" />
+    <Compile Include="Assets\Scripts\GUI\RematchButton.cs" />
+    <Compile Include="Assets\Scripts\GUI\ResultsScreen.cs" />
     <Compile Include="Assets\Scripts\Player\BasicPlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\HorseController.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerLeanAndDodge.cs" />
     <Compile Include="Assets\Scripts\temporary\Lean.cs" />
@@ -342,6 +349,47 @@
     <Compile Include="Assets\Scripts\temporary\OLDPlayerLean.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
+    <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
+    <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
+    <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Editor Resources\UI\Trackball.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\ACES.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Blit.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Bloom.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Bloom.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Common.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\DepthOfField.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\FXAA.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\FXAA3.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Fog.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\GrainGen.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\LutGen.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\MotionBlur.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\TAA.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\TAA.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\Uber.shader" />
+    <None Include="Assets\Plugins\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
+    <None Include="Assets\Plugins\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\Plugins\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
     <None Include="Assets\Plugins\ProCore\ProBuilder\About\Font\SIL Open Font License.txt" />
     <None Include="Assets\Plugins\ProCore\ProBuilder\About\ThirdPartyLicenses.txt" />

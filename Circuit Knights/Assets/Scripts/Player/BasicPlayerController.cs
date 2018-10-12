@@ -38,7 +38,12 @@ public class BasicPlayerController : MonoBehaviour {
 
 		//Acceleration pulse
 		rb.AddForce(transform.forward * Input.GetAxis("Boost") * accelForce);
-		rb.AddForce(-transform.forward * Input.GetAxis("B") * accelForce);
+
+        if (Input.GetButton("B"))
+        {
+            rb.AddForce(-transform.forward * accelForce);
+    
+        }
 
 
 		//DEBUG CONTROLS - Turning

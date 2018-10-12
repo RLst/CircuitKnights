@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 33113655693185086}
   - component: {fileID: 23071275389510806}
   - component: {fileID: 95010051409281844}
+  - component: {fileID: 65794740032521770}
   m_Layer: 0
   m_Name: Arena_Stadium_Stand_002
   m_TagString: Untagged
@@ -842,6 +843,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599175327743130}
   m_Mesh: {fileID: 4300000, guid: 4bfa8cf2594117840ae009bb245e7927, type: 3}
+--- !u!65 &65794740032521770
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1193873609283976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.041499, y: 9.700233, z: 7.3060117}
+  m_Center: {x: 0.00001335144, y: 4.631195, z: -0.0000076293945}
 --- !u!95 &95010051409281844
 Animator:
   serializedVersion: 3
