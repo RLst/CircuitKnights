@@ -32,7 +32,7 @@ namespace CircuitKnights
             PlayButton.onClick.AddListener(PlayGame);
         }
        
-        void PlayGame()
+        public void PlayGame()
         {
             MenuActive = false;
             PlayerCamerasActive = true;

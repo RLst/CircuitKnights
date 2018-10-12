@@ -13,13 +13,13 @@ namespace CircuitKnights
     {
         public GameObject pauseMenu;
 
+        public string LoadScene = "Jack's Main";
+
         public Button ResumeButton;
 
         public Button MenuButton;
 
         bool Paused = false;
-
-        MainMenuButton MainMenu;
 
         void Start()
         {
@@ -35,7 +35,7 @@ namespace CircuitKnights
 
         void ExitGame()
         {
-            SceneManager.LoadScene("Jack's Main");
+            SceneManager.LoadScene(LoadScene);
             Time.timeScale = 1f;
         }
 
