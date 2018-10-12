@@ -14,6 +14,9 @@ public class LanceControl : MonoBehaviour {
 	public float lanceHorizontalSpeed = 1f;
 	public float lanceVerticalSpeed = 1f;
 
+	public float[] yLimits = {60f, 120f};
+	public float[] zLimits = {85f, 140f};
+
 	// Update is called once per frame
 	void FixedUpdate () {
 		var rb = GetComponent<Rigidbody>();
@@ -41,6 +44,10 @@ public class LanceControl : MonoBehaviour {
 			transform.Rotate(-horizontal, 0, 0);
 		}
 		
+		//Limit the lance angle
+		Mathf.Clamp(transform.rotation.y, yLimits[0], yLimits[1]);
+		Mathf.Clamp(transform.rotation.z, zLimits[0], zLimits[1]);
+
 	}
 }
 

@@ -3316,7 +3316,6 @@ Transform:
   m_Children:
   - {fileID: 1477008958}
   - {fileID: 615369912}
-  - {fileID: 1963444894}
   m_Father: {fileID: 2109353210}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3732,7 +3731,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh11322
+  m_Name: pb_Mesh11802
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -10579,6 +10578,12 @@ MonoBehaviour:
   axis: 1
   lanceHorizontalSpeed: 1
   lanceVerticalSpeed: 1
+  yLimits:
+  - 60
+  - 120
+  zLimits:
+  - 85
+  - 140
 --- !u!95 &1477008960
 Animator:
   serializedVersion: 3
@@ -12146,13 +12151,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1963444893}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -96.7, y: 87.5, z: -279.8}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalRotation: {x: -0, y: 0.92646295, z: -0, w: 0.3763861}
+  m_LocalPosition: {x: -5.2800007, y: 2.905, z: 8.530001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 802486863}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 2109353210}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 135.78, z: 0}
 --- !u!81 &1963444895
 AudioListener:
   m_ObjectHideFlags: 0
@@ -12188,7 +12193,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 29.7
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -12613,6 +12618,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 802486863}
+  - {fileID: 1963444894}
   m_Father: {fileID: 1497460659}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
