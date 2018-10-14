@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using XboxCtrlrInput;
 
 public class HorseController : MonoBehaviour {
 	////(Should be) attached to the horse
@@ -11,14 +10,12 @@ public class HorseController : MonoBehaviour {
 	public float linearForce = 25000f;	//Newtons
 	public float drag = 0.5f;		//Percentage?
 
-	[HideInInspector]
-	public Vector3 force;
-	[HideInInspector]
-	public Vector3 accel;
-	[HideInInspector]
-	public Vector3 vel;
-	[HideInInspector]
-	public Vector3 pos;
+	public XboxController controller;
+
+	[HideInInspector] public Vector3 force;
+	[HideInInspector] public Vector3 accel;
+	[HideInInspector] public Vector3 vel;
+	[HideInInspector] public Vector3 pos;
 
 	// Use this for initialization
 	void Start () {
@@ -26,19 +23,13 @@ public class HorseController : MonoBehaviour {
 	}
 	
 	void Update() {
-		//Move forward
-		if (Input.GetButton("Boost")) {
-			Debug.Log("Boost button press");
-			AddForce(transform.forward * linearForce * Time.deltaTime);
-		}
-		// AddForce(transform.forward * linearForce * Input.GetAxis("Right Trigger") * Time.deltaTime);
 
-		//Move backward
-		if (Input.GetButton("B")) {
-			Debug.Log("B button press");
-			AddForce(-transform.forward * linearForce * Time.deltaTime);
-		}
-		// AddForce(-transform.forward * linearForce * Input.GetAxis("Left Trigger") * Time.deltaTime);
+		//Move forward
+		var forward = XCI.GetAxis(XboxAxis.RightTrigger, controller);
+		var backward = XCI.GetAxis(XboxAxis.LeftTrigger, controller);
+		AddForce(transform.forward * linearForce * forward * Time.deltaTime);
+		AddForce(-transform.forward * linearForce * backward * Time.deltaTime);
+
 	}
 
 	// Update is called once per frame
@@ -47,9 +38,7 @@ public class HorseController : MonoBehaviour {
 		//Do physics
 		DoPhysics();		
 
-		Debug.Log("force: " + force);
-		Debug.Log("accel: " + accel);
-		Debug.Log("vel: " + vel);
+		Debug.Log("force: "+force + ", accel: "+accel + ", vel: "+vel);
 	}
 
     private void DoPhysics()

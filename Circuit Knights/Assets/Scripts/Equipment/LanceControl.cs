@@ -14,8 +14,13 @@ public class LanceControl : MonoBehaviour {
 	public float lanceHorizontalSpeed = 1f;
 	public float lanceVerticalSpeed = 1f;
 
-	public float[] yLimits = {60f, 120f};
-	public float[] zLimits = {85f, 140f};
+	[Header("Y Axis Limits")]
+	public float yMin = 60f;
+	public float yMax = 120f;
+
+	[Header("Z Axis Limits")]
+	public float zMin = 85f;
+	public float zMax = 140f;
 
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -25,28 +30,28 @@ public class LanceControl : MonoBehaviour {
 		if (axis == ControllerAxis.LeftThumbStick)
 		{
 			//Vertical
-			var vertical = Input.GetAxis("Vertical Left") * lanceVerticalSpeed;
+			var vertical = Input.GetAxis("Vertical") * lanceVerticalSpeed;
 			transform.Rotate(0, 0, -vertical);
 			
 			//Horizontal
-			var horizontal = Input.GetAxis("Horizontal Left") * lanceHorizontalSpeed;
+			var horizontal = Input.GetAxis("Horizontal") * lanceHorizontalSpeed;
 			transform.Rotate(-horizontal, 0, 0);
 		}
 		////Right Thumb Stick
 		else if (axis == ControllerAxis.RightThumbStick)
 		{
 			//Vertical
-			var vertical = Input.GetAxis("Vertical Right") * lanceVerticalSpeed;
+			var vertical = Input.GetAxis("Vertical") * lanceVerticalSpeed;
 			transform.Rotate(0, 0, -vertical);
 			
 			//Horizontal
-			var horizontal = Input.GetAxis("Horizontal Right") * lanceHorizontalSpeed;
+			var horizontal = Input.GetAxis("Horizontal") * lanceHorizontalSpeed;
 			transform.Rotate(-horizontal, 0, 0);
 		}
 		
 		//Limit the lance angle
-		Mathf.Clamp(transform.rotation.y, yLimits[0], yLimits[1]);
-		Mathf.Clamp(transform.rotation.z, zLimits[0], zLimits[1]);
+		Mathf.Clamp(transform.rotation.y, yMin, yMax);
+		Mathf.Clamp(transform.rotation.z, zMin, zMax);
 
 	}
 }

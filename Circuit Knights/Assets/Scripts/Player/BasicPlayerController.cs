@@ -1,20 +1,16 @@
 ﻿//Tony Le
 //2 Oct 2018
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using XboxCtrlrInput;
 
 namespace CircuitKnights
 {
 
-public class BasicPlayerController : MonoBehaviour {
-	//Attached object needs a rigidbody
-
-	public float turnSpeed = 5f;
+    public class BasicPlayerController : MonoBehaviour {
 	public float accelForce = 24000f;		//N, Roughly 1 hp
-	public float turnTorque = 1f;			//Nm
+
+	public XboxController controller;
 
 	// Use this for initialization
 	void Start () {
@@ -37,37 +33,8 @@ public class BasicPlayerController : MonoBehaviour {
 		var rb = GetComponent<Rigidbody>();
 
 		//Acceleration pulse
-		rb.AddForce(transform.forward * Input.GetAxis("Boost") * accelForce);
-
-        if (Input.GetButton("B"))
-        {
-            rb.AddForce(-transform.forward * accelForce);
-    
-        }
-
-
-		//DEBUG CONTROLS - Turning
-		// if (Input.GetKey(KeyCode.LeftArrow))
-		// {
-		// 	transform.Rotate(0, -turnSpeed, 0);
-		// }
-		// if (Input.GetKey(KeyCode.RightArrow))
-		// {
-		// 	transform.Rotate(0, turnSpeed, 0);
-		// }
-
-		// var turn = Input.GetAxis("Horizontal");
-		// rb.AddTorque(transform.forward * turnTorque *turn);
-		// Debug.Log("Turn: " + turn);
-
-		// if (Input.GetKey(KeyCode.W))
-		// {
-		// 	rb.AddForce(transform.forward * accelForce);
-		// }
-		// if (Input.GetKey(KeyCode.S))
-		// {
-		// 	rb.AddForce(-transform.forward * accelForce);
-		// }
+		rb.AddForce(transform.forward * XCI.GetAxis(XboxAxis.RightTrigger) * accelForce);
+		rb.AddForce(-transform.forward * XCI.GetAxis(XboxAxis.LeftTrigger) * accelForce);
 	}
 
 }
