@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6FD9070B-80D6-E0C9-A00E-CAFF4ED8E8BA}</ProjectGuid>
+    <ProjectGuid>{00396238-0587-28D2-AEB3-2A2EC967BB35}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -260,24 +260,6 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="ProBuilderCore-Unity5">
-      <HintPath>Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
-    </Reference>
-    <Reference Include="ProBuilderMeshOps-Unity5">
-      <HintPath>Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
-    </Reference>
-    <Reference Include="KdTreeLib">
-      <HintPath>Assets/ProCore/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
-    </Reference>
-    <Reference Include="pb_Stl">
-      <HintPath>Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
-    </Reference>
-    <Reference Include="Poly2Tri">
-      <HintPath>Assets/ProCore/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
-    </Reference>
-    <Reference Include="ProBuilderEditor-Unity5">
-      <HintPath>Assets/ProCore/ProBuilder/Editor/ProBuilderEditor-Unity5.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/Xavier/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -299,11 +281,29 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Xavier/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
+    <Reference Include="ProBuilderCore-Unity5">
+      <HintPath>Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+    </Reference>
+    <Reference Include="pb_Stl">
+      <HintPath>Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+    </Reference>
+    <Reference Include="Poly2Tri">
+      <HintPath>Assets/ProCore/ProBuilder/Classes/ClassesLib/Poly2Tri.dll</HintPath>
+    </Reference>
+    <Reference Include="ProBuilderEditor-Unity5">
+      <HintPath>Assets/ProCore/ProBuilder/Editor/ProBuilderEditor-Unity5.dll</HintPath>
+    </Reference>
+    <Reference Include="ProBuilderMeshOps-Unity5">
+      <HintPath>Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+    </Reference>
+    <Reference Include="KdTreeLib">
+      <HintPath>Assets/ProCore/ProBuilder/Classes/ClassesLib/KdTreeLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Circuit Knights.csproj">
-      <Project>{FA2E193E-174C-4313-1D43-B361D154257B}</Project>
-      <Name>Circuit Knights</Name>
+    <ProjectReference Include="Circut Knights.csproj">
+      <Project>{739A8677-13DC-6B0E-9AF4-14A1FA8EFD02}</Project>
+      <Name>Circut Knights</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
