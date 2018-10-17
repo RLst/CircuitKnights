@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2e8999e97564836459ecea2a7faef989
-timeCreated: 1539814202
+guid: b2a66618a4f8e1545aabb431878d3bd5
+timeCreated: 1539813335
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,7 +10,7 @@ ModelImporter:
     2100000: lambert1
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Arena_Prop_Crate_001
+    4300000: Environment_Prop_Cottage_001
     9500000: //RootNode
   externalObjects: {}
   materials:
