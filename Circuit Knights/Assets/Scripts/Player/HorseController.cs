@@ -81,8 +81,16 @@ public class HorseController : MonoBehaviour {
 
 	void DoLerp()
 	{		
-		
+		//Controller
 		var accel = XCI.GetAxis(inputAccel, controller);
+
+		//Keyboard
+		if (Input.GetKey(KeyCode.Space)) {
+			accel = speed * Time.deltaTime;
+		}
+		if (Input.GetKey(KeyCode.B)) {
+			accel = -speed * Time.deltaTime;
+		}
 
 		//Adjust the target position
 		tarPos += transform.forward * speed * accel * Time.deltaTime;
