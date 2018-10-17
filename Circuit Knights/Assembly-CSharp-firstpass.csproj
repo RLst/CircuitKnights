@@ -262,6 +262,9 @@
  <Reference Include="ProBuilderEditor-Unity5">
  <HintPath>/Users/hYu/App Development/DuckBike/SnailSVN/Circuit Knights/Assets/Plugins/ProCore/ProBuilder/Editor/ProBuilderEditor-Unity5.dll</HintPath>
  </Reference>
+ <Reference Include="XInputDotNetPure">
+ <HintPath>/Users/hYu/App Development/DuckBike/SnailSVN/Circuit Knights/Assets/Plugins/XboxCtrlrInput/x86_64/XInputDotNetPure.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>/Users/hYu/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
@@ -282,9 +285,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/hYu/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="XInputDotNetPure">
- <HintPath>/Users/hYu/App Development/DuckBike/SnailSVN/Circuit Knights/Assets/Plugins/XboxCtrlrInput/x86_64/XInputDotNetPure.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
