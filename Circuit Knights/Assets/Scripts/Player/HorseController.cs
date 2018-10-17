@@ -4,6 +4,8 @@
 using UnityEngine;
 using XboxCtrlrInput;
 
+namespace CircuitKnights {
+
 public class HorseController : MonoBehaviour {
 	////(Should be) attached to the horse (or parent of the horse with correct transform)
 	//Controls the movement of the horse
@@ -11,31 +13,62 @@ public class HorseController : MonoBehaviour {
 
 	private Rigidbody rb;
 
-	[Header("A")]
-
-	public float mass = 800f;	 	//kg
-	public float linearForce = 25000f;	//Newtons
-	public float drag = 4f;			//Newtons (probably)
+	[Header("Move Mode")]
+	public bool usingLerp = true;
 
 
 	[Header("Gamepad Controls")]
 	public XboxController controller;
+	public XboxAxis inputAccel = XboxAxis.RightTrigger;
 	public XboxAxis forward;
 	public XboxAxis backward;
 
-	[HideInInspector] public Vector3 force;
-	[HideInInspector] public Vector3 accel;
-	[HideInInspector] public Vector3 vel;
-	[HideInInspector] public Vector3 pos;
 
-	// Use this for initialization
+	[Header("Lerp")]
+	public float speed = 100f;
+	public float lerpSmoothness = 0.1f;
+
+	[Header("Physics")]		//Relevant if usingLerp = false;
+	public float mass = 800f;	 	//kg
+	public float linearForce = 25000f;	//Newtons
+	public float drag = 4f;			//Newtons (probably)
+	// [HideInInspector] public Vector3 force;
+	// [HideInInspector] public Vector3 accel;
+	// [HideInInspector] public Vector3 vel;
+
+
+	// private Vector3 pos;
+	private Vector3 tarPos;
+
 	void Start () {
+		//Get the current position of the object
+		tarPos = transform.position;
+		// tarPos = pos;
+
+		//Setup rigidbody
 		rb = GetComponent<Rigidbody>();
-		rb.drag = this.drag;
-		rb.mass = this.mass;
+		if (rb != null)
+		{
+			rb.drag = this.drag;
+			rb.mass = this.mass;
+		}
 	}
 
 	void FixedUpdate() {
+		if (!usingLerp) {
+			DoUnityPhysics();
+		}
+	}
+
+	void Update()
+	{
+		if (usingLerp) {
+			DoLerp();
+		}
+	}
+
+	void DoUnityPhysics()
+	{
 		//Get controller inputs
 		var fwd = XCI.GetAxis(forward, controller);
 		var back = -XCI.GetAxis(backward, controller);
@@ -44,12 +77,39 @@ public class HorseController : MonoBehaviour {
 
 		//Add forward force
 		rb.AddForce(transform.forward * linearForce * combined);
-
-		//If the end is reached
 	}
 
-	
+	void DoLerp()
+	{		
+		
+		var accel = XCI.GetAxis(inputAccel, controller);
+
+		//Adjust the target position
+		tarPos += transform.forward * speed * accel * Time.deltaTime;
+		
+		//Clamp lerp
+		lerpSmoothness = Mathf.Clamp01(lerpSmoothness);
+
+		//lerp towards it
+		Debug.Log("cur: "+transform.position + "tar: "+tarPos);
+		transform.position = Vector3.Lerp(transform.position, tarPos, lerpSmoothness);
+	}
+
+
 }
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 // 	void Update() {
