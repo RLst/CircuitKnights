@@ -1,29 +1,42 @@
 ﻿using UnityEngine;
 
+//Brent D'Auria & Jack Dawes
+//17th of October, 2018
+
 namespace CircuitKnights
 {
-
-public class TimeController : MonoBehaviour {
-
-    public float slowdown_Factor = 0.05f;
-    public float slowdown_length = 2f;
-
-     void Update()
+    public class TimeController : MonoBehaviour
     {
-            
-        Time.timeScale += (1f / slowdown_length) * Time.unscaledDeltaTime;
-    
-    }
-    public void Slowmotion ()
-    {
-        Time.timeScale = slowdown_Factor;
-        Time.fixedDeltaTime = Time.timeScale * .02f;
-    }
+        public float slowdownFactor = 0.05f;
+        public float slowdownLength = 2f;
+        public Collider collider;
+        private bool isSlowMotion = false;
 
-      //  private void OnTriggerEnter(Collider other)
-      //  {
-      //      Slowmotion();
-      //  }
-    }
+        void Start()
+        {
+            collider = GetComponent<Collider>();    
+        }
 
+        void Update()
+        {
+            Time.timeScale += (1f / slowdownLength) * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            if (isSlowMotion == true)
+            {
+                SlowMotion();
+            }
+        }
+        void OnCollisionEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                isSlowMotion = true;
+            }
+        }
+        public void SlowMotion()
+        {
+            Time.timeScale = slowdownFactor;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
+        }
+    }
 }
