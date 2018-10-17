@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 namespace CircuitKnights
 {
-
 public class PlayerLeanAndDodge : MonoBehaviour 
 {
 	///To be placed on the player's object

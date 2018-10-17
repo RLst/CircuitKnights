@@ -98,26 +98,16 @@ public class HorseController : MonoBehaviour {
 		//Clamp lerp
 		lerpSmoothness = Mathf.Clamp01(lerpSmoothness);
 
-		//lerp towards it
-		Debug.Log("cur: "+transform.position + "tar: "+tarPos);
+		//Lerp towards it
 		transform.position = Vector3.Lerp(transform.position, tarPos, lerpSmoothness);
+
+		// Debug.Log("cur: "+transform.position + "tar: "+tarPos);
 	}
 
 
 }
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 // 	void Update() {
