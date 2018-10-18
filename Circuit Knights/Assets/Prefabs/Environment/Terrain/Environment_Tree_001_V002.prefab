@@ -9,74 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1176736730732138}
+  m_RootGameObject: {fileID: 1710931924995778}
   m_IsPrefabParent: 1
---- !u!1 &1176736730732138
+--- !u!1 &1710931924995778
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4610019080949506}
+  - component: {fileID: 4383953108423560}
+  - component: {fileID: 33073673526216650}
+  - component: {fileID: 23157389177368338}
+  - component: {fileID: 95861377650564974}
   m_Layer: 0
-  m_Name: Envornment_Stone_001
+  m_Name: Environment_Tree_001_V002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1851932889007498
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4669080059296472}
-  - component: {fileID: 33896728706463732}
-  - component: {fileID: 23916122337570530}
-  - component: {fileID: 95765131035079020}
-  m_Layer: 0
-  m_Name: Environment_Stone_001
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4610019080949506
+--- !u!4 &4383953108423560
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1176736730732138}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -44.507484, y: 0.45561218, z: 38.753906}
+  m_GameObject: {fileID: 1710931924995778}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -23.400219, y: 0.40231776, z: 64.538}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4669080059296472}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4669080059296472
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1851932889007498}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.98303986, y: 0, z: 1.6085539}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4610019080949506}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23916122337570530
+--- !u!23 &23157389177368338
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1851932889007498}
+  m_GameObject: {fileID: 1710931924995778}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: df878fab90bcc774f93401328f41369b, type: 2}
+  - {fileID: 2100000, guid: e129b439a4eb76d4b925423f4b2f2b81, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,22 +76,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33896728706463732
+--- !u!33 &33073673526216650
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1851932889007498}
-  m_Mesh: {fileID: 4300000, guid: 917b1f68cf4925040b022d7693cfc715, type: 3}
---- !u!95 &95765131035079020
+  m_GameObject: {fileID: 1710931924995778}
+  m_Mesh: {fileID: 4300000, guid: e129b439a4eb76d4b925423f4b2f2b81, type: 3}
+--- !u!95 &95861377650564974
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1851932889007498}
+  m_GameObject: {fileID: 1710931924995778}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 917b1f68cf4925040b022d7693cfc715, type: 3}
+  m_Avatar: {fileID: 9000000, guid: e129b439a4eb76d4b925423f4b2f2b81, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
