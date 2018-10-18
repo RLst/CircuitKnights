@@ -7,15 +7,12 @@ using XboxCtrlrInput;
 namespace CircuitKnights {
 
 public class HorseController : MonoBehaviour {
-	////(Should be) attached to the horse (or parent of the horse with correct transform)
-	//Controls the movement of the horse
-	//Manual physics
+	////Attach to the horse
 
-	private Rigidbody rb;
+	// [Header("Move Mode")]
+	// public bool usingLerp = true;
 
-	[Header("Move Mode")]
-	public bool usingLerp = true;
-
+	public string EndOfTrackTag = "TrackEnd";
 
 	[Header("Gamepad Controls")]
 	public XboxController controller;
@@ -25,61 +22,24 @@ public class HorseController : MonoBehaviour {
 
 
 	[Header("Lerp")]
-	public float speed = 100f;
-	public float smoothness = 0.1f;
-
-	[Header("Physics [DEFUNCT]")]		//Relevant if usingLerp = false;
-	public float mass = 800f;	 	//kg
-	public float linearForce = 25000f;	//Newtons
-	public float drag = 4f;			//Newtons (probably)
-	// [HideInInspector] public Vector3 force;
-	// [HideInInspector] public Vector3 accel;
-	// [HideInInspector] public Vector3 vel;
-
-
-	// private Vector3 pos;
+	public float speed = 50;
+	public float tValue = 0.025f;
 	private Vector3 tarPos;
 
 	void Start () {
 		//Get the current position of the object
 		tarPos = transform.position;
-		// tarPos = pos;
-
-		//Setup rigidbody
-		rb = GetComponent<Rigidbody>();
-		if (rb != null)
-		{
-			rb.drag = this.drag;
-			rb.mass = this.mass;
-		}
-	}
-
-	void FixedUpdate() {
-		if (!usingLerp) {
-			DoUnityPhysics();
-		}
 	}
 
 	void Update()
 	{
-		if (usingLerp) {
-			DoLerp();
-		}
+		//Move
+		LerpMove();
+
+		//Check 
 	}
 
-	void DoUnityPhysics()
-	{
-		//Get controller inputs
-		var fwd = XCI.GetAxis(forward, controller);
-		var back = -XCI.GetAxis(backward, controller);
-
-		var combined = fwd + back;
-
-		//Add forward force
-		rb.AddForce(transform.forward * linearForce * combined);
-	}
-
-	void DoLerp()
+	void LerpMove()
 	{		
 		//Controller
 		var accel = XCI.GetAxis(inputAccel, controller);
@@ -96,10 +56,10 @@ public class HorseController : MonoBehaviour {
 		tarPos += transform.forward * speed * accel * Time.deltaTime;
 		
 		//Clamp lerp
-		smoothness = Mathf.Clamp01(smoothness);
+		tValue = Mathf.Clamp01(tValue);
 
 		//Lerp towards it
-		transform.position = Vector3.Lerp(transform.position, tarPos, smoothness);
+		transform.position = Vector3.Lerp(transform.position, tarPos, tValue);
 
 		// Debug.Log("cur: "+transform.position + "tar: "+tarPos);
 	}

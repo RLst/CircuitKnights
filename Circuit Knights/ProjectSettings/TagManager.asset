@@ -3,9 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Player1
-  - Player2
+	- Player1
+	- Player2
+	- TrackEnd
   layers:
   - Default
   - TransparentFX
