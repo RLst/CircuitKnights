@@ -13,19 +13,12 @@ namespace CircuitKnights
         [Header("Movement")]
         public float moveSpeed;
         public GameObject moveObject;
-        public GameObject moveFollowObject;
 
         [Header("Rotation")]
         public float rotationSpeed;
         public GameObject rotateObject;
-        public GameObject rotateFollowObject;
 
-        private void Start()
-        {
-            moveObject = moveFollowObject;
-            rotateObject = rotateFollowObject;
-        }
-        
+
         private void Update()
         {
             Vector3 position = transform.position;
@@ -39,7 +32,7 @@ namespace CircuitKnights
 
             Vector3 newLookAt = rotateObject.transform.position;
             newLookAt.x += swayX;
-            newLookAt.x += swayY;
+            newLookAt.y += swayY;
             Quaternion desiredRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(newLookAt - transform.position), rotationSpeed * Time.deltaTime);
             transform.rotation = desiredRotation;
         }
