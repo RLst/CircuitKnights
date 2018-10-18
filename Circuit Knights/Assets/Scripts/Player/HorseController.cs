@@ -26,9 +26,9 @@ public class HorseController : MonoBehaviour {
 
 	[Header("Lerp")]
 	public float speed = 100f;
-	public float lerpSmoothness = 0.1f;
+	public float smoothness = 0.1f;
 
-	[Header("Physics")]		//Relevant if usingLerp = false;
+	[Header("Physics [DEFUNCT]")]		//Relevant if usingLerp = false;
 	public float mass = 800f;	 	//kg
 	public float linearForce = 25000f;	//Newtons
 	public float drag = 4f;			//Newtons (probably)
@@ -96,10 +96,10 @@ public class HorseController : MonoBehaviour {
 		tarPos += transform.forward * speed * accel * Time.deltaTime;
 		
 		//Clamp lerp
-		lerpSmoothness = Mathf.Clamp01(lerpSmoothness);
+		smoothness = Mathf.Clamp01(smoothness);
 
 		//Lerp towards it
-		transform.position = Vector3.Lerp(transform.position, tarPos, lerpSmoothness);
+		transform.position = Vector3.Lerp(transform.position, tarPos, smoothness);
 
 		// Debug.Log("cur: "+transform.position + "tar: "+tarPos);
 	}

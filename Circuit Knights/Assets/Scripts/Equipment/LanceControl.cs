@@ -8,83 +8,65 @@ using XboxCtrlrInput;
 
 namespace CircuitKnights {
 
-public class LanceControl : MonoBehaviour {
+public enum LerpMode {
+	lerp,
+	slerp
+}
 
-	private Rigidbody rb;
+public class LanceControl : MonoBehaviour {
 
 	[Header("Controls")]
 	public XboxController controller;
-	public XboxAxis vertical;		//Up/Down
-	public XboxAxis horizontal;		//Left/Right
-
-	// public ControllerAxis axis;
+	public XboxAxis vertical;		//for pitch
+	public XboxAxis horizontal;		//for yaw
 
 	[Header("Lance Properties")]
-	public float lerpSmoothing = 0.01f;
-	public float verticalSpeed = 0.75f;
-	public float horizontalSpeed = 1f;
+	public LerpMode lerpMode = LerpMode.slerp;
+	public float weighting = 0.02f;
+	public float pitchSpeed = 80f;
+	public float yawSpeed = 100f;
 
+	[Header("Lance Limits [WORKINPROGRESS]")]
+	public float minPitchAngle = 60f;
+	public float maxPitchAngle = 120f;
+	public float minYawAngle = 85f;
+	public float maxYawAngle = 140f;
 
-	private Transform tarAng;
+	private Quaternion tarAng;
 
-	// [Header("Y Axis Limits")]
-	// // public float yMin = 60f;
-	// // public float yMax = 120f;
-
-	// [Header("Z Axis Limits")]
-	// // public float zMin = 85f;
-	// // public float zMax = 140f;
 
 	void Start() {
 		//Set the initial lance orientation
-		tarAng = transform;
-
-		//Get the rigidbody
-		// rb = GetComponent<Rigidbody>();
+		tarAng = transform.rotation;
 	}
 
 	void Update()
 	{
 		//Get controller inputs
-		var v = XCI.GetAxis(vertical, controller);
-		var h = XCI.GetAxis(horizontal, controller);
+		var v = XCI.GetAxisRaw(vertical, controller);
+		var h = XCI.GetAxisRaw(horizontal, controller);
+		var deltaTime = Time.deltaTime;
 
-		// //Aim the lance asdfasdfasdfasdfs
-		// var xAxis = 
+		//Lance target rotation
+		tarAng *= Quaternion.Euler(-h * yawSpeed * deltaTime, 0f, v * pitchSpeed * deltaTime);			////!!!! Need the artists to fix the lance's pivot rotation
+		// tarAng *= Quaternion.Euler(v * pitchSpeed * deltaTime, -h * yawSpeed * deltaTime, 0f);
+		 
+		//Lerp the lance
+		switch (lerpMode)
+		{
+			case LerpMode.lerp: transform.rotation = Quaternion.Lerp(transform.rotation, tarAng, weighting); break;
+			case LerpMode.slerp: transform.rotation = Quaternion.Slerp(transform.rotation, tarAng, weighting); break;
+		}
 
-		// tarAng.rotation.eulerAngles = Quaternion.EulerAngles.
-
-		//Do the rotation
-		transform.rotation = Quaternion.Lerp(transform.rotation, tarAng.rotation, lerpSmoothing);
-
-	}
-
-	void FixedUpdate () {
-
-		//Get the controller axis input values
-		var v = XCI.GetAxis(vertical, controller);		//X axis
-		var h = XCI.GetAxis(horizontal, controller);	//Y axis
-
-		//Move the lance using physics
-		rb.AddRelativeTorque(v * verticalSpeed, h * horizontalSpeed, 0f);
-
-		// ////Left Thumb Stick
-		// if (axis == ControllerAxis.LeftThumbStick)
-		// {
-		// 	//Vertical
-		// 	var vertical = Input.GetAxis("Vertical") * lanceVerticalSpeed;
-		// 	transform.Rotate(0, 0, -vertical);
-			
-		// 	//Horizontal
-		// 	var horizontal = Input.GetAxis("Horizontal") * lanceHorizontalSpeed;
-		// 	transform.Rotate(-horizontal, 0, 0);
-		// }
-		
-		// //Limit the lance angle
-		// transform.position Mathf.Clamp(transform.rotation.y, yMin, yMax);
-		// Mathf.Clamp(transform.rotation.z, zMin, zMax);
+		//Limit the lance [WORK IN PROGRESS]
+		// var yawAngClamp = Mathf.Clamp(transform.rotation., Quaternion.)
+		// var pitchAngClamp
+		//  = Mathf.Clamp(transform.eulerAngles.z, minPitchAngle, maxPitchAngle); 
+		//  = Mathf.Clamp(transform.eulerAngles.x, minYawAngle, maxYawAngle);
+		// transform.rotation.eulerAngles.Set(yawAngClamp, 0f, pitchAngClamp);
 
 	}
+
 }
 
 }
