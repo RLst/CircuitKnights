@@ -327,12 +327,13 @@
     <Compile Include="Assets\Scripts\Core\GameController.cs" />
     <Compile Include="Assets\Scripts\Core\GamePadTest.cs" />
     <Compile Include="Assets\Scripts\Core\TimeController.cs" />
+    <Compile Include="Assets\Scripts\Equipment\Lance.cs" />
     <Compile Include="Assets\Scripts\Equipment\LanceControl.cs" />
     <Compile Include="Assets\Scripts\Equipment\LanceRayCast.cs" />
-    <Compile Include="Assets\Scripts\Equipment\ShieldBlock.cs" />
     <Compile Include="Assets\Scripts\Equipment\ShieldController.cs" />
     <Compile Include="Assets\Scripts\GUI\CameraRotation.cs" />
     <Compile Include="Assets\Scripts\GUI\CountDown.cs" />
+    <Compile Include="Assets\Scripts\GUI\CreditsMenu.cs" />
     <Compile Include="Assets\Scripts\GUI\ExitButton.cs" />
     <Compile Include="Assets\Scripts\GUI\MainMenuButton.cs" />
     <Compile Include="Assets\Scripts\GUI\PauseMenu.cs" />
@@ -343,6 +344,7 @@
     <Compile Include="Assets\Scripts\Player\BasicPlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\HorseController.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerLeanAndDodge.cs" />
     <Compile Include="Assets\Scripts\temporary\Lean.cs" />
