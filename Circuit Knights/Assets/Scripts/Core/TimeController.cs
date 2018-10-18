@@ -1,42 +1,57 @@
 ﻿using UnityEngine;
 
-//Brent D'Auria & Jack Dawes
-//17th of October, 2018
+//Tony Le
+//18th of October, 2018
 
 namespace CircuitKnights
 {
     public class TimeController : MonoBehaviour
     {
-        public float slowdownFactor = 0.05f;
-        public float slowdownLength = 2f;
-        public Collider collider;
-        private bool isSlowMotion = false;
+        public float slowdownFactor = 0.15f;
+        public float slowdownDuration = 2.5f;
+        public float range = 30f;
+
+        public float idealFPS = 60f;
+
+        [Header("Players")]
+        public Transform playerOne;
+        public Transform playerTwo;
 
         void Start()
         {
-            collider = GetComponent<Collider>();    
+            playerOne = GameObject.FindGameObjectWithTag("Player1").transform;
+            playerTwo = GameObject.FindGameObjectWithTag("Player2").transform;
         }
 
         void Update()
         {
-            Time.timeScale += (1f / slowdownLength) * Time.unscaledDeltaTime;
-            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
-            if (isSlowMotion == true)
+            if (Time.timeScale < 1f)   //Slight optimization
             {
-                SlowMotion();
+                Time.timeScale += (1f / slowdownDuration) * Time.unscaledDeltaTime;
             }
-        }
-        void OnCollisionEnter(Collider other)
-        {
-            if (other.gameObject.tag == "Player")
+
+            //Calc distance
+            var dist = Vector3.Distance(playerOne.position, playerTwo.position);
+            var playerOneFacing = playerOne.TransformDirection(Vector3.forward);
+            var toPlayerTwo = playerTwo.position - playerOne.position;
+
+            //If the players are facing each other...
+            if (Vector3.Dot(playerOneFacing, toPlayerTwo) > 0)
             {
-                isSlowMotion = true;
+                Debug.Log("Facing each other");
+
+                //and within range
+                if (dist <= range)
+                {
+                    Debug.Log("Slow motion!");
+                    SlowMotion();
+                }
             }
         }
         public void SlowMotion()
         {
             Time.timeScale = slowdownFactor;
-            Time.fixedDeltaTime = Time.timeScale * .02f;
+            Time.fixedDeltaTime = Time.timeScale * 1 / idealFPS;
         }
     }
 }
