@@ -19,17 +19,28 @@ namespace CircuitKnights
 
         public GameObject CountDownCanvas;
 
+        public GameObject SpinningCamera;
+
         public Button PlayButton;
 
-        public bool MenuActive = true;
+        bool MenuActive = true;
 
-        public bool PlayerCamerasActive = false;
+        bool PlayerCamerasActive = false;
 
-        public bool CountDownActive = false;
+        bool CountDownActive = false;
+
+        bool SpinCamera = true;
+
+        public static bool Rematch = false; 
 
         private void Start()
         {
             PlayButton.onClick.AddListener(PlayGame);
+
+            if (Rematch)
+            {
+                PlayGame();
+            }
         }
        
         public void PlayGame()
@@ -37,9 +48,11 @@ namespace CircuitKnights
             MenuActive = false;
             PlayerCamerasActive = true;
             CountDownActive = true;
+            Rematch = false;
+            SpinCamera = false;
         }
 
-        void OnGUI()
+        void Update()
         {
             if (MenuActive == true)
             {
@@ -68,6 +81,15 @@ namespace CircuitKnights
             else if (CountDownActive == false)
             {
                 CountDownCanvas.SetActive(false);
+            }
+
+            if (SpinCamera == true)
+            {
+                SpinningCamera.SetActive(true);
+            }
+            else if (SpinCamera == false)
+            {
+                SpinningCamera.SetActive(false);
             }
         }
     }

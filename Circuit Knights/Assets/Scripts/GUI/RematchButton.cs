@@ -27,8 +27,10 @@ namespace CircuitKnights
 
         void Rematch()
         {
+            MainMenuButton.Rematch = true;
             Time.timeScale = 1f;
             SceneManager.LoadScene(LoadScene);
+            
         }
     }
 }
