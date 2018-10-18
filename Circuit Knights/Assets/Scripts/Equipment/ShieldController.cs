@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using XboxCtrlrInput;
 
 namespace CircuitKnights
@@ -18,8 +16,8 @@ namespace CircuitKnights
 
         public XboxController controller;
 
-        public XboxButton blockInput;
-        //public XboxAxis blockInput;
+        //public XboxButton blockInput;
+        public XboxAxis blockInput;
 
         public Vector3 maxBlockOffset;      //The max offset of where the shield will 
 
@@ -29,13 +27,9 @@ namespace CircuitKnights
         {
             Vector3 offset = Vector3.zero; 
             
-            if (XCI.GetButton(blockInput, controller))
-            {
-                offset = maxBlockOffset;
-                //offset = maxBlockOffset * XCI.GetAxis(blockInput, controller);
-
-            }
-
+            //offset = maxBlockOffset;
+            offset = maxBlockOffset * XCI.GetAxis(blockInput, controller);
+           
             transform.localPosition = offset;
 
         }
