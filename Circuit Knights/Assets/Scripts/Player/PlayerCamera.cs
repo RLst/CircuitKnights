@@ -12,12 +12,14 @@ namespace CircuitKnights
 
         [Header("Movement")]
         public float moveSpeed;
+        //public float addedMoveSpeed;
         public GameObject moveObject;
 
         [Header("Rotation")]
         public float rotationSpeed;
         public GameObject rotateObject;
 
+        //private float CountDownDuration = 2f;
 
         private void Update()
         {
@@ -35,8 +37,18 @@ namespace CircuitKnights
             newLookAt.y += swayY;
             Quaternion desiredRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(newLookAt - transform.position), rotationSpeed * Time.deltaTime);
             transform.rotation = desiredRotation;
+
+            //CountDownDuration -= Time.deltaTime;
+
+            //if (CountDownDuration <= 0.0f)
+            //{
+            //    for (int i = 1; i < 10; i++)
+            //    {
+            //        moveSpeed += addedMoveSpeed;
+            //    }
+            //}
         }
 
-
+        
     }
 }

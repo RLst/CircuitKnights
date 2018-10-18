@@ -44,12 +44,6 @@ namespace CircuitKnights
             {
                 countDownText.enabled = false;
             }
-
-        }
-
-        public void StartCountDown()
-        {
-
         }
     }
 }
