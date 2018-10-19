@@ -325,7 +325,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Core\GameController.cs" />
-    <Compile Include="Assets\Scripts\Core\GamePadTest.cs" />
+    <Compile Include="Assets\Scripts\Core\HorseReset.cs" />
     <Compile Include="Assets\Scripts\Core\TimeController.cs" />
     <Compile Include="Assets\Scripts\Equipment\Lance.cs" />
     <Compile Include="Assets\Scripts\Equipment\LanceControl.cs" />
@@ -337,18 +337,20 @@
     <Compile Include="Assets\Scripts\GUI\ExitButton.cs" />
     <Compile Include="Assets\Scripts\GUI\MainMenuButton.cs" />
     <Compile Include="Assets\Scripts\GUI\PauseMenu.cs" />
-    <Compile Include="Assets\Scripts\GUI\PlayMenu.cs" />
-    <Compile Include="Assets\Scripts\GUI\Quit.cs" />
     <Compile Include="Assets\Scripts\GUI\RematchButton.cs" />
     <Compile Include="Assets\Scripts\GUI\ResultsScreen.cs" />
-    <Compile Include="Assets\Scripts\Player\BasicPlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\HorseController.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerLeanAndDodge.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerResetter.cs" />
+    <Compile Include="Assets\Scripts\temporary\BasicPlayerController.cs" />
+    <Compile Include="Assets\Scripts\temporary\GamePadTest.cs" />
     <Compile Include="Assets\Scripts\temporary\Lean.cs" />
     <Compile Include="Assets\Scripts\temporary\Movment.cs" />
+    <Compile Include="Assets\Scripts\temporary\PlayMenu.cs" />
+    <Compile Include="Assets\Scripts\temporary\Quit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
