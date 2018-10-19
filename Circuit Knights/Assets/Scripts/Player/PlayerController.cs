@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using XboxCtrlrInput;
 
-
-namespace CircuitKnights 
+namespace CircuitKnights
 {
 
-public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
 {
 
     [Header("Temp")]
     private Rigidbody rb;
 
     //Controller
-    public XboxController controller;
-    public XboxAxis xAxis;
-    public XboxAxis zAxis;
-    public bool canLean = true;
-    public bool canDodge = false;
+    [SerializeField] XboxController controller;
+    [SerializeField] XboxAxis xAxis;
+    [SerializeField] XboxAxis zAxis;
+    [SerializeField] bool canLean = true;
+    [SerializeField] bool canDodge = false;
 
 
     //Lean

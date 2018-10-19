@@ -56,23 +56,18 @@ public class LanceControl : MonoBehaviour
 		//Get controller inputs
 		var v = XCI.GetAxisRaw(vertical, controller);
 		var h = XCI.GetAxisRaw(horizontal, controller);
-		Debug.Log("vertical: " + v + " horizonal: " + h);
 
 		//Calc angular accel
 		angAccel.x += v * pitchTorque / momentOfInertia * deltaTime;
 		angAccel.y += h * yawTorque / momentOfInertia * deltaTime;
-		Debug.Log("MOI: " + momentOfInertia);
-		Debug.Log("angAccel: " + angAccel);
 
 		//Calc angular vel
 		angVel.x += angAccel.x * deltaTime;
 		angVel.y += angAccel.y * deltaTime;
-		Debug.Log("angVel: " + angVel);
 
 		//Calc angular pos
 		angPos.x += angVel.x * deltaTime;
 		angPos.y += angVel.y * deltaTime;
-		Debug.Log("angPos: " + angPos);
 
 		//Apply drag by reducing the accel and vel
 		angDrag = Mathf.Clamp(angDrag, 1f, 10f);
@@ -86,7 +81,16 @@ public class LanceControl : MonoBehaviour
 
 		//Apply rotation
 		transform.localRotation = Quaternion.Euler(angPos);
+
+		//Debugs
+		// Debug.Log("vertical: " + v + " horizonal: " + h);
+		// Debug.Log("MOI: " + momentOfInertia);
+		// Debug.Log("angAccel: " + angAccel);
+		// Debug.Log("angVel: " + angVel);
+		// Debug.Log("angPos: " + angPos);
 	}
+
+	
 
 }
 

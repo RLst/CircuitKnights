@@ -38,12 +38,12 @@ namespace CircuitKnights
             //If the players are facing each other...
             if (Vector3.Dot(playerOneFacing, toPlayerTwo) > 0)
             {
-                Debug.Log("Facing each other");
+                // Debug.Log("Facing each other");
 
                 //and within range
                 if (dist <= range)
                 {
-                    Debug.Log("Slow motion!");
+                    // Debug.Log("Slow motion!");
                     SlowMotion();
                 }
             }
