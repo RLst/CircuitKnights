@@ -9,6 +9,20 @@ using UnityEngine;
 namespace CircuitKnights
 {
 
+public enum GameState {
+
+	SplashScreen,
+	Menu,
+	Pause,
+	CountDown,
+	InGame,
+	EndOfRound,
+	EndOfMatch,
+	EndOfTournament,		//Maybe??
+
+}
+
+
 public class GameController : MonoBehaviour 
 {
 
@@ -17,6 +31,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] Text countDownText;
 	[SerializeField] Vector3[] playerStartPositions;
 
+	[HideInInspector] public GameState gameState;
 
 	void Update()
 	{

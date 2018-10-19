@@ -57,6 +57,11 @@ public class LanceControl : MonoBehaviour
 		var v = XCI.GetAxisRaw(vertical, controller);
 		var h = XCI.GetAxisRaw(horizontal, controller);
 
+		//Todo - might conflict with xbox controller
+		//DEBUG - Keyboard controls
+		v = Input.GetAxis("Vertical");
+		h = Input.GetAxis("Horizontal");
+
 		//Calc angular accel
 		angAccel.x += v * pitchTorque / momentOfInertia * deltaTime;
 		angAccel.y += h * yawTorque / momentOfInertia * deltaTime;

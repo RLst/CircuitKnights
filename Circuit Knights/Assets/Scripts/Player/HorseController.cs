@@ -48,19 +48,21 @@ public class HorseController : MonoBehaviour {
 
 	void LerpMove()
 	{		
+		var dt = Time.deltaTime;
+
 		//Controller
 		var accel = XCI.GetAxis(accelerate, controller);
 
 		//Keyboard (debug)
 		if (Input.GetKey(KeyCode.Space)) {
-			accel = speed * Time.deltaTime;
+			accel = speed * dt;
 		}
 		if (Input.GetKey(KeyCode.B) || XCI.GetButton(decelerate, controller)) {
-			accel = -speed * Time.deltaTime;
+			accel = -speed * dt;
 		}
 
 		//Adjust the target position
-		tarPos += transform.forward * speed * accel * Time.deltaTime;
+		tarPos += transform.forward * speed * accel * dt;
 		
 		//Clamp lerp
 		tValue = Mathf.Clamp01(tValue);
