@@ -11,17 +11,17 @@ namespace CircuitKnights
 {
     public class MainMenuButton : MonoBehaviour
     {
-        public GameObject MainMenu;
+        [SerializeField] GameObject MainMenu;
 
-        public GameObject PlayerCameraOne;
+        [SerializeField] GameObject PlayerCameraOne;
 
-        public GameObject PlayerCameraTwo;
+        [SerializeField] GameObject PlayerCameraTwo;
 
-        public GameObject CountDownCanvas;
+        [SerializeField] GameObject CountDownCanvas;
 
-        public GameObject SpinningCamera;
+        [SerializeField] GameObject SpinningCamera;
 
-        public Button PlayButton;
+        [SerializeField] Button PlayButton;
 
         bool MenuActive = true;
 
@@ -32,6 +32,7 @@ namespace CircuitKnights
         bool SpinCamera = true;
 
         public static bool Rematch = false; 
+
 
         private void Start()
         {

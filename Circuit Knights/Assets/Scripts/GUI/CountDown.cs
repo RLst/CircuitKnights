@@ -15,7 +15,7 @@ namespace CircuitKnights
         //Attach directly to the countdown text object?
         private Text countDownText;         //Don't need to be public
 
-        public float countDownDuration = 3f;
+        [SerializeField] float countDownDuration = 3f;
 
         // Use this for initialization
         public void Start()

@@ -12,11 +12,11 @@ namespace CircuitKnights
 
     public class RematchButton : MonoBehaviour
     {
-        public Button rematchButton1;
+        [SerializeField] Button rematchButton1;
 
-        public Button rematchButton2;
+        [SerializeField] Button rematchButton2;
 
-        public string LoadScene = "Jack's Main";
+        [SerializeField] string LoadScene = "Jack's Main";
 
         
         void Start()

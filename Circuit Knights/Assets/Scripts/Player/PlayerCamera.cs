@@ -1,25 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CircuitKnights
 {
     public class PlayerCamera : MonoBehaviour
     {
         [Header("Camera Sway")]
-        public float swaySpeed;
-        public float swayAmount;
+        [SerializeField] float swaySpeed;
+        [SerializeField] float swayAmount;
 
         [Header("Movement")]
-        public float moveSpeed;
-        //public float addedMoveSpeed;
-        public GameObject moveObject;
+        [SerializeField] float moveSpeed;
+        [SerializeField] GameObject moveObject;
 
         [Header("Rotation")]
-        public float rotationSpeed;
-        public GameObject rotateObject;
+        [SerializeField] float rotationSpeed;
+        [SerializeField] GameObject rotateObject;
 
-        //private float CountDownDuration = 2f;
 
         private void Update()
         {
@@ -37,18 +33,8 @@ namespace CircuitKnights
             newLookAt.y += swayY;
             Quaternion desiredRotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(newLookAt - transform.position), rotationSpeed * Time.deltaTime);
             transform.rotation = desiredRotation;
-
-            //CountDownDuration -= Time.deltaTime;
-
-            //if (CountDownDuration <= 0.0f)
-            //{
-            //    for (int i = 1; i < 10; i++)
-            //    {
-            //        moveSpeed += addedMoveSpeed;
-            //    }
-            //}
         }
 
-        
+
     }
 }

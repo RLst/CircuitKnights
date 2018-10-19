@@ -14,12 +14,12 @@ namespace CircuitKnights
         //}
         //public InputType inputType;
 
-        public XboxController controller;
+        [SerializeField] XboxController controller;
 
         //public XboxButton blockInput;
-        public XboxAxis blockInput;
+        [SerializeField] XboxAxis blockInput;
 
-        public Vector3 maxBlockOffset;      //The max offset of where the shield will 
+        [SerializeField] Vector3 maxBlockOffset;      //The max offset of where the shield will 
 
 
         // Update is called once per frame

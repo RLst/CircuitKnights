@@ -8,31 +8,32 @@ using XboxCtrlrInput;
 
 namespace CircuitKnights {
 
-
-public class LanceControl : MonoBehaviour {
+public class LanceControl : MonoBehaviour 
+{
+	////Handle lance aim and lunge?
 
 	[Header("Controls")]
-	public XboxController controller;
-	public XboxAxis vertical = XboxAxis.RightStickY;		//for pitch
-	public XboxAxis horizontal = XboxAxis.RightStickX;		//for yaw
+	[SerializeField] XboxController controller;
+	[SerializeField] XboxAxis vertical = XboxAxis.RightStickY;		//for pitch
+	[SerializeField] XboxAxis horizontal = XboxAxis.RightStickX;		//for yaw
 
 	[Header("Lance Physics")]
 	//Some of these should be split up into a separate Lance.cs scriptable objects
-	public float mass = 20f;		//kg			
-	public float length = 3.3f;		//metres
+	[Tooltip("kgs")][SerializeField] float mass = 20f;		//kg			
+	[SerializeField] float length = 3.3f;		//metres
 	float momentOfInertia;		//kg.m2
-	public float pitchTorque = 40000;
-	public float yawTorque = 40000;
+	[SerializeField] float pitchTorque = 40000;
+	[SerializeField] float yawTorque = 40000;
 	Vector3 angAccel;
 	Vector3 angVel;
 	Vector3 angPos;
-	public float angDrag = 1.065f;		//2 = half
+	[SerializeField] float angDrag = 1.065f;		//2 = half
 
 	[Header("Lance Limits")]
-	public float minPitchAngle = -10f;
-	public float maxPitchAngle = 50f;
-	public float minYawAngle = 120f;
-	public float maxYawAngle = 190f;
+	[SerializeField] float minPitchAngle = -10f;
+	[SerializeField] float maxPitchAngle = 50f;
+	[SerializeField] float minYawAngle = 120f;
+	[SerializeField] float maxYawAngle = 190f;
 
 
 	void Start() {
@@ -45,17 +46,22 @@ public class LanceControl : MonoBehaviour {
 
 	void Update()
 	{
+		HandleLanceAim();
+	}
+
+	private void HandleLanceAim()
+	{
 		var deltaTime = Time.deltaTime;
 
 		//Get controller inputs
 		var v = XCI.GetAxisRaw(vertical, controller);
 		var h = XCI.GetAxisRaw(horizontal, controller);
-		Debug.Log("vertical: "+v + " horizonal: "+h);
+		Debug.Log("vertical: " + v + " horizonal: " + h);
 
 		//Calc angular accel
 		angAccel.x += v * pitchTorque / momentOfInertia * deltaTime;
 		angAccel.y += h * yawTorque / momentOfInertia * deltaTime;
-		Debug.Log("MOI: "+momentOfInertia);
+		Debug.Log("MOI: " + momentOfInertia);
 		Debug.Log("angAccel: " + angAccel);
 
 		//Calc angular vel

@@ -9,13 +9,13 @@ using UnityEngine.SceneManagement;
 
 public class ResultsScreen : MonoBehaviour {
 
-    public string LoadingScene = "Jack's Main";
+    [SerializeField] string LoadingScene = "Jack's Main";
 
-    public GameObject ResultScreen;
+    [SerializeField] GameObject ResultScreen;
 
     //public Button PlayAgainButton;
 
-    public Button MainMenuButton;
+    [SerializeField] Button MainMenuButton;
 
     private void Start()
     {

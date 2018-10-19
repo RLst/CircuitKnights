@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CreditsMenu : MonoBehaviour {
-    public Animator textAnimator;
+    [SerializeField] Animator textAnimator;
 	// Use this for initialization
 	void Start () {
 		

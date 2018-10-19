@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CircuitKnights
 {
-public class Player : MonoBehaviour
+public class Player : ScriptableObject
 {
 
 	////To be placed on each player object, maybe in the root object

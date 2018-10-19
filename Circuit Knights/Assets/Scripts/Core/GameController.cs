@@ -9,22 +9,13 @@ using UnityEngine;
 namespace CircuitKnights
 {
 
-public enum ControllerAxis
-{
-	LeftThumbStick,
-	RightThumbStick,	
-}
-
 public class GameController : MonoBehaviour 
 {
 
-	//[Temp]Countdown
-	public float timeBeforeCountdown = 2f; 		//Seconds
-	public float countDownLength = 3f;			//Seconds
-
-	public Text countDownText;
-
-	public Vector3[] playerStartPositions;
+	[SerializeField] float timeBeforeCountdown = 2f; 		//Seconds
+	[SerializeField] float countDownLength = 3f;			//Seconds
+	[SerializeField] Text countDownText;
+	[SerializeField] Vector3[] playerStartPositions;
 
 
 	void Update()

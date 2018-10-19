@@ -7,15 +7,15 @@ namespace CircuitKnights
 {
     public class TimeController : MonoBehaviour
     {
-        public float slowdownFactor = 0.15f;
-        public float slowdownDuration = 2.5f;
-        public float range = 30f;
+        [SerializeField] float slowdownFactor = 0.15f;
+        [SerializeField] float slowdownDuration = 2.5f;
+        [SerializeField] float range = 30f;
 
-        public float idealFPS = 60f;
+        [SerializeField] float idealFPS = 60f;
 
         [Header("Players")]
-        public Transform playerOne;
-        public Transform playerTwo;
+        [SerializeField] Transform playerOne;
+        [SerializeField] Transform playerTwo;
 
         void Start()
         {
@@ -48,10 +48,11 @@ namespace CircuitKnights
                 }
             }
         }
+
         public void SlowMotion()
         {
             Time.timeScale = slowdownFactor;
-            Time.fixedDeltaTime = Time.timeScale * 1 / idealFPS;
+            Time.fixedDeltaTime = Time.timeScale * 1f / idealFPS;
         }
     }
 }
