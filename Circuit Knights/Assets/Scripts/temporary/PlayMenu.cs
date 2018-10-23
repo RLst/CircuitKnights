@@ -11,10 +11,13 @@ namespace CircuitKnights
 
 
 
+  
     public class PlayMenu : MonoBehaviour
     {
+        public GameObject Off;
         public void PlayGame ()
         {
+            Off.SetActive(false);
             SceneManager.LoadScene("Brents_main");
         }
        
