@@ -17,10 +17,10 @@ public class HorseController : MonoBehaviour {
 
 	[Header("Lerp")]
 	[SerializeField] float speed = 50;
-	[SerializeField] float tValue = 0.025f;
+	[Tooltip("Lerp smoothness factor; The lower the more smoother")][SerializeField] float tValue = 0.025f;
 	private Vector3 tarPos;
 
-	bool isEnabled = true;
+	bool isControlsEnabled = true;
 
 	//For reset
 	Vector3 startPosition;
@@ -35,15 +35,15 @@ public class HorseController : MonoBehaviour {
 
 	void Update()
 	{
-		if (isEnabled)
+		if (isControlsEnabled)
 		{
-			//Move
 			LerpMove();
 		}
 	}
 
+
 	void OnRoundStart() {
-		isEnabled = true;
+		isControlsEnabled = true;
 	}
 
 	void LerpMove()
