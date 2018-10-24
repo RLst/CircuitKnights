@@ -7,31 +7,46 @@ using UnityEngine.SceneManagement;
 //Jack Dawes
 //12th of October,2018
 
-public class ResultsScreen : MonoBehaviour {
+namespace CircuitKnights
+{
+    public class ResultsScreen : MonoBehaviour {
 
-    [SerializeField] string LoadingScene = "Jack's Main";
+        [SerializeField] string LoadingScene = "Jack's Main";
 
-    [SerializeField] GameObject ResultScreen;
+        [SerializeField] GameObject ResultScreen;
 
-    //public Button PlayAgainButton;
+        [SerializeField] GameObject ResultCamera;
 
-    [SerializeField] Button MainMenuButton;
+        [SerializeField] Button MenuButton;
 
-    private void Start()
-    {
-        //PlayAgainButton.onClick.AddListener();
-        MainMenuButton.onClick.AddListener(LoadScene);
-    }
+        public static bool ResultCameraActive = false;
 
-    void LoadScene()
-    {
-        SceneManager.LoadScene(LoadingScene);
-    }
-
-    void Update () {
-        if (Input.GetKeyDown(KeyCode.V))
+        private void Start()
         {
-            ResultScreen.SetActive(true);
+            MenuButton.onClick.AddListener(LoadScene);
         }
-	}
+
+        void LoadScene()
+        {
+            SceneManager.LoadScene(LoadingScene);
+        }
+
+        void Update() {
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                ResultScreen.SetActive(true);
+                MainMenuButton.PlayerCamerasActive = false;
+                ResultCameraActive = true;
+            }
+
+            if (ResultCameraActive == true)
+            {
+                ResultCamera.SetActive(true);
+            }
+            else if (ResultCameraActive == false)
+            {
+                ResultCamera.SetActive(false);
+            }
+        }
+    }
 }

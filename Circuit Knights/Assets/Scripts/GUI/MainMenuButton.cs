@@ -25,19 +25,16 @@ namespace CircuitKnights
 
         bool MenuActive = true;
 
-        bool PlayerCamerasActive = false;
-
         bool CountDownActive = false;
 
         bool SpinCamera = true;
 
-        public static bool Rematch = false; 
+        public static bool Rematch = false;
 
-
+        public static bool PlayerCamerasActive = false;
         private void Start()
         {
             PlayButton.onClick.AddListener(PlayGame);
-
             if (Rematch)
             {
                 PlayGame();
@@ -51,6 +48,7 @@ namespace CircuitKnights
             CountDownActive = true;
             Rematch = false;
             SpinCamera = false;
+            ResultsScreen.ResultCameraActive = false;
         }
 
         void Update()
