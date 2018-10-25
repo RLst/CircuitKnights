@@ -23,8 +23,8 @@ public class LanceControl : MonoBehaviour
 
 	[Header("Lance Physics")]
 	//Some of these should be split up into a separate Lance.cs scriptable objects
-	[Tooltip("[kg] Does not update during play")][SerializeField] float mass = 20f;			
-	[Tooltip("[metres] Does not update during play")][SerializeField] float length = 3.3f;
+	// [Tooltip("[kg] Does not update during play")] float mass = 20f;			
+	// [Tooltip("[metres] Does not update during play")] float length = 3.3f;
 	float momentOfInertia;		//kg.m2
 	[SerializeField] float yawTorque = 50000;
 	[SerializeField] float pitchTorque = 50000;
@@ -35,6 +35,7 @@ public class LanceControl : MonoBehaviour
 	[SerializeField] float angDrag = 1.05f;
 
 	[Header("Lance Limits")]
+	[SerializeField] bool isLimited = true;
 	[SerializeField] float minPitchAngle = -15f;
 	[SerializeField] float maxPitchAngle = 80f;
 	[SerializeField] float minYawAngle = 120f;
@@ -45,17 +46,21 @@ public class LanceControl : MonoBehaviour
 		//Set the initial lance orientation
 		angPos = transform.localRotation.eulerAngles;
 
+		// mass = lance.mass;
+		// length = lance.length;
+
 		//Calculate the lance's moment of inertia
-		momentOfInertia = 1f / 3f * mass * length * length;
+		momentOfInertia = 1f / 3f * lance.mass * lance.length * lance.length;
 
 		//Also sets the lance rigidbody weight too
-		GetComponent<Rigidbody>().mass = mass;
+		GetComponent<Rigidbody>().mass = lance.mass;
 	}
 
 	void Update()
 	{
 		HandleLanceAim();
-		ClampLanceMovement();
+		if (isLimited)
+			ClampLanceMovement();
 		ApplyTransform();
 
 		// //Debugs
@@ -101,9 +106,20 @@ public class LanceControl : MonoBehaviour
 
 	private void ClampLanceMovement()
 	{
-		angPos.x = Mathf.Clamp(angPos.x, minPitchAngle, maxPitchAngle);
-		angPos.y = Mathf.Clamp(angPos.y, minYawAngle, maxYawAngle);
-		angPos.z = 0f;
+		//Clamp and also set angAccel to zero to mitigate stuck lance at limits
+		if (angPos.x < minPitchAngle || angPos.x > maxPitchAngle)
+		{
+			angPos.x = Mathf.Clamp(angPos.x, minPitchAngle, maxPitchAngle);
+			angAccel.x = 0f;
+		}
+		
+		if (angPos.y < minYawAngle || angPos.y > maxYawAngle)
+		{
+			angPos.y = Mathf.Clamp(angPos.y, minYawAngle, maxYawAngle);
+			angAccel.y = 0f;
+		}
+
+		angPos.z = 0f; angAccel.z = 0;
 	}
 
 	private void ApplyTransform()

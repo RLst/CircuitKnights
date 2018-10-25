@@ -8,11 +8,9 @@ namespace CircuitKnights
 public class LanceObject : ScriptableObject {
 
 	// public string name;
-	[SerializeField] float mass = 25f;
-	[SerializeField] float length = 3.3f;
-	[Tooltip("Decreases the lance controller's lerp effect")][SerializeField] float control = 1f;
-
-
+	public float mass = 25f;
+	public float length = 3.3f;
+	[Tooltip("Increase control by decreasing lerp")] public float control = 1f;
 }
 
 }
