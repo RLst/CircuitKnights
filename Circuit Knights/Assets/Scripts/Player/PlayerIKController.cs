@@ -15,34 +15,36 @@ public class PlayerIKController : MonoBehaviour {
 
 	//Controller
 	[SerializeField] XboxController controller;
-	[SerializeField] XboxAxis leanAxis;
 
 	Animator anim;
 
 	///IK
 	[Header("Look At")]
 	[SerializeField] Transform lookAtTarget;
-	[SerializeField] float lookAtIKWeight = 1f;
-	[SerializeField] float bodyIKWeight = 0.7f;
-	[SerializeField] float headIKWeight = 1f;
+	[Range(0f, 1f)][SerializeField] float lookAtIKWeight = 1f;
+	[Range(0f, 1f)][SerializeField] float bodyIKWeight = 0.7f;
+	[Range(0f, 1f)][SerializeField] float headIKWeight = 1f;
 	[Tooltip("Not Applicable")] float eyesIKWeight = 0f;
-	[SerializeField] float clampIKWeight = 1f;
+	[Range(0f, 1f)][SerializeField] float clampIKWeight = 1f;
 
 	[Header("Left Arm")]
 	[Tooltip("Attach to Horse Saddle Handle")][SerializeField] Transform leftHandTarget;
 	[Tooltip("Left elbow")][SerializeField] Transform leftArmHint;
-	[SerializeField] float leftArmIKWeight = 0.9f;
-	
+	[Range(0f, 1f)][SerializeField] float leftArmIKWeight = 0.9f;
+
 
 	[Header("Right Arm")]
 	[Tooltip("Attach to lance handle")][SerializeField] Transform rightHandTarget;
 	[Tooltip("Right elbow")][SerializeField] Transform rightArmHint;
-	[SerializeField] float rightArmIKWeight = 1f;
+	[Range(0f, 1f)][SerializeField] float rightArmIKWeight = 1f;
 
-	[Header("Lean")]
+	///Lean
 	Transform chest;
 	Transform spine;	//Abdomen/stomach; bone directly underneath the chest bone
+	[Header("Lean")]
 	// public Transform leanTarget;	//Should this be accessible by other scripts??? OR control directly
+	[SerializeField] XboxAxis leanAxis;
+	[SerializeField] Transform lance;
 	[Tooltip("A dodge is positional only")][SerializeField] float dodgeFactor = 5f;
 	[Tooltip("A lean is angular")][SerializeField] float leanFactor = 180f;
 
@@ -50,16 +52,20 @@ public class PlayerIKController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		chest = anim.GetBoneTransform(HumanBodyBones.Chest);
 		spine = anim.GetBoneTransform(HumanBodyBones.Spine);
-
-		//Set IK Weights (should these be in OnAnimatorIK()?)
-		anim.SetLookAtWeight(lookAtIKWeight, bodyIKWeight, headIKWeight, eyesIKWeight, clampIKWeight);
-		anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, leftArmIKWeight);
-		anim.SetIKPositionWeight(AvatarIKGoal.RightHand, rightArmIKWeight);
 	}
-
-	void LateUpdate () {
+ 	void LateUpdate() {
 		HandleLean();
+		// tempMoveLance();
 	}
+
+	// void tempMoveLance()
+	// {
+	// 	var xThrow = XCI.GetAxis(leanAxis, controller);
+	// 	Vector3 newLancePosition = lance.position;
+	// 	newLancePosition.z += xThrow * dodgeFactor * Time.deltaTime;
+	// 	lance.position = newLancePosition;
+	// 	lance.rotation *= Quaternion.Euler(0f, xThrow * leanFactor * Time.deltaTime , 0f);
+	// }
 
 	void OnAnimatorIK()
 	{
@@ -72,42 +78,56 @@ public class PlayerIKController : MonoBehaviour {
 
 	void HandleLean() {
 		var xThrow = XCI.GetAxis(leanAxis, controller);
-		spine.position += new Vector3(xThrow * dodgeFactor * Time.deltaTime, 0f, 0f);
+		Vector3 newSpinePosition = spine.localPosition;
+		newSpinePosition.z += xThrow * dodgeFactor * Time.deltaTime;
+		spine.position += newSpinePosition;
 		spine.rotation *= Quaternion.Euler(0f, xThrow * leanFactor * Time.deltaTime , 0f);
 	}
 
 	void HandleLeftArm() {
-		if (leftHandTarget != null)
+		if (leftHandTarget)
 		{
-			
+			//Hand
+			anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, leftArmIKWeight);
+			anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, leftArmIKWeight);
+			anim.SetIKPosition(AvatarIKGoal.LeftHand, leftHandTarget.position);
+			anim.SetIKRotation(AvatarIKGoal.LeftHand, leftHandTarget.rotation);
+			//Elbow
+			anim.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, leftArmIKWeight);
+			anim.SetIKHintPosition(AvatarIKHint.LeftElbow, leftArmHint.position);
 		}
-		// else {
-		// 	Debug.LogWarning("Left arm not setup!");
-		// }
+		else {
+			Debug.LogWarning("Left arm not setup!");
+		}
 	}
 
 	void HandleRightArm() {
-		if (rightHandTarget != null)
+		if (rightHandTarget)
 		{
+			//Hand
+			anim.SetIKPositionWeight(AvatarIKGoal.RightHand, rightArmIKWeight);
+			anim.SetIKRotationWeight(AvatarIKGoal.RightHand, rightArmIKWeight);
 			anim.SetIKPosition(AvatarIKGoal.RightHand, rightHandTarget.position);
 			anim.SetIKRotation(AvatarIKGoal.RightHand, rightHandTarget.rotation);
-
+			//Elbow
 			anim.SetIKHintPositionWeight(AvatarIKHint.RightElbow, rightArmIKWeight);
 			anim.SetIKHintPosition(AvatarIKHint.RightElbow, rightArmHint.position);
 		}
-		// else {
-		// 	Debug.LogWarning("Right arm not setup!");
-		// }
-	}
-
-	void HandleLook() {
-		if (lookAtTarget != null)
-		{
-			anim.SetLookAtPosition(lookAtTarget.position);
+		else {
+			Debug.LogWarning("Right arm not setup!");
 		}
 	}
 
-
+	void HandleLook() {
+		if (lookAtTarget)
+		{
+			anim.SetLookAtWeight(lookAtIKWeight);
+			anim.SetLookAtPosition(lookAtTarget.position);
+		}
+		else {
+			Debug.LogWarning("Look at not setup!");
+		}
+	}
 
 }
 
