@@ -8,7 +8,7 @@ public class PlayerResetter : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Reset") {
 			// Debug.Log("Reset Triggers hit");
-			SendMessage("onResetPlayers");
+			SendMessage("OnResetPlayers");
 		}
 	} 
 }

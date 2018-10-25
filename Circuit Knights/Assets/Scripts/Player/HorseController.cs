@@ -73,7 +73,7 @@ public class HorseController : MonoBehaviour {
 		// Debug.Log("cur: "+transform.position + "tar: "+tarPos);
 	}
 
-	void onResetPlayers()
+	void OnResetPlayers()
 	{
 		//Reset to start position if reset triggers are hit		
 		transform.position = tarPos = startPosition;
