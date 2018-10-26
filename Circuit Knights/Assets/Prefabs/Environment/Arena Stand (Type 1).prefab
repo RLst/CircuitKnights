@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 33676268363564774}
   - component: {fileID: 23332727919446124}
   - component: {fileID: 95528840876809630}
+  - component: {fileID: 64133106962410038}
   m_Layer: 0
   m_Name: Arena_Stadium_Stand_005
   m_TagString: Untagged
@@ -315,8 +316,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1490416344853056}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: 7.0655746, y: -58.704937, z: 15.343161}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000030696388}
+  m_LocalPosition: {x: 22.9, y: -58.704937, z: 15.7}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4673224557368112}
@@ -1134,6 +1135,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1319544374402356}
   m_Mesh: {fileID: 4300000, guid: d6da8e892a7fbe542b1a138a3681e31c, type: 3}
+--- !u!64 &64133106962410038
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1879603961063312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: a3caecca5fd94674d81a0264d0d02951, type: 3}
 --- !u!95 &95023227359195988
 Animator:
   serializedVersion: 3

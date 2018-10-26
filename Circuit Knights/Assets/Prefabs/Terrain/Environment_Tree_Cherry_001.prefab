@@ -9,74 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1576641708049518}
+  m_RootGameObject: {fileID: 1613957573164458}
   m_IsPrefabParent: 1
---- !u!1 &1576641708049518
+--- !u!1 &1613957573164458
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4192179378170192}
+  - component: {fileID: 4200623025779188}
+  - component: {fileID: 33379191802201102}
+  - component: {fileID: 23560489840238272}
+  - component: {fileID: 95498784467732140}
   m_Layer: 0
-  m_Name: Wagon
+  m_Name: Environment_Tree_Cherry_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1634768323078328
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4311118719170328}
-  - component: {fileID: 33394283282581182}
-  - component: {fileID: 23010647619102884}
-  - component: {fileID: 95009164934163176}
-  m_Layer: 0
-  m_Name: Arena_Prop_Wagon_002
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4192179378170192
+--- !u!4 &4200623025779188
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1576641708049518}
-  m_LocalRotation: {x: -0, y: -0.3177685, z: -0, w: 0.94816834}
-  m_LocalPosition: {x: -16.721436, y: -5.956482, z: 1.2374573}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4311118719170328}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -37.056004, z: 0}
---- !u!4 &4311118719170328
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1634768323078328}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1613957573164458}
+  m_LocalRotation: {x: -0, y: 0.1745993, z: -0, w: 0.9846396}
+  m_LocalPosition: {x: 78.34, y: 0.47, z: 34.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4192179378170192}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23010647619102884
+  m_LocalEulerAnglesHint: {x: 0, y: 20.111, z: 0}
+--- !u!23 &23560489840238272
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1634768323078328}
+  m_GameObject: {fileID: 1613957573164458}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5c72e64f044486043bcfb31b98c2d684, type: 2}
+  - {fileID: 2100000, guid: 74e59e61fa69af1498ca0204bc929c70, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,22 +76,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33394283282581182
+--- !u!33 &33379191802201102
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1634768323078328}
-  m_Mesh: {fileID: 4300000, guid: a08704d0404715f43aae4386a7250ddb, type: 3}
---- !u!95 &95009164934163176
+  m_GameObject: {fileID: 1613957573164458}
+  m_Mesh: {fileID: 4300000, guid: 9ccbe855ac59f91428cf4da87f4ce799, type: 3}
+--- !u!95 &95498784467732140
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1634768323078328}
+  m_GameObject: {fileID: 1613957573164458}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a08704d0404715f43aae4386a7250ddb, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 9ccbe855ac59f91428cf4da87f4ce799, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
