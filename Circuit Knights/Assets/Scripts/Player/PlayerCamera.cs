@@ -16,6 +16,12 @@ namespace CircuitKnights
         [SerializeField] float rotationSpeed;
         [SerializeField] GameObject rotateObject;
 
+        private float randomNumber;
+
+        private void Start()
+        {
+            randomNumber = Random.Range(1f, 0f);
+        }
 
         private void Update()
         {
@@ -27,8 +33,8 @@ namespace CircuitKnights
             position.z = Mathf.Lerp(transform.position.z, moveObject.transform.position.z, moveSpeed * dt);
             transform.position = position;
 
-            float swayX = (Mathf.PerlinNoise(0, Time.time * swaySpeed) - 0.5f) * swayAmount;
-            float swayY = (Mathf.PerlinNoise(0, Time.time * swaySpeed) - 0.5f) * swayAmount;
+            float swayY = (Mathf.PerlinNoise(randomNumber, Time.time * swaySpeed) -0.5f) * swayAmount;
+            float swayX = (Mathf.PerlinNoise(randomNumber, Time.time * swaySpeed) -0.5f) * swayAmount;
 
             Vector3 newLookAt = rotateObject.transform.position;
             newLookAt.x += swayX;
