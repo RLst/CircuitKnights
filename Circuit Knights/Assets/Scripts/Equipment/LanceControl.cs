@@ -1,20 +1,19 @@
-﻿//Tony Le
+﻿//Duckbike
+//Tony Le
 //3 Oct 2018
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
 
-namespace CircuitKnights {
+namespace CircuitKnights
+{
 
-[RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody))]
 public class LanceControl : MonoBehaviour 
 {
 	////Handle lance aim and lunge?
 
-	[SerializeField] LanceObject lance;
+	[SerializeField] Objects.LanceObject lance;
 
 	[Header("Controls")]
 	[SerializeField] XboxController controller;
