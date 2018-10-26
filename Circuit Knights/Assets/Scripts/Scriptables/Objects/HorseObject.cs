@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿//Duckbike
+//Tony Le
+//26 Oct 2018
 
-namespace CircuitKnights
+using UnityEngine;
+
+namespace CircuitKnights.Objects
 {
 
 internal enum HorseType
@@ -10,7 +14,7 @@ internal enum HorseType
 	Rocket
 }
 
-[CreateAssetMenu(fileName = "New Horse", menuName = "Horse", order = 49)]
+[CreateAssetMenu(fileName = "New Horse", menuName = "Horse", order = 52)]
 public class HorseObject : ScriptableObject {
 	[SerializeField] float horsePower;
 	[SerializeField] HorseType horseType = HorseType.Standard;

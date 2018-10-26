@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿//Duckbike
+//Tony Le
+//26 Oct 2018
+
+using UnityEngine;
 using UnityEditor;
 
-namespace CircuitKnights
+namespace CircuitKnights.Objects
 {
 
-[CreateAssetMenu(fileName = "New Lance", menuName = "Equipment/Lance", order = 50)]
+[CreateAssetMenu(fileName = "New Lance", menuName = "Lance", order = 53)]
 public class LanceObject : ScriptableObject {
 
 	// public string name;

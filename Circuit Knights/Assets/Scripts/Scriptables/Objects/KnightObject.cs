@@ -1,12 +1,13 @@
-﻿//Tony Le
+﻿//Duckbike
+//Tony Le
 //4 Oct 2018
 
 using UnityEngine;
 
-namespace CircuitKnights
+namespace CircuitKnights.Objects
 {
 
-[CreateAssetMenu(fileName = "New Knight", menuName = "Knight", order = 48)]
+[CreateAssetMenu(fileName = "New Knight", menuName = "Knight", order = 51)]
 public class KnightObject : ScriptableObject
 {
 	////To be placed on each player object, maybe in the root object
