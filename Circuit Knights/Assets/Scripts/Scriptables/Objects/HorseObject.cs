@@ -16,8 +16,10 @@ internal enum HorseType
 
 [CreateAssetMenu(fileName = "New Horse", menuName = "Horse", order = 52)]
 public class HorseObject : ScriptableObject {
+	[Multiline][SerializeField] string description = "";
 	[SerializeField] float horsePower;
 	[SerializeField] HorseType horseType = HorseType.Standard;
+	[SerializeField] float speed;
 }
 
 }

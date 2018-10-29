@@ -9,8 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8213efa3d8d3b84fb072d6e0b0c5153, type: 3}
-  m_Name: Basic Knight
+  m_Name: Knight Human 2
   m_EditorClassIdentifier: 
+  description: 
+  controller: 2
+  lanceAxisX: 2
+  lanceAxisY: 3
+  leanAxisX: 0
+  leanAxisY: 1
   health: 100
   torsoHealth: 100
   leftArmHealth: 100

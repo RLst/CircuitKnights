@@ -1014,6 +1014,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4505785573362206}
   - component: {fileID: 137527731588830226}
+  - component: {fileID: 135113470937530178}
+  - component: {fileID: 65313715463745334}
+  - component: {fileID: 65382542522844410}
   m_Layer: 0
   m_Name: EthanBody
   m_TagString: Untagged
@@ -2071,7 +2074,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917344317317866}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3037,6 +3040,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9511143, y: 0.96830106, z: 2.6956403}
   m_Center: {x: 0.016270438, y: 0.50151575, z: 0.3369285}
+--- !u!65 &65313715463745334
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1753906088807314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.285427, y: 0.55242777, z: 0.16563793}
+  m_Center: {x: 0.01341288, y: 1.0098724, z: -0.030553639}
+--- !u!65 &65382542522844410
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1753906088807314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.4, z: 0.1}
+  m_Center: {x: -0.3, y: 1, z: -0.040627673}
 --- !u!65 &65841435179379996
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3226,6 +3253,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1864768838689062}
   m_Enabled: 1
+--- !u!135 &135113470937530178
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1753906088807314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.12
+  m_Center: {x: 0.00028844687, y: 1.42, z: -0.040627673}
 --- !u!135 &135176272774835246
 SphereCollider:
   m_ObjectHideFlags: 1

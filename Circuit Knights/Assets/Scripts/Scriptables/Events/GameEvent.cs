@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
+﻿//Duckbike
 //Tony Le
 //26 Oct 2018
+
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace CircuitKnights.Events
 {
@@ -11,6 +12,8 @@ namespace CircuitKnights.Events
 	public class GameEvent : ScriptableObject {
 
 		private List<GameEventListener> listeners = new List<GameEventListener>();
+
+		[SerializeField][Multiline] string Description = "";
 
 		public void Raise()
 		{

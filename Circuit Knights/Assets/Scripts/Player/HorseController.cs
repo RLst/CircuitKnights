@@ -10,14 +10,19 @@ namespace CircuitKnights {
 public class HorseController : MonoBehaviour {
 	////Attach to the horse
 
+	[SerializeField] Objects.KnightObject player;
+	[SerializeField] Objects.HorseObject horse;
+
 	[Header("Gamepad Controls")]
+	
+	// [SerializeField] Objects.KnightObject player;
 	[SerializeField] XboxController controller;
 	[SerializeField] XboxAxis accelerate = XboxAxis.RightTrigger;
 	[Tooltip("FOR DEBUGGING PURPOSES")][SerializeField] XboxButton decelerate = XboxButton.B;
 
 	[Header("Lerp")]
 	[SerializeField] float speed = 50;
-	[Tooltip("Lerp smoothness factor; The lower the more smoother")][SerializeField] float tValue = 0.025f;
+	[Tooltip("smoothness factor; lower is smoother")][SerializeField] float tValue = 0.025f;
 	private Vector3 tarPos;
 
 	bool isControlsEnabled = true;
@@ -51,7 +56,8 @@ public class HorseController : MonoBehaviour {
 		var dt = Time.deltaTime;
 
 		//Controller
-		var accel = XCI.GetAxis(accelerate, controller);
+		var accel = XCI.GetAxis(player.accelAxis, player.controller);
+		// var accel = XCI.GetAxis(accelerate, controller);
 
 		//Keyboard (debug)
 		if (Input.GetKey(KeyCode.Space)) {
