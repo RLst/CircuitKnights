@@ -17,14 +17,10 @@ MonoBehaviour:
   lanceAxisY: 3
   leanAxisX: 0
   leanAxisY: 1
-  health: 100
-  torsoHealth: 100
-  leftArmHealth: 100
-  rightArmHealth: 100
-  headHealth: 100
-  strength: 0
-  defence: 0
-  power: 0
-  speed: 0
-  electricalResistance: 0
-  electricalPower: 0
+  accelAxis: 5
+  shieldAxis: 4
+  reverseButton: 1
+  startingHeadHealth: 30
+  startingTorsoHealth: 100
+  startingLeftArmHealth: 60
+  startingRightArmHealth: 60

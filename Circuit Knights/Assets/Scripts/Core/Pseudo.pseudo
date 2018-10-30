@@ -1,0 +1,28 @@
+﻿GamePlayLoop()
+{
+	if (it's the first run)
+	{
+		StartPlayers()
+		{
+			position players at opposite ends of the track (The starting positions are set using transform variables)
+		}
+		StartCountDown()
+		{
+			enable countdown script
+		}
+		
+	}
+	else if()
+	{
+	
+	
+	
+	}
+	
+	
+
+}
+ 
+
+
+

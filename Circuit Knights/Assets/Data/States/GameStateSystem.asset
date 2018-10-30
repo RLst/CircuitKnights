@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec39e2da35cfe48429adb68055e8536f, type: 3}
+  m_Name: GameStateSystem
+  m_EditorClassIdentifier: 
+  mainMenu: {fileID: 11400000, guid: 75a09af8888064ca6849754b886a6c9a, type: 2}
+  pauseMenu: {fileID: 11400000, guid: f4b99176b0f974066a3eb9c481fe8d89, type: 2}
+  gameplay: {fileID: 11400000, guid: b8324bf0513a246fb8606804b456688c, type: 2}
+  currentState: {fileID: 0}
+  previousState: {fileID: 0}
+  enterMainMenu:
+  - {fileID: 11400000, guid: 13c20a37dc0af478493f7f7e2d7bd6ca, type: 2}
+  - {fileID: 11400000, guid: 5a49faedae9b241129bfce05d6f3684f, type: 2}
+  exitMainMenu:
+  - {fileID: 11400000, guid: 13c20a37dc0af478493f7f7e2d7bd6ca, type: 2}
+  enterPauseMenu:
+  - {fileID: 11400000, guid: eb41a5b666abe4702b741764138f5f5d, type: 2}
+  - {fileID: 11400000, guid: 5a49faedae9b241129bfce05d6f3684f, type: 2}
+  exitPauseMenu:
+  - {fileID: 11400000, guid: 8e6af06671a0946e298980cab7ee6406, type: 2}
+  enterGameplay:
+  - {fileID: 11400000, guid: d0c79cbc9311e49daa7c79e143b6dbd2, type: 2}
+  - {fileID: 11400000, guid: 5cdbd711d0bdd41b9b9745833b02aa43, type: 2}
+  exitGameplay:
+  - {fileID: 11400000, guid: 51520d1f0b9994fdd8ee3c1d1a0c07f0, type: 2}

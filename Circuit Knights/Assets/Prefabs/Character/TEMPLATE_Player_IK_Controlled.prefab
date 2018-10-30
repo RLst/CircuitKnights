@@ -1586,7 +1586,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1797940182789874}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 62.56, y: 0.45561218, z: 25.384094}
+  m_LocalPosition: {x: 62.21692, y: 0.6125381, z: 23.357773}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4366714431553184}
@@ -3241,11 +3241,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45345110b0541d47a962b7a0fdcde8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 11400000, guid: b55ffe92050dffe4fb8e5e7512b65f6c, type: 2}
+  horse: {fileID: 11400000, guid: ea7074b869137bf438a40f4b2e1d90ce, type: 2}
   controller: 0
   accelerate: 5
   decelerate: 9
   speed: 60
   tValue: 0.005
+  isControlsEnabled: 1
 --- !u!124 &124822312353073938
 Behaviour:
   m_ObjectHideFlags: 1

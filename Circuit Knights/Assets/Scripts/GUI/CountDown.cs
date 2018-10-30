@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using CircuitKnights.Variables;
 
 //Jack Dawes and Tony Le
 //5th of October, 2018
@@ -10,17 +8,17 @@ using UnityEngine.SceneManagement;
 namespace CircuitKnights
 {
 
-    public class CountDown : MonoBehaviour
+	public class CountDown : MonoBehaviour
     {
         //Attach directly to the countdown text object?
-        private Text countDownText;         //Don't need to be public
+        private Text thisText;         //Don't need to be public
 
-        [SerializeField] float countDownDuration = 3f;
+        [SerializeField] FloatReference countDownDuration;
 
         // Use this for initialization
         public void Start()
         {
-            countDownText = GetComponent<Text>();
+            thisText = GetComponent<Text>();
             //this.countDownLength = GameController.countDownLength;
         }
 
@@ -28,21 +26,21 @@ namespace CircuitKnights
         // Update is called once per frame
         void Update()
         {
-            if (countDownDuration >= -1f)
+            if (countDownDuration.Value >= -1f)
             {
+                countDownDuration.Value -= Time.deltaTime;
 
-                countDownDuration -= Time.deltaTime;
-
-                countDownText.text = Mathf.Ceil(countDownDuration).ToString();
+                thisText.text = Mathf.Ceil(countDownDuration.Value).ToString();
                 if (countDownDuration <= 0.0f)
                 {
-                    countDownText.text = "GO!";
+                    thisText.text = "GO!";
                     //Unfreeze game and play
                 }
             }
             else
             {
-                countDownText.enabled = false;
+                thisText.enabled = false;
+                this.enabled = false;       //Also disable this script
             }
         }
     }

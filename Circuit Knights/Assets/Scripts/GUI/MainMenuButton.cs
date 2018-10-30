@@ -32,6 +32,7 @@ namespace CircuitKnights
         public static bool Rematch = false;
 
         public static bool PlayerCamerasActive = false;
+        
         private void Start()
         {
             PlayButton.onClick.AddListener(PlayGame);

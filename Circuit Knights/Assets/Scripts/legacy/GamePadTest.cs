@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using XInputDotNetPure;
+using XboxCtrlrInput;
 
 namespace CircuitKnights {
 
@@ -12,8 +13,12 @@ public class GamePadTest : MonoBehaviour {
 	GamePadState state;
 	GamePadState prevState;
 
+	XboxController controller;
+
 	void Update()
 	{
+		
+		
 		if (!playerIndexSet || !prevState.IsConnected)
 		{
 			for (int i = 0; i < 4; i++)

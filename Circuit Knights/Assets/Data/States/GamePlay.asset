@@ -8,10 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bffba0e8a8b84234db56dafdacd2b23f, type: 3}
-  m_Name: Basic Horse
+  m_Script: {fileID: 11500000, guid: d8a9efd20a56b004a82260c924ef7c4d, type: 3}
+  m_Name: GamePlay
   m_EditorClassIdentifier: 
-  description: 
-  horsePower: 500
-  horseType: 0
-  speed: 20
+  Description: 

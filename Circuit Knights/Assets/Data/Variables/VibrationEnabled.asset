@@ -8,7 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a9efd20a56b004a82260c924ef7c4d, type: 3}
-  m_Name: Paused
+  m_Script: {fileID: 11500000, guid: fc46bcf7fc4bae948baa0576dee835e6, type: 3}
+  m_Name: VibrationEnabled
   m_EditorClassIdentifier: 
-  Description: 
+  description: 
+  Value: 0

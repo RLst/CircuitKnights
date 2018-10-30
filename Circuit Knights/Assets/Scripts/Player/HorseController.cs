@@ -5,86 +5,89 @@ using UnityEngine;
 using XboxCtrlrInput;
 using UnityEngine.SceneManagement;
 
-namespace CircuitKnights {
+namespace CircuitKnights
+{
 
-public class HorseController : MonoBehaviour {
-	////Attach to the horse
-
-	[SerializeField] Objects.KnightObject player;
-	[SerializeField] Objects.HorseObject horse;
-
-	[Header("Gamepad Controls")]
-	
-	// [SerializeField] Objects.KnightObject player;
-	[SerializeField] XboxController controller;
-	[SerializeField] XboxAxis accelerate = XboxAxis.RightTrigger;
-	[Tooltip("FOR DEBUGGING PURPOSES")][SerializeField] XboxButton decelerate = XboxButton.B;
-
-	[Header("Lerp")]
-	[SerializeField] float speed = 50;
-	[Tooltip("smoothness factor; lower is smoother")][SerializeField] float tValue = 0.025f;
-	private Vector3 tarPos;
-
-	bool isControlsEnabled = true;
-
-	//For reset
-	Vector3 startPosition;
-
-	void Start () {
-		//Get the current position of the object
-		tarPos = transform.position;
-
-		//Save the initial starting position
-		startPosition = transform.position;
-	}
-
-	void Update()
+	public class HorseController : MonoBehaviour
 	{
-		if (isControlsEnabled)
+		////Attach to the horse
+
+		[SerializeField] Objects.KnightObject player;
+		[SerializeField] Objects.HorseObject horse;
+
+		[Header("Gamepad Controls")]
+
+		// [SerializeField] Objects.KnightObject player;
+		[SerializeField]
+		XboxController controller;
+		[SerializeField] XboxAxis accelerate = XboxAxis.RightTrigger;
+		[Tooltip("FOR DEBUGGING PURPOSES")] [SerializeField] XboxButton decelerate = XboxButton.B;
+
+		[Header("Lerp")]
+		[SerializeField]
+		float speed = 50;
+		[Tooltip("smoothness factor; lower is smoother")] [SerializeField] float tValue = 0.025f;
+		private Vector3 tarPos;
+
+		public bool isControlsEnabled = true;
+
+		//For reset
+		Vector3 startPosition;
+
+		void Start()
 		{
+			//Get the current position of the object
+			tarPos = transform.position;
+
+			//Save the initial starting position
+			startPosition = transform.position;
+		}
+
+		void Update()
+		{
+			//if (isControlsEnabled)
+			//{
+			//}
 			LerpMove();
 		}
-	}
 
 
-	void OnRoundStart() {
-		isControlsEnabled = true;
-	}
+		void LerpMove()
+		{
+			var dt = Time.deltaTime;
 
-	void LerpMove()
-	{		
-		var dt = Time.deltaTime;
+			//Controller
+			var accel = XCI.GetAxis(player.accelAxis, player.controller);
+			// var accel = XCI.GetAxis(accelerate, controller);
 
-		//Controller
-		var accel = XCI.GetAxis(player.accelAxis, player.controller);
-		// var accel = XCI.GetAxis(accelerate, controller);
+			//Keyboard (debug)
+			if (Input.GetKey(KeyCode.Space))
+			{
+				accel = speed * dt;
+			}
+			if (Input.GetKey(KeyCode.B) || XCI.GetButton(decelerate, controller))
+			{
+				accel = -speed * dt;
+			}
 
-		//Keyboard (debug)
-		if (Input.GetKey(KeyCode.Space)) {
-			accel = speed * dt;
+			//Adjust the target position
+			tarPos += transform.forward * speed * accel * dt;
+
+			//Clamp lerp
+			tValue = Mathf.Clamp01(tValue);
+
+			//Lerp towards it
+			transform.position = Vector3.Lerp(transform.position, tarPos, tValue);
+
+			// Debug.Log("cur: "+transform.position + "tar: "+tarPos);
 		}
-		if (Input.GetKey(KeyCode.B) || XCI.GetButton(decelerate, controller)) {
-			accel = -speed * dt;
+
+		void OnResetPlayers()
+		{
+			//Reset to start position if reset triggers are hit		
+			transform.position = tarPos = startPosition;
+			// SceneManager.LoadScene("Tony");
 		}
-
-		//Adjust the target position
-		tarPos += transform.forward * speed * accel * dt;
-		
-		//Clamp lerp
-		tValue = Mathf.Clamp01(tValue);
-
-		//Lerp towards it
-		transform.position = Vector3.Lerp(transform.position, tarPos, tValue);
-
-		// Debug.Log("cur: "+transform.position + "tar: "+tarPos);
 	}
-
-	void OnResetPlayers()
-	{
-		//Reset to start position if reset triggers are hit		
-		transform.position = tarPos = startPosition;
-		// SceneManager.LoadScene("Tony");
-	}
-}
 
 }
