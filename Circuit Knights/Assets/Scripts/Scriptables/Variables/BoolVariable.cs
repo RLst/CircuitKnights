@@ -7,12 +7,12 @@ using UnityEngine;
 namespace CircuitKnights.Variables
 {
 
-	[CreateAssetMenu(fileName = "New Float", menuName = "Variables/Float", order = 33)]
-	public class FloatVariable : ScriptableObject
+	[CreateAssetMenu(fileName = "New Bool", menuName = "Variables/Bool", order = 33)]
+	public class BoolVariable : ScriptableObject
 	{
 		[Multiline]
 		public string description = "";
-		public float Value;
+		public bool Value;
 	}
 
 }

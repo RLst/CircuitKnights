@@ -6,9 +6,11 @@ using UnityEngine;
 
 namespace CircuitKnights.Variables
 {
-[CreateAssetMenu(fileName = "New Transform", menuName = "Variables/Transform", order = 33)]
-public class TransformVariable : ScriptableObject {
-	public Transform Value;
-}
+    [CreateAssetMenu(fileName = "New Transform", menuName = "Variables/Transform", order = 33)]
+    public class TransformVariable : ScriptableObject
+    {
+        [HideInInspector]
+        public Transform Value;
+    }
 
 }

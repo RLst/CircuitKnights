@@ -6,9 +6,10 @@ using UnityEngine;
 
 namespace CircuitKnights.Variables
 {
-[CreateAssetMenu(fileName = "New Int", menuName = "Variables/Int", order = 33)]
-public class IntVariable : ScriptableObject {
-	public int Value;
-}
+	[CreateAssetMenu(fileName = "New Int", menuName = "Variables/Int", order = 33)]
+	public class IntVariable : ScriptableObject
+	{
+		public int Value;
+	}
 
 }
