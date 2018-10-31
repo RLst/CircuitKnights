@@ -9,7 +9,7 @@ namespace CircuitKnights.Objects
 {
 
 [CreateAssetMenu(fileName = "New Lance", menuName = "Lance", order = 53)]
-public class LanceObject : ScriptableObject {
+public class Lance : ScriptableObject {
 
 	// public string name;
 	public float mass = 25f;

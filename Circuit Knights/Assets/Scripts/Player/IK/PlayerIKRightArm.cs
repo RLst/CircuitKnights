@@ -15,9 +15,9 @@ namespace CircuitKnights
 
 		Animator anim;
 
-		[SerializeField] TransformVariable rightHand;
-		[SerializeField] TransformVariable rightElbow;
-		[SerializeField] FloatVariable IKWeight;
+		[SerializeField] Transform rightHand;
+		[SerializeField] Transform rightElbow;
+		[SerializeField] FloatReference IKWeight;
 
 		private void Start()
 		{
@@ -35,12 +35,12 @@ namespace CircuitKnights
 			//Hand
 			anim.SetIKPositionWeight(AvatarIKGoal.RightHand, IKWeight.Value);
 			anim.SetIKRotationWeight(AvatarIKGoal.RightHand, IKWeight.Value);
-			anim.SetIKPosition(AvatarIKGoal.RightHand, rightHand.Value.position);
-			anim.SetIKRotation(AvatarIKGoal.RightHand, rightHand.Value.rotation);
+			anim.SetIKPosition(AvatarIKGoal.RightHand, rightHand.position);
+			anim.SetIKRotation(AvatarIKGoal.RightHand, rightHand.rotation);
 
 			//Elbow
 			anim.SetIKHintPositionWeight(AvatarIKHint.RightElbow, IKWeight.Value);
-			anim.SetIKHintPosition(AvatarIKHint.RightElbow, rightElbow.Value.position);
+			anim.SetIKHintPosition(AvatarIKHint.RightElbow, rightElbow.position);
 
 		}
 

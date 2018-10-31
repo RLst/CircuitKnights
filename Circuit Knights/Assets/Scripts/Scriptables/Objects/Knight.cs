@@ -9,28 +9,25 @@ namespace CircuitKnights.Objects
 {
 
 	[CreateAssetMenu(fileName = "New Knight", menuName = "Knight", order = 51)]
-	public class KnightObject : ScriptableObject
+	public class Knight : ScriptableObject
 	{
 		[Multiline] [SerializeField] string description = "";
 
-		//public int player;
+		[SerializeField] GameObject mesh;
 
 		[Header("Controls")]
 		public XboxController controller;
 		public XboxAxis lanceAxisX, lanceAxisY;
 		public XboxAxis leanAxisX, leanAxisY;
-		public XboxAxis accelAxis;
 		public XboxAxis shieldAxis;
-		public XboxButton reverseButton;
 
 
 		[Header("Starting Stats")]
 		//These WILL NOT GET MODIFIED DURING RUNTIME
-		[SerializeField]
-		float startingHeadHealth;
-		[SerializeField] float startingTorsoHealth;
-		[SerializeField] float startingLeftArmHealth;
-		[SerializeField] float startingRightArmHealth;
+		[SerializeField] float maxHeadHealth;
+		[SerializeField] float maxTorsoHealth;
+		[SerializeField] float maxLeftArmHealth;
+		[SerializeField] float maxRightArmHealth;
 
 		//The stats that externals will actually reference from
 		//These are reset at the start of 
@@ -38,7 +35,7 @@ namespace CircuitKnights.Objects
 		public float TorsoHealth { get; set; }
 		public float LeftArmHealth { get; set; }
 		public float RightArmHealth { get; set; }
-		float TotalHealth
+		float TotalHealth		//Don't know about this ie. If Torse loses all health then it should kill the player
 		{
 			get
 			{
@@ -47,37 +44,19 @@ namespace CircuitKnights.Objects
 		}
 
 
-		void OnEnable()
+		void Awake()
 		{
 			ResetStats();
 		}
 
 		public void ResetStats()
 		{
-			HeadHealth = startingHeadHealth;
-			TorsoHealth = startingTorsoHealth;
-			LeftArmHealth = startingLeftArmHealth;
-			RightArmHealth = startingRightArmHealth;
+			HeadHealth = maxHeadHealth;
+			TorsoHealth = maxTorsoHealth;
+			LeftArmHealth = maxLeftArmHealth;
+			RightArmHealth = maxRightArmHealth;
 		}
 
-		// public void TakeDamage(float damageTaken)
-		// {
-		// 	health -= damageTaken;
-
-		// 	//Kill the player automatically if 0 health
-		// 	if (health <= 0)
-		// 		Kill();
-		// }
-
-		// public void Kill()
-		// //Kills the player instantly
-		// {
-		// 	///Turn player to ragdoll?
-
-		// 	///Run death animations?
-
-		// 	///Trigger slow motion and cinematic cameras?
-		// }
 	}
 }
 

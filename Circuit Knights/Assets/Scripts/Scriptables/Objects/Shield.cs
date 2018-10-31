@@ -8,7 +8,7 @@ namespace CircuitKnights.Objects
 {
 
 [CreateAssetMenu(fileName = "New Shield", menuName = "Shield", order = 54)]
-public class ShieldObject : ScriptableObject {
+public class Shield : ScriptableObject {
 	[SerializeField] float mass = 10f;
 	[SerializeField] float size;
 	[SerializeField] int durability = 100;

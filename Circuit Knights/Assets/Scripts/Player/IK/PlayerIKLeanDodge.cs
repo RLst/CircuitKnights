@@ -20,7 +20,7 @@ namespace CircuitKnights
 
 		Animator anim;
 		Transform spine;
-		[SerializeField] KnightObject player;
+		[SerializeField] Knight player;
 
 		[Header("IK")]
 		[SerializeField] TransformVariable leftHand;

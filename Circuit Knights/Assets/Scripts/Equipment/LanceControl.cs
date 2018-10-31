@@ -2,6 +2,7 @@
 //Tony Le
 //3 Oct 2018
 
+using CircuitKnights.Objects;
 using UnityEngine;
 using XboxCtrlrInput;
 
@@ -13,7 +14,7 @@ public class LanceControl : MonoBehaviour
 {
 	////Handle lance aim and lunge?
 
-	[SerializeField] Objects.LanceObject lance;
+	[SerializeField] Lance lance;
 
 	[Header("Controls")]
 	[SerializeField] XboxController controller;

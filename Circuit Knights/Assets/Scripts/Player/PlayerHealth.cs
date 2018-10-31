@@ -9,7 +9,7 @@ namespace CircuitKnights
 {
     public class PlayerHealth : MonoBehaviour
     {
-		[SerializeField] KnightObject player;
+		[SerializeField] Knight player;
 
         public void TakeDamage(float damage)
         {
