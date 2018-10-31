@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Name: Basic Horse
   m_EditorClassIdentifier: 
   description: 
-  horsePower: 500
   horseType: 0
-  speed: 20
+  mesh: {fileID: 0}
+  accelAxis: 5
+  decelButton: 0
+  speed: 29.2
+  lerpSmoothness: 0.35

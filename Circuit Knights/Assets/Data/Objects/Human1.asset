@@ -9,18 +9,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8213efa3d8d3b84fb072d6e0b0c5153, type: 3}
-  m_Name: Knight Human 1
+  m_Name: Human1
   m_EditorClassIdentifier: 
   description: 
+  mesh: {fileID: 0}
   controller: 1
   lanceAxisX: 2
   lanceAxisY: 3
   leanAxisX: 0
   leanAxisY: 1
-  accelAxis: 5
   shieldAxis: 4
-  reverseButton: 1
-  startingHeadHealth: 30
-  startingTorsoHealth: 100
-  startingLeftArmHealth: 60
-  startingRightArmHealth: 60
+  maxHeadHealth: 100
+  maxTorsoHealth: 100
+  maxLeftArmHealth: 100
+  maxRightArmHealth: 100

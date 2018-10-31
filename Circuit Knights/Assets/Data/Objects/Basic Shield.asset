@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d424bd666c02cba43a3a7547bff9e0cd, type: 3}
   m_Name: Basic Shield
   m_EditorClassIdentifier: 
-  mass: 0
-  size: 0
-  durability: 0
+  mass: 2.7
+  size: 3.15
+  durability: 88
