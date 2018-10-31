@@ -13,36 +13,36 @@ namespace CircuitKnights
     {
 
         [Multiline] [SerializeField] string description = "Handles input for the horse";
-        Knight player;  //Required to select which controller
+        [SerializeField] Knight player;  //Required to select which controller
         [SerializeField] Horse horse;
 
 
         public float Accel { get; private set; }
-        public float Decel { get; private set; }
+        // public float Decel { get; private set; }
 
         private void Update()
         {
             GetControllerInput();
             // if (Debug.isDebugBuild)
-            // GetKeyboardInput();
+            GetKeyboardInput();
         }
 
         private void GetControllerInput()
         {
-            Accel = XCI.GetAxis(horse.accelAxis, player.controller) * horse.speed * Time.deltaTime;
+            Accel = XCI.GetAxis(horse.accelAxis, player.controller);
             // Decel = XCI.GetAxis(horse.decelAxis, player.controller) * horse.speed * Time.deltaTime;
             if (XCI.GetButton(horse.decelButton, player.controller))
             {
-                Decel = -horse.speed * Time.deltaTime;
+                Accel = -horse.speed;
             }
         }
 
         private void GetKeyboardInput()
         {
             if (Input.GetKey(KeyCode.Space))
-                Accel = horse.speed * Time.deltaTime;
+                Accel = horse.speed;
             if (Input.GetKey(KeyCode.B))
-                Decel = -horse.speed * Time.deltaTime;
+                Accel = -horse.speed;
         }
     }
 }

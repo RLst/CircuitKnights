@@ -8,13 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bffba0e8a8b84234db56dafdacd2b23f, type: 3}
-  m_Name: Basic Horse
+  m_Script: {fileID: 11500000, guid: 90fc2e8db592e18448411171a27fe683, type: 3}
+  m_Name: TrackEnd2
   m_EditorClassIdentifier: 
-  description: 
-  horseType: 0
-  mesh: {fileID: 0}
-  accelAxis: 5
-  decelButton: 0
-  speed: 15
-  lerpSmoothness: 0.025
+  Value: {fileID: 0}

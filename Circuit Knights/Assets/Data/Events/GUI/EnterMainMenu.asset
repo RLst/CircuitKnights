@@ -11,3 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5849a32ddd1c73a42bfc464cb232c931, type: 3}
   m_Name: EnterMainMenu
   m_EditorClassIdentifier: 
+  Description: 

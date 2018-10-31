@@ -10,14 +10,13 @@ namespace CircuitKnights
 
     public class HorseMover : MonoBehaviour
     {
-		[SerializeField] Knight player; 		//Need this?
 		[SerializeField] Horse horse;
 		private HorseInput horseInput;
 		Vector3 startPosition;
 		Vector3 tarPos;
 
 
-		void Start()
+		void Awake()
 		{
 			//Used to poll the controller axes
 			horseInput = GetComponent<HorseInput>();
@@ -34,13 +33,8 @@ namespace CircuitKnights
 
 		void MoveByLerp()
 		{
-			var dt = Time.deltaTime;
-
-			var accel = horseInput.Accel;
-			var decel = horseInput.Decel;
-
 			//Adjust the target position
-			tarPos += transform.forward * horse.speed * accel * dt;
+			tarPos += transform.forward * horse.speed * horseInput.Accel * Time.deltaTime;
 
 			//Clamp lerp
 			horse.ClampTValue();

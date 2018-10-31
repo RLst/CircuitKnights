@@ -8,7 +8,7 @@ namespace CircuitKnights
 
 		[Multiline]
 		public string description =
-			"Connected to the shield. Can also hold the reins if any.\n" +
+			"Connected to the shield.\n Can also hold the reins if any.\n" +
 			"Shield handle should be offsetted to the left with empty game object." +
 			"This script should be disabled upon events: PlayerDeath, LeftArmDeath." +
 			"Attach to root object of animator.";
