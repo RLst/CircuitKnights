@@ -17,9 +17,9 @@ namespace CircuitKnights
 
         [SerializeField] string LoadScene = "Jack's Main";
 
-        [SerializeField] Button ResumeButton;
+        //[SerializeField] Button ResumeButton;
 
-        [SerializeField] Button MenuButton;
+        //[SerializeField] Button MenuButton;
 
         bool isPaused = false;
 
@@ -28,8 +28,8 @@ namespace CircuitKnights
         void Start()
         {
             timeController = GameObject.FindObjectOfType<TimeController>();
-            ResumeButton.onClick.AddListener(ResumeGame);
-            MenuButton.onClick.AddListener(ExitGame);
+            //ResumeButton.onClick.AddListener(ResumeGame);
+            //MenuButton.onClick.AddListener(ExitGame);
         }
         void Update()
         {        
@@ -61,12 +61,12 @@ namespace CircuitKnights
             }
         }
 
-        void ResumeGame()
+        public void ResumeGame()
         {
             TogglePause();
         }
 
-        void ExitGame()
+        public void ExitGame()
         {
             SceneManager.LoadScene(LoadScene);
             Time.timeScale = 1f;
