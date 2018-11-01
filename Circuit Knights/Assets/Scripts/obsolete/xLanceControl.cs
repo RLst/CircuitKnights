@@ -10,7 +10,7 @@ namespace CircuitKnights
 {
 
     [RequireComponent(typeof(Rigidbody))]
-public class LanceControl : MonoBehaviour 
+public class LanceControl : MonoBehaviour
 {
 	////Handle lance aim and lunge?
 
@@ -23,12 +23,12 @@ public class LanceControl : MonoBehaviour
 
 	[Header("Lance Physics")]
 	//Some of these should be split up into a separate Lance.cs scriptable objects
-	// [Tooltip("[kg] Does not update during play")] float mass = 20f;			
+	// [Tooltip("[kg] Does not update during play")] float mass = 20f;
 	// [Tooltip("[metres] Does not update during play")] float length = 3.3f;
 	float momentOfInertia;		//kg.m2
 	[SerializeField] float yawTorque = 50000;
 	[SerializeField] float pitchTorque = 50000;
-	[SerializeField] float gravityFactor = 300f;	
+	[SerializeField] float gravityFactor = 300f;
 	Vector3 angAccel;
 	Vector3 angVel;
 	Vector3 angPos;
@@ -49,11 +49,11 @@ public class LanceControl : MonoBehaviour
 		// mass = lance.mass;
 		// length = lance.length;
 
-		//Calculate the lance's moment of inertia
-		momentOfInertia = 1f / 3f * lance.mass * lance.length * lance.length;
+		// //Calculate the lance's moment of inertia
+		// momentOfInertia = 1f / 3f * lance.Mass * lance.length * lance.length;
 
 		//Also sets the lance rigidbody weight too
-		GetComponent<Rigidbody>().mass = lance.mass;
+		GetComponent<Rigidbody>().mass = lance.Mass;
 	}
 
 	void Update()
@@ -84,8 +84,8 @@ public class LanceControl : MonoBehaviour
 		////////////////////////////////
 
 		//Calc angular accel
-		angAccel.x += v * pitchTorque / momentOfInertia * Time.deltaTime;
-		angAccel.y += h * yawTorque / momentOfInertia * Time.deltaTime;
+		angAccel.x += v * pitchTorque / lance.MomentOfInertia * Time.deltaTime;
+		angAccel.y += h * yawTorque / lance.MomentOfInertia * Time.deltaTime;
 
 		//Apply "gravity"
 		angAccel.x -= gravityFactor * Time.deltaTime;
@@ -112,7 +112,7 @@ public class LanceControl : MonoBehaviour
 			angPos.x = Mathf.Clamp(angPos.x, minPitchAngle, maxPitchAngle);
 			angAccel.x = 0f;
 		}
-		
+
 		if (angPos.y < minYawAngle || angPos.y > maxYawAngle)
 		{
 			angPos.y = Mathf.Clamp(angPos.y, minYawAngle, maxYawAngle);

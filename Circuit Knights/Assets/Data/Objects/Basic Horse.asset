@@ -15,6 +15,6 @@ MonoBehaviour:
   horseType: 0
   mesh: {fileID: 0}
   accelAxis: 5
-  decelButton: 0
-  speed: 15
+  decelButton: 9
+  speed: 22
   lerpSmoothness: 0.025

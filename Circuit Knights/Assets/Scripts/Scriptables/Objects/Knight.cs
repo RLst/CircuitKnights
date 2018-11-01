@@ -15,34 +15,36 @@ namespace CircuitKnights.Objects
 
 		[SerializeField] GameObject mesh;
 
+#region Controls
 		[Header("Controls")]
-		public XboxController controller;
-		public XboxAxis lanceAxisX, lanceAxisY;
-		public XboxAxis leanAxisX, leanAxisY;
-		public XboxAxis shieldAxis;
+		[SerializeField] XboxController controller;
+		[SerializeField] XboxAxis lanceAxisX, lanceAxisY;
+		[SerializeField] XboxAxis leanAxisX, leanAxisY;
+		[SerializeField] XboxAxis shieldAxis;
+		[SerializeField] XboxButton thrustLanceButton;
 
-
+		public XboxController Controller { get { return controller; } }
+		public XboxAxis LanceAxisX { get { return lanceAxisX; } }
+		public XboxAxis LanceAxisY { get { return lanceAxisY; } }
+		public XboxAxis LeanAxisX { get { return leanAxisX; } }
+		public XboxAxis LeanAxisY { get { return leanAxisY; } }
+		public XboxAxis ShieldAxis { get { return shieldAxis; } }
+		public XboxButton ThrustLanceButton { get { return thrustLanceButton; } }
+#endregion
+#region Stats
 		[Header("Starting Stats")]
-		//These WILL NOT GET MODIFIED DURING RUNTIME
 		[SerializeField] float maxHeadHealth;
 		[SerializeField] float maxTorsoHealth;
 		[SerializeField] float maxLeftArmHealth;
 		[SerializeField] float maxRightArmHealth;
 
 		//The stats that externals will actually reference from
-		//These are reset at the start of 
+		//These are reset at the start of
 		public float HeadHealth { get; set; }
 		public float TorsoHealth { get; set; }
 		public float LeftArmHealth { get; set; }
 		public float RightArmHealth { get; set; }
-		float TotalHealth		//Don't know about this ie. If Torse loses all health then it should kill the player
-		{
-			get
-			{
-				return HeadHealth + TorsoHealth + LeftArmHealth + RightArmHealth;
-			}
-		}
-
+#endregion
 
 		void Awake()
 		{
@@ -51,6 +53,7 @@ namespace CircuitKnights.Objects
 
 		public void ResetStats()
 		{
+			//Use this say at the end of a match or round?
 			HeadHealth = maxHeadHealth;
 			TorsoHealth = maxTorsoHealth;
 			LeftArmHealth = maxLeftArmHealth;

@@ -22,14 +22,18 @@ namespace CircuitKnights.Objects
         public HorseType horseType = HorseType.Standard;
         public GameObject mesh;
 
+#region Controls
         [Header("Controls")]
-        public XboxAxis accelAxis;
-        public XboxButton decelButton;
-
+        [SerializeField] XboxAxis accelAxis;
+        [SerializeField] XboxButton decelButton;
+        public XboxAxis Accel { get { return accelAxis; }}
+        public XboxButton Decel { get { return decelButton; }}
+#endregion
+#region Movement
         [Header("Movement")]
         [Range(1f, 100f)] public float speed;
         [Range(0f, 10f)] public float lerpSmoothness;
-
+#endregion
         public void ClampTValue()
         {
             lerpSmoothness = Mathf.Clamp01(lerpSmoothness);

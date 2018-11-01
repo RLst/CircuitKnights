@@ -19,6 +19,7 @@ MonoBehaviour:
   leanAxisX: 0
   leanAxisY: 1
   shieldAxis: 4
+  thrustLanceButton: 7
   maxHeadHealth: 100
   maxTorsoHealth: 100
   maxLeftArmHealth: 100

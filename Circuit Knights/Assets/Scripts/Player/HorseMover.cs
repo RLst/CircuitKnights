@@ -4,12 +4,14 @@
 
 using UnityEngine;
 using CircuitKnights.Objects;
+using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
 
     public class HorseMover : MonoBehaviour
     {
+		[Multiline] [SerializeField] string description = "Handles horse movement ONLY";
 		[SerializeField] Horse horse;
 		private HorseInput horseInput;
 		Vector3 startPosition;
@@ -23,7 +25,12 @@ namespace CircuitKnights
 
 			//Remember the initial starting position
 			startPosition = transform.position;
-			tarPos = transform.position;	
+			tarPos = transform.position;
+		}
+
+		void Start()
+		{
+			Assert.IsNotNull(horseInput, "Horse input not found!");
 		}
 
 		void Update()
@@ -55,7 +62,7 @@ namespace CircuitKnights
 			transform.position = position;
 			tarPos = position;
 		}
-	
+
 
     }
 

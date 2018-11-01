@@ -18,9 +18,8 @@ namespace CircuitKnights
 			"This script should be disabled upon events: PlayerDeath, LeftArmDeath." +
 			"Attach to root object of animator.";
 
-		Animator anim;
-		Transform spine;
-		[SerializeField] Knight player;
+		private Animator anim; private Transform spine;
+		private PlayerInput playerInput;
 
 		[Header("IK")]
 		[SerializeField] TransformVariable leftHand;
@@ -33,17 +32,20 @@ namespace CircuitKnights
 
 		private void Start()
 		{
+			//Get the bone needed to do the lean from the animator
 			anim = GetComponent<Animator>();
 			spine = anim.GetBoneTransform(HumanBodyBones.Spine);
+
+			//Get the input reader
+			playerInput = GetComponent<PlayerInput>();
 		}
 
 		private void LateUpdate()
 		{
-			var xThrow = XCI.GetAxis(player.leanAxisX, player.controller);
 			Vector3 newSpinePosition = spine.localPosition;
-			newSpinePosition.z += xThrow * dodgeFactor * Time.deltaTime;
+			newSpinePosition.z += playerInput.LeanAxisX * dodgeFactor * Time.deltaTime;
 			spine.position += newSpinePosition;
-			spine.rotation *= Quaternion.Euler(0f, xThrow * leanFactor * Time.deltaTime, 0f);
+			spine.rotation *= Quaternion.Euler(0f, playerInput.LeanAxisX * leanFactor * Time.deltaTime, 0f);
 		}
     }
 }

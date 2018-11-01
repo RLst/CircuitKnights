@@ -11,6 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817007396372762488c23d0facd650cd, type: 3}
   m_Name: Basic Lance
   m_EditorClassIdentifier: 
+  description: 
   mass: 25
   length: 3.3
-  control: 1
+  gravityFactor: 295.57
+  dragFactor: 1.05
+  controlFactor: 0.1
+  pitchTorque: 50000
+  yawTorque: 50000
+  clamped: 1
+  startingPitchAngle: -15
+  startingYawAngle: 95
+  PitchRange: 90
+  YawRange: 90

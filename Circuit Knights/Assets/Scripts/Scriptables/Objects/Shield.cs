@@ -7,12 +7,15 @@ using UnityEngine;
 namespace CircuitKnights.Objects
 {
 
-[CreateAssetMenu(fileName = "New Shield", menuName = "Shield", order = 54)]
-public class Shield : ScriptableObject {
-	[SerializeField] float mass = 10f;
-	[SerializeField] float size;
-	[SerializeField] int durability = 100;
+    [CreateAssetMenu(fileName = "New Shield", menuName = "Shield", order = 54)]
+    public class Shield : ScriptableObject
+    {
+        [SerializeField] float mass = 10f;
+        [SerializeField] float hitPoints = 100;
+		public float HitPoints { get { return hitPoints;} }
 
-}
+        [SerializeField] Vector3 blockingOffset;
+        public Vector3 BlockingOffset { get { return blockingOffset; } }
 
+    }
 }
