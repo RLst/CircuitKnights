@@ -8,7 +8,6 @@ namespace CircuitKnights.Variables
 {
     public class SetTransformVariable : MonoBehaviour
     {
-        //Will attach 
         public TransformVariable transformVariable;
         void Awake()
         {

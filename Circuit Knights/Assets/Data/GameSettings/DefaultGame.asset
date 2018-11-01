@@ -8,7 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb557011e3d51e409f45d34fc738d63, type: 3}
-  m_Name: NoOfMatches
+  m_Script: {fileID: 11500000, guid: e6fed35ae41a8b34da64217d2b38eaac, type: 3}
+  m_Name: DefaultGame
   m_EditorClassIdentifier: 
-  Value: 0
+  description: Holds the game settings
+  noOfPasses: 10
+  noOfRounds: 1

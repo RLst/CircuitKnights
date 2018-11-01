@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 
   mesh: {fileID: 0}
+  transform: {fileID: 11400000, guid: 7b53d86c97d09b844a1ef7b767332f19, type: 2}
   controller: 2
   lanceAxisX: 2
   lanceAxisY: 3

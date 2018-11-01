@@ -4,6 +4,7 @@
 
 using UnityEngine;
 using XboxCtrlrInput;
+using CircuitKnights.Variables;
 
 namespace CircuitKnights.Objects
 {
@@ -14,6 +15,8 @@ namespace CircuitKnights.Objects
 		[Multiline] [SerializeField] string description = "";
 
 		[SerializeField] GameObject mesh;
+		[SerializeField] public TransformVariable transform;
+		[SerializeField] GameObjectVariable gameObject;
 
 #region Controls
 		[Header("Controls")]
@@ -32,7 +35,7 @@ namespace CircuitKnights.Objects
 		public XboxButton ThrustLanceButton { get { return thrustLanceButton; } }
 #endregion
 #region Stats
-		[Header("Starting Stats")]
+		[Header("Health")]
 		[SerializeField] float maxHeadHealth;
 		[SerializeField] float maxTorsoHealth;
 		[SerializeField] float maxLeftArmHealth;
@@ -44,6 +47,9 @@ namespace CircuitKnights.Objects
 		public float TorsoHealth { get; set; }
 		public float LeftArmHealth { get; set; }
 		public float RightArmHealth { get; set; }
+
+		// [Header("Lean & Dodge")]
+		// [SerializeField]
 #endregion
 
 		void Awake()
@@ -58,6 +64,11 @@ namespace CircuitKnights.Objects
 			TorsoHealth = maxTorsoHealth;
 			LeftArmHealth = maxLeftArmHealth;
 			RightArmHealth = maxRightArmHealth;
+		}
+
+		public void SetPosition(Vector3 position)
+		{
+			this.transform.Value.position = position;	//Is this OK? Could be hard to debug
 		}
 
 	}

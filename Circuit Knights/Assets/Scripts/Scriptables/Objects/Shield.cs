@@ -10,6 +10,7 @@ namespace CircuitKnights.Objects
     [CreateAssetMenu(fileName = "New Shield", menuName = "Shield", order = 54)]
     public class Shield : ScriptableObject
     {
+        [Multiline][SerializeField] string description = "";
         [SerializeField] float mass = 10f;
         [SerializeField] float hitPoints = 100;
 		public float HitPoints { get { return hitPoints;} }
