@@ -32,6 +32,7 @@ namespace CircuitKnights
 
         void LoadScene()
         {
+            ResultCamera.SetActive(false);
             SceneManager.LoadScene(LoadingScene);
         }
 

@@ -57,6 +57,7 @@ namespace CircuitKnights
             if (MenuActive == true)
             {
                 MainMenu.SetActive(true);
+                ResultsScreen.ResultCameraActive = false;
             }
             else if (MenuActive == false)
             {
