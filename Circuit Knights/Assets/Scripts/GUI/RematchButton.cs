@@ -32,5 +32,12 @@ namespace CircuitKnights
             Time.timeScale = 1f;
             SceneManager.LoadScene(LoadScene);
         }
+
+        private void Update()
+        {
+            ///TEMP
+            if (XboxCtrlrInput.XCI.GetButtonDown(XboxCtrlrInput.XboxButton.Back))
+                Rematch();
+        }
     }
 }

@@ -35,6 +35,11 @@ namespace CircuitKnights
         
         private void Start()
         {
+            MenuActive = true;
+            CountDownActive = false;
+            SpinCamera = true;
+            PlayerCamerasActive = false;
+
             PlayButton.onClick.AddListener(PlayGame);
             if (Rematch)
             {
@@ -54,6 +59,9 @@ namespace CircuitKnights
 
         void Update()
         {
+
+
+
             if (MenuActive == true)
             {
                 MainMenu.SetActive(true);
