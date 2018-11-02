@@ -10,7 +10,7 @@ namespace CircuitKnights.Objects
     [CreateAssetMenu(fileName = "New Lance", menuName = "Lance", order = 53)]
     public class Lance : ScriptableObject
     {
-        [Multiline][SerializeField] string description = "";
+        [TextArea][SerializeField] string description = "";
 
         [Header("Physics")]
 		[SerializeField] float mass = 25f;

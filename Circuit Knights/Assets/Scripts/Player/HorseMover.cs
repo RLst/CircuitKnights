@@ -11,17 +11,16 @@ namespace CircuitKnights
 
     public class HorseMover : MonoBehaviour
     {
-		[Multiline] [SerializeField] string description = "Handles horse movement ONLY";
+		[TextArea] [SerializeField] string description = "Handles horse movement ONLY";
 		[SerializeField] Horse horse;
 		private HorseInput horseInput;
 		Vector3 startPosition;
 		Vector3 tarPos;
 
-
 		void Awake()
 		{
 			//Used to poll the controller axes
-			horseInput = GetComponent<HorseInput>();
+			horseInput = GetComponentInParent<HorseInput>();
 
 			//Remember the initial starting position
 			startPosition = transform.position;

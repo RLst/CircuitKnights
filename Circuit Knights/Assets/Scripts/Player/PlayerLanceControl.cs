@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using CircuitKnights.Objects;
 
 namespace CircuitKnights
@@ -6,7 +7,7 @@ namespace CircuitKnights
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerLanceControl : MonoBehaviour
     {
-        [Multiline][SerializeField] string description = "Controls the player's lance";
+        [TextArea][SerializeField] string description = "Controls the player's lance";
         // [SerializeField] Knight player;
         [SerializeField] Lance lance;
         private PlayerInput playerInput;
@@ -17,17 +18,21 @@ namespace CircuitKnights
 		Vector3 angPos;
 
 
-        void Start()
+        void Awake()
         {
+            //Retrieve the player input
+            playerInput = GetComponentInParent<PlayerInput>();
+
             //Match the initial lance orientation
             angPos = transform.localRotation.eulerAngles;
+        }
 
-            //Retrieve the player input
-            playerInput = GetComponent<PlayerInput>();
-            if (!playerInput) Debug.LogWarning("No Player Input in Lance Controller");
-
+        void Start()
+        {
             //Set the lance rigidbody weight
             GetComponent<Rigidbody>().mass = lance.Mass;
+
+            Assert.IsNotNull(playerInput, "Player Input not found!");
         }
 
         void Update()

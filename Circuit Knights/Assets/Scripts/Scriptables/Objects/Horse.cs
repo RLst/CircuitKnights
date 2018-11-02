@@ -18,7 +18,7 @@ namespace CircuitKnights.Objects
     [CreateAssetMenu(fileName = "New Horse", menuName = "Horse", order = 52)]
     public class Horse : ScriptableObject
     {
-        [Multiline] [SerializeField] string description = "";
+        [TextArea] [SerializeField] string description = "";
         public HorseType horseType = HorseType.Standard;
         public GameObject mesh;
 

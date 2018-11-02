@@ -12,18 +12,17 @@ namespace CircuitKnights.Objects
 	[CreateAssetMenu(fileName = "New Knight", menuName = "Knight", order = 51)]
 	public class Knight : ScriptableObject
 	{
-		[Multiline] [SerializeField] string description = "";
-
+		[TextArea][SerializeField] string description = "";
 		[SerializeField] GameObject mesh;
 		[SerializeField] public TransformVariable transform;
-		[SerializeField] GameObjectVariable gameObject;
+		// [SerializeField] GameObjectVariable gameObject;
 
 #region Controls
 		[Header("Controls")]
 		[SerializeField] XboxController controller;
 		[SerializeField] XboxAxis lanceAxisX, lanceAxisY;
 		[SerializeField] XboxAxis leanAxisX, leanAxisY;
-		[SerializeField] XboxAxis shieldAxis;
+		[SerializeField] XboxAxis shieldAxisX, shieldAxisY;
 		[SerializeField] XboxButton thrustLanceButton;
 
 		public XboxController Controller { get { return controller; } }
@@ -31,7 +30,8 @@ namespace CircuitKnights.Objects
 		public XboxAxis LanceAxisY { get { return lanceAxisY; } }
 		public XboxAxis LeanAxisX { get { return leanAxisX; } }
 		public XboxAxis LeanAxisY { get { return leanAxisY; } }
-		public XboxAxis ShieldAxis { get { return shieldAxis; } }
+		public XboxAxis ShieldAxisX { get { return shieldAxisX; } }
+		public XboxAxis ShieldAxisY { get { return shieldAxisY; } }
 		public XboxButton ThrustLanceButton { get { return thrustLanceButton; } }
 #endregion
 #region Stats

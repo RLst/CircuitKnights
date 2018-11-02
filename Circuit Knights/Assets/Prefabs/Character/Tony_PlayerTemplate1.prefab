@@ -231,7 +231,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4883390476338998}
-  - component: {fileID: 114277187712479932}
   m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
@@ -476,10 +475,8 @@ GameObject:
   - component: {fileID: 23714483986451554}
   - component: {fileID: 95972024233117176}
   - component: {fileID: 65071178751839966}
-  - component: {fileID: 114724069096831848}
   - component: {fileID: 54083819133873892}
   - component: {fileID: 114619778031793346}
-  - component: {fileID: 114089319843226840}
   m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
@@ -600,7 +597,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4679751076981022}
-  - component: {fileID: 114929944996242420}
   m_Layer: 0
   m_Name: Elbow
   m_TagString: Untagged
@@ -708,21 +704,6 @@ GameObject:
   - component: {fileID: 4060988412739224}
   m_Layer: 0
   m_Name: EthanLeftHandRing3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1568011146735446
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4798532087485732}
-  m_Layer: 0
-  m_Name: Reins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1059,6 +1040,7 @@ GameObject:
   - component: {fileID: 65601912507482034}
   - component: {fileID: 114449616432869736}
   - component: {fileID: 114915440541236632}
+  - component: {fileID: 114598595418498166}
   m_Layer: 0
   m_Name: Lance
   m_TagString: Untagged
@@ -1265,7 +1247,6 @@ GameObject:
   - component: {fileID: 95409676997882686}
   - component: {fileID: 54125126383434862}
   - component: {fileID: 114509976269008900}
-  - component: {fileID: 114403857961028046}
   m_Layer: 0
   m_Name: Horse
   m_TagString: Untagged
@@ -1376,6 +1357,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4325831629564238}
+  - component: {fileID: 114051927020249994}
+  - component: {fileID: 114729769844931244}
   m_Layer: 0
   m_Name: Tony_PlayerTemplate1
   m_TagString: Player1
@@ -1614,7 +1597,7 @@ Transform:
   - {fileID: 4883390476338998}
   - {fileID: 4679751076981022}
   m_Father: {fileID: 4489854245952772}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!4 &4101195608024990
 Transform:
@@ -1709,7 +1692,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1332195563608700}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.6, y: -17, z: 24}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4372348489534350}
@@ -1847,7 +1830,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1611010950082826}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1932,15 +1915,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930102118440502}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 62.21692, y: 0.554, z: 25.388}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -32.694305, y: 0.56, z: 23.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4318288977764402}
   - {fileID: 4983133264801264}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4328121726887556
 Transform:
   m_ObjectHideFlags: 1
@@ -2111,7 +2094,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815170473750758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -58.1, y: -31.6, z: -2.7}
+  m_LocalPosition: {x: -58.1, y: -24, z: -11.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4161840973657214}
@@ -2137,14 +2120,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1333615843520266}
-  m_LocalRotation: {x: 0.6532815, y: -0.27059805, z: 0.27059805, w: 0.6532815}
-  m_LocalPosition: {x: -0.217, y: 1.092, z: 0.188}
+  m_LocalRotation: {x: 0.6350624, y: -0.36466083, z: 0.2616089, w: 0.62871224}
+  m_LocalPosition: {x: -0.203, y: 0.894, z: 0.194}
   m_LocalScale: {x: 0.002870001, y: 0.002870001, z: 0.002870001}
   m_Children:
   - {fileID: 4161840973657214}
   m_Father: {fileID: 4489854245952772}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 90, y: -45, z: 0}
+  m_LocalEulerAnglesHint: {x: 81.62701, y: 240.11299, z: 292.835}
 --- !u!4 &4479684665045982
 Transform:
   m_ObjectHideFlags: 1
@@ -2187,7 +2170,6 @@ Transform:
   - {fileID: 4626301440668210}
   - {fileID: 4714288733032900}
   - {fileID: 4451430239575852}
-  - {fileID: 4798532087485732}
   - {fileID: 4096965147991420}
   m_Father: {fileID: 4983133264801264}
   m_RootOrder: 0
@@ -2680,19 +2662,6 @@ Transform:
   m_Father: {fileID: 4771803970425712}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4798532087485732
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1568011146735446}
-  m_LocalRotation: {x: 0.25791073, y: 0.34048992, z: 0.1407335, w: 0.89316446}
-  m_LocalPosition: {x: -0.14550051, y: 1.0194999, z: 0.22400075}
-  m_LocalScale: {x: 0.50000024, y: 0.50000006, z: 0.5000001}
-  m_Children: []
-  m_Father: {fileID: 4489854245952772}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 21.4, y: 46.99, z: 27.3}
 --- !u!4 &4831959161981492
 Transform:
   m_ObjectHideFlags: 1
@@ -3171,21 +3140,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114089319843226840
+--- !u!114 &114051927020249994
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1332195563608700}
+  m_GameObject: {fileID: 1930102118440502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3f977f8b1c49f49a74fb13ffef50e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 734805418de78674fb971ffc27fd734b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Handles controller/keyboard input for the player
+  description: Handles input for the horse
   player: {fileID: 11400000, guid: b55ffe92050dffe4fb8e5e7512b65f6c, type: 2}
-  getKBInput: 0
-  KBSpeed: 5
+  horse: {fileID: 11400000, guid: ea7074b869137bf438a40f4b2e1d90ce, type: 2}
+  getKBInput: 1
 --- !u!114 &114151933445334838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3226,33 +3195,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114277187712479932
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166322662041854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20319294c649b6f4a96e2339fb0fabb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformVariable: {fileID: 0}
---- !u!114 &114403857961028046
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1880796523967942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734805418de78674fb971ffc27fd734b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  description: Handles input for the horse
-  player: {fileID: 11400000, guid: b55ffe92050dffe4fb8e5e7512b65f6c, type: 2}
-  horse: {fileID: 11400000, guid: ea7074b869137bf438a40f4b2e1d90ce, type: 2}
-  getKBInput: 1
 --- !u!114 &114448076813641154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3285,7 +3227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8b21d2663879349adcd770e968aacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Controls the player's lance
+  description: '[How come this can''t use the root PlayerInput?]
+
+    Controls the player''s lance.'
   lance: {fileID: 11400000, guid: 722c46d13ce023f41ac5ac29086449b6, type: 2}
 --- !u!114 &114492191674325454
 MonoBehaviour:
@@ -3359,6 +3303,18 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0.9
     Variable: {fileID: 0}
+--- !u!114 &114598595418498166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1747879728106106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326803e966888f547bdacca7f8131e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Allows lance to 'attack'
 --- !u!114 &114619778031793346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3371,21 +3327,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shield: {fileID: 11400000, guid: baf422c2019bbe946953001347e0b14d, type: 2}
-  xLerp: 0.25
---- !u!114 &114724069096831848
+--- !u!114 &114729769844931244
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1332195563608700}
-  m_Enabled: 0
+  m_GameObject: {fileID: 1930102118440502}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b810bed30c1a8c45b5b02b4101a7eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e3f977f8b1c49f49a74fb13ffef50e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: 1
-  blockInput: 4
-  maxBlockOffset: {x: 0, y: -23.2, z: -68}
+  description: Handles controller/keyboard input for the player. Attach to the root
+    object
+  player: {fileID: 11400000, guid: b55ffe92050dffe4fb8e5e7512b65f6c, type: 2}
+  getKBInput: 0
+  KBSpeed: 5
 --- !u!114 &114771801499123254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3445,18 +3402,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: b55ffe92050dffe4fb8e5e7512b65f6c, type: 2}
   getKBInput: 0
   KBSpeed: 5
---- !u!114 &114929944996242420
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1459873498180886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20319294c649b6f4a96e2339fb0fabb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformVariable: {fileID: 0}
 --- !u!124 &124877305662169444
 Behaviour:
   m_ObjectHideFlags: 1

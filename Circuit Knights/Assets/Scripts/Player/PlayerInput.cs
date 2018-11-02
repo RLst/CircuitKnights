@@ -10,18 +10,20 @@ namespace CircuitKnights
 {
     public class PlayerInput : MonoBehaviour
     {
-        [Multiline] [SerializeField] string description = "Handles controller/keyboard input for the player";
+        [TextArea] [SerializeField] string description = "Handles controller/keyboard input for the player. Attach to the root object";
         [SerializeField] Knight player;
         [SerializeField] bool getKBInput = false;
-        [SerializeField] float KBSpeed = 5f;
+		[SerializeField] KeyCode shieldKey = KeyCode.LeftShift;
+		[SerializeField] KeyCode thrustKey = KeyCode.RightControl;
 
-        #region Outputs
-        // public XboxController Controller { get; private set; }
-        public float LanceAxisX { get; private set; }
+		#region Outputs
+		// public XboxController Controller { get; private set; }
+		public float LanceAxisX { get; private set; }
         public float LanceAxisY { get; private set; }
         public float LeanAxisX { get; private set; }
         public float LeanAxisY { get; private set; }
-        public float ShieldAxis { get; private set; }
+        public float ShieldAxisX { get; private set; }
+        public float ShieldAxisY { get; private set; }
         public bool ThrustLanceButton { get; private set; }
         #endregion
 
@@ -38,26 +40,37 @@ namespace CircuitKnights
             LanceAxisY = XCI.GetAxis(player.LanceAxisY, player.Controller);
             LeanAxisX = XCI.GetAxis(player.LeanAxisX, player.Controller);
             LeanAxisY = XCI.GetAxis(player.LeanAxisY, player.Controller);
-            ShieldAxis = XCI.GetAxis(player.ShieldAxis, player.Controller);
+            ShieldAxisX = XCI.GetAxis(player.ShieldAxisX, player.Controller);
+            ShieldAxisY = XCI.GetAxis(player.ShieldAxisY, player.Controller);
             ThrustLanceButton = XCI.GetButton(player.ThrustLanceButton, player.Controller);
         }
 
         void ReadKeyboardInput()
-        {
-            ///hardcoded for debugging/ease of use purposes
-            // LeanAxisX += Input.GetKey(KeyCode.A) ? KBSpeed : 0f;
-            // LeanAxisX -= Input.GetKey(KeyCode.D) ? KBSpeed : 0f;
-            // LeanAxisY += Input.GetKey(KeyCode.W) ? KBSpeed : 0f;
-            // LeanAxisY -= Input.GetKey(KeyCode.S) ? KBSpeed : 0f;
-            LeanAxisX = Input.GetAxis("Horizontal2");
-            LeanAxisY = Input.GetAxis("Vertical2");
-            LanceAxisX = Input.GetAxis("Horizontal");
-            LanceAxisY = Input.GetAxis("Vertical");
+		{
+			///hardcoded for debugging/ease of use purposes
+			LeanAxisX = Input.GetAxis("Horizontal2");
+			LeanAxisY = Input.GetAxis("Vertical2");
+			LanceAxisX = Input.GetAxis("Horizontal");
+			LanceAxisY = Input.GetAxis("Vertical");
 
-            //These might not work well with the controller
-            ShieldAxis = Input.GetKey(KeyCode.RightShift) ? 1f : 0f;
-            ThrustLanceButton = Input.GetKey(KeyCode.RightControl) ? true : false;
-        }
+			ReadShieldInput();
+			ReadThrustInput();
+		}
 
-    }
+		private void ReadThrustInput()
+		{
+            ThrustLanceButton = Input.GetKey(thrustKey);
+		}
+
+		private void ReadShieldInput()
+		{
+            ShieldAxisX = System.Convert.ToSingle(Input.GetKey(shieldKey));  //Might not work well with the controller
+
+            // if (Input.GetKey(shieldKey))
+            //     ShieldAxis = 1f;
+            // else
+            //     ShieldAxis = 0f;
+			// ShieldAxis = Input.GetKey(KeyCode.LeftShift) ? 1f : 0f;
+		}
+	}
 }

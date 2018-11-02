@@ -14,7 +14,11 @@ namespace CircuitKnights
         [Multiline] [SerializeField] string description = "Handles controller/keyboard input for the horse";
         [SerializeField] Knight player;  //Required to select which controller
         [SerializeField] Horse horse;
-        [SerializeField] bool getKBInput = true;
+
+        [Header("Keyboard Controls")]
+        [SerializeField] bool isUsingKB = true;
+        [SerializeField] KeyCode accelKey = KeyCode.Space;
+        [SerializeField] KeyCode decelKey = KeyCode.B;
 
         #region Outputs
         public float Accel { get; private set; }
@@ -24,26 +28,34 @@ namespace CircuitKnights
         private void Update()
         {
             ReadControllerInput();
-            if (getKBInput) ReadKeyboardInput();
+            if (isUsingKB) ReadKeyboardInput();
         }
 
         private void ReadControllerInput()
         {
             Accel = XCI.GetAxis(horse.Accel, player.Controller);
             // Decel = XCI.GetAxis(horse.decelAxis, player.controller) * horse.speed * Time.deltaTime;
-            if (XCI.GetButton(horse.Decel, player.Controller))
-            {
-                Accel = -horse.speed;
-            }
+
+            //Temp
+            Accel = -System.Convert.ToSingle(XCI.GetButton(horse.Decel, player.Controller));
         }
 
         private void ReadKeyboardInput()
         {
-            //Hardcoded
-            if (Input.GetKey(KeyCode.Space))
-                Accel = horse.speed;
-            if (Input.GetKey(KeyCode.B))
-                Accel = -horse.speed;
+            //If accel is already set
+
+
+            if (Input.GetKey(accelKey))
+                Accel = 1f;
+
+            if (Input.GetKey(decelKey))
+                Accel = -1f;
+
+            if (!Input.GetKey(accelKey) && !Input.GetKey(decelKey))
+                Accel = 0f;
+
+            // Accel = Input.GetKey(accelKey) ? 1f : Accel;
+            // Accel = Input.GetKey(decelKey) ? -1f : Accel;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CircuitKnights.Variables;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
@@ -20,10 +21,16 @@ namespace CircuitKnights
 		[SerializeField] FloatReference headIKWeight;
 		float eyesIKWeight = 0f;	//Not really applicable as our robots don't have eyes
 		[SerializeField] FloatReference clampIKWeight;
-		
-		private void Start()
+
+		private void Awake()
 		{
 			anim = GetComponent<Animator>();
+			if (!anim) anim = GetComponentInParent<Animator>();
+		}
+
+		void Start()
+		{
+			Assert.IsNotNull(anim, "Animator not found!");
 		}
 
 		private void OnAnimatorIK(int layerIndex)
@@ -32,10 +39,10 @@ namespace CircuitKnights
 			{
 				//Weights
 				anim.SetLookAtWeight(
-					overallIKWeight.Value, 
-					bodyIKWeight.Value, 
-					headIKWeight.Value, 
-					eyesIKWeight, 
+					overallIKWeight.Value,
+					bodyIKWeight.Value,
+					headIKWeight.Value,
+					eyesIKWeight,
 					clampIKWeight.Value);
 
 				//IK

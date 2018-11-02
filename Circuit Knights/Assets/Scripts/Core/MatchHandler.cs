@@ -43,13 +43,13 @@ namespace CircuitKnights
 
 			//Do any starting routines
 			// StartCoroutine(RunStartingCinematicCutScenes());
-			startCountDown.Raise();
+			// startCountDown.Raise();
 		}
 
 		public void InitPlayers()
 		{
-			playerOne.SetPosition(startPointOne.position);
-			playerTwo.SetPosition(startPointTwo.position);
+			// playerOne.SetPosition(startPointOne.position);
+			// playerTwo.SetPosition(startPointTwo.position);
 		}
 
 		// private IEnumerator RunStartingCinematicCutScenes()
