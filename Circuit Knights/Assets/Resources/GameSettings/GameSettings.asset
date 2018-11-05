@@ -9,8 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6fed35ae41a8b34da64217d2b38eaac, type: 3}
-  m_Name: DefaultGame
+  m_Name: GameSettings
   m_EditorClassIdentifier: 
   description: Holds the game settings
   noOfPasses: 10
   noOfRounds: 1
+  countDownDuration: 5
+  trackStart1: {fileID: 0}
+  trackEnd1: {fileID: 0}
+  trackStart2: {fileID: 0}
+  trackEnd2: {fileID: 0}
+  gamepadVibrationOn: {fileID: 0}
