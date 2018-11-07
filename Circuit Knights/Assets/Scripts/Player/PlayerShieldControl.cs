@@ -30,14 +30,14 @@ namespace CircuitKnights
 
 		void Update()
 		{
-			Debug.Log("X: "+playerInput.ShieldAxisX);
-			Debug.Log("Y: "+playerInput.ShieldAxisY);
+			// Debug.Log("X: "+playerInput.ShieldAxisX);
+			// Debug.Log("Y: "+playerInput.ShieldAxisY);
 			if (playerInput.ShieldAxisX < xDeadzone &&
 				playerInput.ShieldAxisX > -xDeadzone &&
 				playerInput.ShieldAxisY < xDeadzone &&
 				playerInput.ShieldAxisY > -xDeadzone)
 			{
-				Debug.Log("Shield resting");
+				// Debug.Log("Shield resting");
 				RestShield();
 			}
 			else

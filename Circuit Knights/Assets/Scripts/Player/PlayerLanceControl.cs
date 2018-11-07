@@ -10,6 +10,7 @@ namespace CircuitKnights
         [TextArea][SerializeField] string description = "Controls the player's lance";
         // [SerializeField] Knight player;
         [SerializeField] Lance lance;
+        Transform lanceTranform;
         private PlayerInput playerInput;
 
 		//Internal vars
@@ -25,14 +26,17 @@ namespace CircuitKnights
 
             //Match the initial lance orientation
             angPos = transform.localRotation.eulerAngles;
+
+            //Retrieve the lance's transform
+            lanceTranform = lance.gameObject.transform;
         }
 
         void Start()
         {
+            Assert.IsNotNull(playerInput, "Player Input not found!");
+            
             //Set the lance rigidbody weight
             GetComponent<Rigidbody>().mass = lance.Mass;
-
-            Assert.IsNotNull(playerInput, "Player Input not found!");
         }
 
         void Update()
@@ -45,11 +49,11 @@ namespace CircuitKnights
         private void HandleLanceAim()
         {
             //Calc angular accel
-            angAccel.x += playerInput.LanceAxisY * lance.PitchTorque / lance.MomentOfInertia * Time.deltaTime;
+            angAccel.x -= playerInput.LanceAxisY * lance.PitchTorque / lance.MomentOfInertia * Time.deltaTime;
             angAccel.y += playerInput.LanceAxisX * lance.YawTorque / lance.MomentOfInertia * Time.deltaTime;
 
             //Apply "gravity"
-            angAccel.x -= lance.GravityFactor * Time.deltaTime;
+            angAccel.x += lance.GravityFactor * Time.deltaTime;
 
             //Calc angular vel
             angVel.x += angAccel.x * Time.deltaTime;
@@ -83,7 +87,8 @@ namespace CircuitKnights
 
         private void ApplyTransform()
         {
-            transform.localRotation = Quaternion.Euler(angPos);
+            lanceTranform.localRotation = Quaternion.Euler(angPos);
+            // transform.localRotation = Quaternion.Euler(angPos);
         }
     }
 }

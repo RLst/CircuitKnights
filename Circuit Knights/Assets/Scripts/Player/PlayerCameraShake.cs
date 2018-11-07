@@ -1,31 +1,31 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CircuitKnights
 {
+    public class PlayerCameraShake : MonoBehaviour
+    {
+        public IEnumerator Shake(float duration, float magnitude)
+        {
+            Vector3 originalPos = transform.localPosition;
 
-public class PlayerCameraShake : MonoBehaviour {
+			float finishTime = Time.time + duration;
+            // float elapsed = 0.0f;
 
-	public IEnumerator Shake (float duration, float magnitude)
-	{
-		Vector3 originalPos = transform.localPosition;
+			while (finishTime > Time.time)
+            // while (elapsed < duration)
+            {
+                float x = Random.Range(-1f, 1f) * magnitude;
+                float y = Random.Range(-1f, 1f) * magnitude;
 
-		float elapsed = 0.0f;
+                transform.localPosition = new Vector3(x, y, originalPos.z);
 
-		while(elapsed < duration)
-		{
-			float x = Random.Range(-1f, 1f) * magnitude;
-			float y = Random.Range(-1f, 1f) * magnitude;
+                // elapsed += Time.deltaTime;
 
-			transform.localPosition = new Vector3 (x, y, originalPos.z);
+                yield return null;
+            }
 
-			elapsed += Time.deltaTime;
-
-			yield return null;
-		}
-
-		transform.localPosition = originalPos;
-		}
-	}
+            transform.localPosition = originalPos;
+        }
+    }
 }

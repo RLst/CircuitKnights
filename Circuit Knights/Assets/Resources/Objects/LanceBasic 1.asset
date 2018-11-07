@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817007396372762488c23d0facd650cd, type: 3}
+  m_Name: LanceBasic 1
+  m_EditorClassIdentifier: 
+  description: 
+  mass: 25
+  length: 3.3
+  gravityFactor: 0
+  dragFactor: 1.05
+  controlFactor: 0.1
+  pitchTorque: 50000
+  yawTorque: 40000
+  clamped: 1
+  startingPitchAngle: -40
+  startingYawAngle: -50
+  PitchRange: 60
+  YawRange: 50

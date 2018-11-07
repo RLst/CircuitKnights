@@ -1,18 +1,22 @@
 ﻿using System;
+using UnityEngine;
 
-public abstract class Damageable
+namespace CircuitKnights
 {
-	float health;
-
-	public void TakeDamage(float damageAmount)
-	{
-		health -= damageAmount;
-		if (health <= 0)
-			Kill();
-	}
-
-    private void Kill()
+    public abstract class Damageable : MonoBehaviour
     {
-        throw new NotImplementedException();
+        ////Can be used not just on the player but inanimate objects too
+        float health;
+
+        public virtual void TakeDamage(float damageAmount)
+        {
+            health -= damageAmount;
+            if (health <= 0)
+                Death();
+        }
+
+        public abstract void Death();
+        //Must be implemented by any object that derives from this class
     }
+
 }

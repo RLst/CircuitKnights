@@ -12,7 +12,7 @@ namespace CircuitKnights
     public class HorseInput : MonoBehaviour
     {
         [Multiline] [SerializeField] string description = "Handles controller/keyboard input for the horse";
-        [SerializeField] Knight player;  //Required to select which controller
+        [SerializeField] Player player;  //Required to select which controller
         [SerializeField] Horse horse;
 
         [Header("Keyboard Controls")]
@@ -33,11 +33,11 @@ namespace CircuitKnights
 
         private void ReadControllerInput()
         {
-            Accel = XCI.GetAxis(horse.Accel, player.Controller);
+            Accel = XCI.GetAxis(horse.AccelAxis, player.Controller);
             // Decel = XCI.GetAxis(horse.decelAxis, player.controller) * horse.speed * Time.deltaTime;
 
             //Temp
-            Accel = -System.Convert.ToSingle(XCI.GetButton(horse.Decel, player.Controller));
+            Accel = -System.Convert.ToSingle(XCI.GetButton(horse.DecelButton, player.Controller));
         }
 
         private void ReadKeyboardInput()
