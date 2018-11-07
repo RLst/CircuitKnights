@@ -1,0 +1,46 @@
+Step by step walkthrough
+
+//// LEGEND
+K = kinematic
+RB = rigidbody
+T = trigger
+C = collider
+=> jointed
+
+/// BEFORE
+Lance = KRB
+Shield = KTRB
+Horse = KRB     //RB so that the player can be jointed to it
+Player.Bodies[] = KTRB
+Player.Spine/Pelvis => Horse with breakable force being adjusted depending on health?
+
+/// DURING
+If Player.Lance collides with ColliderOnLayer(Opponent).Anything
+{
+    //Player
+    Player.Lance = RB
+
+    //Opponent
+    Opponent.Body[] = RB
+    Opponent.Animator.SetActive(false)
+    Opponent.Lance = RB
+    Opponent.Shield = RB    
+}
+
+Get collision data
+Vector3 collisionPoint = collision.contacts[0].point
+
+Opponent lerps blends back to idle animation after a certain period of time, based on collision impact. 
+The greater, the more recovery time required.
+
+/// AFTER
+Player = RB + Ragdoll; SetParent(null); 
+Lance = RB => Player.RightHand/Arm
+Shield = RB => Player.LeftHand/Arm
+Horse = KRB
+
+
+
+scriptableObject -> Object
+
+MonoBehaviour -> Behaviour -> Component -> Object
