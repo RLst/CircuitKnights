@@ -20,7 +20,7 @@ namespace CircuitKnights.Objects
     #region Cache
 		//DONT KNOW ABOUT THESE... SEEM CLUNKY
         //[These could also be arrays ie. be able to change lances and shields]
-		public Transform Root { get; set; }
+		public Transform root { get; set; }
         public Horse horse { get; set; }
         public Lance lance { get; set; }
         public Shield shield { get; set; }

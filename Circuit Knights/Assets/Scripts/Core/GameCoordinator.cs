@@ -26,7 +26,8 @@ namespace CircuitKnights
 
 
         [Header("GUI")]
-        public Canvas countDownCanvas;
+        public Text countDownText;
+        public Button skipButton;
 
 
         [Header("Events")]
@@ -75,7 +76,11 @@ namespace CircuitKnights
             // endWait = new WaitForSeconds(GameSettings.Instance.)
             InitGame();
             StartCoroutine(RunIntro());
-            StartCoroutine(GameLoop());
+            // StartCoroutine(GameLoop());
+        }
+
+        void Update()
+        {
         }
 
         private void InitGame()
@@ -99,26 +104,33 @@ namespace CircuitKnights
             //Start far away and move toward the player at an angle blah blah blah
             //Pan the crowd blah blah blah
             //Zoom in on the king / lady / princess blah blah blah
+            Debug.Log("Start of match cutscene");
+
+            //Skip setup
+            var skippableTime = Time.time + cutSceneUnskippableDuration;
+            // var skipUIText = 
+
             StartOfMatchCamera.SetActive(true);
             var camAnim = StartOfMatchCamera.GetComponent<Animation>();
-            var skippableTime = Time.time + cutSceneUnskippableDuration;
-
-			camAnim.Play();	//Play once only
+			camAnim.Play();    //Play once only
+            
 
             while (true)
             {
                 //Exit if user skips
                 if (Time.time >= skippableTime)
                 {
+                    
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        yield return true;
+                        // yield return true;
                         break;
                     }
                 }
                 //Exit if animation is finished
                 if (!camAnim.isPlaying)
                     break;
+
                 yield return null;
             }
 
@@ -173,7 +185,11 @@ namespace CircuitKnights
         }
 
         private IEnumerator RunStartOfRoundCutscene()
-        {
+        {   
+            Debug.Log("Start Of Round Cutscene");
+
+			StartOfRoundCamera.SetActive(true);
+
             var skippableTime = Time.time + cutSceneUnskippableDuration;
 
             //If skip button isn't pressed and 
@@ -187,10 +203,6 @@ namespace CircuitKnights
                         break;      //Break out of while loop and hence stop this coroutine
                     }
                 }
-
-                ////PUT CAMERA CUTSCENE STUFF HERE!!!
-				StartOfRoundCamera.SetActive(true);
-                // Debug.Log("Camera cutscene...");
 
                 yield return null;
             }
@@ -219,10 +231,11 @@ namespace CircuitKnights
         private IEnumerator StartCountDown()
         {
             //Enable the countdown canvas
-            countDownCanvas.enabled = true;
+            // this.countDownText.SetActive(true);
+            countDownText.enabled = true;
 
             //Get the countdown text (should only be one in canvas)
-            Text countDownText = countDownCanvas.GetComponentInChildren<Text>();
+            // Text countDownText = countDownText.GetComponentInChildren<Text>();
 
             for (int countDownTime = GameSettings.Instance.CountDownDuration; countDownTime > 0; countDownTime--)
             {
@@ -241,31 +254,19 @@ namespace CircuitKnights
             //Odd numbered round
             if (GameSettings.Instance.Round % 2 == 1)
             {
-				playerOne.Root.position = startPoints[0].position;
-				playerTwo.Root.position = startPoints[1].position;
-                // playerOnePrefab.transform.position = startPoints[0].position;
-                // playerTwoPrefab.transform.position = startPoints[1].position;
-                // GameSettings.Players[0].SetPosition(startPoints[0].position);
-                // GameSettings.Players[1].SetPosition(startPoints[1].position);
-                // GameSettings.Instance.PlayerOne.SetPosition(startPoints[0].position);
-                // GameSettings.Instance.PlayerTwo.SetPosition(startPoints[1].position);
+				playerOne.root.position = startPoints[0].position;
+                playerOne.root.rotation = startPoints[0].rotation;
+            	playerTwo.root.position = startPoints[1].position;
+                playerTwo.root.rotation = startPoints[1].rotation;
             }
             //Even numbered round
             else
             {
-				playerOne.Root.position = startPoints[1].position;
-				playerTwo.Root.position = startPoints[0].position;
-                // playerOnePrefab.transform.position = startPoints[1].position;
-                // playerTwoPrefab.transform.position = startPoints[0].position;
-                // GameSettings.Instance.PlayerOne.SetPosition(startPoints[1].position);
-                // GameSettings.Instance.PlayerTwo.SetPosition(startPoints[0].position);
-                // StopCoroutine(PlayRound());
+				playerOne.root.position = startPoints[1].position;
+                playerOne.root.rotation = startPoints[1].rotation;
+				playerTwo.root.position = startPoints[0].position;
+                playerTwo.root.rotation = startPoints[0].rotation;
             }
-
-            //Automatically sets player's position based on even or odd round
-            // var isOdd = GameSettings.Instance.Round % 2;
-            // GameSettings.Players[isOdd % 2].SetPosition(startPoints[isOdd % 2].position);
-            // GameSettings.Players[isOdd].SetPosition(startPoints[isOdd].position);
         }
 	#endregion
 
@@ -285,16 +286,14 @@ namespace CircuitKnights
         }
         IEnumerator ShowGoText(float showDuration)
         {
-            var text = countDownCanvas.GetComponentInChildren<Text>();
-
-			//Set text big etc
-			text.text = "GO!";
-			text.fontSize += 10;
+            //Set text big etc
+			countDownText.text = "GO!";
+			countDownText.fontSize += 10;
 
 			yield return new WaitForSecondsRealtime(showDuration);
 
 			//Hide and disable the canvas
-			countDownCanvas.enabled = false;
+			countDownText.enabled = false;
         }
 
         private void EnablePlayerMovement()
@@ -315,3 +314,22 @@ namespace CircuitKnights
 
     }
 }
+
+
+        // playerOnePrefab.transform.position = startPoints[0].position;
+        // playerTwoPrefab.transform.position = startPoints[1].position;
+        // GameSettings.Players[0].SetPosition(startPoints[0].position);
+        // GameSettings.Players[1].SetPosition(startPoints[1].position);
+        // GameSettings.Instance.PlayerOne.SetPosition(startPoints[0].position);
+        // GameSettings.Instance.PlayerTwo.SetPosition(startPoints[1].position);
+        // playerOnePrefab.transform.position = startPoints[1].position;
+        // playerTwoPrefab.transform.position = startPoints[0].position;
+        // GameSettings.Instance.PlayerOne.SetPosition(startPoints[1].position);
+        // GameSettings.Instance.PlayerTwo.SetPosition(startPoints[0].position);
+        // StopCoroutine(PlayRound());
+
+        
+    //Automatically sets player's position based on even or odd round
+    // var isOdd = GameSettings.Instance.Round % 2;
+    // GameSettings.Players[isOdd % 2].SetPosition(startPoints[isOdd % 2].position);
+    // GameSettings.Players[isOdd].SetPosition(startPoints[isOdd].position);

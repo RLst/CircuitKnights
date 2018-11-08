@@ -2,7 +2,7 @@
 
 namespace CircuitKnights
 {
-    public interface IDamageable
+    public interface IHealth
 	{
 		void TakeDamage(float damage);
 		void Death();

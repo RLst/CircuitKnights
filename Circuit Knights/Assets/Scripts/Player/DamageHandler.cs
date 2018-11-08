@@ -4,22 +4,50 @@
 
 using UnityEngine;
 using CircuitKnights.Objects;
+using CircuitKnights.Variables;
 
 namespace CircuitKnights
 {
-	[RequireComponent(typeof(Rigidbody))]
+	// [RequireComponent(typeof(Rigidbody))]
     public class DamageHandler : MonoBehaviour
 		//TODO change to PlayerDamageHandler?
     {
         ////Place this on damageable 
 
-		///This Player Part
+	#region Player
 		[SerializeField] Player player;		//The player this object belongs to
+
+		[SerializeField] FloatVariable hitpoints;
+
+		[SerializeField] IHealth damageable;
 		new Rigidbody rigidbody;
 		new Collider collider;
 
-		///Opponent
+		public enum BodyPart {
+			Head,
+			Torso,
+			LeftArm,
+			RightArm,
+			Shield
+		}
+
+		[SerializeField] BodyPart bodyPart;
+
+		// [SerializeField] Collider headC;
+		// Rigidbody headRB;
+		// [SerializeField] Collider torsoC;
+		// Rigidbody torsoRB;
+		// [SerializeField] Collider leftArmC;
+		// Rigidbody leftArmRB;
+		// [SerializeField] Collider rightArmC;
+		// Rigidbody rightArmRB;
+		// [SerializeField] Collider shieldC;
+		// Rigidbody shieldRB;
+	#endregion
+
+	#region Opponent
 		[SerializeField] Collider opponentLanceCollider;
+	#endregion
 
 		////Test
 		public float impulseMultiplier = 5f;
@@ -28,15 +56,13 @@ namespace CircuitKnights
 		void Start()
 		{
 			//Set caches
-			rigidbody = GetComponent<Rigidbody>();
-			collider = GetComponent<Collider>();
 			opponentLanceCollider = player.GetOpponent().LanceCollider;
 
 			//Finds a default collider if none assigned
-			// if (!collider)
-			// 	this.collider = GetComponent<Collider>();
-			// if (!collider)
-			// 	this.collider = GetComponentInChildren<Collider>();
+			if (!collider)
+				this.collider = GetComponent<Collider>();
+			if (!collider)
+				this.collider = GetComponentInChildren<Collider>();
 		}
 
 		void OnCollisionEnter(Collision other)
@@ -52,10 +78,13 @@ namespace CircuitKnights
 				Debug.Log("Collision Impulse: " + other.impulse);
 
 				//Multiply with a damage factor to get the total damage units
-				// var totalDamage = other.impulse * damageMultiplier;
+				var totalDamage = other.impulse.magnitude * damageMultiplier;
 
 				//Multiply with a impulse factor to get the force/impact/explosion to be applied to the player body part
 				
+				//Take damage
+				damageable.TakeDamage(totalDamage);
+
 				// other.rigidbody.isKinematic = false;
 			}
 

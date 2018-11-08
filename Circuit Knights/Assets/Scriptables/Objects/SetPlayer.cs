@@ -33,6 +33,7 @@ namespace CircuitKnights.Objects
 
 		void Awake()
 		{
+			player.root = this.root;
 			player.lance = this.lance;
 			player.shield = this.shield;
 			player.horse = this.horse;
