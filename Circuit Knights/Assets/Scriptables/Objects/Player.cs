@@ -20,6 +20,7 @@ namespace CircuitKnights.Objects
     #region Cache
 		//DONT KNOW ABOUT THESE... SEEM CLUNKY
         //[These could also be arrays ie. be able to change lances and shields]
+		public Transform Root { get; set; }
         public Horse horse { get; set; }
         public Lance lance { get; set; }
         public Shield shield { get; set; }
@@ -139,10 +140,8 @@ namespace CircuitKnights.Objects
 			{
 				case PlayerNumber.One:
 					return GameSettings.Instance.PlayerTwo;
-					// return GameSettings.Players[1];		//Player 2
 				case PlayerNumber.Two:
 					return GameSettings.Instance.PlayerOne;
-					// return GameSettings.Players[0]; 	//Player 1
 				default:
 					return null;
 			}

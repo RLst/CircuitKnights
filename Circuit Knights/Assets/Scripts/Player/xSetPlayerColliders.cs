@@ -10,6 +10,7 @@ namespace CircuitKnights
     // [RequireComponent(typeof(Player))]
     public class SetPlayerColliders : MonoBehaviour
     {
+        ////Combine this with SetPlayer.cs?
         [TextArea][Multiline] string description =
             "Sets the colliders inside the Player Scriptable Object";
         [SerializeField] Player player;
@@ -41,9 +42,6 @@ namespace CircuitKnights
             player.LeftArmCollider = this.leftArmCollider;
             player.ShieldCollider = this.shieldCollider;
             player.LanceCollider = this.lanceCollider;
-
-            
 		}
     }
-
 }

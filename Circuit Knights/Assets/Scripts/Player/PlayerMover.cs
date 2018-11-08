@@ -11,8 +11,8 @@ namespace CircuitKnights
     public class PlayerMover : MonoBehaviour
     {
 		[TextArea] [SerializeField] string description = "Handles horse movement ONLY";
-		[SerializeField] Horse horse;
 		[SerializeField] Player player;
+		[SerializeField] Horse horse;
 		private PlayerInput playerInput;
 		Vector3 startPosition;
 		Vector3 tarPos;
@@ -20,9 +20,7 @@ namespace CircuitKnights
 		void Awake()
 		{
 			//Used to poll the controller axes
-			playerInput = GetComponentInParent<PlayerInput>();
-			if (!playerInput)
-				playerInput = GetComponent<PlayerInput>();
+			playerInput = GetComponent<PlayerInput>();
 
 			//Remember the initial starting position
 			startPosition = transform.position;

@@ -66,10 +66,6 @@ namespace CircuitKnights.Objects
 
 		[Tooltip("In integer seconds")][SerializeField][Range(0,20)] int countDownDuration = 5;
 		public int CountDownDuration { get { return countDownDuration; } }
-		[SerializeField] TransformVariable trackStart1;
-		[SerializeField] TransformVariable trackEnd1;
-        [SerializeField] TransformVariable trackStart2;
-		[SerializeField] TransformVariable trackEnd2;
 		[SerializeField] BoolVariable gamepadVibrationOn;
 	#endregion 
 

@@ -21,8 +21,6 @@ namespace CircuitKnights
 		///Opponent
 		[SerializeField] Collider opponentLanceCollider;
 
-
-
 		////Test
 		public float impulseMultiplier = 5f;
 		public float damageMultiplier = 5f;

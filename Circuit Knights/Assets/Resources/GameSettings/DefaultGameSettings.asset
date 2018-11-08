@@ -17,8 +17,4 @@ MonoBehaviour:
   noOfPasses: 10
   noOfRounds: 1
   countDownDuration: 5
-  trackStart1: {fileID: 0}
-  trackEnd1: {fileID: 0}
-  trackStart2: {fileID: 0}
-  trackEnd2: {fileID: 0}
-  gamepadVibrationOn: {fileID: 0}
+  gamepadVibrationOn: {fileID: 11400000, guid: 5993fbe2c4ede304d983be6de4eeba4f, type: 2}
