@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 817007396372762488c23d0facd650cd, type: 3}
-  m_Name: LanceBasic 1
+  m_Name: LightLance
   m_EditorClassIdentifier: 
   description: 
-  mass: 25
+  mass: 10
   length: 3.3
-  gravityFactor: 200
+  gravityFactor: 300
   dragFactor: 1.05
   controlFactor: 0.1
   pitchTorque: 50000

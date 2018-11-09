@@ -8,7 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c00ee3be1800f2e45b0aab003d64d305, type: 3}
-  m_Name: MenuText
+  m_Script: {fileID: 11500000, guid: 5c43cc51682c671438520ed0068a4b36, type: 3}
+  m_Name: P1_TorsoHealth
   m_EditorClassIdentifier: 
-  Value: 
+  description: 
+  Value: 0

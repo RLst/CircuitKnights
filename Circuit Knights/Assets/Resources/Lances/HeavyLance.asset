@@ -9,18 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 817007396372762488c23d0facd650cd, type: 3}
-  m_Name: LanceBasic 2
+  m_Name: HeavyLance
   m_EditorClassIdentifier: 
   description: 
   mass: 25
   length: 3.3
-  gravityFactor: 200
+  gravityFactor: 250
   dragFactor: 1.05
   controlFactor: 0.1
   pitchTorque: 50000
   yawTorque: 40000
   clamped: 1
-  startingPitchAngle: -25
-  startingYawAngle: -30
-  PitchRange: 80
-  YawRange: 30
+  startingPitchAngle: -60
+  startingYawAngle: -40
+  PitchRange: 75
+  YawRange: 55

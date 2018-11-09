@@ -57,15 +57,13 @@ namespace CircuitKnights.Objects
 	#endregion
 
 	#region Game Settings
-		[SerializeField] int noOfPasses = 10;
-		[SerializeField] int noOfRounds = 1;
+		[Range(1, 20)][SerializeField] int xNoOfPasses;
+		[Range(1,10)][SerializeField] int noOfRounds;
 		public int Pass { get; set; }
-		public int NoOfPasses { get { return noOfPasses; } }
+		public int NoOfPasses { get { return xNoOfPasses; } }
 		public int Round { get; set; }
 		public int NoOfRounds { get { return noOfRounds; } }
 
-		[Tooltip("In integer seconds")][SerializeField][Range(0,20)] int countDownDuration = 5;
-		public int CountDownDuration { get { return countDownDuration; } }
 		[SerializeField] BoolVariable gamepadVibrationOn;
 	#endregion 
 
@@ -90,7 +88,7 @@ namespace CircuitKnights.Objects
 			Pass++;
 		}
 
-		public void BeginRound()
+		public void BeginNewRound()
 		{
 			Round++;
 		}

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c43cc51682c671438520ed0068a4b36, type: 3}
-  m_Name: TorsoHealth
+  m_Name: P1_HeadHealth
   m_EditorClassIdentifier: 
   description: 
   Value: 0
