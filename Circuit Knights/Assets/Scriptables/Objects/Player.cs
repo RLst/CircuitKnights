@@ -26,6 +26,8 @@ namespace CircuitKnights.Objects
         public Shield shield { get; set; }
 		public Camera camera { get; set; }
         public PlayerMover playerMover { get; set; }
+
+		public Transform head { get; set; }
         	//WORK IN PROGRESS!!
 
 		// public void SetHorse(Horse horse)
@@ -35,12 +37,12 @@ namespace CircuitKnights.Objects
     #endregion
 
 	#region Colliders
-		public Collider LanceCollider { get; set; }
-		public Collider HeadCollider { get; set; }
-		public Collider TorsoCollider { get; set; }
-		public Collider RightArmCollider { get; set; }
-		public Collider LeftArmCollider { get; set; }
-		public Collider ShieldCollider { get; set; }
+		 Collider LanceCollider { get; set; }
+		 Collider HeadCollider { get; set; }
+		 Collider TorsoCollider { get; set; }
+		 Collider RightArmCollider { get; set; }
+		 Collider LeftArmCollider { get; set; }
+		 Collider ShieldCollider { get; set; }
 			//WORK IN PROGRESS!!
 	#endregion
 
@@ -98,6 +100,9 @@ namespace CircuitKnights.Objects
 		void Awake()
         {
             ResetStats();
+
+			//Get colliders
+			HeadCollider = head.GetComponent<Collider>();
         }
 
 		void OnEnable()
