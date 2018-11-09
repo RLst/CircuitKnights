@@ -18,12 +18,12 @@ namespace CircuitKnights
         // [SerializeField] GameObject torso;
         // [SerializeField] Collider torsoCollider;
 		Collider oppLance;
-        [SerializeField] FloatReference health;
+        // [SerializeField] FloatReference health;
 
 		void Awake()
 		{
             //Reset the health
-            health.Value = player.TorsoHealth;
+            player.TorsoHealth = player.TorsoHealth;
 			rigidbody = GetComponent<Rigidbody>();
 
 			oppLance = player.GetOpponent().LanceCollider;
@@ -31,13 +31,21 @@ namespace CircuitKnights
 
 		public override void TakeDamage(float damage)
 		{
-			health.Value -= damage;
-            if (health.Value <= 0)
+			player.TorsoHealth -= damage;
+            if (player.TorsoHealth <= 0)
                 Death();
 		}
 
 		public override void Death()
 		{
+			//Player gets killed
+			
+			//Turn into a ragdoll: turn off kinematic, turn off animator
+
+			//Let the system know the player has lost
+			
+			
+
 			Debug.Log("Torso dead!");
 		}
 

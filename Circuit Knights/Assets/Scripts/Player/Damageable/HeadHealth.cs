@@ -40,8 +40,8 @@ namespace CircuitKnights
 			//Heads gets knocked off
 			transform.SetParent(null);
 
-			//Let the system know somehow that the head has been knocked off
-				//Use an event?
+			//Let the system know somehow that the head has been knocked off via event
+                //Camera now looks from 
         }
 
     }

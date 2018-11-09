@@ -62,6 +62,9 @@ namespace CircuitKnights
 		void ShieldOnCollision(Collision collision)
 		{
 			Debug.Log("Collided with shield");
+			player.shield.gameObject.transform.parent = null;
+			player.shield.gameObject.GetComponent<PlayerShieldControl>().enabled = false;
+			player.shield.gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
 		}
 
 

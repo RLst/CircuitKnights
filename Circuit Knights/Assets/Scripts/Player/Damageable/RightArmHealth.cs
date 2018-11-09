@@ -37,11 +37,12 @@ namespace CircuitKnights
 
         public override void Death()
         {
-			//Heads gets knocked off
+			//Right Arm gets knocked off
 			transform.SetParent(null);
+            
+            //let system know that Right Arm has fallen off via event
+            
 
-			//Let the system know somehow that the head has been knocked off
-				//Use an event?
         }
 
     }

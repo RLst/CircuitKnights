@@ -37,11 +37,14 @@ namespace CircuitKnights
 
         public override void Death()
         {
-			//Heads gets knocked off
+			//shield breaks
+            
+            //trigger any particle effects
+            
+            //hide or delete game object or detach
 			transform.SetParent(null);
 
-			//Let the system know somehow that the head has been knocked off
-				//Use an event?
+			//Let the system know that the shield had come off via event system
         }
 
     }
