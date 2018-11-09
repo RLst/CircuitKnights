@@ -30,7 +30,7 @@ namespace CircuitKnights.Objects
 
 		// public void SetHorse(Horse horse)
 		// {
-			
+
 		// }
     #endregion
 
@@ -47,7 +47,7 @@ namespace CircuitKnights.Objects
 	#region Points Of Interest
 		Vector3Variable lookAtTarget;
 	#endregion
-		
+
 	#region Player Numbers
 		// [SerializeField] int playerNumber;
 		// public int PlayerNumber { get { return playerNumber; }}
@@ -97,7 +97,6 @@ namespace CircuitKnights.Objects
 	#region Methods
 		void Awake()
         {
-			HeadCollider.GetComponent(typeof(Rigidbody));
             ResetStats();
         }
 

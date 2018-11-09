@@ -4,11 +4,11 @@ using CircuitKnights.Objects;
 
 namespace CircuitKnights
 {
-    [RequireComponent(typeof(Rigidbody))]
+    // [RequireComponent(typeof(Rigidbody))]
     public class PlayerLanceControl : MonoBehaviour
     {
-        [TextArea][SerializeField] string description = "Controls the player's lance";
-        // [SerializeField] Knight player;
+        [TextArea][SerializeField] string description =
+            "Controls the player's lance. The Lance should ONLY HAVE ONE rigidbody attached to the lance mesh itself.";
         [SerializeField] Lance lance;
         Transform lanceTranform;
         private PlayerInput playerInput;
@@ -34,9 +34,9 @@ namespace CircuitKnights
         void Start()
         {
             Assert.IsNotNull(playerInput, "Player Input not found!");
-            
+
             //Set the lance rigidbody weight
-            GetComponent<Rigidbody>().mass = lance.Mass;
+            GetComponentInChildren<Rigidbody>().mass = lance.Mass;
         }
 
         void Update()

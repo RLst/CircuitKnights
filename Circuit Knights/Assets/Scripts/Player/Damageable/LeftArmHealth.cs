@@ -8,7 +8,7 @@ using System;
 
 namespace CircuitKnights
 {
-    public class HeadHealth : Damageable
+    public class LeftArmHealth : Damageable
     {
         public static event Action<Collision> OnCollision = delegate { };
 		[SerializeField] Player player;
@@ -30,8 +30,8 @@ namespace CircuitKnights
 
         public override void TakeDamage(float damage)
         {
-            player.HeadHealth -= damage;
-			if (player.HeadHealth <= 0)
+            player.LeftArmHealth -= damage;
+			if (player.LeftArmHealth <= 0)
 				Death();
         }
 

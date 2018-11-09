@@ -1,5 +1,5 @@
 ﻿//DuckBike
-//Tony Le
+//Tony Le, Jack Dawes
 //9 Nov 2018
 
 using UnityEngine;
@@ -8,7 +8,7 @@ using System;
 
 namespace CircuitKnights
 {
-    public class HeadHealth : Damageable
+    public class ShieldHealth : Damageable
     {
         public static event Action<Collision> OnCollision = delegate { };
 		[SerializeField] Player player;
@@ -30,8 +30,8 @@ namespace CircuitKnights
 
         public override void TakeDamage(float damage)
         {
-            player.HeadHealth -= damage;
-			if (player.HeadHealth <= 0)
+            player.ShieldHealth -= damage;
+			if (player.ShieldHealth <= 0)
 				Death();
         }
 

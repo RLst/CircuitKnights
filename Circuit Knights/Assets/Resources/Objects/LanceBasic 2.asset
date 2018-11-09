@@ -14,7 +14,7 @@ MonoBehaviour:
   description: 
   mass: 25
   length: 3.3
-  gravityFactor: 295.57
+  gravityFactor: 0
   dragFactor: 1.05
   controlFactor: 0.1
   pitchTorque: 50000
