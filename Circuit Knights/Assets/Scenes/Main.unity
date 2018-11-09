@@ -1000,7 +1000,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4948250794902580, guid: 0317a172e9b1f2443ac0ad4316d06172, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 198025918933957478, guid: 0317a172e9b1f2443ac0ad4316d06172,
         type: 2}
@@ -3139,7 +3139,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4345893752762532, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4221696338066322, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5557,7 +5557,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &596168855 stripped
 Transform:
@@ -13775,7 +13775,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1018362182
 Prefab:
@@ -14533,7 +14533,7 @@ Transform:
   - {fileID: 1858206287}
   - {fileID: 1770061650}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1067931701 stripped
 Transform:
@@ -21366,7 +21366,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4012262952236134, guid: 8c4d69224d2cff7408fadd1ff2d6222a, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 144509727261935560, guid: 8c4d69224d2cff7408fadd1ff2d6222a,
         type: 2}
@@ -23470,7 +23470,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1749124924 stripped
 Transform:
