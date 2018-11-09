@@ -692,7 +692,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 175878869}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1283,7 +1283,7 @@ GameObject:
   - component: {fileID: 336681794}
   - component: {fileID: 336681793}
   m_Layer: 5
-  m_Name: CountDownCanvas
+  m_Name: GeneralCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3129,7 +3129,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.087945834, y: -0.014121037, z: 0.22941954}
+  m_ConnectedAnchor: {x: 0.087945804, y: -0.014121033, z: 0.22941951}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -4438,9 +4438,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: bb6bc28cbcb054f708a2b65a1d4be6f6, type: 2}
-        m_MethodName: Raise
-        m_Mode: 1
+      - m_Target: {fileID: 1076995825}
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5541,7 +5541,7 @@ GameObject:
   - component: {fileID: 1007414468}
   - component: {fileID: 1007414467}
   m_Layer: 5
-  m_Name: Text
+  m_Name: CountdownText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5958,7 +5958,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1076995824
 Transform:
   m_ObjectHideFlags: 0
@@ -5989,8 +5989,8 @@ MonoBehaviour:
   description: Controls the passes and rounds
   playerOne: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
   playerTwo: {fileID: 11400000, guid: fcb2e45c9c0c149d6b822fa838127248, type: 2}
-  countDownText: {fileID: 0}
-  skipButton: {fileID: 0}
+  countDownText: {fileID: 1007414467}
+  skipButton: {fileID: 752113907}
   onEnablePlayerCameras: {fileID: 11400000, guid: fc4d40a6dc6cf7d4e9c087ad7c9a483d,
     type: 2}
   onDisablePlayerCameras: {fileID: 11400000, guid: 49d6a9db0a489b54d9844609c21d2e45,
@@ -6001,7 +6001,7 @@ MonoBehaviour:
     type: 2}
   StartOfMatchCamera: {fileID: 2067216409}
   StartOfRoundCamera: {fileID: 1397544458}
-  cutSceneUnskippableDuration: 3
+  unskippableDuration: 3
   startPoints:
   - {fileID: 493430846}
   - {fileID: 2129112773}
@@ -6941,7 +6941,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1266844542}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7404,6 +7404,7 @@ GameObject:
   - component: {fileID: 1397544462}
   - component: {fileID: 1397544461}
   - component: {fileID: 1397544460}
+  - component: {fileID: 1397544459}
   m_Layer: 0
   m_Name: StartOfRoundCinematicCamera
   m_TagString: Untagged
@@ -7411,6 +7412,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!111 &1397544459
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1397544458}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 1afe51d709e476c4192f333ded082363, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 1afe51d709e476c4192f333ded082363, type: 2}
+  m_WrapMode: 1
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!124 &1397544460
 Behaviour:
   m_ObjectHideFlags: 0
@@ -7443,7 +7459,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -11480,7 +11496,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 88384a141856b2b459eb55218fee4a71, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 88384a141856b2b459eb55218fee4a71, type: 2}
-  m_WrapMode: 0
+  m_WrapMode: 1
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0

@@ -21,53 +21,42 @@ namespace CircuitKnights
         [Header("Players")]
         [SerializeField] Player playerOne;
         [SerializeField] Player playerTwo;
-        // [SerializeField] GameObject playerOnePrefab;
-        // [SerializeField] GameObject playerTwoPrefab;
 
 
         [Header("GUI")]
         public Text countDownText;
-        public Button skipButton;
+        public GameObject skipButton;
 
 
         [Header("Events")]
-        // [SerializeField] GameEvent startCountDown;      //TODO Might not need this
-        // [SerializeField] GameEvent onLanceCollision;
-        // [SerializeField] GameEvent onJoustCollision;
-		// [SerializeField] GameEvent onPlayStartOfMatchCutscene;
-		// [SerializeField] GameEvent onPlayStartOfRoundCutScene;
 		[SerializeField] GameEvent onEnablePlayerCameras;
 		[SerializeField] GameEvent onDisablePlayerCameras;
 		[SerializeField] GameEvent onEnablePlayerMovement;
 		[SerializeField] GameEvent onDisablePlayerMovement;
 
 
-        [Header("Cinematic Cameras")]
+        [Header("Cutscenes")]
 		[SerializeField] GameObject StartOfMatchCamera;
 			//General pan around cinematically etc etc
 		[SerializeField] GameObject StartOfRoundCamera;
 			//Pan around each of the players
 
-        [Tooltip("The time after which you can skip the cutscene")] 
-			[SerializeField] float cutSceneUnskippableDuration = 3.0f;
+        [Tooltip("Duration after which you can skip cutscenes")][SerializeField] float unskippableDuration = 3.0f;
 
 
-        [Header("IEnumerators")]
-        IEnumerator runStartOfRoundCutscene;
-        IEnumerator runStartOfMatchCutscene;
+        // [Header("IEnumerators")]
+        // IEnumerator runStartOfRoundCutscene;
+        // IEnumerator runStartOfMatchCutscene;
 
 
 		[Header("Positions")]
         [SerializeField] Transform[] startPoints;
         [SerializeField] Transform[] endPoints;
-        // public Transform startPointOne, startPointTwo;
-        // public Transform endPointOne, endPointTwo;
+
 
 	#region Inits
         void Awake()
         {
-            // runStartOfMatchCutscene = RunStartOfMatchCutscene();
-            // runStartOfRoundCutscene = RunStartOfRoundCutscene();
         }
 
         void Start()
@@ -75,12 +64,7 @@ namespace CircuitKnights
             // startWait = new WaitForSeconds(GameSettings.Instance.CountDownDuration);
             // endWait = new WaitForSeconds(GameSettings.Instance.)
             InitGame();
-            StartCoroutine(RunIntro());
-            // StartCoroutine(GameLoop());
-        }
-
-        void Update()
-        {
+            StartCoroutine(RunFullGame());
         }
 
         private void InitGame()
@@ -91,42 +75,55 @@ namespace CircuitKnights
             //Prevent players from being able to move
             onDisablePlayerMovement.Raise();
 
+            //Make sure the player
             onDisablePlayerCameras.Raise();
 
-            PositionPlayersAtStartPoints();	
+            PositionPlayersAtStartPoints();
+
+            //Hide all GUI
+            skipButton.SetActive(false);
+            countDownText.enabled = false;
         }
-        IEnumerator RunIntro()  //pregame match camera stuff
+
+        IEnumerator RunFullGame()  //pregame match camera stuff
         {
+            //Runs coroutines in sequence once
             yield return StartCoroutine(RunStartOfMatchCutscene());
+            yield return StartCoroutine(MainGameLoop());
         }
         private IEnumerator RunStartOfMatchCutscene()
         {
             //Start far away and move toward the player at an angle blah blah blah
             //Pan the crowd blah blah blah
             //Zoom in on the king / lady / princess blah blah blah
-            Debug.Log("Start of match cutscene");
+            Debug.Log("Start of Match Cutscene!");
 
             //Skip setup
-            var skippableTime = Time.time + cutSceneUnskippableDuration;
-            // var skipUIText = 
+            var skippableTime = Time.time + unskippableDuration;
 
+            //Activate the cutscene camera
             StartOfMatchCamera.SetActive(true);
             var camAnim = StartOfMatchCamera.GetComponent<Animation>();
-			camAnim.Play();    //Play once only
-            
+            camAnim.Play();
 
+            //Hide skip button
+            skipButton.SetActive(false);
+
+            //Check for escape
             while (true)
             {
-                //Exit if user skips
                 if (Time.time >= skippableTime)
                 {
-                    
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        // yield return true;
-                        break;
-                    }
-                }
+                    //Show skip button
+                    skipButton.SetActive(true);
+
+                    //User skip
+                    if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Space))
+					{
+						break;
+					}
+				}
+
                 //Exit if animation is finished
                 if (!camAnim.isPlaying)
                     break;
@@ -134,13 +131,18 @@ namespace CircuitKnights
                 yield return null;
             }
 
-            //Switch to player cameras
+            //Turn everything off
             StartOfMatchCamera.SetActive(false);
+            countDownText.enabled = false;
+            skipButton.SetActive(false);
+
+            Debug.LogError("End of match cutscene!");
         }
+
 	#endregion
 
 #region MAIN
-        private IEnumerator GameLoop()
+        private IEnumerator MainGameLoop()
         {
             //Initiate the pass and round
             GameSettings.Instance.BeginRound();
@@ -155,12 +157,10 @@ namespace CircuitKnights
             yield return StartCoroutine(EndRound());
 
             ///Declare winner; Switch scenes based on results
-            if (GameSettings.Instance.MatchIsOver())
-            {
+            if (GameSettings.Instance.MatchIsOver()) {
                 SceneManager.LoadScene(2);     //Results screen scene
             }
-            else
-            {
+            else {
                 SceneManager.LoadScene(1, LoadSceneMode.Single);    //Main game scene
             }
         }
@@ -168,65 +168,41 @@ namespace CircuitKnights
 	#region Round Starting
         private IEnumerator StartRound()
         {
-			//Switch to player cameras
-            EnablePlayerCameras();
+            onDisablePlayerCameras.Raise();
+            onDisablePlayerMovement.Raise();
 
-            DisablePlayerMovement();
-
-            //If it's the first round then run camera sequence 
+            //If it's the first round then run camera sequence
             if (GameSettings.Instance.Round == 1)
                 yield return StartCoroutine(RunStartOfRoundCutscene());
 
-			EnablePlayerMovement();
-            EnablePlayerCameras();	//(ready player cameras)
+            onEnablePlayerCameras.Raise();
 
             ///Start countdown
             yield return StartCoroutine(StartCountDown());
         }
 
         private IEnumerator RunStartOfRoundCutscene()
-        {   
-            Debug.Log("Start Of Round Cutscene");
+        {
+            Debug.Log("Start Of Round Cutscene!");
+
+            var skippableTime = Time.time + unskippableDuration;
 
 			StartOfRoundCamera.SetActive(true);
+            var camAnim = StartOfRoundCamera.GetComponent<Animation>();
+            camAnim.Play();
 
-            var skippableTime = Time.time + cutSceneUnskippableDuration;
-
-            //If skip button isn't pressed and 
-            while (true)
+            //Play cutscene all the way to the end
+            while (camAnim.isPlaying)
             {
-                //If the current time is after the skippable time and a valid key is pressed...
-                if (Time.time >= skippableTime)
-                {
-                    if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Space))     //Any controller; Not very responsive
-                    {
-                        break;      //Break out of while loop and hence stop this coroutine
-                    }
-                }
-
                 yield return null;
             }
-            //Will now continue back where it left off in StartRound()...
-        }
-        private void DisablePlayerCameras()
-        {
-            onDisablePlayerCameras.Raise();
-        }
-        private void EnablePlayerCameras()
-        {
-			onEnablePlayerCameras.Raise();
-            // playerOne.EnableCamera();
-            // playerTwo.EnableCamera();
-        }
-        private void DisablePlayerMovement()
-        {
-			onDisablePlayerMovement.Raise();
-            // playerOne.DisableMovement();
-            // playerTwo.DisableMovement();
-            // playerOne.gameObject.GetComponent<PlayerMover>().enabled = false;
-            // playerTwo.gameObject.GetComponent<PlayerMover>().enabled = false;
-        }
 
+            //Start Round!
+            onEnablePlayerCameras.Raise();
+            StartOfRoundCamera.SetActive(false);
+
+            Debug.Log("End Of Round Cutscene!");
+        }
 
         private IEnumerator StartCountDown()
         {
@@ -275,13 +251,13 @@ namespace CircuitKnights
         {
             EnablePlayerMovement();
 
-			//Show the go text 
+			//Show the go text
 			StartCoroutine(ShowGoText(1.5f));
 
 			while (true)
 			{
 				//Gameplay
-				yield return null; 
+				yield return null;
 			}
         }
         IEnumerator ShowGoText(float showDuration)
@@ -328,7 +304,7 @@ namespace CircuitKnights
         // GameSettings.Instance.PlayerTwo.SetPosition(startPoints[0].position);
         // StopCoroutine(PlayRound());
 
-        
+
     //Automatically sets player's position based on even or odd round
     // var isOdd = GameSettings.Instance.Round % 2;
     // GameSettings.Players[isOdd % 2].SetPosition(startPoints[isOdd % 2].position);
