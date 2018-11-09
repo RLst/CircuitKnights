@@ -14,13 +14,13 @@ MonoBehaviour:
   description: 
   mass: 25
   length: 3.3
-  gravityFactor: 0
+  gravityFactor: 200
   dragFactor: 1.05
   controlFactor: 0.1
   pitchTorque: 50000
   yawTorque: 40000
   clamped: 1
-  startingPitchAngle: -40
-  startingYawAngle: -50
-  PitchRange: 60
-  YawRange: 50
+  startingPitchAngle: -25
+  startingYawAngle: -30
+  PitchRange: 80
+  YawRange: 30
