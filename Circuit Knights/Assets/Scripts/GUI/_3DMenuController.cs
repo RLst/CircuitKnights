@@ -7,12 +7,10 @@ using CircuitKnights.Variables;
 namespace CircuitKnights.Cameras
 {
 
-    public class MenuCameraController : MonoBehaviour
+    public class _3DMenuController : MonoBehaviour
     {
-		[SerializeField] StringVariable menuText;
 
 	#region MenuItems
-		int curMenuIndex = 0;	//First camera point should be for "Play"
 
 		[Serializable]
         public class MenuItem
@@ -20,10 +18,12 @@ namespace CircuitKnights.Cameras
             [HideInInspector] public string name;
             public Transform point;
         }
-		public List<MenuItem> menuItems;
-		// // [SerializeField] MenuItem[] menuItems;
-		// // [SerializeField] List<MenuItems> menuItems = new List<MenuItems>();
-		// [SerializeField] List<Transform> cameraMenuPoints;
+		[SerializeField] List<MenuItem> menuItems;
+
+		int curMenuIndex = 0;	//First camera point should be for "Play"
+
+		[Tooltip("Helps decouple this menu system")]
+		[SerializeField] StringVariable menuText;
 	#endregion
 		
 	#region Camera
@@ -42,7 +42,7 @@ namespace CircuitKnights.Cameras
 			curMenuIndex = 0;
 			menuText.Value = "";
 
-			//Set the name of each menu item
+			//Auto sets the name of each menu item
 			foreach (var menuItem in menuItems)
 			{
 				menuItem.name = menuItem.point.name;
