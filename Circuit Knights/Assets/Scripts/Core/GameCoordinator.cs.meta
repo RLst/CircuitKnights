@@ -1,11 +1,21 @@
 fileFormatVersion: 2
 guid: 4f3c6fd15152d443889129ab78e4697c
-timeCreated: 1541332455
+timeCreated: 1541795337
 licenseType: Pro
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerOne: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
+  - playerTwo: {fileID: 11400000, guid: fcb2e45c9c0c149d6b822fa838127248, type: 2}
+  - countDownText: {instanceID: 0}
+  - skipButton: {instanceID: 0}
+  - onEnablePlayerCameras: {instanceID: 0}
+  - onDisablePlayerCameras: {instanceID: 0}
+  - onEnablePlayerMovement: {instanceID: 0}
+  - onDisablePlayerMovement: {instanceID: 0}
+  - StartOfMatchCamera: {instanceID: 0}
+  - StartOfRoundCamera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

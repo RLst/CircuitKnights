@@ -5,12 +5,12 @@
 using UnityEngine;
 using CircuitKnights.Objects;
 using CircuitKnights.Events;
-using CircuitKnights.Variables;
 using System.Collections;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using XboxCtrlrInput;
+using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
@@ -18,53 +18,59 @@ namespace CircuitKnights
     {
         [Multiline] [SerializeField] string description = "Controls the passes and rounds";
 
-        [Header("Players")]
-        [SerializeField] Player playerOne;
-        [SerializeField] Player playerTwo;
-
+        // [Header("Players")]
+        // [SerializeField] Player playerOne;
+        // [SerializeField] Player playerTwo;
 
         [Header("GUI")]
-        public Text countDownText;
-        public GameObject skipButton;
+        [SerializeField] Text roundNoText;
+        [SerializeField] Text centerText;
+        [SerializeField] GameObject skipButton;       //Has to be a gameobject because skipbutton wont hide
 
+        [Header("Count Down")]
+        [SerializeField] int countDownTextSize = 60;
+        [Tooltip("Realtime seconds")][SerializeField] int countDownDuration = 3;
 
-        [Header("Events")]
-		[SerializeField] GameEvent onEnablePlayerCameras;
-		[SerializeField] GameEvent onDisablePlayerCameras;
-		[SerializeField] GameEvent onEnablePlayerMovement;
-		[SerializeField] GameEvent onDisablePlayerMovement;
+        [Header("Go!")]
+        [SerializeField] int goTextSize = 150;
+        [SerializeField] float goTextShowDuration = 1.5f;
 
 
         [Header("Cutscenes")]
-		[SerializeField] GameObject StartOfMatchCamera;
-			//General pan around cinematically etc etc
-		[SerializeField] GameObject StartOfRoundCamera;
-			//Pan around each of the players
-
         [Tooltip("Duration after which you can skip cutscenes")][SerializeField] float unskippableDuration = 3.0f;
-
-
-        // [Header("IEnumerators")]
-        // IEnumerator runStartOfRoundCutscene;
-        // IEnumerator runStartOfMatchCutscene;
+		[SerializeField] GameObject StartOfMatchCamera;         //General pan around cinematically etc etc
+        [SerializeField] GameObject StartOfRoundCamera;		    //Pan around each of the players
+        private bool playCutscene;      //Flag to control running of cutscene
 
 
 		[Header("Positions")]
         [SerializeField] Transform[] startPoints;
         [SerializeField] Transform[] endPoints;
 
+        [Header("Events")]
+        [SerializeField] GameEvent onEnablePlayerCameras;
+        [SerializeField] GameEvent onDisablePlayerCameras;
+        [SerializeField] GameEvent onEnablePlayerMovement;
+        [SerializeField] GameEvent onDisablePlayerMovement;
 
-	#region Inits
-        void Awake()
-        {
-        }
 
-        void Start()
+        private void Assertions()
         {
-            // startWait = new WaitForSeconds(GameSettings.Instance.CountDownDuration);
-            // endWait = new WaitForSeconds(GameSettings.Instance.)
-            InitGame();
-            StartCoroutine(RunFullGame());
+            //Make sure all necessasy components are passed
+            Assert.IsNotNull(roundNoText);
+            Assert.IsNotNull(centerText);
+            Assert.IsNotNull(skipButton);
+
+            Assert.IsNotNull(onEnablePlayerCameras);
+            Assert.IsNotNull(onDisablePlayerCameras);
+            Assert.IsNotNull(onEnablePlayerMovement);
+            Assert.IsNotNull(onDisablePlayerMovement);
+
+            Assert.IsNotNull(StartOfMatchCamera);
+            Assert.IsNotNull(StartOfRoundCamera);
+
+            Assert.IsNotNull(startPoints);
+            Assert.IsNotNull(endPoints);
         }
 
         private void InitGame()
@@ -78,39 +84,104 @@ namespace CircuitKnights
             //Make sure the player
             onDisablePlayerCameras.Raise();
 
-            PositionPlayersAtStartPoints();
-
             //Hide all GUI
+            roundNoText.enabled = false;
+            centerText.enabled = false;
             skipButton.SetActive(false);
-            countDownText.enabled = false;
+
+            //Setup listener to skip button
+            skipButton.gameObject.GetComponent<Button>().onClick.AddListener(OnSkip);
         }
 
-        IEnumerator RunFullGame()  //pregame match camera stuff
+        void Start()
+        {
+            Assertions();
+            InitGame();
+            StartCoroutine(RunFullGame());
+        }
+
+        IEnumerator RunFullGame()
         {
             //Runs coroutines in sequence once
-            yield return StartCoroutine(RunStartOfMatchCutscene());
-            yield return StartCoroutine(MainGameLoop());
+            if (GameSettings.Instance.Round == 0)
+                yield return StartCoroutine(RunCutscene(StartOfMatchCamera));
+            yield return StartCoroutine(RoundGameLoop());
         }
+
+        private IEnumerator RoundGameLoop()
+        {
+            //Initiate the round
+            GameSettings.Instance.BeginNewRound();
+            
+            yield return StartCoroutine(StartRound());
+
+            yield return StartCoroutine(PlayRound());
+
+            yield return StartCoroutine(EndRound());
+
+            ///Declare winner; Switch scenes based on results
+            if (GameSettings.Instance.MatchIsOver())
+                SceneManager.LoadScene(2);     //Results screen scene
+            else
+                SceneManager.LoadScene(1, LoadSceneMode.Single);    //Main game scene
+        }
+
+        private IEnumerator StartRound()
+        {
+            //Initialise
+            onDisablePlayerCameras.Raise();
+            onDisablePlayerMovement.Raise();
+
+            //Only run on the first round
+            if (GameSettings.Instance.Round == 1)
+                yield return StartCoroutine(RunCutscene(StartOfRoundCamera, false));
+
+            //Continue straight to playing game after count down
+            onEnablePlayerCameras.Raise();
+            yield return StartCoroutine(StartCountDown());
+        }
+
+        private IEnumerator PlayRound()
+        {
+            //Show the go text
+            StartCoroutine(ShowGoText());
+
+            onEnablePlayerMovement.Raise();
+
+            while (true)
+            {
+                //Gameplay
+
+                ////When does a round/pass end?
+                //1. When player's have passed each other (vector3.dot < 0)
+                //2. When a player's lance has collided with the opponent
+                //3. When a player has reached the end of the track
+
+                yield return null;
+            }
+        }
+
+        private IEnumerator EndRound()
+        {
+            throw new NotImplementedException();
+        }
+
+    #region Cutscenes
         private IEnumerator RunStartOfMatchCutscene()
         {
-            //Start far away and move toward the player at an angle blah blah blah
-            //Pan the crowd blah blah blah
-            //Zoom in on the king / lady / princess blah blah blah
-            Debug.Log("Start of Match Cutscene!");
-
-            //Skip setup
-            var skippableTime = Time.time + unskippableDuration;
-
-            //Activate the cutscene camera
+            //Initialise
+            centerText.enabled = false;
+            roundNoText.enabled = false;
             StartOfMatchCamera.SetActive(true);
-            var camAnim = StartOfMatchCamera.GetComponent<Animation>();
-            camAnim.Play();
+            var skippableTime = Time.time + unskippableDuration;
+            var cameraAnimation = StartOfMatchCamera.GetComponent<Animation>();
+            cameraAnimation.Play();
 
-            //Hide skip button
+            //Make sure to hide skip button
             skipButton.SetActive(false);
 
-            //Check for escape
-            while (true)
+            playCutscene = true;
+            while (playCutscene)
             {
                 if (Time.time >= skippableTime)
                 {
@@ -118,76 +189,30 @@ namespace CircuitKnights
                     skipButton.SetActive(true);
 
                     //User skip
-                    if (XCI.GetButtonDown(XboxButton.Start) || Input.GetKeyDown(KeyCode.Space))
-					{
-						break;
-					}
-				}
+                    if (XCI.GetButtonDown(XboxButton.Start) ||
+                        Input.GetKeyDown(KeyCode.Space))
+                    {
+                        playCutscene = false;
+                    }
+                }
 
                 //Exit if animation is finished
-                if (!camAnim.isPlaying)
-                    break;
+                if (!cameraAnimation.isPlaying)
+                    playCutscene = false;
 
                 yield return null;
             }
 
-            //Turn everything off
+            //Shutdown
             StartOfMatchCamera.SetActive(false);
-            countDownText.enabled = false;
             skipButton.SetActive(false);
-
-            Debug.LogError("End of match cutscene!");
-        }
-
-	#endregion
-
-#region MAIN
-        private IEnumerator MainGameLoop()
-        {
-            //Initiate the pass and round
-            GameSettings.Instance.BeginRound();
-
-            //Start the round
-            yield return StartCoroutine(StartRound());
-
-            //Play the round
-            yield return StartCoroutine(PlayRound());
-
-            //End the round
-            yield return StartCoroutine(EndRound());
-
-            ///Declare winner; Switch scenes based on results
-            if (GameSettings.Instance.MatchIsOver()) {
-                SceneManager.LoadScene(2);     //Results screen scene
-            }
-            else {
-                SceneManager.LoadScene(1, LoadSceneMode.Single);    //Main game scene
-            }
-        }
-
-	#region Round Starting
-        private IEnumerator StartRound()
-        {
-            onDisablePlayerCameras.Raise();
-            onDisablePlayerMovement.Raise();
-
-            //If it's the first round then run camera sequence
-            if (GameSettings.Instance.Round == 1)
-                yield return StartCoroutine(RunStartOfRoundCutscene());
-
-            onEnablePlayerCameras.Raise();
-
-            ///Start countdown
-            yield return StartCoroutine(StartCountDown());
         }
 
         private IEnumerator RunStartOfRoundCutscene()
         {
-            Debug.Log("Start Of Round Cutscene!");
-
+            //Initialise
             var skippableTime = Time.time + unskippableDuration;
-
-			StartOfRoundCamera.SetActive(true);
+            StartOfRoundCamera.SetActive(true);
             var camAnim = StartOfRoundCamera.GetComponent<Animation>();
             camAnim.Play();
 
@@ -197,114 +222,128 @@ namespace CircuitKnights
                 yield return null;
             }
 
-            //Start Round!
-            onEnablePlayerCameras.Raise();
+            //Shutdown
             StartOfRoundCamera.SetActive(false);
-
-            Debug.Log("End Of Round Cutscene!");
         }
 
+        private IEnumerator RunCutscene(GameObject cutSceneCamera, bool skippable = true)
+        {
+            //Note: Camera must be setup in legacy mode with an animation (NOT ANIMATOR)
+
+            ///Initialise
+            skipButton.SetActive(false);
+            var cameraAnimation = cutSceneCamera.GetComponent<Animation>();
+
+            //Set up skipabilitiy
+            var skippableTime = Time.time + unskippableDuration;
+
+            //Set up camera
+            cutSceneCamera.SetActive(true);
+            cameraAnimation.Play();
+
+            //Play the camera
+            playCutscene = true;
+            while (playCutscene)
+            {
+                if (skippable)
+                {
+                    if (Time.time >= skippableTime)
+                    {
+                        //Show skip button
+                        skipButton.SetActive(true);
+
+                        //Manual skip
+                        if (XCI.GetButtonDown(XboxButton.Start) ||
+                            Input.GetKeyDown(KeyCode.Space))
+                        {
+                            playCutscene = false;
+                        }
+                    }
+                }
+
+                //Exit if animation is finished
+                if (!cameraAnimation.isPlaying)
+                    playCutscene = false;
+
+                yield return null;
+            }
+
+            //Shutdown
+            skipButton.SetActive(false);
+            cutSceneCamera.SetActive(false);
+        }
+    #endregion
+
+	#region Round Starting
         private IEnumerator StartCountDown()
         {
-            //Enable the countdown canvas
-            // this.countDownText.SetActive(true);
-            countDownText.enabled = true;
+            //Initialise
+            centerText.enabled = true;
+            centerText.fontSize = countDownTextSize;
 
-            //Get the countdown text (should only be one in canvas)
-            // Text countDownText = countDownText.GetComponentInChildren<Text>();
-
-            for (int countDownTime = GameSettings.Instance.CountDownDuration; countDownTime > 0; countDownTime--)
+            for (int countDownTime = countDownDuration; countDownTime > 0; countDownTime--)
             {
-                countDownText.text = countDownTime.ToString();
-                yield return new WaitForSecondsRealtime(1f);	//The duration between the seconds
+                centerText.text = countDownTime.ToString();
+                yield return new WaitForSecondsRealtime(1f);    //How long is a second?
             }
+
+            //Shutdown
+            // centerText.enabled = false;
         }
 
         private void PositionPlayersAtStartPoints()
         {
-            ////Can't really set the player's position because the player in this
-            // case is the actual root object of the player's mesh.
-            //BUT What if the Player.gameObject was actually set to the root of the player object?
-            //The root object can use GetComponent to reference player's object etc.
+            var p1root = GameSettings.Instance.PlayerOne.Root;
+            var p2root = GameSettings.Instance.PlayerTwo.Root;
 
             //Odd numbered round
             if (GameSettings.Instance.Round % 2 == 1)
             {
-				playerOne.root.position = startPoints[0].position;
-                playerOne.root.rotation = startPoints[0].rotation;
-            	playerTwo.root.position = startPoints[1].position;
-                playerTwo.root.rotation = startPoints[1].rotation;
+				p1root.position = startPoints[0].position;
+                p1root.rotation = startPoints[0].rotation;
+                p1root.position = startPoints[1].position;
+                p1root.rotation = startPoints[1].rotation;
             }
             //Even numbered round
             else
             {
-				playerOne.root.position = startPoints[1].position;
-                playerOne.root.rotation = startPoints[1].rotation;
-				playerTwo.root.position = startPoints[0].position;
-                playerTwo.root.rotation = startPoints[0].rotation;
+                p2root.position = startPoints[1].position;
+                p2root.rotation = startPoints[1].rotation;
+                p2root.position = startPoints[0].position;
+                p2root.rotation = startPoints[0].rotation;
             }
         }
 	#endregion
 
 	#region Round Playing
-        private IEnumerator PlayRound()
+        IEnumerator ShowGoText()
         {
-            EnablePlayerMovement();
+            //Initialise
+            centerText.enabled = true;
+			centerText.text = "GO!";
+			centerText.fontSize = goTextSize;
 
-			//Show the go text
-			StartCoroutine(ShowGoText(1.5f));
+            //Run
+			yield return new WaitForSecondsRealtime(goTextShowDuration);
 
-			while (true)
-			{
-				//Gameplay
-				yield return null;
-			}
-        }
-        IEnumerator ShowGoText(float showDuration)
-        {
-            //Set text big etc
-			countDownText.text = "GO!";
-			countDownText.fontSize += 10;
-
-			yield return new WaitForSecondsRealtime(showDuration);
-
-			//Hide and disable the canvas
-			countDownText.enabled = false;
-        }
-
-        private void EnablePlayerMovement()
-        {
-			playerOne.playerMover.enabled = true;
-			playerTwo.playerMover.enabled = true;
+			//Shutdown
+			centerText.enabled = false;
         }
 	#endregion
 
 	#region Round Ending
-        private IEnumerator EndRound()
+
+    #endregion
+
+    #region Other Functions
+        public void OnSkip()
         {
-            throw new NotImplementedException();
+            //This function is to allow for externals such as buttons to skip scenes etc
+            playCutscene = false;
         }
-	#endregion
-
-#endregion //MAIN
-
+    #endregion
     }
 }
-
-
-        // playerOnePrefab.transform.position = startPoints[0].position;
-        // playerTwoPrefab.transform.position = startPoints[1].position;
-        // GameSettings.Players[0].SetPosition(startPoints[0].position);
-        // GameSettings.Players[1].SetPosition(startPoints[1].position);
-        // GameSettings.Instance.PlayerOne.SetPosition(startPoints[0].position);
-        // GameSettings.Instance.PlayerTwo.SetPosition(startPoints[1].position);
-        // playerOnePrefab.transform.position = startPoints[1].position;
-        // playerTwoPrefab.transform.position = startPoints[0].position;
-        // GameSettings.Instance.PlayerOne.SetPosition(startPoints[1].position);
-        // GameSettings.Instance.PlayerTwo.SetPosition(startPoints[0].position);
-        // StopCoroutine(PlayRound());
-
-
     //Automatically sets player's position based on even or odd round
     // var isOdd = GameSettings.Instance.Round % 2;
     // GameSettings.Players[isOdd % 2].SetPosition(startPoints[isOdd % 2].position);
