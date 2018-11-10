@@ -16,11 +16,11 @@ MonoBehaviour:
   length: 3.3
   gravityFactor: 300
   dragFactor: 1.05
-  controlFactor: 0.1
+  lerpFactor: 0
   pitchTorque: 50000
   yawTorque: 40000
   clamped: 1
-  startingPitchAngle: -25
-  startingYawAngle: -30
+  startingPitchAngle: -65.53
+  startingYawAngle: 0
   PitchRange: 80
   YawRange: 30

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Name: HeavyLance
   m_EditorClassIdentifier: 
   description: 
-  mass: 25
+  mass: 20
   length: 3.3
-  gravityFactor: 250
+  gravityFactor: 300
   dragFactor: 1.05
-  controlFactor: 0.1
+  lerpFactor: 0.2
   pitchTorque: 50000
-  yawTorque: 40000
+  yawTorque: 50000
   clamped: 1
   startingPitchAngle: -60
   startingYawAngle: -40
-  PitchRange: 75
+  PitchRange: 80
   YawRange: 55

@@ -9,8 +9,13 @@ namespace CircuitKnights
     {
         [TextArea][SerializeField] string description =
             "Controls the player's lance. The Lance should ONLY HAVE ONE rigidbody attached to the lance mesh itself.";
+
+        //This needs to auto reference the lance from the root object
         [SerializeField] Lance lance;
-        Transform lanceTranform;
+
+        // [Tooltip("Helps reduce lance hitting the wall at limit effect. Too much lerp will affect accuracy.")]
+        // [SerializeField] [Range(0f, 1f)] float lerpAmount;
+
         private PlayerInput playerInput;
 
 		//Internal vars
@@ -26,17 +31,16 @@ namespace CircuitKnights
 
             //Match the initial lance orientation
             angPos = transform.localRotation.eulerAngles;
-
-            //Retrieve the lance's transform
-            lanceTranform = lance.gameObject.transform;
         }
 
         void Start()
         {
             Assert.IsNotNull(playerInput, "Player Input not found!");
-
-            //Set the lance rigidbody weight
-            GetComponentInChildren<Rigidbody>().mass = lance.Mass;
+            
+            //Make sure the lance has a rigidbody on it
+            var rb = GetComponentInChildren<Rigidbody>();
+            Assert.IsNotNull(rb, "Lance rigidbody not found!");
+            rb.mass = lance.Mass;
         }
 
         void Update()
@@ -48,6 +52,9 @@ namespace CircuitKnights
 
         private void HandleLanceAim()
         {
+            //Get current angular position
+            // angPos = transform.rotation.eulerAngles;
+
             //Calc angular accel
             angAccel.x -= playerInput.LanceAxisY * lance.PitchTorque / lance.MomentOfInertia * Time.deltaTime;
             angAccel.y += playerInput.LanceAxisX * lance.YawTorque / lance.MomentOfInertia * Time.deltaTime;
@@ -68,27 +75,29 @@ namespace CircuitKnights
             angVel /= lance.DragFactor;
         }
 
-        private void ClampLanceMovement()
+        void ClampLanceMovement()
         {
-            //Clamp and also set angAccel to zero to mitigate stuck lance at limits
+            //Clamp and also zero accel and vel to mitigate lance getting stuck at limits effect
             if (angPos.x < lance.MinPitch || angPos.x > lance.MaxPitch)
             {
                 angPos.x = Mathf.Clamp(angPos.x, lance.MinPitch, lance.MaxPitch);
-                angAccel.x = 0f;
+                angVel.x = angAccel.x = 0f;
             }
 
             if (angPos.y < lance.MinYaw || angPos.y > lance.MaxYaw)
             {
                 angPos.y = Mathf.Clamp(angPos.y, lance.MinYaw, lance.MaxYaw);
-                angAccel.y = 0f;
+                angVel.y = angAccel.y = 0f;
             }
-            angPos.z = 0f; angAccel.z = 0;
         }
 
-        private void ApplyTransform()
+        void ApplyTransform()
         {
-            lanceTranform.localRotation = Quaternion.Euler(angPos);
-            // transform.localRotation = Quaternion.Euler(angPos);
+            //These should always be zero to avoid any unwanted gimbal lock effects
+            angPos.z = angVel.z = angAccel.z = 0;
+            var currentRotation = this.transform.localRotation;
+            lance.gameObject.transform.localRotation = Quaternion.Lerp(currentRotation, Quaternion.Euler(angPos), lance.LerpFactor);
+            // lanceTranform.localRotation = Quaternion.Euler(angPos);
         }
     }
 }
