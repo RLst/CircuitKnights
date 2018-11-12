@@ -14,7 +14,7 @@ public class LanceControl : MonoBehaviour
 {
 	////Handle lance aim and lunge?
 
-	[SerializeField] Lance lance;
+	[SerializeField] LanceData lance;
 
 	[Header("Controls")]
 	[SerializeField] XboxController controller;

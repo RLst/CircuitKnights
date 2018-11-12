@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CircuitKnights.Events
 {
 
-	[CreateAssetMenu(fileName = "New Game Event", menuName = "Game Event", order = 32)]
+	[CreateAssetMenu(fileName = "New Game Event", menuName = "Game Event", order = 31)]
 	public class GameEvent : ScriptableObject {
 
 		private List<GameEventListener> listeners = new List<GameEventListener>();

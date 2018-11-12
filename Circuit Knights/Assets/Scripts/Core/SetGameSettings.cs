@@ -9,8 +9,8 @@ namespace CircuitKnights
 {
     public class SetGameSettings : MonoBehaviour
     {
-		[SerializeField] Player playerOne;
-		[SerializeField] Player playerTwo;
+		[SerializeField] PlayerData playerOne;
+		[SerializeField] PlayerData playerTwo;
 
 		void Awake()
 		{

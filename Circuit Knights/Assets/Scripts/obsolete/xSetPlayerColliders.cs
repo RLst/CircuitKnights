@@ -13,7 +13,7 @@ namespace CircuitKnights
         ////Combine this with SetPlayer.cs?
         [TextArea][Multiline] string description =
             "Sets the colliders inside the Player Scriptable Object";
-        [SerializeField] Player player;
+        [SerializeField] PlayerData player;
         [SerializeField] Collider headCollider;
         [SerializeField] Collider torsoCollider;
         [SerializeField] Collider leftArmCollider;

@@ -5,24 +5,36 @@
 using UnityEngine;
 using CircuitKnights.Objects;
 using System;
+using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
     public class HeadHealth : Damageable
     {
         public static event Action<Collision> OnCollision = delegate { };
-		[SerializeField] Player player;
-        private Collider opponentsLance;
 
         void Start()
         {
-            opponentsLance = player.GetOpponent().LanceCollider;
+            AutoRetrieveReferences();
+            AssertReferences();
+        }
+
+        public override void AutoRetrieveReferences()
+        {
+            playerData = GetComponentInParent<Player>().Data;
+            opponentData = playerData.GetOpponent();
+        }
+
+        public override void AssertReferences()
+        {
+            Assert.IsNotNull(playerData, "Player data not found!");
+            Assert.IsNotNull(opponentData, "Opponent data not found!");
         }
 
         void OnCollisionEnter(Collision other)
         {
             //If hit by opponent's lance then raise/send event
-            if (other.collider == opponentsLance)
+            if (other.collider == opponentData.LanceCollider)
             {
                 OnCollision(other);
             }
@@ -30,8 +42,8 @@ namespace CircuitKnights
 
         public override void TakeDamage(float damage)
         {
-            player.HeadHealth -= damage;
-			if (player.HeadHealth <= 0)
+            playerData.HeadHealth -= damage;
+			if (playerData.HeadHealth <= 0)
 				Death();
         }
 

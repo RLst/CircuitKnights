@@ -8,18 +8,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82f1fbe3179b042db98469f82dbfccfe, type: 3}
+  m_Script: {fileID: 11500000, guid: cf6431389382843998b351d775dbcc8e, type: 3}
   m_Name: P1
   m_EditorClassIdentifier: 
-  description: The player
+  description: Holds almost all data to do with a player.
   playerNo: 1
-  controller: 1
+  controller: 0
   lanceAxisX: 2
   lanceAxisY: 3
   leanAxisX: 4
   leanAxisY: 5
   shieldAxisX: 0
-  shieldAxisY: 1
+  shieldAxisY: 0
   thrustLanceButton: 7
   maxHeadHealth: 25
   maxTorsoHealth: 100

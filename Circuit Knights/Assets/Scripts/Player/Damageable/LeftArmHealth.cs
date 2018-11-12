@@ -5,24 +5,38 @@
 using UnityEngine;
 using CircuitKnights.Objects;
 using System;
+using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
     public class LeftArmHealth : Damageable
     {
         public static event Action<Collision> OnCollision = delegate { };
-		[SerializeField] Player player;
-        private Collider opponentsLance;
+		// [SerializeField] PlayerData player;
+        // private Collider opponentsLance;
 
         void Start()
         {
-            opponentsLance = player.GetOpponent().LanceCollider;
+            AutoRetrieveReferences();
+            AssertReferences();
+        }
+
+        public override void AutoRetrieveReferences()
+        {
+            playerData = GetComponentInParent<Player>().Data;
+            opponentData = playerData.GetOpponent();
+        }
+
+        public override void AssertReferences()
+        {
+            Assert.IsNotNull(playerData, "Player data not found!");
+            Assert.IsNotNull(opponentData, "Opponent data not found!");
         }
 
         void OnCollisionEnter(Collision other)
         {
             //If hit by opponent's lance then raise/send event
-            if (other.collider == opponentsLance)
+            if (other.collider == opponentData.LanceCollider)
             {
                 OnCollision(other);
             }
@@ -30,8 +44,8 @@ namespace CircuitKnights
 
         public override void TakeDamage(float damage)
         {
-            player.LeftArmHealth -= damage;
-			if (player.LeftArmHealth <= 0)
+            playerData.LeftArmHealth -= damage;
+			if (playerData.LeftArmHealth <= 0)
 				Death();
         }
 

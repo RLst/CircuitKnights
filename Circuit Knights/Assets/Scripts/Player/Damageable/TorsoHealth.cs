@@ -6,33 +6,49 @@ using UnityEngine;
 using CircuitKnights.Objects;
 using CircuitKnights.Variables;
 using System;
+using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
 	public class TorsoHealth : Damageable
 	{
+		///Events
 		public static event Action<Collision> OnCollision = delegate { };
-		new Rigidbody rigidbody;
 
-        [SerializeField] Player player;
-        // [SerializeField] GameObject torso;
-        // [SerializeField] Collider torsoCollider;
-		Collider oppLance;
-        // [SerializeField] FloatReference health;
+		///Physics
+		// new Rigidbody rigidbody;
 
-		void Awake()
+		void Start()
 		{
-            //Reset the health
-            player.TorsoHealth = player.TorsoHealth;
-			rigidbody = GetComponent<Rigidbody>();
+            AutoRetrieveReferences();
+            AssertReferences();
+        }
 
-			oppLance = player.GetOpponent().LanceCollider;
-		}
+        public override void AutoRetrieveReferences()
+        {
+            playerData = GetComponentInParent<Player>().Data;
+            opponentData = playerData.GetOpponent();
+        }
+
+        public override void AssertReferences()
+        {
+            Assert.IsNotNull(playerData, "Player data not found!");
+            Assert.IsNotNull(opponentData, "Opponent data not found!");
+        }
+
+        void OnCollisionEnter(Collision other)
+        {
+            //If hit by opponent's lance then raise/send event
+            if (other.collider == opponentData.LanceCollider)
+            {
+                OnCollision(other);
+            }
+        }
 
 		public override void TakeDamage(float damage)
 		{
-			player.TorsoHealth -= damage;
-            if (player.TorsoHealth <= 0)
+			playerData.TorsoHealth -= damage;
+            if (playerData.TorsoHealth <= 0)
                 Death();
 		}
 
@@ -43,14 +59,12 @@ namespace CircuitKnights
 			//Turn into a ragdoll: turn off kinematic, turn off animator
 
 			//Let the system know the player has lost
-			
-			
 
 			Debug.Log("Torso dead!");
 		}
 
-	}
 
+    }
 }
 
 

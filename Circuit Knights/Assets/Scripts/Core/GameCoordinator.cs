@@ -52,7 +52,7 @@ namespace CircuitKnights
         [SerializeField] GameEvent onDisablePlayerCameras;
         [SerializeField] GameEvent onEnablePlayerMovement;
         [SerializeField] GameEvent onDisablePlayerMovement;
-
+        private bool roundIsRunning;
 
         private void Assertions()
         {
@@ -72,7 +72,6 @@ namespace CircuitKnights
             Assert.IsNotNull(startPoints);
             Assert.IsNotNull(endPoints);
         }
-
         private void InitGame()
         {
             //General reset
@@ -129,6 +128,7 @@ namespace CircuitKnights
         private IEnumerator StartRound()
         {
             //Initialise
+            PositionPlayersAtStartPoints();
             onDisablePlayerCameras.Raise();
             onDisablePlayerMovement.Raise();
 
@@ -146,25 +146,78 @@ namespace CircuitKnights
             //Show the go text
             StartCoroutine(ShowGoText());
 
+            //Start the round!
             onEnablePlayerMovement.Raise();
 
-            while (true)
+            //Caches
+            var p1 = GameSettings.Instance.PlayerOne;
+            var p2 = GameSettings.Instance.PlayerTwo;
+
+            //Brainstorms: roundNotFinished, roundIsRunning, roundIsNotFinished, roundIsPlaying, playingRound
+            roundIsRunning = true;
+            while (roundIsRunning)
             {
                 //Gameplay
 
                 ////When does a round/pass end?
-                //1. When player's have passed each other (vector3.dot < 0)
+                //1. When player's have passed each other ie. they're no longer facing each other (vector3.dot < 0)
+                //Get players facing
+                var p1Facing = p1.Root.TransformDirection(Vector3.forward);
+                var directionToP2 = Vector3.Normalize(p2.Root.position - p1.Root.position);
+
+                // Debug.Log("p1Facing: " + p1Facing);
+                // Debug.Log("Dot product: " + Vector3.Dot(p1Facing, p2Facing));
+
+                if (Vector3.Dot(p1Facing, directionToP2) < 0f)
+                {
+                    EndCurrentRound();
+                    break;
+                }
+
                 //2. When a player's lance has collided with the opponent
+                //Listen in on event OnLanceHit
+                //Declare round is finished
+
                 //3. When a player has reached the end of the track
+                //If player's position is EQUAL OR AFTER the end point for that round number
+                //OR
+                //If the players have TriggerEnter'd the end of track colliders
+                    //Declare round is finished
 
                 yield return null;
             }
+
         }
 
         private IEnumerator EndRound()
         {
+            Debug.Log("Round is over!");
+
+            //If atleast one player is still alive
+
+                //Move players to their end points
+                //Disable player input (if applicable) and automatically move player to end points
+                //STRECTH GOAL: If player's speed is above a certain number then ragdoll the player off the horse
+                //(because he's obviously got too much momentum)
+
+                //Show some kind of results or weapon select screen from the time of impact to the when the players both reached the new start positions
+
+                //
+
+                //Once players have reached end points then "follow" the track around to the new start positions
+                //Get the midpoint between the start and end, set this as the "pivot" point and rotate around it while 
+                //Stop player once they've reached the new start positions
+            
+            //otherwise run winning sequences
+                //Slow motion cam looking at loser ragdolling off the horse
+
+
+            //Start countdown again...
+            //^^^^ maybe some of these should be implemented in EndRound()
+
             throw new NotImplementedException();
         }
+
 
     #region Cutscenes
         private IEnumerator RunStartOfMatchCutscene()
@@ -288,34 +341,35 @@ namespace CircuitKnights
             }
 
             //Shutdown
-            // centerText.enabled = false;
+            centerText.enabled = false;
         }
 
         private void PositionPlayersAtStartPoints()
         {
-            var p1root = GameSettings.Instance.PlayerOne.Root;
-            var p2root = GameSettings.Instance.PlayerTwo.Root;
+            var p1 = GameSettings.Instance.PlayerOne;
+            var p2 = GameSettings.Instance.PlayerTwo;
 
             //Odd numbered round
             if (GameSettings.Instance.Round % 2 == 1)
             {
-				p1root.position = startPoints[0].position;
-                p1root.rotation = startPoints[0].rotation;
-                p1root.position = startPoints[1].position;
-                p1root.rotation = startPoints[1].rotation;
+                p1.SetPositionAndRotation(startPoints[0].position, startPoints[0].rotation);
+                p2.SetPositionAndRotation(startPoints[1].position, startPoints[1].rotation);
             }
             //Even numbered round
             else
             {
-                p2root.position = startPoints[1].position;
-                p2root.rotation = startPoints[1].rotation;
-                p2root.position = startPoints[0].position;
-                p2root.rotation = startPoints[0].rotation;
+                p1.SetPositionAndRotation(startPoints[1].position, startPoints[1].rotation);
+                p2.SetPositionAndRotation(startPoints[0].position, startPoints[0].rotation);
             }
         }
-	#endregion
+        #endregion
 
-	#region Round Playing
+    #region Round Playing
+        public void EndCurrentRound()
+        {
+            //This can be accessed from outside
+            roundIsRunning = false;
+        }
         IEnumerator ShowGoText()
         {
             //Initialise
@@ -329,6 +383,8 @@ namespace CircuitKnights
 			//Shutdown
 			centerText.enabled = false;
         }
+
+
 	#endregion
 
 	#region Round Ending

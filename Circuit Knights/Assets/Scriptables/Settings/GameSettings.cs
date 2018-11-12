@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace CircuitKnights.Objects
 {
-    // [CreateAssetMenu(fileName = "New Game Settings", menuName = "Game", order = 50)]
+    [CreateAssetMenu(fileName = "New Game Settings", menuName = "Game Settings", order = 32)]
     public class GameSettings : ScriptableObject
 	{
 		[Multiline] [SerializeField] string description = "Holds the game settings";
@@ -38,8 +38,8 @@ namespace CircuitKnights.Objects
 	#endregion
 
 	#region Players
-		public Player PlayerOne;
-		public Player PlayerTwo;
+		public PlayerData PlayerOne;
+		public PlayerData PlayerTwo;
 
 		// public static Player[] players;
 		// public static Player[] Players { get { return players; } }

@@ -5,19 +5,20 @@
 using XboxCtrlrInput;
 using CircuitKnights.Objects;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
+    [RequireComponent(typeof(Player))]
     public class PlayerInput : MonoBehaviour
     {
         [TextArea] [SerializeField] string description = "Handles controller/keyboard input for the player. Attach to the root object";
-        [SerializeField] Player player;
-        [SerializeField] Horse horse;
+        PlayerData playerData;
+        HorseData horseData;
         [SerializeField] bool getKBInput = false;
 		[SerializeField] KeyCode thrustKey = KeyCode.RightControl;
 
 		#region Outputs
-		// public XboxController Controller { get; private set; }
 		public float LanceAxisX { get; private set; }
         public float LanceAxisY { get; private set; }
         public float LeanAxisX { get; private set; }
@@ -32,6 +33,17 @@ namespace CircuitKnights
         public bool ThrustLanceButton { get; private set; }
         #endregion
 
+
+        void Start()
+        {
+            //// HOPEFULLY GetComponentInChildren also finds component in the same object too
+            playerData = GetComponentInChildren<Player>().Data;
+            horseData = GetComponentInChildren<Player>().HorseData;
+
+            Assert.IsNotNull(playerData, "Player data not found!");
+            Assert.IsNotNull(horseData, "Horse data not found!");
+        }
+
         void Update()
         {
             ReadControllerInput();
@@ -41,18 +53,18 @@ namespace CircuitKnights
         void ReadControllerInput()
         {
             // Controller = player.Controller;
-            LanceAxisX = XCI.GetAxis(player.LanceAxisX, player.Controller);
-            LanceAxisY = XCI.GetAxis(player.LanceAxisY, player.Controller);
-            LeanAxisX = XCI.GetAxis(player.LeanAxisX, player.Controller);
-            LeanAxisY = XCI.GetAxis(player.LeanAxisY, player.Controller);
+            LanceAxisX = XCI.GetAxis(playerData.LanceAxisX, playerData.Controller);
+            LanceAxisY = XCI.GetAxis(playerData.LanceAxisY, playerData.Controller);
+            LeanAxisX = XCI.GetAxis(playerData.LeanAxisX, playerData.Controller);
+            LeanAxisY = XCI.GetAxis(playerData.LeanAxisY, playerData.Controller);
 
-            ShieldAxisX = XCI.GetAxis(player.ShieldAxisX, player.Controller);
-            ShieldAxisY = XCI.GetAxis(player.ShieldAxisY, player.Controller);
+            ShieldAxisX = XCI.GetAxis(playerData.ShieldAxisX, playerData.Controller);
+            ShieldAxisY = XCI.GetAxis(playerData.ShieldAxisY, playerData.Controller);
 
-            AccelAxis = XCI.GetAxis(horse.AccelAxis, player.Controller);
-            DecelButton = XCI.GetButton(horse.DecelButton, player.Controller);
+            AccelAxis = XCI.GetAxis(horseData.AccelAxis, playerData.Controller);
+            DecelButton = XCI.GetButton(horseData.DecelButton, playerData.Controller);
 
-            ThrustLanceButton = XCI.GetButton(player.ThrustLanceButton, player.Controller);
+            ThrustLanceButton = XCI.GetButton(playerData.ThrustLanceButton, playerData.Controller);
         }
 
         void xReadKeyboardInput()

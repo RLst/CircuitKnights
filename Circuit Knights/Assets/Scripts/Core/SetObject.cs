@@ -9,9 +9,10 @@ namespace CircuitKnights.Objects
     [DisallowMultipleComponent] //because a lance cannot be a shield or vice versa
     public class SetObject : MonoBehaviour
     {
+        ////NOTE: Maybe this doesn't need to be set on the character object
         [TextArea][SerializeField] string description = 
             "Sets actual custom Circuit Knights object data to this object and handles mounting.";
-        [SerializeField] BaseObject CKObject;      //Each object can only have one obj data associated with it
+        [SerializeField] ObjectData objectData;      //Each object can only have one obj data associated with it
         [SerializeField] Transform mountPoint;
 
         // public BaseObject Data { get { return data; } }  
@@ -23,7 +24,7 @@ namespace CircuitKnights.Objects
         void Awake()
         {
             //Set object references
-            CKObject.gameObject = this.gameObject;
+            objectData.gameObject = this.gameObject;      ////THIS MIGHT NEED TO CHANGE!!!
         }
 
         void Start()
@@ -34,18 +35,19 @@ namespace CircuitKnights.Objects
                 Mount();
             }
         }
-        public void Mount()
+        public void Mount() 
+        ////NOTE! This cannot remount after deactivating itself. Must be controlled by a manager outside?
         {
-            transform.SetParent(mountPoint);
-            transform.gameObject.SetActive(true);
-            transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.identity;
-            transform.localScale = Vector3.one;
+            objectData.gameObject.SetActive(true);
+            objectData.gameObject.transform.SetParent(mountPoint);
+            objectData.gameObject.transform.localPosition = Vector3.zero;
+            objectData.gameObject.transform.localRotation = Quaternion.identity;
+            objectData.gameObject.transform.localScale = Vector3.one;
         }
         public void UnMount()
         {
-            transform.SetParent(null);
-            transform.gameObject.SetActive(false);
+            objectData.gameObject.SetActive(false);
+            objectData.gameObject.transform.SetParent(null);
         }
 
         // bool toggle = true;

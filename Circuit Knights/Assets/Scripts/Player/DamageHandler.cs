@@ -15,7 +15,7 @@ namespace CircuitKnights
 	{
 
 		#region Player
-		[SerializeField] Player player;     //The player this object belongs to
+		PlayerData playerData;     //The player this object belongs to
 		[SerializeField] Damageable headHealth;
 		[SerializeField] Damageable torsoHealth;
 		[SerializeField] Damageable leftArmHealth;
@@ -25,60 +25,81 @@ namespace CircuitKnights
 		#endregion
 
 		////Test
-		public float impulseMultiplier = 5f;
-		public float damageMultiplier = 5f;
+		public float ximpulseMultiplier = 5f;
+		public float xdamageMultiplier = 5f;
 
-
-		void Awake()
-		{
-			//TO DO: Need to clean up!
-			HeadHealth.OnCollision += HeadOnCollision;
-			TorsoHealth.OnCollision += TorsoOnCollision;
-			LeftArmHealth.OnCollision += LeftArmOnCollision;
-			RightArmHealth.OnCollision += RightArmOnCollision;
-			ShieldHealth.OnCollision += ShieldOnCollision;
+		public enum ImpactType {
+			RelativeVelocity,
+			Impulse
 		}
+        [SerializeField] ImpactType usingImpactType;
+        private float relativeVelocityFactor = 1f;
+        private float impulseFactor = 1f;
 
-		private void HeadOnCollision(Collision collision)
+        void Start()
+		{
+            RegisterForCollisionEvents();
+            playerData = GetComponentInChildren<Player>().Data;
+        }
+
+        private void RegisterForCollisionEvents()
+        {
+            HeadHealth.OnCollision += OnHeadCollisionEnter;
+            TorsoHealth.OnCollision += OnTorsoCollisionEnter;
+            LeftArmHealth.OnCollision += OnLeftArmCollisionEnter;
+            RightArmHealth.OnCollision += OnRightArmCollisionEnter;
+            ShieldHealth.OnCollision += OnShieldCollisionEnter;
+        }
+
+		private void OnHeadCollisionEnter(Collision collision)
 		{
 			Debug.Log("Collided with head");
 		}
 
-		void TorsoOnCollision(Collision collision)
+		void OnTorsoCollisionEnter(Collision collision)
 		{
 			Debug.Log("Collided with torso");
 		}
 
-		void LeftArmOnCollision(Collision collision)
+		void OnLeftArmCollisionEnter(Collision collision)
 		{
 			Debug.Log("Collided with left arm");
 		}
 
-		void RightArmOnCollision(Collision collision)
+		void OnRightArmCollisionEnter(Collision collision)
 		{
 			Debug.Log("Collided with right arm");
 		}
 
-		void ShieldOnCollision(Collision collision)
+		void OnShieldCollisionEnter(Collision collision)
 		{
 			Debug.Log("Collided with shield");
-			player.shield.gameObject.transform.parent = null;
-			player.shield.gameObject.GetComponent<PlayerShieldControl>().enabled = false;
-			player.shield.gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
-		}
 
+			////Reduce shield health based on collision
 
-		void Start()
-		{
+			switch (usingImpactType)
+			{
+				case ImpactType.RelativeVelocity:
+                    shieldHealth.TakeDamage(collision.relativeVelocity.magnitude * relativeVelocityFactor);
+                    break;
+				case ImpactType.Impulse:
+                    shieldHealth.TakeDamage(collision.impulse.magnitude * impulseFactor);
+                    break;
+				default:
+                    shieldHealth.TakeDamage(1f);
+                    break;
+            }
 
+			// //Simplify and refactor these
+			// playerData.Shield.gameObject.transform.parent = null;
+			// playerData.Shield.gameObject.GetComponent<PlayerShieldControl>().enabled = false;
+			// playerData.Shield.gameObject.GetComponentInChildren<Rigidbody>().isKinematic = false;
 		}
 
 		void Update()
 		{
 
 		}
-
-
 	}
 }
 

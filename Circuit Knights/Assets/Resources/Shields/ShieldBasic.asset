@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03e6b586b381412d8d72ad8d2545e97, type: 3}
+  m_Name: ShieldBasic
+  m_EditorClassIdentifier: 
+  description: 'Blocks the lance attacks. Has hit points. Will destroy after losing
+    all of its '
+  mass: 10
+  maxHitPoints: 100
+  smoothness: 0.25
+  restingOffset: {x: 0, y: 0, z: 0}
+  restingAngOffset: {x: 0, y: 0, z: 0}
+  blockingOffset: {x: 0, y: 0, z: 0}
+  blockingAngOffset: {x: 0, y: 0, z: 0}
