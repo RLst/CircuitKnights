@@ -4,10 +4,11 @@
 
 using System;
 using System.Linq;
+using CircuitKnights.Objects;
 using CircuitKnights.Variables;
 using UnityEngine;
 
-namespace CircuitKnights.Objects
+namespace CircuitKnights
 {
     [CreateAssetMenu(fileName = "New Game Settings", menuName = "Game Settings", order = 32)]
     public class GameSettings : ScriptableObject

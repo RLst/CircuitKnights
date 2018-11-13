@@ -44,8 +44,8 @@ namespace CircuitKnights
 
         public override void TakeDamage(float damage)
         {
-            playerData.LeftArmHealth -= damage;
-			if (playerData.LeftArmHealth <= 0)
+            playerData.LeftArmHP -= damage;
+			if (playerData.LeftArmHP <= 0)
 				Death();
         }
 
@@ -55,6 +55,7 @@ namespace CircuitKnights
 			transform.SetParent(null);
 
             //Let system know the Left Arm has been knocked off
+            //Reduce lance aim accuracy
             
         }
 

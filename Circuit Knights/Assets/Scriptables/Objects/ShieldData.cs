@@ -12,9 +12,15 @@ namespace CircuitKnights.Objects
     {
         [TextArea][SerializeField] string description = 
             "Blocks the lance attacks. Has hit points. Will destroy after losing all of its ";
-        [SerializeField] float mass = 10f;
-        [SerializeField] float maxHitPoints = 100;
         [Tooltip("Lower is smoother")][Range(0f, 1f)][SerializeField] float smoothness = 0.25f;
+        [SerializeField] float mass = 10f;
+
+        [Header("Stats")]
+        [SerializeField] float maxHP = 100;
+        [SerializeField] float defense = 10f;
+        public float Defense { get { return defense; } }
+
+        [Header("Offsets")]
         [SerializeField] Vector3 restingOffset;
         [SerializeField] Vector3 restingAngOffset;
         [SerializeField] Vector3 blockingOffset;
@@ -30,14 +36,14 @@ namespace CircuitKnights.Objects
         public Vector3 BlockingAngOffset { get { return blockingAngOffset; } }
 
 
-        void Awake()
+        void OnEnable()
         {
             ResetHP();
         }
 
         public void ResetHP()
         {
-            HP = maxHitPoints;
+            HP = maxHP;
             IsDead = false;
         }
 

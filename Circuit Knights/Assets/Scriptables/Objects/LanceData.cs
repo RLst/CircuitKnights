@@ -19,23 +19,24 @@ namespace CircuitKnights.Objects
         public float Mass { get { return mass; } }
         public float Length { get { return length; } }
 		public float MomentOfInertia { get { return 1f/ 3f * mass * length * length; } }
-		public float GravityFactor { get { return gravityFactor;} }
+		[Tooltip("Lazy implementation")][Range(1.001f, 4f)][SerializeField] float dragFactor = 1.05f;
+		[Tooltip("Lazy implementation")][SerializeField] float gravityFactor = 300f;
 		public float DragFactor { get { return dragFactor; } }
+		public float GravityFactor { get { return gravityFactor;} }
 
 
 		[Header("Control")]
-		[Tooltip("Lazy implementation")][SerializeField] float gravityFactor = 300f;
-		[Tooltip("Lazy implementation")][Range(1.001f, 4f)][SerializeField] float dragFactor = 1.05f;
         [Tooltip("Lerp to reduce jarring clamp. Too much may decrease accuracy")]
         [Range(0.05f, 1f)] [SerializeField] float lerpFactor;
-
-        // [Tooltip("Increases control by decreasing lerp tValue")][SerializeField] float controlFactor = 0.1f;
         [SerializeField] float pitchTorque = 1000;
 		[SerializeField] float yawTorque = 1000;
+		public float LerpFactor { get { return lerpFactor; } }
 		public float PitchTorque { get { return pitchTorque; } }
 		public float YawTorque { get { return yawTorque; } }
-		public float LerpFactor { get { return lerpFactor; } }
 
+        [Header("Stats")]
+        [SerializeField] float attack = 20f;
+        public float Attack { get { return attack; } }
 
         [Header("Limits")]
         [SerializeField] bool clamped = true;

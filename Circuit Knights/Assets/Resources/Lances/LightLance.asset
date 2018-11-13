@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 648c95c0eb919446b99e445ad17fae6f, type: 3}
-  m_Name: HeavyLance
+  m_Name: LightLance
   m_EditorClassIdentifier: 
   description: The player's lance
   mass: 20
@@ -20,7 +20,7 @@ MonoBehaviour:
   pitchTorque: 50000
   yawTorque: 50000
   clamped: 1
-  startingPitchAngle: -86.36
+  startingPitchAngle: -89.2
   startingYawAngle: -40
   PitchRange: 90
   YawRange: 60

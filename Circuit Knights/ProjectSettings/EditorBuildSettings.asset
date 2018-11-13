@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Programmers/Tony MainMenu.unity
+    guid: 7065bab3a6c1c41eeb219305686f2acd
+  - enabled: 1
+    path: Assets/Scenes/Programmers/Tony Game2.unity
+    guid: a6a24b1b763cf47469c0cca96e439d74
+  - enabled: 1
+    path: Assets/Scenes/Programmers/Tony GameOver.unity
+    guid: 1c334a8307e7f46929f94506d265f6d7

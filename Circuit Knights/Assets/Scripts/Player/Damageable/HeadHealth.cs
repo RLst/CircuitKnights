@@ -42,8 +42,8 @@ namespace CircuitKnights
 
         public override void TakeDamage(float damage)
         {
-            playerData.HeadHealth -= damage;
-			if (playerData.HeadHealth <= 0)
+            playerData.HeadHP -= damage;
+			if (playerData.HeadHP <= 0)
 				Death();
         }
 

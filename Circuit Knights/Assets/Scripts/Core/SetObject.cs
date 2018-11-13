@@ -24,6 +24,7 @@ namespace CircuitKnights.Objects
         void Awake()
         {
             //Set object references
+            ////WHY DO I NEED TO DO THIS?
             objectData.gameObject = this.gameObject;      ////THIS MIGHT NEED TO CHANGE!!!
         }
 

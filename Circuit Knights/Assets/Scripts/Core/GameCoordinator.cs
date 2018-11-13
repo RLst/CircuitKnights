@@ -109,9 +109,8 @@ namespace CircuitKnights
 
         private IEnumerator RoundGameLoop()
         {
-            //Initiate the round
-            GameSettings.Instance.BeginNewRound();
-            
+            BeginNewRound();
+
             yield return StartCoroutine(StartRound());
 
             yield return StartCoroutine(PlayRound());
@@ -123,6 +122,15 @@ namespace CircuitKnights
                 SceneManager.LoadScene(2);     //Results screen scene
             else
                 SceneManager.LoadScene(1, LoadSceneMode.Single);    //Main game scene
+        }
+
+        private static void BeginNewRound()
+        {
+            //Initiate the round
+            GameSettings.Instance.BeginNewRound();
+
+            //Show round text
+            
         }
 
         private IEnumerator StartRound()
@@ -164,17 +172,16 @@ namespace CircuitKnights
                 //Get players facing
                 var p1Facing = p1.Root.TransformDirection(Vector3.forward);
                 var directionToP2 = Vector3.Normalize(p2.Root.position - p1.Root.position);
-
-                // Debug.Log("p1Facing: " + p1Facing);
-                // Debug.Log("Dot product: " + Vector3.Dot(p1Facing, p2Facing));
-
                 if (Vector3.Dot(p1Facing, directionToP2) < 0f)
                 {
-                    EndCurrentRound();
-                    break;
+                    // Debug.Log("p1Facing: " + p1Facing);
+                    // Debug.Log("Dot product: " + Vector3.Dot(p1Facing, directionToP2));
+                    // EndCurrentRound();
+                    // break;
                 }
 
                 //2. When a player's lance has collided with the opponent
+                ////BUT... if a lance collision occurs it usually also means they have essentially passed each other (condition 1)
                 //Listen in on event OnLanceHit
                 //Declare round is finished
 
@@ -228,6 +235,8 @@ namespace CircuitKnights
             StartOfMatchCamera.SetActive(true);
             var skippableTime = Time.time + unskippableDuration;
             var cameraAnimation = StartOfMatchCamera.GetComponent<Animation>();
+
+
             cameraAnimation.Play();
 
             //Make sure to hide skip button
@@ -251,7 +260,9 @@ namespace CircuitKnights
 
                 //Exit if animation is finished
                 if (!cameraAnimation.isPlaying)
+                {
                     playCutscene = false;
+                }
 
                 yield return null;
             }

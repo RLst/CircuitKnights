@@ -6,6 +6,7 @@ using UnityEngine;
 using CircuitKnights.Objects;
 using CircuitKnights.Variables;
 using System;
+using CircuitKnights.Events;
 
 namespace CircuitKnights
 {
@@ -16,16 +17,23 @@ namespace CircuitKnights
 
 		#region Player
 		PlayerData playerData;     //The player this object belongs to
+		[Header("Damageables")]
 		[SerializeField] Damageable headHealth;
 		[SerializeField] Damageable torsoHealth;
 		[SerializeField] Damageable leftArmHealth;
 		[SerializeField] Damageable rightArmHealth;
 		[SerializeField] Damageable shieldHealth;
 
-		#endregion
+        #endregion
 
-		////Test
-		public float ximpulseMultiplier = 5f;
+        [Header("Events")]
+        [SerializeField] GameEvent onHeadDeath;		//Player only sees from the perspective of his head
+        [SerializeField] GameEvent onTorsoDeath;	//Player dies and gets knocked off in glorious slow motion
+        [SerializeField] GameEvent onLeftArmDeath;	//Really hard to control the lance because you can't hold onto the horse
+        [SerializeField] GameEvent onShieldDeath;	//Player can't block anymore, but gains more manoeurvability
+
+        ////Test
+        public float ximpulseMultiplier = 5f;
 		public float xdamageMultiplier = 5f;
 
 		public enum ImpactType {
@@ -73,10 +81,9 @@ namespace CircuitKnights
 
 		void OnShieldCollisionEnter(Collision collision)
 		{
-			Debug.Log("Collided with shield");
+			Debug.Log("Shield hit");
 
-			////Reduce shield health based on collision
-
+			//Take damage
 			switch (usingImpactType)
 			{
 				case ImpactType.RelativeVelocity:
@@ -89,6 +96,13 @@ namespace CircuitKnights
                     shieldHealth.TakeDamage(1f);
                     break;
             }
+
+			////Reduce shield health based on collision
+			//
+
+
+
+
 
 			// //Simplify and refactor these
 			// playerData.Shield.gameObject.transform.parent = null;

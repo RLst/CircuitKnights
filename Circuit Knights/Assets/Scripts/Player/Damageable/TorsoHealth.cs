@@ -14,11 +14,19 @@ namespace CircuitKnights
 	{
 		///Events
 		public static event Action<Collision> OnCollision = delegate { };
+        public static event Action<PlayerData.PlayerNumber> OnPlayerLose = delegate { };
 
-		///Physics
-		// new Rigidbody rigidbody;
+        ///Physics
+        // new Rigidbody rigidbody;
+        //// Test collision data
+        Vector3 collisionDirection;
+        Vector3 collisionContact;
+        float forceMultiplier = 100f;
+        ForceMode forceMode = ForceMode.Impulse;
+        /////////////////////
 
-		void Start()
+
+        void Start()
 		{
             AutoRetrieveReferences();
             AssertReferences();
@@ -38,38 +46,63 @@ namespace CircuitKnights
 
         void OnCollisionEnter(Collision other)
         {
-            //If hit by opponent's lance then raise/send event
+            //Make sure it's the opponent's lance
             if (other.collider == opponentData.LanceCollider)
             {
-                OnCollision(other);
+                Debug.Log("Torso hit!");
+				
+                var RB = GetComponent<Rigidbody>();
+                var C = GetComponent<Collider>();
+                var oppRB = opponentData.LanceData.gameObject.GetComponentInChildren<Rigidbody>();
+
+                ///Take damage
+                TakeDamage(opponentData.LanceData.Attack - playerData.ShieldData.Defense);
+
+                ///Make player semi-ragdoll 
+                //Disable animator and kinematic?
+                playerData.Animator.enabled = false;
+
+                ///Apply force/impulse to player at point of contact
+                //Get opponent's lance direction vector
+                collisionDirection = other.gameObject.transform.forward.normalized;
+                collisionContact = other.contacts[0].point;
+
+                //Detach the shield and make into plain rigidbody
+                transform.SetParent(null);
+                RB.isKinematic = false;
+                C.isTrigger = false;
+
+                //Add force to the shield which should chain reaction up the player
+                RB.AddForceAtPosition(collisionDirection * forceMultiplier, collisionContact, forceMode);
+
+                ///Make opponents lance non-kinematic and apply upwards/outwards impulse
+                oppRB.isKinematic = false;
             }
         }
 
 		public override void TakeDamage(float damage)
 		{
-			playerData.TorsoHealth -= damage;
-            if (playerData.TorsoHealth <= 0)
+			playerData.TorsoHP -= damage;
+            if (playerData.TorsoHP <= 0)
                 Death();
 		}
 
 		public override void Death()
 		{
-			//Player gets killed
+            Debug.Log("Torso dead!");
 			
-			//Turn into a ragdoll: turn off kinematic, turn off animator
+            var RB = GetComponent<Rigidbody>();
+            var C = GetComponent<Collider>();
 
-			//Let the system know the player has lost
+            ///Player gets killed
+            //Turn into a ragdoll: turn off kinematic, turn off animator
+            playerData.Animator.enabled = false;
 
-			Debug.Log("Torso dead!");
+            //Let the system know the player has lost
+            OnPlayerLose(playerData.No);    //Send this player's number to the ether
 		}
-
-
     }
 }
-
-
-
-
 
 
 

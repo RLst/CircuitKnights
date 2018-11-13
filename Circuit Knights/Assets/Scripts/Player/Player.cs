@@ -23,8 +23,6 @@ namespace CircuitKnights.Objects
 		[SerializeField] ShieldData shieldData;
         [SerializeField] HorseData horseData;
         
-        PlayerMover playerMover;
-
         // //Test - Weapon switching
         // [SerializeField] List<Equipment> lances;
         // [SerializeField] List<Equipment> shields;
@@ -37,6 +35,13 @@ namespace CircuitKnights.Objects
         // Equipment currentHorse;
         //Test - weapon switching
 
+        [Header("Controllers")]
+        [SerializeField] PlayerMover playerMover;
+        [SerializeField] Animator playerAnimator;
+        [SerializeField] ShieldController shieldController;
+        [SerializeField] PlayerIKHoldLance IKLanceHolder;
+        [SerializeField] PlayerIKHoldShield IKShieldHolder;
+        [SerializeField] PlayerIKLook IKLook;
 
 
         [Header("Colliders")]
@@ -53,7 +58,6 @@ namespace CircuitKnights.Objects
         public LanceData LanceData { get { return lanceData; } }
         public ShieldData ShieldData { get { return shieldData; } }
         public HorseData HorseData { get { return horseData; } }
-
         #endregion
 
         void Awake()
@@ -63,6 +67,7 @@ namespace CircuitKnights.Objects
 
         private void SetPlayerData()
         {
+            ////[IS THIS ACTUALLY NECESSARY?]
             ////These are some of the crucial first things in the game that must be set
 
             //Test - equipment switching - Set the current equipment to the first item in their arrays
@@ -71,15 +76,21 @@ namespace CircuitKnights.Objects
             // currentShield = shields[0];
             //Test
 
-            playerData.Lance = this.lanceData;
-            playerData.Shield = this.shieldData;
-            playerData.Horse = this.horseData;
+            playerData.LanceData = this.lanceData;
+            playerData.ShieldData = this.shieldData;
+            playerData.HorseData = this.horseData;
             
             playerData.Root = this.transform;
             playerData.Camera = this.camera;
 
-            //Tricky bastard!
-            playerMover = playerData.PlayerMover = this.GetComponent<PlayerMover>();
+            //Tricky bastard! Set both this and playerData
+            playerData.PlayerMover = playerMover = this.GetComponent<PlayerMover>();
+            playerData.Animator = playerAnimator;
+            // playerData.Animator = animator = this.GetComponentInChildren<Animator>();
+            playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
+            playerData.IKLanceHolder = this.IKLanceHolder = GetComponentInChildren<PlayerIKHoldLance>();
+            playerData.IKShieldHold = this.IKShieldHolder = GetComponentInChildren<PlayerIKHoldShield>();
+            playerData.IKLook = this.IKLook = GetComponentInChildren<PlayerIKLook>();
         }
 
         void Start()

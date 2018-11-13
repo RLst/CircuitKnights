@@ -23,12 +23,10 @@ namespace CircuitKnights.Objects
 		public Transform LeftArm { get; set; }
 		public Transform RightArm { get; set; }
 
-        public HorseData Horse { get; set; }
 		public Camera Camera { get; set; }
-        public LanceData Lance { get; set; }
-        public ShieldData Shield { get; set; }
-
-        public PlayerMover PlayerMover { get; set; }
+        public HorseData HorseData { get; set; }
+        public LanceData LanceData { get; set; }
+        public ShieldData ShieldData { get; set; }
 
     #endregion
 	#region Colliders
@@ -40,9 +38,17 @@ namespace CircuitKnights.Objects
 		public Collider LanceCollider { get; set; }
 			//WORK IN PROGRESS!!
 	#endregion
+	#region Controllers
+		public PlayerMover PlayerMover { get; set; }
+		public Animator Animator { get; set; }
+        public ShieldController ShieldController { get; set; }
+		public PlayerIKHoldLance IKLanceHolder { get; set; }
+		public PlayerIKHoldShield IKShieldHold { get; set; }
+		public PlayerIKLook IKLook { get; set; }
+	#endregion
 
-	#region Points Of Interest
-		Vector3Variable lookAtTarget;
+        #region Points Of Interest
+        Vector3Variable lookAtTarget;
 	#endregion
 
 	#region Player Numbers
@@ -77,42 +83,41 @@ namespace CircuitKnights.Objects
 
 	#region Stats
 		[Header("Health")]
-		[SerializeField] float maxHeadHealth;
-		[SerializeField] float maxTorsoHealth;
-		[SerializeField] float maxLeftArmHealth;
-		[SerializeField] float maxRightArmHealth;
+		[SerializeField] float maxHeadHP;
+		[SerializeField] float maxTorsoHP;
+		[SerializeField] float maxLeftArmHP;
+		[SerializeField] float maxRightArmHP;
 
 		//The stats that externals will actually reference from
 		//These are reset upon enable
-		public float HeadHealth { get; set; }
-		public float TorsoHealth { get; set; }
-		public float LeftArmHealth { get; set; }
-		public float RightArmHealth { get; set; }
-		public float ShieldHealth { get; set; }
+		public float HeadHP { get; set; }
+		public float TorsoHP { get; set; }
+		public float LeftArmHP { get; set; }
+		public float RightArmHP { get; set; }
 	#endregion
 
 	#region Methods
-		void Awake()
+		void OnEnable()
         {
             ResetStats();
 
-			//Get colliders
-			HeadCollider = Head.GetComponent<Collider>();
-			TorsoCollider = Torso.GetComponent<Collider>();
-			LeftArmCollider = LeftArm.GetComponent<Collider>();
-			RightArmCollider = RightArm.GetComponent<Collider>();
+			// //Get colliders
+			// HeadCollider = Head.GetComponent<Collider>();
+			// TorsoCollider = Torso.GetComponent<Collider>();
+			// LeftArmCollider = LeftArm.GetComponent<Collider>();
+			// RightArmCollider = RightArm.GetComponent<Collider>();
 
-			LanceCollider = Lance.gameObject.GetComponentInChildren<Collider>();
-			ShieldCollider = Shield.gameObject.GetComponentInChildren<Collider>();
+			// LanceCollider = Lance.gameObject.GetComponentInChildren<Collider>();
+			// ShieldCollider = Shield.gameObject.GetComponentInChildren<Collider>();
         }
 
         public void ResetStats()
 		{
 			//Use this say at the end of a match or round?
-			HeadHealth = maxHeadHealth;
-			TorsoHealth = maxTorsoHealth;
-			LeftArmHealth = maxLeftArmHealth;
-			RightArmHealth = maxRightArmHealth;
+			HeadHP = maxHeadHP;
+			TorsoHP = maxTorsoHP;
+			LeftArmHP = maxLeftArmHP;
+			RightArmHP = maxRightArmHP;
 		}
 
 		internal PlayerData GetOpponent()
@@ -138,16 +143,11 @@ namespace CircuitKnights.Objects
             Root.transform.rotation = rotation;
         }
 
-		// public void SetTransform(Transform transform)
-		// {
-        //     this.gameObject.transform = transform;
-        // }
-
         public void EnableMovement() {
-			PlayerMover.enabled = true;
+            PlayerMover.enabled = true;
 		}
 		public void DisableMovement() {
-			PlayerMover.enabled = false;
+            PlayerMover.enabled = false;
 		}
 		public void EnableCamera() {
 			Camera.enabled = true;
