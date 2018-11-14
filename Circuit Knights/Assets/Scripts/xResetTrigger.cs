@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using CircuitKnights; 
-public class ResetTrigger : MonoBehaviour {
+public class xResetTrigger : MonoBehaviour {
 
 
     private void OnTriggerEnter(Collider other)

@@ -18,12 +18,8 @@ namespace CircuitKnights
     {
         [Multiline] [SerializeField] string description = "Controls the passes and rounds";
 
-        // [Header("Players")]
-        // [SerializeField] Player playerOne;
-        // [SerializeField] Player playerTwo;
-
         [Header("GUI")]
-        [SerializeField] Text roundNoText;
+        [SerializeField] Text roundText;
         [SerializeField] Text centerText;
         [SerializeField] GameObject skipButton;       //Has to be a gameobject because skipbutton wont hide
 
@@ -54,10 +50,12 @@ namespace CircuitKnights
         [SerializeField] GameEvent onDisablePlayerMovement;
         private bool roundIsRunning;
 
+
+    #region Core
         private void Assertions()
         {
             //Make sure all necessasy components are passed
-            Assert.IsNotNull(roundNoText);
+            Assert.IsNotNull(roundText);
             Assert.IsNotNull(centerText);
             Assert.IsNotNull(skipButton);
 
@@ -84,12 +82,12 @@ namespace CircuitKnights
             onDisablePlayerCameras.Raise();
 
             //Hide all GUI
-            roundNoText.enabled = false;
+            roundText.enabled = false;
             centerText.enabled = false;
             skipButton.SetActive(false);
 
             //Setup listener to skip button
-            skipButton.gameObject.GetComponent<Button>().onClick.AddListener(OnSkip);
+            skipButton.gameObject.GetComponent<Button>().onClick.AddListener(OnSkipCutscene);
         }
 
         void Start()
@@ -124,13 +122,14 @@ namespace CircuitKnights
                 SceneManager.LoadScene(1, LoadSceneMode.Single);    //Main game scene
         }
 
-        private static void BeginNewRound()
+        private void BeginNewRound()
         {
             //Initiate the round
             GameSettings.Instance.BeginNewRound();
 
             //Show round text
-            
+            roundText.enabled = true;
+            roundText.text = "Round " + GameSettings.Instance.Round;
         }
 
         private IEnumerator StartRound()
@@ -168,7 +167,8 @@ namespace CircuitKnights
                 //Gameplay
 
                 ////When does a round/pass end?
-                //1. When player's have passed each other ie. they're no longer facing each other (vector3.dot < 0)
+                /// * When player's have passed each other ie. they're no longer facing each other (vector3.dot < 0)
+                //[This also covers the case where if the players have made impact or not]
                 //Get players facing
                 var p1Facing = p1.Root.TransformDirection(Vector3.forward);
                 var directionToP2 = Vector3.Normalize(p2.Root.position - p1.Root.position);
@@ -180,16 +180,10 @@ namespace CircuitKnights
                     // break;
                 }
 
-                //2. When a player's lance has collided with the opponent
-                ////BUT... if a lance collision occurs it usually also means they have essentially passed each other (condition 1)
-                //Listen in on event OnLanceHit
-                //Declare round is finished
-
-                //3. When a player has reached the end of the track
-                //If player's position is EQUAL OR AFTER the end point for that round number
-                //OR
+                /// * When a player has reached the end of the track
                 //If the players have TriggerEnter'd the end of track colliders
-                    //Declare round is finished
+                //Declare round is finished
+                //(Triggered from a the reset trigger outside via a GameEvent)
 
                 yield return null;
             }
@@ -198,7 +192,7 @@ namespace CircuitKnights
 
         private IEnumerator EndRound()
         {
-            Debug.Log("Round is over!");
+            Debug.LogError("Round is over!");   //Pause the game so that we know it is entering this ienumerator
 
             //If atleast one player is still alive
 
@@ -224,14 +218,14 @@ namespace CircuitKnights
 
             throw new NotImplementedException();
         }
-
+    #endregion  //Core
 
     #region Cutscenes
         private IEnumerator RunStartOfMatchCutscene()
         {
             //Initialise
             centerText.enabled = false;
-            roundNoText.enabled = false;
+            roundText.enabled = false;
             StartOfMatchCamera.SetActive(true);
             var skippableTime = Time.time + unskippableDuration;
             var cameraAnimation = StartOfMatchCamera.GetComponent<Animation>();
@@ -376,11 +370,7 @@ namespace CircuitKnights
         #endregion
 
     #region Round Playing
-        public void EndCurrentRound()
-        {
-            //This can be accessed from outside
-            roundIsRunning = false;
-        }
+
         IEnumerator ShowGoText()
         {
             //Initialise
@@ -402,16 +392,22 @@ namespace CircuitKnights
 
     #endregion
 
-    #region Other Functions
-        public void OnSkip()
+    #region Public accessible function
+        public void OnSkipCutscene()
         {
             //This function is to allow for externals such as buttons to skip scenes etc
             playCutscene = false;
         }
+        public void EndCurrentRound()
+        {
+            //This can be accessed from outside
+            roundIsRunning = false;
+        }
     #endregion
     }
 }
-    //Automatically sets player's position based on even or odd round
-    // var isOdd = GameSettings.Instance.Round % 2;
-    // GameSettings.Players[isOdd % 2].SetPosition(startPoints[isOdd % 2].position);
-    // GameSettings.Players[isOdd].SetPosition(startPoints[isOdd].position);
+
+//Automatically sets player's position based on even or odd round
+// var isOdd = GameSettings.Instance.Round % 2;
+// GameSettings.Players[isOdd % 2].SetPosition(startPoints[isOdd % 2].position);
+// GameSettings.Players[isOdd].SetPosition(startPoints[isOdd].position);
