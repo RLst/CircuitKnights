@@ -12,6 +12,7 @@ namespace CircuitKnights
     public class HeadHealth : Damageable
     {
         public static event Action<Collision> OnCollision = delegate { };
+        public GameObject knockedOffPrefab;
 
         void Start()
         {
@@ -36,7 +37,7 @@ namespace CircuitKnights
             //If hit by opponent's lance then raise/send event
             if (other.collider == opponentData.LanceCollider)
             {
-                OnCollision(other);
+                TakeDamage(opponentData.LanceData.Attack);
             }
         }
 
@@ -52,8 +53,17 @@ namespace CircuitKnights
 			//Heads gets knocked off
 			transform.SetParent(null);
 
+            ////Stickman
+            foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+            {
+                mesh.enabled = false;
+            }
+            GetComponent<Rigidbody>().isKinematic = false;
+            var newKnockedOff = Instantiate(knockedOffPrefab, transform.position, transform.rotation);
+            Destroy(newKnockedOff, 3f);
+
 			//Let the system know somehow that the head has been knocked off via event
-                //Camera now looks from 
+                //Camera now looks from
         }
 
     }

@@ -11,7 +11,7 @@ namespace CircuitKnights
 	[RequireComponent(typeof(Player))]
     public class PlayerMover : MonoBehaviour
     {
-		[TextArea] [SerializeField] string description = 
+		[TextArea] [SerializeField] string description =
 			"Moves the horse.";
 		PlayerData playerData;
 		HorseData horseData;

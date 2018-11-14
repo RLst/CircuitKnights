@@ -15,6 +15,8 @@ namespace CircuitKnights
 		// [SerializeField] PlayerData player;
         // private Collider opponentsLance;
 
+        public GameObject knockedOffPrefab;
+
         void Start()
         {
             AutoRetrieveReferences();
@@ -38,7 +40,9 @@ namespace CircuitKnights
             //If hit by opponent's lance then raise/send event
             if (other.collider == opponentData.LanceCollider)
             {
-                OnCollision(other);
+                ////Stickman
+                TakeDamage(opponentData.LanceData.Attack);
+                // OnCollision(other);
             }
         }
 
@@ -51,12 +55,17 @@ namespace CircuitKnights
 
         public override void Death()
         {
-			//Left Arm gets knocked off
+			//Heads gets knocked off
 			transform.SetParent(null);
+
+            //Stickman
+            GetComponent<Rigidbody>().isKinematic = false;
+            var newKnockedOff = Instantiate(knockedOffPrefab, transform.position, transform.rotation);
+            Destroy(newKnockedOff, 3f);
 
             //Let system know the Left Arm has been knocked off
             //Reduce lance aim accuracy
-            
+
         }
 
     }

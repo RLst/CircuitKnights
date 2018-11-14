@@ -12,7 +12,7 @@ namespace CircuitKnights.Objects
 	[CreateAssetMenu(fileName = "New Player Data", menuName = "Player", order = 51)]
 	public class PlayerData : ObjectData
 	{
-		[TextArea][SerializeField] string description = 
+		[TextArea][SerializeField] string description =
 			"Holds almost all data to do with a player.";
 
     #region Cache
@@ -94,6 +94,10 @@ namespace CircuitKnights.Objects
 		public float TorsoHP { get; set; }
 		public float LeftArmHP { get; set; }
 		public float RightArmHP { get; set; }
+		public bool isHeadless { get { return HeadHP <= 0; } }
+		public bool isDead { get { return TorsoHP <= 0; } }
+		public bool isLeftArmDestroyed { get { return LeftArmHP <= 0; } }
+		public bool isRightArmDestroyed { get { return RightArmHP <= 0; } }
 	#endregion
 
 	#region Methods
@@ -155,6 +159,7 @@ namespace CircuitKnights.Objects
 		public void DisableCamera() {
 			Camera.enabled = false;
 		}
+
 	#endregion
 	}
 }

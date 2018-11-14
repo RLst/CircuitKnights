@@ -20,7 +20,7 @@ namespace CircuitKnights
 		public static GameSettings Instance
 		{
 			get {
-				//If an instance of 
+				//If an instance of
 				if (!_instance)
 					_instance = Resources.FindObjectsOfTypeAll<GameSettings>().FirstOrDefault();
 	#if UNITY_EDITOR
@@ -44,7 +44,7 @@ namespace CircuitKnights
 
 		// public static Player[] players;
 		// public static Player[] Players { get { return players; } }
-	// 	private static Player[] players;	//Index 0 is Player 1, index 1 is Player 2
+		//private static Player[] players;	//Index 0 is Player 1, index 1 is Player 2
 		// public static Player playerOne;
 		// public static Player PlayerOne {
 		// 	get { return playerOne; }
@@ -64,14 +64,34 @@ namespace CircuitKnights
 		public int NoOfPasses { get { return xNoOfPasses; } }
 		public int Round { get; set; }
 		public int NoOfRounds { get { return noOfRounds; } }
-
 		[SerializeField] BoolVariable gamepadVibrationOn;
-	#endregion 
+	#endregion
 
-        internal bool MatchIsOver()
+
+		////DIRTY
+        internal bool isMatchOver()
         {
-            throw new NotImplementedException();
+			//Check if any or both players are dead and respond accordingly
+			if (PlayerOne.isDead)
+			{
+				return true;
+			}
+			else if (PlayerTwo.isDead)
+			{
+				return true;
+			}
+			return false;
         }
+
+		////DIRTY
+		internal bool isDraw()
+		{
+			if (PlayerOne.isDead && PlayerTwo.isDead)
+			{
+				return true;
+			}
+			return false;
+		}
 
 		void Awake()
 		{
@@ -93,7 +113,5 @@ namespace CircuitKnights
 		{
 			Round++;
 		}
-
-
 	}
 }
