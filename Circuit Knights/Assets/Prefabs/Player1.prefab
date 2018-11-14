@@ -1668,7 +1668,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1309114721231398}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 148.11, y: 0, z: 236.41}
+  m_LocalPosition: {x: -32.59, y: 0.45561218, z: 23.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4676634545496906}
@@ -2635,7 +2635,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1738788655949472}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3262,7 +3262,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ebf692022ac3a014894e0279ef20b01b, type: 3}
+  - {fileID: 2100000, guid: 0d960c3b1dca75a44b3f2c030f1f6595, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3718,7 +3718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Sets actual custom Circuit Knights object data to this object and handles
     mounting.
-  CKObject: {fileID: 11400000, guid: baf422c2019bbe946953001347e0b14d, type: 2}
+  objectData: {fileID: 0}
   mountPoint: {fileID: 4141285483388476}
 --- !u!114 &114334674484115336
 MonoBehaviour:
@@ -3745,7 +3745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7372d1be5de872345b6044650a44e931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
 --- !u!114 &114362271796681538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3797,11 +3796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da833483371d34480aeca7d69d4e8e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
-  health:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: aa106a9079657074db04ca707706fe1b, type: 2}
 --- !u!114 &114540112241819514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3845,7 +3839,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1309114721231398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a54bbf9decbc65d48965d7e8d6d43dd0, type: 3}
   m_Name: 
@@ -3880,7 +3874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Sets actual custom Circuit Knights object data to this object and handles
     mounting.
-  CKObject: {fileID: 11400000, guid: ea7074b869137bf438a40f4b2e1d90ce, type: 2}
+  objectData: {fileID: 0}
   mountPoint: {fileID: 4012262952236134}
 --- !u!114 &114609824715321602
 MonoBehaviour:
@@ -3921,14 +3915,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dcf039978c1743eab218d1e689204df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
   headHealth: {fileID: 114812364405846802}
   torsoHealth: {fileID: 114467089977920576}
   leftArmHealth: {fileID: 0}
   rightArmHealth: {fileID: 0}
   shieldHealth: {fileID: 0}
-  impulseMultiplier: 5
-  damageMultiplier: 5
+  onHeadDeath: {fileID: 0}
+  onTorsoDeath: {fileID: 0}
+  onLeftArmDeath: {fileID: 0}
+  onShieldDeath: {fileID: 0}
+  ximpulseMultiplier: 5
+  xdamageMultiplier: 5
+  usingImpactType: 0
 --- !u!114 &114685783948785176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3942,7 +3940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Sets actual custom Circuit Knights object data to this object and handles
     mounting.
-  CKObject: {fileID: 11400000, guid: 722c46d13ce023f41ac5ac29086449b6, type: 2}
+  objectData: {fileID: 0}
   mountPoint: {fileID: 4599516600188764}
 --- !u!114 &114702972497911360
 MonoBehaviour:
@@ -3955,7 +3953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e5d8ce3d3293248929cc1d1e5d8218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
 --- !u!114 &114755233251306854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3969,7 +3966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Sets actual custom Circuit Knights object data to this object and handles
     mounting.
-  CKObject: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
+  objectData: {fileID: 0}
   mountPoint: {fileID: 4274959328062412}
 --- !u!114 &114786713504590168
 MonoBehaviour:
@@ -3977,7 +3974,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1309114721231398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a54bbf9decbc65d48965d7e8d6d43dd0, type: 3}
   m_Name: 
@@ -4045,7 +4042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eba5eafa9af462fa57536d20478aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
 --- !u!114 &114868268372418026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4057,7 +4053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6e60c79fa85384e88e192c7d328b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
 --- !u!114 &114892983003818144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4084,9 +4079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Handles controller/keyboard input for the player. Attach to the root
     object
-  player: {fileID: 11400000, guid: ff5e7cf0ebac543e4b66f97375ca90a8, type: 2}
-  horse: {fileID: 11400000, guid: ea7074b869137bf438a40f4b2e1d90ce, type: 2}
-  getKBInput: 1
+  getKBInput: 0
   thrustKey: 305
 --- !u!124 &124656532679990252
 Behaviour:
@@ -4395,7 +4388,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.044804715, y: -0.0040007886, z: 0.07436342}
+  m_ConnectedAnchor: {x: 0.04480455, y: -0.004002689, z: 0.07436342}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -4439,7 +4432,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.22518319, y: 0.005983146, z: -0.00000025450765}
+  m_ConnectedAnchor: {x: -0.22518289, y: 0.0059869457, z: -0.00000025542317}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -4527,7 +4520,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.35297823, y: -0.047479063, z: -0.034624994}
+  m_ConnectedAnchor: {x: -0.35297838, y: -0.047479082, z: -0.03462214}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -4571,7 +4564,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.087945804, y: -0.014121033, z: 0.22941951}
+  m_ConnectedAnchor: {x: 0.08794502, y: -0.014120964, z: 0.22941898}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -4615,7 +4608,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.074218914, y: 0.012922391, z: -0.14088443}
+  m_ConnectedAnchor: {x: -0.074218914, y: 0.012922391, z: -0.14088729}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -4659,7 +4652,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.35297877, y: -0.047479074, z: 0.0346172}
+  m_ConnectedAnchor: {x: -0.35297862, y: -0.04747906, z: 0.034620054}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -4703,7 +4696,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.2736336, y: 0.048010502, z: -0.00000057381055}
+  m_ConnectedAnchor: {x: -0.27363375, y: 0.048008602, z: -0.00000057381845}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -4747,7 +4740,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.07421966, y: 0.012921549, z: 0.14088441}
+  m_ConnectedAnchor: {x: -0.07421966, y: 0.012921549, z: 0.14088632}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -4791,7 +4784,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0448051, y: -0.004000358, z: -0.074364014}
+  m_ConnectedAnchor: {x: 0.04480493, y: -0.004002258, z: -0.07436306}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
