@@ -1,0 +1,201 @@
+fileFormatVersion: 2
+guid: 451e282a126698544acbb9d010b43f44
+timeCreated: 1542245050
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Ctrl_Hand_L
+    100004: Ctrl_Hand_R
+    100006: Ctrl_Head
+    100008: Ctrl_Plume_1
+    100010: Ctrl_Plume_2
+    100012: Ctrl_Plume_3
+    100014: Ctrl_Plume_4
+    100016: Ctrl_Sholder_L
+    100018: Ctrl_Sholder_R
+    100020: Ctrl_Spine_01
+    100022: Ctrl_Spine_02
+    100024: Ctrl_Spine_03
+    100026: Ctrl_Spine_04
+    100028: Grp_Hand_L
+    100030: Grp_Hand_R
+    100032: Grp_Head
+    100034: Grp_Plume_1
+    100036: Grp_Plume_2
+    100038: Grp_Plume_3
+    100040: Grp_Plume_4
+    100042: Grp_Sholder_L
+    100044: Grp_Sholder_R
+    100046: Grp_Spine_01
+    100048: Grp_Spine_02
+    100050: Grp_Spine_03
+    100052: Grp_Spine_04
+    100054: Jnt_clav_L
+    100056: Jnt_clav_R
+    100058: Jnt_elbow_L
+    100060: Jnt_elbow_R
+    100062: Jnt_fingers_L_1
+    100064: Jnt_fingers_L_2
+    100066: Jnt_fingers_L_3
+    100068: Jnt_fingers_R_1
+    100070: Jnt_fingers_R_2
+    100072: Jnt_fingers_R_3
+    100074: Jnt_head
+    100076: Jnt_Hip
+    100078: Jnt_neck
+    100080: Jnt_plume_01
+    100082: Jnt_plume_02
+    100084: Jnt_plume_03
+    100086: Jnt_plume_04
+    100088: Jnt_shoulder_L
+    100090: Jnt_shoulder_R
+    100092: Jnt_spine_01
+    100094: Jnt_spine_02
+    100096: Jnt_Thumb_L_1
+    100098: Jnt_Thumb_L_2
+    100100: Jnt_Thumb_L_3
+    100102: Jnt_Thumb_R_1
+    100104: Jnt_Thumb_R_2
+    100106: Jnt_Thumb_R_3
+    100108: Jnt_wrist_L
+    100110: Jnt_wrist_R
+    400000: //RootNode
+    400002: Ctrl_Hand_L
+    400004: Ctrl_Hand_R
+    400006: Ctrl_Head
+    400008: Ctrl_Plume_1
+    400010: Ctrl_Plume_2
+    400012: Ctrl_Plume_3
+    400014: Ctrl_Plume_4
+    400016: Ctrl_Sholder_L
+    400018: Ctrl_Sholder_R
+    400020: Ctrl_Spine_01
+    400022: Ctrl_Spine_02
+    400024: Ctrl_Spine_03
+    400026: Ctrl_Spine_04
+    400028: Grp_Hand_L
+    400030: Grp_Hand_R
+    400032: Grp_Head
+    400034: Grp_Plume_1
+    400036: Grp_Plume_2
+    400038: Grp_Plume_3
+    400040: Grp_Plume_4
+    400042: Grp_Sholder_L
+    400044: Grp_Sholder_R
+    400046: Grp_Spine_01
+    400048: Grp_Spine_02
+    400050: Grp_Spine_03
+    400052: Grp_Spine_04
+    400054: Jnt_clav_L
+    400056: Jnt_clav_R
+    400058: Jnt_elbow_L
+    400060: Jnt_elbow_R
+    400062: Jnt_fingers_L_1
+    400064: Jnt_fingers_L_2
+    400066: Jnt_fingers_L_3
+    400068: Jnt_fingers_R_1
+    400070: Jnt_fingers_R_2
+    400072: Jnt_fingers_R_3
+    400074: Jnt_head
+    400076: Jnt_Hip
+    400078: Jnt_neck
+    400080: Jnt_plume_01
+    400082: Jnt_plume_02
+    400084: Jnt_plume_03
+    400086: Jnt_plume_04
+    400088: Jnt_shoulder_L
+    400090: Jnt_shoulder_R
+    400092: Jnt_spine_01
+    400094: Jnt_spine_02
+    400096: Jnt_Thumb_L_1
+    400098: Jnt_Thumb_L_2
+    400100: Jnt_Thumb_L_3
+    400102: Jnt_Thumb_R_1
+    400104: Jnt_Thumb_R_2
+    400106: Jnt_Thumb_R_3
+    400108: Jnt_wrist_L
+    400110: Jnt_wrist_R
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

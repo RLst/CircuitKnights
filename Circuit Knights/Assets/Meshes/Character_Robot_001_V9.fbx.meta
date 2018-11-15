@@ -1,0 +1,318 @@
+fileFormatVersion: 2
+guid: 136f85967a5e7d247aaaf054c5a8c9e0
+timeCreated: 1542243923
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Character_Robot_Arm_Left
+    100004: Character_Robot_Arm_Left 1
+    100006: Character_Robot_Arm_Right
+    100008: Character_Robot_Arm_Right 1
+    100010: Character_Robot_Group
+    100012: Character_Robot_Group1
+    100014: Character_Robot_Head
+    100016: Character_Robot_Head 1
+    100018: Character_Robot_Hips
+    100020: Character_Robot_Hips 1
+    100022: Character_Robot_Torso
+    100024: Character_Robot_Torso 1
+    100026: Ctrl_Hand_L
+    100028: Ctrl_Hand_R
+    100030: Ctrl_Head
+    100032: Ctrl_Plume_1
+    100034: Ctrl_Sholder_L
+    100036: Ctrl_Sholder_R
+    100038: Ctrl_Spine_01
+    100040: Ctrl_Spine_02
+    100042: Ctrl_Spine_03
+    100044: Ctrl_Spine_04
+    100046: Grp_Hand_L
+    100048: Grp_Hand_R
+    100050: Grp_Head
+    100052: Grp_Plume_1
+    100054: Grp_Sholder_L
+    100056: Grp_Sholder_R
+    100058: Grp_Spine_01
+    100060: Grp_Spine_02
+    100062: Grp_Spine_03
+    100064: Grp_Spine_04
+    100066: Jnt_clav_L
+    100068: Jnt_clav_R
+    100070: Jnt_elbow_L
+    100072: Jnt_elbow_R
+    100074: Jnt_fingers_L_1
+    100076: Jnt_fingers_L_2
+    100078: Jnt_fingers_L_3
+    100080: Jnt_fingers_R_1
+    100082: Jnt_fingers_R_2
+    100084: Jnt_fingers_R_3
+    100086: Jnt_head
+    100088: Jnt_Hip
+    100090: Jnt_neck
+    100092: Jnt_plume_01
+    100094: Jnt_plume_02
+    100096: Jnt_plume_03
+    100098: Jnt_plume_04
+    100100: Jnt_shoulder_L
+    100102: Jnt_shoulder_R
+    100104: Jnt_spine_01
+    100106: Jnt_spine_02
+    100108: Jnt_Thumb_L_1
+    100110: Jnt_Thumb_L_2
+    100112: Jnt_Thumb_L_3
+    100114: Jnt_Thumb_R_1
+    100116: Jnt_Thumb_R_2
+    100118: Jnt_Thumb_R_3
+    100120: Jnt_wrist_L
+    100122: Jnt_wrist_R
+    100124: polySurface144
+    100126: polySurface144 1
+    100128: polySurface145
+    100130: polySurface145 1
+    100132: polySurface146
+    100134: polySurface146 1
+    100136: polySurface147
+    100138: polySurface147 1
+    100140: polySurface148
+    100142: polySurface148 1
+    100144: polySurface149
+    100146: polySurface149 1
+    100148: polySurface150
+    100150: polySurface150 1
+    100152: polySurface151
+    100154: polySurface151 1
+    100156: polySurface152
+    100158: polySurface152 1
+    100160: transform1
+    400000: //RootNode
+    400002: Character_Robot_Arm_Left
+    400004: Character_Robot_Arm_Left 1
+    400006: Character_Robot_Arm_Right
+    400008: Character_Robot_Arm_Right 1
+    400010: Character_Robot_Group
+    400012: Character_Robot_Group1
+    400014: Character_Robot_Head
+    400016: Character_Robot_Head 1
+    400018: Character_Robot_Hips
+    400020: Character_Robot_Hips 1
+    400022: Character_Robot_Torso
+    400024: Character_Robot_Torso 1
+    400026: Ctrl_Hand_L
+    400028: Ctrl_Hand_R
+    400030: Ctrl_Head
+    400032: Ctrl_Plume_1
+    400034: Ctrl_Sholder_L
+    400036: Ctrl_Sholder_R
+    400038: Ctrl_Spine_01
+    400040: Ctrl_Spine_02
+    400042: Ctrl_Spine_03
+    400044: Ctrl_Spine_04
+    400046: Grp_Hand_L
+    400048: Grp_Hand_R
+    400050: Grp_Head
+    400052: Grp_Plume_1
+    400054: Grp_Sholder_L
+    400056: Grp_Sholder_R
+    400058: Grp_Spine_01
+    400060: Grp_Spine_02
+    400062: Grp_Spine_03
+    400064: Grp_Spine_04
+    400066: Jnt_clav_L
+    400068: Jnt_clav_R
+    400070: Jnt_elbow_L
+    400072: Jnt_elbow_R
+    400074: Jnt_fingers_L_1
+    400076: Jnt_fingers_L_2
+    400078: Jnt_fingers_L_3
+    400080: Jnt_fingers_R_1
+    400082: Jnt_fingers_R_2
+    400084: Jnt_fingers_R_3
+    400086: Jnt_head
+    400088: Jnt_Hip
+    400090: Jnt_neck
+    400092: Jnt_plume_01
+    400094: Jnt_plume_02
+    400096: Jnt_plume_03
+    400098: Jnt_plume_04
+    400100: Jnt_shoulder_L
+    400102: Jnt_shoulder_R
+    400104: Jnt_spine_01
+    400106: Jnt_spine_02
+    400108: Jnt_Thumb_L_1
+    400110: Jnt_Thumb_L_2
+    400112: Jnt_Thumb_L_3
+    400114: Jnt_Thumb_R_1
+    400116: Jnt_Thumb_R_2
+    400118: Jnt_Thumb_R_3
+    400120: Jnt_wrist_L
+    400122: Jnt_wrist_R
+    400124: polySurface144
+    400126: polySurface144 1
+    400128: polySurface145
+    400130: polySurface145 1
+    400132: polySurface146
+    400134: polySurface146 1
+    400136: polySurface147
+    400138: polySurface147 1
+    400140: polySurface148
+    400142: polySurface148 1
+    400144: polySurface149
+    400146: polySurface149 1
+    400148: polySurface150
+    400150: polySurface150 1
+    400152: polySurface151
+    400154: polySurface151 1
+    400156: polySurface152
+    400158: polySurface152 1
+    400160: transform1
+    2100000: lambert3
+    2100002: lambert2
+    2300000: Character_Robot_Arm_Left 1
+    2300002: Character_Robot_Arm_Right 1
+    2300004: Character_Robot_Head 1
+    2300006: Character_Robot_Hips 1
+    2300008: polySurface144 1
+    2300010: polySurface145 1
+    2300012: polySurface146 1
+    2300014: polySurface147 1
+    2300016: polySurface148 1
+    2300018: polySurface149 1
+    2300020: polySurface150 1
+    2300022: polySurface151 1
+    2300024: polySurface152 1
+    3300000: Character_Robot_Arm_Left 1
+    3300002: Character_Robot_Arm_Right 1
+    3300004: Character_Robot_Head 1
+    3300006: Character_Robot_Hips 1
+    3300008: polySurface144 1
+    3300010: polySurface145 1
+    3300012: polySurface146 1
+    3300014: polySurface147 1
+    3300016: polySurface148 1
+    3300018: polySurface149 1
+    3300020: polySurface150 1
+    3300022: polySurface151 1
+    3300024: polySurface152 1
+    4300000: Character_Robot_Head
+    4300002: polySurface144
+    4300004: polySurface145
+    4300006: polySurface146
+    4300008: polySurface147
+    4300010: polySurface148
+    4300012: polySurface149
+    4300014: polySurface150
+    4300016: polySurface151
+    4300018: polySurface152
+    4300020: Character_Robot_Hips
+    4300022: Character_Robot_Arm_Right
+    4300024: Character_Robot_Arm_Left
+    4300026: Character_Robot_Head
+    4300028: polySurface144
+    4300030: polySurface145
+    4300032: polySurface146
+    4300034: polySurface147
+    4300036: polySurface148
+    4300038: polySurface149
+    4300040: polySurface150
+    4300042: polySurface151
+    4300044: polySurface152
+    4300046: Character_Robot_Hips
+    4300048: Character_Robot_Arm_Right
+    4300050: Character_Robot_Arm_Left
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Character_Robot_Arm_Left
+    13700002: Character_Robot_Arm_Right
+    13700004: Character_Robot_Head
+    13700006: Character_Robot_Hips
+    13700008: polySurface144
+    13700010: polySurface145
+    13700012: polySurface146
+    13700014: polySurface147
+    13700016: polySurface148
+    13700018: polySurface149
+    13700020: polySurface150
+    13700022: polySurface151
+    13700024: polySurface152
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
