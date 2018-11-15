@@ -2,13 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using CircuitKnights; 
-public class xResetTrigger : MonoBehaviour {
+using CircuitKnights;
+using XboxCtrlrInput;
 
+public class xResetTrigger : MonoBehaviour {
+    void Update()
+    {
+        if (XCI.GetButtonDown(XboxButton.Back))
+        {
+			ReloadScene();
+		}
+
+    }
 
     private void OnTriggerEnter(Collider other)
-    {
-        SceneManager.LoadScene("Main");
-        MainMenuButton.Rematch = true;
-    }
+	{
+		ReloadScene();
+	}
+
+	private static void ReloadScene()
+	{
+		SceneManager.LoadScene("Tony Game2");
+	}
 }
