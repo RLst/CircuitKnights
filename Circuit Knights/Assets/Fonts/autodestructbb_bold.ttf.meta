@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 81008400479932d4daceff95459b122a
-timeCreated: 1542248082
+guid: cee79a7385369154b9ca8b2c65c61d5e
+timeCreated: 1542243519
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -13,7 +13,8 @@ TrueTypeFontImporter:
   fontName: Autodestruct BB
   fontNames:
   - Autodestruct BB
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: aa61a32b41a4d9f4a9af4d6f54804272, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
