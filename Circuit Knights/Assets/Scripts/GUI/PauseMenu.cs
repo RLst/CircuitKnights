@@ -19,9 +19,11 @@ namespace CircuitKnights
 
         [SerializeField] string LoadMainScene = "Jack's Main";
 
-        //[SerializeField] Button ResumeButton;
+        [SerializeField] Button ResumeButton;
 
-        //[SerializeField] Button MenuButton;
+        [SerializeField] Button RestartButton;
+
+        [SerializeField] Button MenuButton;
 
         bool isPaused = false;
 
@@ -30,8 +32,9 @@ namespace CircuitKnights
         void Start()
         {
             SlowMotionController = GameObject.FindObjectOfType<SlowMotionController>();
-            //ResumeButton.onClick.AddListener(ResumeGame);
-            //MenuButton.onClick.AddListener(ExitGame);
+            ResumeButton.onClick.AddListener(ResumeGame);
+            RestartButton.onClick.AddListener(RestartGame);
+            MenuButton.onClick.AddListener(ExitGame);
         }
         void Update()
         {        
@@ -50,16 +53,16 @@ namespace CircuitKnights
             //Pause the game
             if (Time.timeScale >= 1f)
             {
+                pauseMenu.SetActive(true);          //GUI
                 Time.timeScale = 0f;
                 SlowMotionController.enabled = false;     //Prevent time from slowly reverted back to normal
-                pauseMenu.SetActive(true);          //GUI
             }
             //Unpause
             else if (Time.timeScale <= 0f)
             {
+                pauseMenu.SetActive(false);         //Hide pause menu
                 Time.timeScale = 1f;                //Unpause time
                 SlowMotionController.enabled = true;      //Reenabled slow motion effects
-                pauseMenu.SetActive(false);         //Hide pause menu
             }
         }
 
@@ -71,6 +74,7 @@ namespace CircuitKnights
         public void RestartGame()
         {
             SceneManager.LoadScene(LoadMainScene);
+            Time.timeScale = 1f;
         }
 
         public void ExitGame()
