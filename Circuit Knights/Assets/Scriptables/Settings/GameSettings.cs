@@ -42,19 +42,7 @@ namespace CircuitKnights
 		public PlayerData PlayerOne;
 		public PlayerData PlayerTwo;
 
-		// public static Player[] players;
-		// public static Player[] Players { get { return players; } }
-		//private static Player[] players;	//Index 0 is Player 1, index 1 is Player 2
-		// public static Player playerOne;
-		// public static Player PlayerOne {
-		// 	get { return playerOne; }
-		// 	private set { playerOne = value; }
-		// }
-		// [SerializeField] Player playerTwo;
-		// public static Player PlayerTwo {
-		// 	get { return playerTwo; }
-		// 	private set { playerTwo = value; }
-		// }
+		public PlayerData[] Players { get; set; }
 	#endregion
 
 	#region Game Settings
@@ -64,24 +52,30 @@ namespace CircuitKnights
 		public int NoOfPasses { get { return xNoOfPasses; } }
 		public int Round { get; set; }
 		public int NoOfRounds { get { return noOfRounds; } }
+		public bool isMatchOver { get; private set; }
+
+
 		[SerializeField] BoolVariable gamepadVibrationOn;
 	#endregion
 
-
 		////DIRTY
-        internal bool isMatchOver()
-        {
-			//Check if any or both players are dead and respond accordingly
-			if (PlayerOne.isDead)
-			{
-				return true;
-			}
-			else if (PlayerTwo.isDead)
-			{
-				return true;
-			}
-			return false;
-        }
+		internal void SetMatchOver(bool isMatchOver)
+		{
+			this.isMatchOver = isMatchOver;
+		}
+        // internal bool isMatchOver()
+        // {
+		// 	//Check if any or both players are dead and respond accordingly
+		// 	if (PlayerOne.isDead)
+		// 	{
+		// 		return true;
+		// 	}
+		// 	else if (PlayerTwo.isDead)
+		// 	{
+		// 		return true;
+		// 	}
+		// 	return false;
+        // }
 
 		////DIRTY
 		internal bool isDraw()
@@ -100,6 +94,7 @@ namespace CircuitKnights
 
 		public void Reset()
 		{
+			isMatchOver = false;
 			Pass = 0;
 			Round = 0;
 		}

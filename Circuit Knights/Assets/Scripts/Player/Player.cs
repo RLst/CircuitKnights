@@ -22,7 +22,7 @@ namespace CircuitKnights.Objects
 		[SerializeField] LanceData lanceData;
 		[SerializeField] ShieldData shieldData;
         [SerializeField] HorseData horseData;
-        
+
         // //Test - Weapon switching
         // [SerializeField] List<Equipment> lances;
         // [SerializeField] List<Equipment> shields;
@@ -79,15 +79,15 @@ namespace CircuitKnights.Objects
             playerData.LanceData = this.lanceData;
             playerData.ShieldData = this.shieldData;
             playerData.HorseData = this.horseData;
-            
+
             playerData.Root = this.transform;
             playerData.Camera = this.camera;
 
             //Tricky bastard! Set both this and playerData
             playerData.PlayerMover = playerMover = this.GetComponent<PlayerMover>();
-            playerData.Animator = playerAnimator;
-            // playerData.Animator = animator = this.GetComponentInChildren<Animator>();
-            playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
+			playerData.Animator = playerAnimator;
+			// playerData.Animator = playerAnimator = this.GetComponentInChildren<Animator>();
+			playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
             playerData.IKLanceHolder = this.IKLanceHolder = GetComponentInChildren<PlayerIKHoldLance>();
             playerData.IKShieldHold = this.IKShieldHolder = GetComponentInChildren<PlayerIKHoldShield>();
             playerData.IKLook = this.IKLook = GetComponentInChildren<PlayerIKLook>();

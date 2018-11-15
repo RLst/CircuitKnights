@@ -50,17 +50,18 @@ namespace CircuitKnights
             if (other.collider == opponentData.LanceCollider)
             {
                 Debug.Log("Torso hit!");
-				
+
                 var RB = GetComponent<Rigidbody>();
                 var C = GetComponent<Collider>();
-                var oppRB = opponentData.LanceData.gameObject.GetComponentInChildren<Rigidbody>();
+                // var oppLanceRB = opponentData.LanceData.gameObject.GetComponentInChildren<Rigidbody>();
+				// Assert.IsNotNull(oppLanceRB, "Opponent lance not found!");
 
-                ///Take damage
-                TakeDamage(opponentData.LanceData.Attack - playerData.ShieldData.Defense);
+				///Take damage
+				TakeDamage(opponentData.LanceData.Attack - playerData.ShieldData.Defense);
 
-                ///Make player semi-ragdoll 
+                ///Make player semi-ragdoll
                 //Disable animator and kinematic?
-                playerData.Animator.enabled = false;
+                // playerData.Animator.enabled = false;
 
                 ///Apply force/impulse to player at point of contact
                 //Get opponent's lance direction vector
@@ -76,7 +77,7 @@ namespace CircuitKnights
                 RB.AddForceAtPosition(collisionDirection * forceMultiplier, collisionContact, forceMode);
 
                 ///Make opponents lance non-kinematic and apply upwards/outwards impulse
-                oppRB.isKinematic = false;
+                // oppLanceRB.isKinematic = false;
             }
         }
 
@@ -90,7 +91,7 @@ namespace CircuitKnights
 		public override void Death()
 		{
             Debug.Log("Torso dead!");
-			
+
             var RB = GetComponent<Rigidbody>();
             var C = GetComponent<Collider>();
 

@@ -57,7 +57,7 @@ namespace CircuitKnights
                 ///Take damage
                 TakeDamage(opponentData.LanceData.Attack - playerData.ShieldData.Defense);
 
-                ///Make player semi-ragdoll 
+                ///Make player semi-ragdoll
                 //Disable animator and kinematic?
                 playerData.Animator.enabled = false;
 
@@ -73,13 +73,11 @@ namespace CircuitKnights
 
                 //Add force to the shield which should chain reaction up the player
                 RB.AddForceAtPosition(collisionDirection * forceMultiplier, collisionContact, forceMode);
-                
+
                 ///Release opponent's lance
                 oppRB.isKinematic = false;
                 other.transform.SetParent(null);
                 opponentData.IKLanceHolder.enabled = false;
-
-                Debug.LogError("lanceDir: " + collisionDirection + ", linearForce: " + forceMultiplier + ", contactPoint: " + collisionContact);
             }
         }
 

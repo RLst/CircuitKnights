@@ -13,12 +13,12 @@ namespace CircuitKnights
 	public class ShieldController : MonoBehaviour
 	{
 		PlayerInput playerInput;
-
 		[SerializeField] ShieldData shield;
 		public float xDeadzone = 0.1f;
 
 		void Awake()
 		{
+			shield = GetComponentInParent<Player>().ShieldData;
 			playerInput = GetComponentInParent<PlayerInput>();
 		}
 

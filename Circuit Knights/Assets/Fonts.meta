@@ -1,7 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< .mine
+guid: 5f9665d0b5e8f7d438ce7cdcc589a721
+||||||| .r206
+guid: 4e4565dfbe24c444e9ef953d6ae6d51d
+=======
 guid: 2c526953199a4434a867e014988a294b
+>>>>>>> .r210
 folderAsset: yes
+<<<<<<< .mine
+timeCreated: 1542245459
+||||||| .r206
+timeCreated: 1542248081
+=======
 timeCreated: 1542244956
+>>>>>>> .r210
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

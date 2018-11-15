@@ -18,6 +18,12 @@ namespace CircuitKnights
 	{
 		[Multiline] [SerializeField] string description = "Controls the passes and rounds";
 
+		#region Player References
+		PlayerData playerOne;
+		PlayerData playerTwo;
+
+		#endregion
+
 		[Header("GUI")]
 		[SerializeField] Text roundText;
 		[SerializeField] Text centerText;
@@ -44,10 +50,12 @@ namespace CircuitKnights
 		[SerializeField] Transform[] endPoints;
 
 		[Header("Events")]
-		[SerializeField] GameEvent onEnablePlayerCameras;
-		[SerializeField] GameEvent onDisablePlayerCameras;
+		[SerializeField] GameEvent onEnablePlayerInput;
 		[SerializeField] GameEvent onEnablePlayerMovement;
+		[SerializeField] GameEvent onEnablePlayerCameras;
+		[SerializeField] GameEvent onDisablePlayerInput;
 		[SerializeField] GameEvent onDisablePlayerMovement;
+		[SerializeField] GameEvent onDisablePlayerCameras;
 
 		private bool roundIsRunning;
 
@@ -60,9 +68,11 @@ namespace CircuitKnights
 			Assert.IsNotNull(centerText);
 			Assert.IsNotNull(skipButton);
 
-			Assert.IsNotNull(onEnablePlayerCameras);
-			Assert.IsNotNull(onDisablePlayerCameras);
+			Assert.IsNotNull(onEnablePlayerInput);
 			Assert.IsNotNull(onEnablePlayerMovement);
+			Assert.IsNotNull(onEnablePlayerCameras);
+			Assert.IsNotNull(onDisablePlayerInput);
+			Assert.IsNotNull(onDisablePlayerCameras);
 			Assert.IsNotNull(onDisablePlayerMovement);
 
 			Assert.IsNotNull(StartOfMatchCamera);
@@ -76,7 +86,12 @@ namespace CircuitKnights
 			//General reset
 			GameSettings.Instance.Reset();
 
-			//Prevent players from being able to move
+			//Players
+			playerOne = GameSettings.Instance.PlayerOne;
+			playerTwo = GameSettings.Instance.PlayerTwo;
+
+			//Prevent players from being able to move but can still control the lance
+			onEnablePlayerInput.Raise();
 			onDisablePlayerMovement.Raise();
 
 			//Make sure the player
@@ -108,16 +123,20 @@ namespace CircuitKnights
 
 		private IEnumerator RoundGameLoop()
 		{
-			BeginNewRound();
 
-			yield return StartCoroutine(StartRound());
+			while (!GameSettings.Instance.isMatchOver)
+			{
+				BeginNewRound();
 
-			yield return StartCoroutine(PlayRound());
+				yield return StartCoroutine(StartRound());
 
-			yield return StartCoroutine(EndRound());
+				yield return StartCoroutine(PlayRound());
+
+				yield return StartCoroutine(EndRound());
+			}
 
 			///Declare winner; Switch scenes based on results
-			if (GameSettings.Instance.isMatchOver())
+			if (GameSettings.Instance.isMatchOver)
 				SceneManager.LoadScene(2);     //Results screen scene
 			else
 				SceneManager.LoadScene(1, LoadSceneMode.Single);    //Main game scene
@@ -247,39 +266,44 @@ namespace CircuitKnights
 
 			//Start the round!
 			onEnablePlayerMovement.Raise();
+			onEnablePlayerInput.Raise();
 
-			//Caches
-			var p1 = GameSettings.Instance.PlayerOne;
-			var p2 = GameSettings.Instance.PlayerTwo;
 
-			//Brainstorms: roundNotFinished, roundIsRunning, roundIsNotFinished, roundIsPlaying, playingRound
+			//// MAIN GAME LOOP ///
 			roundIsRunning = true;
 			while (roundIsRunning)
 			{
-				//Gameplay
-
 				////When does a round/pass end?
-				/// * When player's have passed each other ie. they're no longer facing each other (vector3.dot < 0)
+				// * When player's have passed each other ie. they're no longer facing each other (vector3.dot < 0)
 				//[This also covers the case where if the players have made impact or not]
-				//Get players facing
-				// var p1Facing = p1.Root.TransformDirection(Vector3.forward);
-				// var directionToP2 = Vector3.Normalize(p2.Root.position - p1.Root.position);
-				// if (Vector3.Dot(p1Facing, directionToP2) < 0f)
-				// {
-				// 	// Debug.Log("p1Facing: " + p1Facing);
-				// 	// Debug.Log("Dot product: " + Vector3.Dot(p1Facing, directionToP2));
-				// 	EndCurrentRound();
-				// 	break;
-				// }
+				CheckPlayersHavePassed();
 
-				/// * When a player has reached the end of the track
+				// * When a player has reached the end of the track
 				//If the players have TriggerEnter'd the end of track colliders
 				//Declare round is finished
 				//(Triggered from a the reset trigger outside via a GameEvent)
+				if (hasPlayersHaveReachedTheEnds(1f))
+					EndCurrentRound();
 
 				yield return null;
 			}
 		}
+
+		private void CheckPlayersHavePassed()
+		{
+			var p1 = GameSettings.Instance.PlayerOne;
+			var p2 = GameSettings.Instance.PlayerTwo;
+			var p1Facing = p1.Root.TransformDirection(Vector3.forward);
+			var directionToP2 = Vector3.Normalize(p2.Root.position - p1.Root.position);
+			if (Vector3.Dot(p1Facing, directionToP2) < 0f)
+			{
+				EndCurrentRound();
+				// break;
+				// Debug.Log("p1Facing: " + p1Facing);
+				// Debug.Log("Dot product: " + Vector3.Dot(p1Facing, directionToP2));
+			}
+		}
+
 		IEnumerator ShowGoText()
 		{
 			//Initialise
@@ -306,46 +330,126 @@ namespace CircuitKnights
 		////
 		private IEnumerator EndRound()
 		{
-			onDisablePlayerMovement.Raise();
-
 			CheckAndSetPlayersState();
 
-			////If atleast one player is still alive
-            if (!GameSettings.Instance.isMatchOver())
+			///If the match is not over yet
+            if (!GameSettings.Instance.isMatchOver)
             {
-                onDisablePlayerMovement.Raise();
-
                 //Move players to their end points using PlayerMover.SetDesiredPosition();
-                PositionPlayersAtStartPoints();
+				onDisablePlayerInput.Raise();
+				MovePlayersToEndPoints();
 
-                //Disable player input (if applicable) and automatically move player to end points
+				//Move player around the loop ...once they have reached the ends
+				// yield return new WaitUntil(() => PlayersHaveReachedTheEnds(1f));
+				// yield return new WaitWhile(() => PlayersHaveReachedTheEnds(1f));
+				// Debug.Log("Players have reached the end");
 
+
+				while (true)
+				{
+					Debug.Log("PlayersHaveReachedTheEnds: " + hasPlayersHaveReachedTheEnds(1f));
+					// Debug.Log("Infinity loop in an IEnumerator!");
+					yield return null;
+				}
+
+							// while (!hasPlayersHaveReachedTheEnds(1f))
+							// {
+							// 	Debug.LogError("Players have not reached the ends");
+							// 	RotatePlayersAroundEndsOfTrack();
+							// 	yield return null;
+							// }
+
+
+                //Disable player control
 
                 //STRECTH GOAL: If player's speed is above a certain number then ragdoll the player off the horse
                 //(because he's obviously got too much momentum)
 
                 //Show some kind of results or weapon select screen from the time of impact to the when the players both reached the new start positions
 
-                //
-
                 //Once players have reached end points then "follow" the track around to the new start positions
                 //Get the midpoint between the start and end, set this as the "pivot" point and rotate around it while
                 //Stop player once they've reached the new start positions
 
                 ////CONTINUE ONTO RESET AND START ROUND
+
             }
 			//Else if there are still rounds left to play out
-
-
-
+			else if (false)
+			{
+				Debug.LogError("There are still rounds left to play out!");
+			}
 			//otherwise finish match and  sequences
-			//Slow motion cam looking at loser ragdolling off the horse
+			else
+			{
+				Debug.LogError("Match Finished!");
+				//Slow motion cam looking at loser ragdolling off the horse
+			}
 
 
 			//Start countdown again...
-			//^^^^ maybe some of these should be implemented in EndRound()
+			//^^^^ maybe some of these should be implemented in EndRound()\
+			// yield return null;
+		}
 
-			throw new NotImplementedException();
+		void RotatePlayersAroundEndsOfTrack()
+		{
+			////Players follows the track around to the next side
+
+			//Find the radius centres of each arch end of the track (average)
+		}
+
+		private bool hasPlayersHaveReachedTheEnds(float tolerance)
+		{
+			//Returns true if both players have reached their respective ends
+
+			// var p1pos = GameSettings.Instance.PlayerOne.gameObject.transform.position;
+			// var p2pos = GameSettings.Instance.PlayerTwo.gameObject.transform.position;
+
+			//Odd numbered rounds
+			if (GameSettings.Instance.Round % 2 == 1)
+			{
+				//If both players have reached the end
+				if (Vector3.Distance(playerOne.Root.position, endPoints[0].position) <= tolerance &&
+					Vector3.Distance(playerTwo.Root.position, endPoints[1].position) <= tolerance)
+				{
+					return true;
+				}
+			}
+			//Even numbered round
+			else
+			{
+				if (Vector3.Distance(playerOne.Root.position, endPoints[1].position) <= tolerance &&
+					Vector3.Distance(playerTwo.Root.position, endPoints[0].position) <= tolerance)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private void MovePlayersToEndPoints()
+		{
+			Debug.Log("Players moving to end points");
+			var p1 = GameSettings.Instance.PlayerOne;
+			var p2 = GameSettings.Instance.PlayerTwo;
+
+			//Odd numbered round
+			if (GameSettings.Instance.Round % 2 == 1)
+			{
+				p1.SetPositionAndRotation(endPoints[0].position, endPoints[0].rotation);
+				p2.SetPositionAndRotation(endPoints[1].position, endPoints[1].rotation);
+				// p1.PlayerMover.SetDesiredPosition(endPoints[0].position);
+				// p2.PlayerMover.SetDesiredPosition(endPoints[1].position);
+			}
+			//Even numbered round
+			else
+			{
+				p1.SetPositionAndRotation(endPoints[1].position, endPoints[1].rotation);
+				p2.SetPositionAndRotation(endPoints[0].position, endPoints[0].rotation);
+				// p1.PlayerMover.SetDesiredPosition(endPoints[1].position);
+				// p2.PlayerMover.SetDesiredPosition(endPoints[0].position);
+			}
 		}
 
 		private static void CheckAndSetPlayersState()
@@ -360,6 +464,7 @@ namespace CircuitKnights
 			if (p1.isDead)
 			{
 				onPlayerDied(p1.No);
+				GameSettings.Instance.SetMatchOver(true);
 			}
 
 			if (p1.isHeadless)
@@ -375,10 +480,13 @@ namespace CircuitKnights
 				onPlayerShieldDestroyed(p1.No);
 
 			//Player TWO
-			if (p2.isHeadless)
-				onPlayerDied(p2.No);
-
 			if (p2.isDead)
+			{
+				onPlayerDied(p2.No);
+				GameSettings.Instance.SetMatchOver(true);
+			}
+
+			if (p2.isHeadless)
 				onPlayerHeadKnockedOff(p2.No);
 
 			if (p2.isLeftArmDestroyed)
@@ -411,3 +519,49 @@ namespace CircuitKnights
 // var isOdd = GameSettings.Instance.Round % 2;
 // GameSettings.Players[isOdd % 2].SetPosition(startPoints[isOdd % 2].position);
 // GameSettings.Players[isOdd].SetPosition(startPoints[isOdd].position);
+
+/*
+Sequence of events
+Round = 0
+
+If it’s before the round has begun(Round = 0) then run match cutscene
+
+BeginNewRound
+	Increment the round number
+
+StartRound
+	PositionPlayersAtStartPoints
+	DisablePlayerCameras
+	DisablePlayerMovement
+
+	If its the first round (Round = 1) then run round cutscene
+
+	Enable player cameras after the cutscene has ran
+
+	Start countdown
+
+PlayRound
+	Show the go text
+	enable player movement
+	enable player controls
+
+	while the round is running
+		check the players have passed
+			if so then end round
+
+
+EndRound
+	Check the status of the players
+		If one of them has died then set match to over
+
+	if the match is not over
+		move players to the end points
+
+		when they have reached the end point
+			loop around to the next starting points
+			break out and start a new round
+	else if the matc
+
+	else match is over
+
+*/

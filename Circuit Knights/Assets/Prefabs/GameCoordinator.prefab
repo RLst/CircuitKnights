@@ -50,7 +50,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4520950191440880}
   m_Layer: 0
-  m_Name: POI
+  m_Name: TrackPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 4786536834445168}
   - component: {fileID: 114608382598944966}
   - component: {fileID: 114959789055866006}
+  - component: {fileID: 114060429938647096}
   m_Layer: 0
   m_Name: GameCoordinator
   m_TagString: Untagged
@@ -185,6 +186,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4062731174550644}
+  - component: {fileID: 114585460421089728}
   m_Layer: 0
   m_Name: ResetTriggers
   m_TagString: Untagged
@@ -297,7 +299,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1215015301557094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -86.62, y: -2.3246212, z: 0.6171818}
+  m_LocalPosition: {x: -85.96, y: -2.3246212, z: 0.6171818}
   m_LocalScale: {x: 1, y: 15.277867, z: 25.52797}
   m_Children: []
   m_Father: {fileID: 4062731174550644}
@@ -452,7 +454,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1562462012939214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 109.37, y: -2.3246212, z: 0.6171818}
+  m_LocalPosition: {x: 112.93, y: -2.3246212, z: 0.6171818}
   m_LocalScale: {x: 1, y: 15.277867, z: 25.52797}
   m_Children: []
   m_Father: {fileID: 4062731174550644}
@@ -599,6 +601,34 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114060429938647096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1608523830294094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54bbf9decbc65d48965d7e8d6d43dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a90443a5824e94f2d99c2fb0a2fb4979, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114608382598944966}
+        m_MethodName: MovePlayersToEndPoints
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114161782969747614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -743,6 +773,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Skip >>
+--- !u!114 &114585460421089728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1640739787203376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85e970f8f04b43ed8765f6b0f85df01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114595180313996452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -798,13 +839,17 @@ MonoBehaviour:
   endPoints:
   - {fileID: 4120656514935326}
   - {fileID: 4048766960969704}
-  onEnablePlayerCameras: {fileID: 11400000, guid: fc4d40a6dc6cf7d4e9c087ad7c9a483d,
-    type: 2}
-  onDisablePlayerCameras: {fileID: 11400000, guid: 49d6a9db0a489b54d9844609c21d2e45,
+  onEnablePlayerInput: {fileID: 11400000, guid: 53b3000366f53a74e868d43fcd64a389,
     type: 2}
   onEnablePlayerMovement: {fileID: 11400000, guid: 92b36a5b7b1b7c541ab31658fde53f2c,
     type: 2}
+  onEnablePlayerCameras: {fileID: 11400000, guid: fc4d40a6dc6cf7d4e9c087ad7c9a483d,
+    type: 2}
+  onDisablePlayerInput: {fileID: 11400000, guid: eafd27c7858562a42ad3ac4293471cb6,
+    type: 2}
   onDisablePlayerMovement: {fileID: 11400000, guid: 50446fb7c8c4fed4c899a557b68022d5,
+    type: 2}
+  onDisablePlayerCameras: {fileID: 11400000, guid: 49d6a9db0a489b54d9844609c21d2e45,
     type: 2}
 --- !u!114 &114917513606216574
 MonoBehaviour:

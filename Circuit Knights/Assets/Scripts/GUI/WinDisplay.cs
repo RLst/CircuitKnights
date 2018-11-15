@@ -1,6 +1,6 @@
 ﻿using CircuitKnights;
 using UnityEngine;
-
+using CircuitKnights.Objects;
 
 //Brent D'Auria
 

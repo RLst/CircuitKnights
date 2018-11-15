@@ -13,15 +13,11 @@ namespace CircuitKnights.Objects
 	public class PlayerData : ObjectData
 	{
 		[TextArea][SerializeField] string description =
-			"Holds almost all data to do with a player.";
+			"Inject into Player.cs. Holds almost all data to do with a player.";
 
     #region Cache
         //[These could also be arrays ie. be able to change lances and shields]
 		public Transform Root { get; set; }
-		public Transform Head { get; set; }
-		public Transform Torso { get; set; }
-		public Transform LeftArm { get; set; }
-		public Transform RightArm { get; set; }
 
 		public Camera Camera { get; set; }
         public HorseData HorseData { get; set; }
@@ -45,10 +41,6 @@ namespace CircuitKnights.Objects
 		public PlayerIKHoldLance IKLanceHolder { get; set; }
 		public PlayerIKHoldShield IKShieldHold { get; set; }
 		public PlayerIKLook IKLook { get; set; }
-	#endregion
-
-        #region Points Of Interest
-        Vector3Variable lookAtTarget;
 	#endregion
 
 	#region Player Numbers
@@ -143,8 +135,9 @@ namespace CircuitKnights.Objects
 		// }
         public void SetPositionAndRotation(Vector3 position, Quaternion rotation)
 		{
-			PlayerMover.SetDesiredPosition (position);
-            //Root.transform.rotation = rotation;
+			PlayerMover.SetDesiredPosition(position);
+			// Root.transform.position = position;
+            Root.transform.rotation = rotation;
         }
 
         public void EnableMovement() {

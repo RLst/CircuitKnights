@@ -1,6 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< .mine
+guid: 2edd212a184371f40afddc14c45d3ae2
+timeCreated: 1542245460
+||||||| .r206
+guid: dd0bc181f2867ae4ca695a9f71adbd1e
+timeCreated: 1542248082
+=======
 guid: aa61a32b41a4d9f4a9af4d6f54804272
 timeCreated: 1542243519
+>>>>>>> .r210
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}

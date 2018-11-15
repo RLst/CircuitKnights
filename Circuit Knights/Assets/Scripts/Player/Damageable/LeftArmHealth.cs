@@ -59,6 +59,10 @@ namespace CircuitKnights
 			transform.SetParent(null);
 
             //Stickman
+            foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+            {
+                mesh.enabled = false;
+            }
             GetComponent<Rigidbody>().isKinematic = false;
             var newKnockedOff = Instantiate(knockedOffPrefab, transform.position, transform.rotation);
             Destroy(newKnockedOff, 3f);
