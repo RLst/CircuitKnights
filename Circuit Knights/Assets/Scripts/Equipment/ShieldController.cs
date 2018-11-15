@@ -48,6 +48,9 @@ namespace CircuitKnights
 
 		private void MoveShield()
 		{
+
+            Debug.Log("HERE " + playerInput.ShieldAxisX);
+
 			var offset = Vector3.zero;
 			var angleOffset = Vector3.zero;
 

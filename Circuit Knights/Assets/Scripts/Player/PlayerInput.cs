@@ -34,7 +34,7 @@ namespace CircuitKnights
         #endregion
 
 
-        void Start()
+        public void Start()
         {
             //// HOPEFULLY GetComponentInChildren also finds component in the same object too
             playerData = GetComponentInChildren<Player>().Data;
