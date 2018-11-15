@@ -14,13 +14,14 @@ MonoBehaviour:
   description: The player's lance
   mass: 20
   length: 3.3
-  gravityFactor: 300
   dragFactor: 1.05
+  gravityFactor: 300
   lerpFactor: 0.2
   pitchTorque: 50000
   yawTorque: 50000
+  attack: 20
   clamped: 1
-  startingPitchAngle: -86.36
-  startingYawAngle: -40
-  PitchRange: 90
-  YawRange: 60
+  startingPitchAngle: -25
+  startingYawAngle: -32
+  PitchRange: 45
+  YawRange: 40
