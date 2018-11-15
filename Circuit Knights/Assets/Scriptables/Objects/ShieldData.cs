@@ -11,7 +11,7 @@ namespace CircuitKnights.Objects
     public class ShieldData : ObjectData
     {
         [TextArea][SerializeField] string description = 
-            "Blocks the lance attacks. Has hit points. Will destroy after losing all of its ";
+            "Holds shield data. Defense is how much of the lance's attack get's taken off.";
         [Tooltip("Lower is smoother")][Range(0f, 1f)][SerializeField] float smoothness = 0.25f;
         [SerializeField] float mass = 10f;
 
@@ -19,21 +19,32 @@ namespace CircuitKnights.Objects
         [SerializeField] float maxHP = 100;
         [SerializeField] float defense = 10f;
         public float Defense { get { return defense; } }
-
-        [Header("Offsets")]
-        [SerializeField] Vector3 restingOffset;
-        [SerializeField] Vector3 restingAngOffset;
-        [SerializeField] Vector3 blockingOffset;
-        [SerializeField] Vector3 blockingAngOffset;
-
-
 		public float HP { get; set; }
         public bool IsDead { get; private set; }
         public float tValue { get { return smoothness; } }
-        public Vector3 RestingOffset { get; private set; }
-        public Vector3 RestingAngOffset { get; private set; }
-        public Vector3 BlockingOffset { get { return blockingOffset; } }
-        public Vector3 BlockingAngOffset { get { return blockingAngOffset; } }
+
+
+        [Header("Offsets and Angle Factors")]
+        [SerializeField] Vector3 centreOffset;
+        [SerializeField] Vector3 centreAngFactor;
+        [SerializeField] Vector3 blockOffset;
+        [SerializeField] float blockXAngFactor;
+        [SerializeField] float blockYAngFactor;
+        public Vector3 CentreOffset { get { return centreOffset; } }
+        public Vector3 CentreAngFactor { get { return centreAngFactor; } }
+        public Vector3 BlockOffset { get { return blockOffset; } }
+        public float BlockingXAngleFactor { get { return blockXAngFactor; } }
+        public float BlockingYAngleFactor { get { return blockYAngFactor; } }
+
+        [Header("Block Weights")]
+        [Tooltip("How much input the shield can go left")][SerializeField] float blockLeftWeight = 1f;
+        [SerializeField] float blockRightWeight = 1f;
+        [SerializeField] float blockUpWeight = 0.75f;
+        [SerializeField] float blockDownWeight = 0.2f;
+        public float BlockLeftWeight { get { return blockLeftWeight; } }
+        public float BlockRightWeight { get { return blockRightWeight; } }
+        public float BlockUpWeight { get { return blockUpWeight; } }
+        public float BlockDownWeight { get { return blockDownWeight; } }
 
 
         void OnEnable()
@@ -51,10 +62,10 @@ namespace CircuitKnights.Objects
         {
             HP -= damage;
             if (HP <= 0)
-                Kill();
+                Death();
         }
 
-        public void Kill()
+        public void Death()
         {
             IsDead = true;
         }

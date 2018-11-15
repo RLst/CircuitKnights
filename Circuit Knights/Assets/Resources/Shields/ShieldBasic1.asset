@@ -17,7 +17,12 @@ MonoBehaviour:
   mass: 10
   maxHP: 100
   defense: 10
-  restingOffset: {x: 0, y: 0, z: 0}
-  restingAngOffset: {x: 0, y: 0, z: 0}
-  blockingOffset: {x: 0, y: 0, z: 0}
-  blockingAngOffset: {x: 0, y: 0, z: 0}
+  centreOffset: {x: 0, y: 0.44, z: 0.01}
+  centreAngFactor: {x: 0, y: 0, z: 0}
+  blockOffset: {x: 0.5, y: 1, z: -0.5}
+  blockXAngFactor: 0
+  blockYAngFactor: 0
+  blockLeftWeight: 1
+  blockRightWeight: 1
+  blockUpWeight: 1
+  blockDownWeight: 0
