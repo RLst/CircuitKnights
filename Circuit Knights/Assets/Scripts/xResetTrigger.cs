@@ -6,6 +6,7 @@ using CircuitKnights;
 using XboxCtrlrInput;
 
 public class xResetTrigger : MonoBehaviour {
+
     void Update()
     {
         if (XCI.GetButtonDown(XboxButton.Back))

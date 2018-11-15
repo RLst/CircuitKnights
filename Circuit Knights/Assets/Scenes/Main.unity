@@ -1105,8 +1105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Handles controller/keyboard input for the player
-  player: {fileID: 0}
-  horse: {fileID: 0}
   getKBInput: 0
   thrustKey: 305
 --- !u!114 &96726430
@@ -1121,8 +1119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Handles controller/keyboard input for the player
-  player: {fileID: 0}
-  horse: {fileID: 0}
   getKBInput: 0
   thrustKey: 305
 --- !u!114 &96726431
@@ -1136,8 +1132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8b21d2663879349adcd770e968aacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Controls the player's lance
-  lance: {fileID: 11400000, guid: 722c46d13ce023f41ac5ac29086449b6, type: 2}
 --- !u!114 &96726432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,8 +1144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Handles controller/keyboard input for the player
-  player: {fileID: 0}
-  horse: {fileID: 0}
   getKBInput: 0
   thrustKey: 305
 --- !u!114 &96726433
@@ -1165,8 +1157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea99ae37cb0b1ee4da00c36c229620ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: {fileID: 11400000, guid: baf422c2019bbe946953001347e0b14d, type: 2}
-  xDeadzone: 0.1
 --- !u!114 &96726434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,12 +1168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734805418de78674fb971ffc27fd734b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Handles controller/keyboard input for the horse
-  player: {fileID: 0}
-  horse: {fileID: 11400000, guid: ea7074b869137bf438a40f4b2e1d90ce, type: 2}
-  isUsingKB: 1
-  accelKey: 32
-  decelKey: 98
 --- !u!114 &96726435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3320,8 +3304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea99ae37cb0b1ee4da00c36c229620ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: {fileID: 11400000, guid: baf422c2019bbe946953001347e0b14d, type: 2}
-  xDeadzone: 0.1
 --- !u!114 &334007245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3334,8 +3316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Handles controller/keyboard input for the player
-  player: {fileID: 0}
-  horse: {fileID: 0}
   getKBInput: 0
   thrustKey: 305
 --- !u!1001 &341854000
@@ -5958,8 +5938,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8b21d2663879349adcd770e968aacd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Controls the player's lance
-  lance: {fileID: 11400000, guid: 722c46d13ce023f41ac5ac29086449b6, type: 2}
 --- !u!114 &627802162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5972,8 +5950,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Handles controller/keyboard input for the player
-  player: {fileID: 0}
-  horse: {fileID: 0}
   getKBInput: 0
   thrustKey: 305
 --- !u!4 &627916813 stripped
@@ -13615,66 +13591,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e15f9215494f0343bbf6de88a847190, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &972364300
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 813755616}
-    m_Modifications:
-    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 26.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -58.704937
-      objectReference: {fileID: 0}
-    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.94195014
-      objectReference: {fileID: 0}
-    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.33575293
-      objectReference: {fileID: 0}
-    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490416344853056, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_Name
-      value: Arena Stand (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 23332727919446124, guid: 8b76cc471ffa120429fba271a9fc0e36,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2a7efbe65ebdab24b98e49784c0b4273, type: 2}
-    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 140.763
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
-  m_IsPrefabParent: 0
 --- !u!4 &972364301 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36,
     type: 2}
-  m_PrefabInternal: {fileID: 972364300}
+  m_PrefabInternal: {fileID: 1472660937}
 --- !u!4 &985825087 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4048334389452740, guid: 6e0610cd1dc2eb345ba436295da16ead,
@@ -21806,6 +21727,52 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d3f01530ba3b7584889b21851c71fb8f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1472660937
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 813755616}
+    m_Modifications:
+    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 26.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -58.704937
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.94195014
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.33575293
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240158557746218, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490416344853056, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+      propertyPath: m_Name
+      value: Arena Stand (11)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8b76cc471ffa120429fba271a9fc0e36, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1473492258
 Prefab:
   m_ObjectHideFlags: 0
@@ -24711,8 +24678,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Handles controller/keyboard input for the player
-  player: {fileID: 0}
-  horse: {fileID: 0}
   getKBInput: 0
   thrustKey: 305
 --- !u!4 &1855880350 stripped
@@ -25128,12 +25093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734805418de78674fb971ffc27fd734b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Handles controller/keyboard input for the horse
-  player: {fileID: 0}
-  horse: {fileID: 11400000, guid: ea7074b869137bf438a40f4b2e1d90ce, type: 2}
-  isUsingKB: 1
-  accelKey: 32
-  decelKey: 98
 --- !u!1 &1886964463
 GameObject:
   m_ObjectHideFlags: 0

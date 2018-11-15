@@ -143,8 +143,8 @@ namespace CircuitKnights.Objects
 		// }
         public void SetPositionAndRotation(Vector3 position, Quaternion rotation)
 		{
-            Root.transform.position = position;
-            Root.transform.rotation = rotation;
+			PlayerMover.SetDesiredPosition (position);
+            //Root.transform.rotation = rotation;
         }
 
         public void EnableMovement() {
