@@ -9,16 +9,14 @@ using UnityEngine.SceneManagement;
 namespace CircuitKnights
 {
 
-
-
-  
     public class PlayMenu : MonoBehaviour
     {
-        public GameObject Off;
+
+        [SerializeField] string loadScene;
+
         public void PlayGame ()
-        {
-            Off.SetActive(false);
-            SceneManager.LoadScene("Brents_main");
+        { 
+            SceneManager.LoadScene(loadScene);
         }
        
     }

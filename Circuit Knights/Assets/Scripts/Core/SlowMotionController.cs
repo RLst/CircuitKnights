@@ -45,6 +45,12 @@ namespace CircuitKnights
             StartCoroutine(TransitionBackToRealtime(transitionOutDuration));
         }
 
+        public void SlowMotionOff()
+        {
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = 1f;
+        }
+
         private IEnumerator TransitionBackToRealtime(float transitionOutDuration)
         {
             Time.timeScale = slowdownFactor;
@@ -56,12 +62,6 @@ namespace CircuitKnights
             }
             // Time.timeScale = 1f;
             // yield return new WaitUntil(() => Time.timeScale >= 1f);
-        }
-
-        public void SlowMotionOff()
-        {
-            Time.timeScale = 1f;
-            Time.fixedDeltaTime = 1f;
         }
     }
 }
