@@ -15,8 +15,14 @@ public class LanceOnImpact : MonoBehaviour {
         if (collision.gameObject.tag == "Player1")
         {
             VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
+            Debug.Log("vibrating");
         }
-        
+        if (collision.gameObject.tag == "Player2")
+        {
+            VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+            Debug.Log("vibrating");
+        }
+
     }
 
     void VibrateOnCollision(XInputDotNetPure.PlayerIndex playerIndex)
