@@ -15,7 +15,9 @@ namespace CircuitKnights
 
         [SerializeField] GameObject pauseMenu;
 
-        [SerializeField] string LoadScene = "Jack's Main";
+        [SerializeField] string LoadMenuScene = "Jack's Menu";
+
+        [SerializeField] string LoadMainScene = "Jack's Main";
 
         //[SerializeField] Button ResumeButton;
 
@@ -23,11 +25,11 @@ namespace CircuitKnights
 
         bool isPaused = false;
 
-        TimeController timeController;     //Used to disable the time controller when paused
+        SlowMotionController SlowMotionController;     //Used to disable the time controller when paused
 
         void Start()
         {
-            timeController = GameObject.FindObjectOfType<TimeController>();
+            SlowMotionController = GameObject.FindObjectOfType<SlowMotionController>();
             //ResumeButton.onClick.AddListener(ResumeGame);
             //MenuButton.onClick.AddListener(ExitGame);
         }
@@ -43,20 +45,20 @@ namespace CircuitKnights
         }
 
 
-        private void TogglePause()
+        public void TogglePause()
         {
             //Pause the game
             if (Time.timeScale >= 1f)
             {
                 Time.timeScale = 0f;
-                timeController.enabled = false;     //Prevent time from slowly reverted back to normal
+                SlowMotionController.enabled = false;     //Prevent time from slowly reverted back to normal
                 pauseMenu.SetActive(true);          //GUI
             }
             //Unpause
             else if (Time.timeScale <= 0f)
             {
                 Time.timeScale = 1f;                //Unpause time
-                timeController.enabled = true;      //Reenabled slow motion effects
+                SlowMotionController.enabled = true;      //Reenabled slow motion effects
                 pauseMenu.SetActive(false);         //Hide pause menu
             }
         }
@@ -66,9 +68,14 @@ namespace CircuitKnights
             TogglePause();
         }
 
+        public void RestartGame()
+        {
+            SceneManager.LoadScene(LoadMainScene);
+        }
+
         public void ExitGame()
         {
-            SceneManager.LoadScene(LoadScene);
+            SceneManager.LoadScene(LoadMenuScene);
             Time.timeScale = 1f;
         }
     }
