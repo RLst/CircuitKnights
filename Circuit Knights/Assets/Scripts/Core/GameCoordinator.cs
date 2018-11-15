@@ -345,9 +345,9 @@ namespace CircuitKnights
 				// Debug.Log("Players have reached the end");
 
 
-				while (true)
+				while (!hasPlayersHaveReachedTheEnds(1f))
 				{
-					Debug.Log("PlayersHaveReachedTheEnds: " + hasPlayersHaveReachedTheEnds(1f));
+					// Debug.Log("PlayersHaveReachedTheEnds: " + hasPlayersHaveReachedTheEnds(1f));
 					// Debug.Log("Infinity loop in an IEnumerator!");
 					yield return null;
 				}
@@ -375,21 +375,19 @@ namespace CircuitKnights
 
             }
 			//Else if there are still rounds left to play out
-			else if (false)
-			{
-				Debug.LogError("There are still rounds left to play out!");
-			}
-			//otherwise finish match and  sequences
-			else
-			{
-				Debug.LogError("Match Finished!");
-				//Slow motion cam looking at loser ragdolling off the horse
-			}
+			// else if (false)
+			// {
+			// 	Debug.LogError("There are still rounds left to play out!");
+			// }
+			// //otherwise finish match and  sequences
+			// else
+			// {
+			// 	Debug.LogError("Match Finished!");
+			// 	//Slow motion cam looking at loser ragdolling off the horse
+			// }
 
 
-			//Start countdown again...
-			//^^^^ maybe some of these should be implemented in EndRound()\
-			// yield return null;
+			//Go back to StartRound() again...
 		}
 
 		void RotatePlayersAroundEndsOfTrack()
