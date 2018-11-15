@@ -4525,6 +4525,18 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4156329457437270, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4156329457437270, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.085
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013684755003636, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
+      propertyPath: m_TagString
+      value: Player2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54363482813177932, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
@@ -14208,6 +14220,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6330e3854281524287d0a747e8a8ec8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &779890448 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1013684755003636, guid: cb0c313a926b14343ac3e49c8aba1b8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 308861395}
 --- !u!4 &782698549 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4469254834306078, guid: d3f01530ba3b7584889b21851c71fb8f,
@@ -15896,20 +15913,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Controls the player's lance. The Lance should ONLY HAVE ONE rigidbody
     attached to the lance mesh itself.
---- !u!114 &866074735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 866074730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7423821dc2d594dbc94cfe0f78818a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVibration: {fileID: 11400000, guid: 5993fbe2c4ede304d983be6de4eeba4f, type: 2}
-  LeftMotor: 0.5
-  RightMotor: 0.5
 --- !u!1 &869599432
 GameObject:
   m_ObjectHideFlags: 0
@@ -19567,7 +19570,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1078593696}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20199,7 +20202,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1160761164}
   - component: {fileID: 1160761166}
-  - component: {fileID: 1160761167}
   - component: {fileID: 1160761168}
   m_Layer: 0
   m_Name: Lance
@@ -20241,20 +20243,6 @@ MonoBehaviour:
     mounting.
   objectData: {fileID: 11400000, guid: af53f14d86dcd42c6aee56bd825bb93b, type: 2}
   mountPoint: {fileID: 248281461}
---- !u!114 &1160761167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1160761163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b7423821dc2d594dbc94cfe0f78818a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVibration: {fileID: 11400000, guid: 5993fbe2c4ede304d983be6de4eeba4f, type: 2}
-  LeftMotor: 0.5
-  RightMotor: 0.5
 --- !u!114 &1160761168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29325,6 +29313,7 @@ GameObject:
   - component: {fileID: 1539750224}
   - component: {fileID: 1539750223}
   - component: {fileID: 1539750222}
+  - component: {fileID: 1539750227}
   m_Layer: 0
   m_Name: Character_Lance_001_V004
   m_TagString: Untagged
@@ -29436,6 +29425,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1539750220}
   m_Mesh: {fileID: 4300000, guid: ebf692022ac3a014894e0279ef20b01b, type: 3}
+--- !u!114 &1539750227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1539750220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7423821dc2d594dbc94cfe0f78818a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isVibration: {fileID: 11400000, guid: 5993fbe2c4ede304d983be6de4eeba4f, type: 2}
+  LeftMotor: 0.5
+  RightMotor: 0.5
+  player: {fileID: 779890448}
 --- !u!1 &1540433340
 GameObject:
   m_ObjectHideFlags: 0
@@ -30055,7 +30059,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.087945044, y: -0.014120972, z: 0.22941902}
+  m_ConnectedAnchor: {x: 0.08794502, y: -0.014120964, z: 0.22941898}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -37109,7 +37113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1048762000}
-  LoadScene: Main
+  LoadMenuScene: Jack's Menu
+  LoadMainScene: Jack's Main
 --- !u!114 &2089211922
 MonoBehaviour:
   m_ObjectHideFlags: 0
