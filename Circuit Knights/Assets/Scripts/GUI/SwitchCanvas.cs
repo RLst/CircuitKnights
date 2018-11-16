@@ -17,7 +17,7 @@ public class SwitchCanvas : MonoBehaviour {
         
         OffCanvasOne.SetActive(false);
         OnCanvas.SetActive(true);
-        GameObject.Find("EventSystem").GetComponent<EventSystem>().SetSelectedGameObject(FirstObject, null);
+        GameObject.Find("EventSystemOne").GetComponent<EventSystem>().SetSelectedGameObject(FirstObject, null);
     }
 
 	}

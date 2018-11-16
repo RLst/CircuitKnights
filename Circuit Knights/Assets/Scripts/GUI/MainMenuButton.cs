@@ -21,6 +21,10 @@ namespace CircuitKnights
 
         [SerializeField] GameObject SpinningCamera;
 
+        [SerializeField] GameObject EventSystemOne;
+
+        [SerializeField] GameObject EventSystemTwo;
+
         [SerializeField] Button PlayButton;
 
         bool MenuActive = true;
@@ -65,10 +69,14 @@ namespace CircuitKnights
             if (MenuActive == true)
             {
                 MainMenu.SetActive(true);
+                EventSystemOne.SetActive(true);
+                EventSystemTwo.SetActive(false);
                 ResultsScreen.ResultCameraActive = false;
             }
             else if (MenuActive == false)
             {
+                EventSystemOne.SetActive(false);
+                EventSystemTwo.SetActive(true);
                 MainMenu.SetActive(false);
             }
 

@@ -23,6 +23,6 @@ public class xResetTrigger : MonoBehaviour {
 
 	private static void ReloadScene()
 	{
-		SceneManager.LoadScene("Tony Game2");
+		SceneManager.LoadScene("Main");
 	}
 }
