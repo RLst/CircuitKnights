@@ -13,16 +13,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 'Blocks the lance attacks. Has hit points. Will destroy after losing
     all of its '
-  smoothness: 0.25
+  smoothness: 1
   mass: 10
   maxHP: 100
   defense: 10
-  centreOffset: {x: 0, y: 0.44, z: 0.01}
+  centreOffset: {x: 0, y: 0, z: 0}
   centreAngFactor: {x: 0, y: 0, z: 0}
-  blockOffset: {x: 0.5, y: 1, z: -0.5}
+  blockOffset: {x: 0.5, y: 0.2, z: 0}
   blockXAngFactor: 0
   blockYAngFactor: 0
-  blockLeftWeight: 1
+  blockLeftWeight: 0.5
   blockRightWeight: 1
   blockUpWeight: 1
   blockDownWeight: 0
