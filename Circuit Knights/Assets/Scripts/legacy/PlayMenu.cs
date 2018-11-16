@@ -9,15 +9,29 @@ using UnityEngine.SceneManagement;
 namespace CircuitKnights
 {
 
-    public class PlayMenu : MonoBehaviour
-    {
+//     public class PlayMenu : MonoBehaviour
+//     {
 
-        [SerializeField] string loadScene;
+//         [SerializeField] string loadScene;
 
-        public void PlayGame ()
-        { 
-            SceneManager.LoadScene(loadScene);
-        }
+//         public void PlayGame ()
+//         { 
+//             SceneManager.LoadScene(loadScene);
+//         }
        
-    }
-}
+//     }
+// }
+
+     public class PlayMenu : MonoBehaviour
+     {
+
+         [SerializeField] string loadScene;
+
+         public void PlayGame ()
+         { 
+             Debug.Log(loadScene);
+             SceneManager.LoadScene(loadScene);
+         }
+       
+     }
+ }
