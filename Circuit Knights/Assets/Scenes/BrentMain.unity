@@ -3043,6 +3043,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f909a30d33640aab54eb7805a38bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isVibration: {fileID: 11400000, guid: 5993fbe2c4ede304d983be6de4eeba4f, type: 2}
+  LeftMotor: 0.5
+  RightMotor: 0.5
   description: Moves the horse.
 --- !u!114 &183443771
 MonoBehaviour:
@@ -8541,6 +8544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockedOffPrefab: {fileID: 0}
+  dataObject: {fileID: 0}
 --- !u!1 &627802154 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1495095543303020, guid: 0317a172e9b1f2443ac0ad4316d06172,
@@ -19570,7 +19574,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1078593696}
-  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
+  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -30059,7 +30063,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.08794502, y: -0.014120964, z: 0.22941898}
+  m_ConnectedAnchor: {x: 0.087945044, y: -0.014120972, z: 0.22941902}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -37059,7 +37063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2089211919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37100,6 +37104,7 @@ MonoBehaviour:
   PlayerCameraTwo: {fileID: 1769988949}
   CountDownCanvas: {fileID: 382387724}
   SpinningCamera: {fileID: 1296481823}
+  EventSystemOne: {fileID: 0}
   PlayButton: {fileID: 2098942574}
 --- !u!114 &2089211921
 MonoBehaviour:
@@ -37113,8 +37118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1048762000}
-  LoadMenuScene: Jack's Menu
-  LoadMainScene: Jack's Main
+  LoadMenuScene: Menu
+  LoadMainScene: Main
+  ResumeButton: {fileID: 0}
+  RestartButton: {fileID: 0}
+  MenuButton: {fileID: 0}
 --- !u!114 &2089211922
 MonoBehaviour:
   m_ObjectHideFlags: 0

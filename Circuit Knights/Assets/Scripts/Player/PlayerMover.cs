@@ -5,13 +5,19 @@
 using UnityEngine;
 using CircuitKnights.Objects;
 using UnityEngine.Assertions;
+using XInputDotNetPure;
+using CircuitKnights.Variables;
 
 namespace CircuitKnights
 {
 	[RequireComponent(typeof(Player))]
     public class PlayerMover : MonoBehaviour
     {
-		[TextArea] [SerializeField] string description =
+        [SerializeField] BoolVariable isVibration;
+        [SerializeField] float LeftMotor = .5f;
+        [SerializeField] float RightMotor = .5f;
+
+        [TextArea] [SerializeField] string description =
 			"Moves the horse.";
 		PlayerData playerData;
 		HorseData horseData;
@@ -47,6 +53,17 @@ namespace CircuitKnights
 		void FixedUpdate()
 		{
 			MoveByLerp();
+            if(horseData.speed > 1)
+            {
+                Debug.Log(horseData.speed);
+                LeftMotor = .2f;
+                RightMotor = .2f;
+                //selects what controlers to vibrate
+            
+                VibrateOnMovment(XInputDotNetPure.PlayerIndex.One);
+                Debug.Log("vibrating ON");
+                VibrateOnMovment(XInputDotNetPure.PlayerIndex.Two);
+            }
 		}
 
 		void MoveByLerp()
@@ -75,7 +92,13 @@ namespace CircuitKnights
 		{
             transform.rotation = rotation;
         }
-
+        void VibrateOnMovment(XInputDotNetPure.PlayerIndex playerIndex)
+        {
+            if (isVibration.Value == true)
+            {
+                XInputDotNetPure.GamePad.SetVibration(playerIndex, LeftMotor, RightMotor);
+            }
+        }
 
     }
 
