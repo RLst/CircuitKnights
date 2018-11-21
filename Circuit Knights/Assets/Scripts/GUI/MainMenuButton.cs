@@ -51,11 +51,11 @@ namespace CircuitKnights
        
         public void PlayGame()
         {
-            MenuActive = false;
-            PlayerCamerasActive = true;
-            CountDownActive = true;
+            //MenuActive = false;
+            //PlayerCamerasActive = true;
+            //CountDownActive = true;
             Rematch = false;
-            SpinCamera = false;
+            //SpinCamera = false;
             ResultsScreen.ResultCameraActive = false;
         }
 
