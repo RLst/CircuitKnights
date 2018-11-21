@@ -9,8 +9,8 @@ namespace CircuitKnights
 {
     public class SlowMotionController : MonoBehaviour
     {
-        [SerializeField] float slowdownFactor = 0.05f;
-        [SerializeField] float slowMotionDuration = 2.0f;
+        [SerializeField] float defaultSlowMoFactor = 0.05f;
+        [SerializeField] float defaultSlowMoDuration = 2.0f;
 
         bool toggleSlowMo = false;
         void Update()
@@ -21,7 +21,7 @@ namespace CircuitKnights
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     Debug.Log("slowmo2");
-                    SlowMotionOn(slowMotionDuration);
+                    SlowMotionOn(defaultSlowMoDuration);
                 }
                 else
                 {
@@ -36,31 +36,45 @@ namespace CircuitKnights
 
         public void SlowMotionOn()
         {
-            Time.timeScale = slowdownFactor;
-            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+            //Does default slow motion
+            Time.timeScale = defaultSlowMoFactor;
+            Time.fixedDeltaTime = Time.timeScale * 1f / 60f;
         }
 
-        public void SlowMotionOn(float transitionOutDuration)
+        public void SlowMotionOn(float slowMoFactor)
         {
-            StartCoroutine(TransitionBackToRealtime(transitionOutDuration));
+            Time.timeScale = slowMoFactor;
+            Time.fixedDeltaTime = Time.timeScale * 1f / 60f;
+        }
+
+        public void SlowMotionOn(float slowMoFactor, float transitionOutDuration)
+        {
+            StartCoroutine(TransitionBackToRealtime(slowMoFactor, transitionOutDuration));
         }
 
         public void SlowMotionOff()
         {
             Time.timeScale = 1f;
-            Time.fixedDeltaTime = 1f;
+            Time.fixedDeltaTime = Time.timeScale * 1f / 60f;;
         }
 
-        private IEnumerator TransitionBackToRealtime(float transitionOutDuration)
+        private IEnumerator TransitionBackToRealtime(float slowMoFactor, float transitionOutDuration)
         {
-            Time.timeScale = slowdownFactor;
+            //Slow motion factor has to be a valid value
+            Mathf.Clamp01(slowMoFactor);
+
+            //Set the initial slow motion
+            Time.timeScale = slowMoFactor;
+
             while (Time.timeScale < 1f)
             {
                 Time.timeScale += (1f / transitionOutDuration) * Time.unscaledDeltaTime;
-                Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
                 yield return null;
             }
-            // Time.timeScale = 1f;
+
+            //Reset             
+            Time.timeScale = 1f;
+            Time.fixedDeltaTime = Time.timeScale * 1f / 60f; ;
             // yield return new WaitUntil(() => Time.timeScale >= 1f);
         }
     }
