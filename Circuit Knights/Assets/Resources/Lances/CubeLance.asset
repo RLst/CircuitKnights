@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648c95c0eb919446b99e445ad17fae6f, type: 3}
+  m_Name: CubeLance
+  m_EditorClassIdentifier: 
+  description: The player's lance
+  mass: 25
+  length: 3.3
+  dragFactor: 1.05
+  gravityFactor: 300
+  lerpFactor: 0
+  pitchTorque: 1000
+  yawTorque: 1000
+  attack: 20
+  clamped: 1
+  startingPitchAngle: -15
+  startingYawAngle: 80
+  PitchRange: 90
+  YawRange: 90

@@ -13,19 +13,19 @@ namespace CircuitKnights
 	public class ShieldController : MonoBehaviour
 	{
 		PlayerInput playerInput;
-		[SerializeField] ShieldData shield;
+		ShieldData shieldData;
 		[SerializeField][Range(0f,1f)] float deadZone = 0.1f;
 
 		void Awake()
 		{
-			shield = GetComponentInParent<Player>().ShieldData;
+			shieldData = GetComponentInParent<Player>().ShieldData;
 			playerInput = GetComponentInParent<PlayerInput>();
 		}
 
 		void Start()
 		{
 			Assert.IsNotNull(playerInput, "No player input found! Attach PlayerInput to root.");
-			Assert.IsNotNull(shield, "No shield has been selected! Attach a Shield scriptable.");
+			Assert.IsNotNull(shieldData, "No shield has been selected! Attach a Shield scriptable.");
 		}
 
 		void Update()
@@ -48,7 +48,7 @@ namespace CircuitKnights
 
 		private void MoveShield()
 		{
-            var centre = shield.CentreOffset;
+            var centre = shieldData.CentreOffset;
             var offset = Vector3.zero;
 			var angleOffset = Vector3.zero;
 
@@ -56,21 +56,21 @@ namespace CircuitKnights
 			//X offset (horizontal movement)
 			if (playerInput.ShieldAxisX < Mathf.Abs(deadZone))	//Left
 			{
-				offset.x = shield.BlockOffset.x * shield.BlockLeftWeight * playerInput.ShieldAxisX;
+				offset.x = shieldData.BlockOffset.x * shieldData.BlockLeftWeight * playerInput.ShieldAxisX;
             }
-		else if(playerInput.ShieldAxisX > Mathf.Abs(deadZone)) //Right
-             {
-              offset.x = shield.BlockOffset.x * shield.BlockRightWeight * playerInput.ShieldAxisX;
-             }   //else offset.x = 0;
+			else if (playerInput.ShieldAxisX > Mathf.Abs(deadZone)) //Right
+            {
+                offset.x = shieldData.BlockOffset.x * shieldData.BlockRightWeight * playerInput.ShieldAxisX;
+            }   //else offset.x = 0;
 
             //Y offset (vertical movement)
             if (playerInput.ShieldAxisY > Mathf.Abs(deadZone))  //Up
             {
-                offset.y = shield.BlockOffset.y * shield.BlockUpWeight * playerInput.ShieldAxisY;
+                offset.y = shieldData.BlockOffset.y * shieldData.BlockUpWeight * playerInput.ShieldAxisY;
             }
             else if (playerInput.ShieldAxisY < Mathf.Abs(deadZone)) //Down
             {
-                offset.y = shield.BlockOffset.y * shield.BlockDownWeight * playerInput.ShieldAxisY;
+                offset.y = shieldData.BlockOffset.y * shieldData.BlockDownWeight * playerInput.ShieldAxisY;
             }   //else offset.y = 0;
 
             // offset.x = shield.BlockXOffset.x * playerInput.ShieldAxisX;
@@ -79,14 +79,14 @@ namespace CircuitKnights
             // angleOffset.x = shield.BlockAngOffset.x * playerInput.ShieldAxisY;
 			// angleOffset.y = shield.BlockAngOffset.y * playerInput.ShieldAxisY;
 
-			transform.localPosition = Vector3.Lerp(transform.localPosition, offset, shield.tValue);
-			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(angleOffset), shield.tValue);
+			transform.localPosition = Vector3.Lerp(transform.localPosition, offset, shieldData.tValue);
+			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(angleOffset), shieldData.tValue);
 		}
 
 		private void RestShield()
 		{
-			transform.localPosition = Vector3.Lerp(transform.localPosition, shield.CentreOffset, shield.tValue);
-			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(shield.CentreAngFactor), shield.tValue);
+			transform.localPosition = Vector3.Lerp(transform.localPosition, shieldData.CentreOffset, shieldData.tValue);
+			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(shieldData.CentreAngFactor), shieldData.tValue);
 		}
 	}
 }

@@ -20,6 +20,9 @@ namespace CircuitKnights
 		Vector3 angVel;
 		Vector3 angPos;
 
+        //Equipment switching
+        ObjectData lanceObjectData;
+
 
     #region Initialise
         void Start()
