@@ -173,7 +173,7 @@ namespace CircuitKnights
 						skipButton.SetActive(true);
 
 						//Manual skip
-						if (XCI.GetButtonDown(XboxButton.Start) ||
+						if (XCI.GetButtonDown(XboxButton.A) ||
 							Input.GetKeyDown(KeyCode.Space))
 						{
 							playCutscene = false;

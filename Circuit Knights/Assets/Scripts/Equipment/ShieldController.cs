@@ -58,10 +58,10 @@ namespace CircuitKnights
 			{
 				offset.x = shield.BlockOffset.x * shield.BlockLeftWeight * playerInput.ShieldAxisX;
             }
-			else if (playerInput.ShieldAxisX > Mathf.Abs(deadZone)) //Right
-            {
-                offset.x = shield.BlockOffset.x * shield.BlockRightWeight * playerInput.ShieldAxisX;
-            }   //else offset.x = 0;
+		else if(playerInput.ShieldAxisX > Mathf.Abs(deadZone)) //Right
+             {
+              offset.x = shield.BlockOffset.x * shield.BlockRightWeight * playerInput.ShieldAxisX;
+             }   //else offset.x = 0;
 
             //Y offset (vertical movement)
             if (playerInput.ShieldAxisY > Mathf.Abs(deadZone))  //Up

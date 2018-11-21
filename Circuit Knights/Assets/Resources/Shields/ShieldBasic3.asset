@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a03e6b586b381412d8d72ad8d2545e97, type: 3}
-  m_Name: ShieldBasic2
+  m_Name: ShieldBasic3
   m_EditorClassIdentifier: 
   description: 'Blocks the lance attacks. Has hit points. Will destroy after losing
     all of its '
@@ -19,10 +19,10 @@ MonoBehaviour:
   defense: 10
   centreOffset: {x: 0, y: 0, z: 0}
   centreAngFactor: {x: 0, y: 0, z: 0}
-  blockOffset: {x: 0, y: 0, z: 0}
+  blockOffset: {x: 0.5, y: 0.2, z: 0}
   blockXAngFactor: 0
   blockYAngFactor: 0
-  blockLeftWeight: 1
+  blockLeftWeight: 0.5
   blockRightWeight: 1
-  blockUpWeight: 0.75
-  blockDownWeight: 0.2
+  blockUpWeight: 1
+  blockDownWeight: 0

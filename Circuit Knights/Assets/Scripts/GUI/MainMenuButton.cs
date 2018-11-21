@@ -23,8 +23,6 @@ namespace CircuitKnights
 
         [SerializeField] GameObject EventSystemOne;
 
-        [SerializeField] GameObject EventSystemTwo;
-
         [SerializeField] Button PlayButton;
 
         bool MenuActive = true;
@@ -70,13 +68,11 @@ namespace CircuitKnights
             {
                 MainMenu.SetActive(true);
                 EventSystemOne.SetActive(true);
-                EventSystemTwo.SetActive(false);
                 ResultsScreen.ResultCameraActive = false;
             }
             else if (MenuActive == false)
             {
                 EventSystemOne.SetActive(false);
-                EventSystemTwo.SetActive(true);
                 MainMenu.SetActive(false);
             }
 

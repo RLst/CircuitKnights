@@ -5094,7 +5094,7 @@ GameObject:
   - component: {fileID: 538212132}
   - component: {fileID: 538212131}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: EventSystemOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26858,6 +26858,8 @@ MonoBehaviour:
   PlayerCameraTwo: {fileID: 1769988949}
   CountDownCanvas: {fileID: 382387724}
   SpinningCamera: {fileID: 1296481823}
+  EventSystemOne: {fileID: 538212130}
+  EventSystemTwo: {fileID: 0}
   PlayButton: {fileID: 2098942574}
 --- !u!114 &2089211921
 MonoBehaviour:

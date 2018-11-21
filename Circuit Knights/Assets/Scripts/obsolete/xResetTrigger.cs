@@ -5,24 +5,25 @@ using UnityEngine.SceneManagement;
 using CircuitKnights;
 using XboxCtrlrInput;
 
-public class xResetTrigger : MonoBehaviour {
+public class xResetTrigger : MonoBehaviour
+{
 
     void Update()
     {
         if (XCI.GetButtonDown(XboxButton.Back))
         {
-			ReloadScene();
-		}
+            ReloadScene();
+        }
 
     }
 
     private void OnTriggerEnter(Collider other)
-	{
-		ReloadScene();
-	}
+    {
+        ReloadScene();
+    }
 
-	private static void ReloadScene()
-	{
-		SceneManager.LoadScene("Main");
-	}
+    private static void ReloadScene()
+    {
+        SceneManager.LoadScene("Main");
+    }
 }
