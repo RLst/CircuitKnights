@@ -9,7 +9,7 @@ using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
-    [RequireComponent(typeof(Player))]
+    // [RequireComponent(typeof(Player))]
     public class PlayerInput : MonoBehaviour
     {
         [TextArea] [SerializeField] string description = "Handles controller/keyboard input for the player. Attach to the root object";

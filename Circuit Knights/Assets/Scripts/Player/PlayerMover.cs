@@ -7,6 +7,7 @@ using CircuitKnights.Objects;
 using UnityEngine.Assertions;
 using XInputDotNetPure;
 using CircuitKnights.Variables;
+using System;
 
 namespace CircuitKnights
 {
@@ -19,9 +20,11 @@ namespace CircuitKnights
         [SerializeField] float RightMotor = .5f;
         //////
 
-        [TextArea] [SerializeField] string description =
-			"Moves the horse.";
-		PlayerData playerData;
+        [TextArea]
+        [SerializeField]
+        string description =
+            "Moves the player's 'horse', which in turns moves the entire player including equipment";
+        PlayerData playerData;
 		HorseData horseData;
 		private PlayerInput playerInput;
 		Vector3 startPosition;
@@ -60,11 +63,11 @@ namespace CircuitKnights
             BrentsVibrationCode();
         }
 
-        //What is this supposed to do? Is it meant to vibrate when the horse moves past a certain speed?
-        //horseData.speed is essentially a constant. Need to implement custom physics so that the horse has a velocity
-        //which         
         private void BrentsVibrationCode()
         {
+        //Is this supposed to vibrate when the horse moves past a certain speed?
+        //horseData.speed is essentially a constant. Need to implement custom physics so that the horse has a velocity
+        //which can then be referenced...
             if (horseData.speed > 1)
             {
                 Debug.Log(horseData.speed);

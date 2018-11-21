@@ -24,16 +24,16 @@ namespace CircuitKnights.Objects
         [SerializeField] HorseData horseData;
 
         // //Test - Weapon switching
-        // [SerializeField] List<Equipment> lances;
-        // [SerializeField] List<Equipment> shields;
-        // [SerializeField] List<Equipment> horses;
+        // [SerializeField] Equipment[] lances;
+        // [SerializeField] Equipment[] shields;
+        // [SerializeField] Equipment[] horses;
         // int lanceIndex = 0;
         // int shieldIndex = 0;
         // int horseIndex = 0;
         // Equipment currentLance;
         // Equipment currentShield;
         // Equipment currentHorse;
-        //Test - weapon switching
+
 
         [Header("Controllers")]
         [SerializeField] PlayerMover playerMover;

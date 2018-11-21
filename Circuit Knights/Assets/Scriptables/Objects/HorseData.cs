@@ -13,13 +13,6 @@ namespace CircuitKnights.Objects
     {
         [TextArea] [SerializeField] string description = 
             "The player's horse";
-        public HorseType horseType = HorseType.Standard;
-        public enum HorseType
-        {
-            Standard,
-            Pedal,
-            Rocket
-        }
 
         #region Controls
         [Header("Controls")]

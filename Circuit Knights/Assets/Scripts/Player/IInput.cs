@@ -10,8 +10,8 @@ namespace CircuitKnights
         float LeftAxisX { get; }
         float LanceAxisY { get; }
 
-        float LeanAxisX { get; }
-        float LeanAxisY { get; }
+        float LeanLeftAxis { get; }
+        float LeanRightAxis { get; }
 
         float Accel { get; }
         float Decel { get; }

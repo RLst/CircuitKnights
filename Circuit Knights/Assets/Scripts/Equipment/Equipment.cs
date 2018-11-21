@@ -5,13 +5,27 @@
 using UnityEngine;
 using CircuitKnights.Objects;
 
-namespace CircuitKnights
+namespace CircuitKnights.Tests
 {
     public class Equipment : MonoBehaviour
     {
+        [TextArea][SerializeField]
+        string description =
+            "Sets current object as a particular kind of equipment and mounting point.";
         //Temp
         public ObjectData objectData;
         public Transform mountPoint;	//Default mount point?
+
+
+        // void Start()
+        // {
+        //     if (mountpoint != null)
+        //     {
+        //         Equip();
+
+        //     }
+        // }
+
 
         internal void Equip()
         {
@@ -22,7 +36,7 @@ namespace CircuitKnights
             transform.localScale = Vector3.one;
         }
 
-        internal void Equip(Transform customMountPoint) //Temp - still figuring out how the mountpoint will be determined
+        internal void Equip(Transform customMountPoint)     //Temp - still figuring out how the mountpoint will be determined
         {
             transform.gameObject.SetActive(true);
             transform.SetParent(customMountPoint);
