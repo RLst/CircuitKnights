@@ -27,7 +27,7 @@ namespace CircuitKnights
 
         void Rematch()
         {
-            MainMenuButton.Rematch = true;
+            //MainMenuButton.Rematch = true;
             ResultsScreen.ResultCameraActive = false;
             Time.timeScale = 1f;
             SceneManager.LoadScene(LoadScene);
