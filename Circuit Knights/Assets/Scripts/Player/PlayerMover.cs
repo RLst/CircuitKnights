@@ -10,12 +10,14 @@ using CircuitKnights.Variables;
 
 namespace CircuitKnights
 {
-	[RequireComponent(typeof(Player))]
+	// [RequireComponent(typeof(Player))]
     public class PlayerMover : MonoBehaviour
     {
+        //Brent's
         [SerializeField] BoolVariable isVibration;
         [SerializeField] float LeftMotor = .5f;
         [SerializeField] float RightMotor = .5f;
+        //////
 
         [TextArea] [SerializeField] string description =
 			"Moves the horse.";
@@ -51,22 +53,37 @@ namespace CircuitKnights
         }
 
 		void FixedUpdate()
-		{
-			MoveByLerp();
-            if(horseData.speed > 1)
+        {
+            MoveByLerp();
+
+            //Brent's
+            BrentsVibrationCode();
+        }
+
+        //What is this supposed to do? Is it meant to vibrate when the horse moves past a certain speed?
+        //horseData.speed is essentially a constant. Need to implement custom physics so that the horse has a velocity
+        //which         
+        private void BrentsVibrationCode()
+        {
+            if (horseData.speed > 1)
             {
                 Debug.Log(horseData.speed);
                 LeftMotor = .2f;
                 RightMotor = .2f;
                 //selects what controlers to vibrate
-            
+
                 VibrateOnMovment(XInputDotNetPure.PlayerIndex.One);
                 Debug.Log("vibrating ON");
                 VibrateOnMovment(XInputDotNetPure.PlayerIndex.Two);
             }
-		}
+        }
 
-		void MoveByLerp()
+        private void MoveByCustomPhysics()
+        {
+            throw new NotImplementedException();
+        }
+
+        void MoveByLerp()
 		{
 			//Adjust the target position
 			tarPos += transform.forward * horseData.speed * playerInput.AccelAxis * Time.deltaTime;
