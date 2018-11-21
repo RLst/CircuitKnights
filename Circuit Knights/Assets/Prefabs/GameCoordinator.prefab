@@ -312,7 +312,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1008657351725458}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -16.89, y: 0, z: 1.99}
+  m_LocalPosition: {x: -16.85, y: 0, z: 1.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4520950191440880}
@@ -355,7 +355,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1026347396624072}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 173.96, y: 0, z: 1.92}
+  m_LocalPosition: {x: 173.57, y: 0, z: 1.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4520950191440880}
@@ -368,7 +368,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1979236979471954}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 173.96, y: 0, z: -0.27}
+  m_LocalPosition: {x: 173.57, y: 0, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4520950191440880}
@@ -411,7 +411,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764169941665336}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -17.02, y: 0, z: -0.01}
+  m_LocalPosition: {x: -16.85, y: 0, z: -0.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4520950191440880}
@@ -839,13 +839,13 @@ MonoBehaviour:
   endPoints:
   - {fileID: 4120656514935326}
   - {fileID: 4048766960969704}
-  onEnablePlayerInput: {fileID: 11400000, guid: 53b3000366f53a74e868d43fcd64a389,
+  onEnablePlayerInput: {fileID: 11400000, guid: c55fa54d4ca45b74dbfb983ef4aa6b14,
     type: 2}
   onEnablePlayerMovement: {fileID: 11400000, guid: 92b36a5b7b1b7c541ab31658fde53f2c,
     type: 2}
   onEnablePlayerCameras: {fileID: 11400000, guid: fc4d40a6dc6cf7d4e9c087ad7c9a483d,
     type: 2}
-  onDisablePlayerInput: {fileID: 11400000, guid: eafd27c7858562a42ad3ac4293471cb6,
+  onDisablePlayerInput: {fileID: 11400000, guid: e2dfc503e75987f47a1bead9b2e0fc64,
     type: 2}
   onDisablePlayerMovement: {fileID: 11400000, guid: 50446fb7c8c4fed4c899a557b68022d5,
     type: 2}
