@@ -66,6 +66,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _node_7394:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _ColourFresnel: 1.336
@@ -86,7 +90,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Thickness: 1
-    - _UVScale: 12.65
+    - _UVScale: 20.1
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
