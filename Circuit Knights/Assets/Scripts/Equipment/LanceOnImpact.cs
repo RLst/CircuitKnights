@@ -11,77 +11,105 @@ namespace CircuitKnights {
     public class LanceOnImpact : MonoBehaviour {
 
         [SerializeField] BoolVariable isVibration;
-        [SerializeField] float LeftMotor = .5f;
-       // [SerializeField] float RightMotor = .5f;
+        private float LeftMotor = .5f;
+        private float RightMotor = .5f;
         public GameObject player;
         private float timer = 0.0f;
         private bool timing = false;
-        public float vibratefor = 1.0f;
-        // PlayerData playerData;
-        //
-        // private void Awake()
-        // {
-        //     playerData = GetComponentInParent<Player>().Data;
-        // }
-        //
+        public float VibrateOnCollisionFor = .5f;
+        public bool VibrateMovementOn;
+        public bool VibrateCollisionOn;
+       
 
         private void Update()
         {
+            collisionVibrationOff();
+          VibrationOnMovment();
+
+
+        }
+        //vibrates on collision
+        private void OnCollisionStay(Collision collision)
+        {
+            if (VibrateCollisionOn == true)
+            {
+                //checks if the lance is hiting the player 
+                if (collision.gameObject == player)
+                {
+                    timing = true;
+                    //resets the vibration on enter
+                    LeftMotor = 1.0f;
+                    RightMotor = 1.0f;
+                    //selects what controlers to vibrate
+                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
+                    Debug.Log("vibrating Collision ON");
+                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+                    //VibrateOnCollision((PlayerIndex)playerData.No as PlayerIndex);
+                }
+            }
+        }
+
+        private void collisionVibrationOff()
+        {
+            //checks if there was a collision
             if (timing == true)
             {
-                timer += Time.deltaTime;
-                if(timer > vibratefor)
+                timer += Time.deltaTime; //creates a timer that starts counting on the colision
+                if (timer > VibrateOnCollisionFor)//turns off the vibration when the timer is greater than the amount you set the VibrateOnCollisionfor
                 {
                     // changes the values of the vibratio so it stops vibrating
                     LeftMotor = .0f;
-                   // RightMotor = .0f;
+                    RightMotor = .0f;
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-                    Debug.Log("vibrating OFF");
+                    Debug.Log("Vibrating Collision OFF");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
                     timer = 0.0f;
                     timing = false;
                 }
-                
+
             }
-
-
         }
-        private void OnCollisionStay(Collision collision)
-        {
-            
-            //checks if the lance is hiting the player 
-            if (collision.gameObject == player)
+      
+        // this currently vibrates all the time as tony is creating a way to get the players velocit than the vibration will change depending on there velocity
+       private void VibrationOnMovment()
+       {
+            if (VibrateMovementOn == true)
             {
-                timing = true;
-                //resets the vibration on enter
-                LeftMotor = 1.0f;
-                //RightMotor = 1.0f;
-                //selects what controlers to vibrate
-                VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-                Debug.Log("vibrating ON");
-                VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
-                //VibrateOnCollision((PlayerIndex)playerData.No as PlayerIndex);
+                if (timing == false)
+                {
+                    LeftMotor = .1f;
+                    RightMotor = .1f;
+                    Debug.Log("Vibrating on Movement");
+                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
+                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+                }
             }
-        }
-      // private void OnCollisionExit(Collision collision)
-      // {
-      //
-      //     if (collision.gameObject == player)
-      //     {
-      //         // changes the values of the vibratio so it stops vibrating
-      //         LeftMotor = .0f;
-      //         RightMotor = .0f;
-      //         VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-      //         Debug.Log("vibrating OFF");
-      //         VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
-      //     }
-      // }
 
+            if(VibrateMovementOn == false)
+            {
+                LeftMotor = .0f;
+                RightMotor = .0f;
+                VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
+                VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+
+            }
+               
+           
+       }
+
+        //this is to check if the vibrating setting is ticked for any of the code to work
         void VibrateOnCollision(XInputDotNetPure.PlayerIndex playerIndex)
         {
             if (isVibration.Value == true)
             {
-                XInputDotNetPure.GamePad.SetVibration(playerIndex, LeftMotor, 0);
+
+                XInputDotNetPure.GamePad.SetVibration(playerIndex, LeftMotor, RightMotor);
+            }
+            else
+            {
+                LeftMotor = 0.0f;
+                RightMotor = 0.0f;
+                XInputDotNetPure.GamePad.SetVibration(playerIndex, LeftMotor, RightMotor);
             }
         }
     }
