@@ -52,11 +52,11 @@ namespace CircuitKnights
 
         private void RegisterForCollisionEvents()
         {
-            HeadHealth.OnCollision += OnHeadCollisionEnter;
-            TorsoHealth.OnCollision += OnTorsoCollisionEnter;
-            LeftArmHealth.OnCollision += OnLeftArmCollisionEnter;
-            RightArmHealth.OnCollision += OnRightArmCollisionEnter;
-            ShieldHealth.OnCollision += OnShieldCollisionEnter;
+            // HeadHealth.OnCollision += OnHeadCollisionEnter;
+            // TorsoHealth.OnCollision += OnTorsoCollisionEnter;
+            // LeftArmHealth.OnCollision += OnLeftArmCollisionEnter;
+            // RightArmHealth.OnCollision += OnRightArmCollisionEnter;
+            // ShieldHealth.OnCollision += OnShieldCollisionEnter;
         }
 
 		private void OnHeadCollisionEnter(Collision collision)

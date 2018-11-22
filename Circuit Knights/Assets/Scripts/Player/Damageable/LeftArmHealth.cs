@@ -11,66 +11,63 @@ namespace CircuitKnights
 {
     public class LeftArmHealth : Damageable
     {
-        public static event Action<Collision> OnCollision = delegate { };
-		// [SerializeField] PlayerData player;
-        // private Collider opponentsLance;
+        [SerializeField] GameObject knockedOffPrefab;
+		[SerializeField] Transform knockedOffInstatiatePoint;
+		// [Tooltip("The mesh that will be hidden upon impact")] [SerializeField] GameObject leftArmMesh;
+		[Tooltip("Used to fine tune the damage")] [SerializeField] float damageFactor = 1f;
 
-        public GameObject knockedOffPrefab;
-
-        void Start()
-        {
-            AutoRetrieveReferences();
-            AssertReferences();
-        }
-
-        public override void AutoRetrieveReferences()
-        {
-            playerData = GetComponentInParent<Player>().Data;
-            opponentData = playerData.GetOpponent();
-        }
-
-        public override void AssertReferences()
-        {
-            Assert.IsNotNull(playerData, "Player data not found!");
-            Assert.IsNotNull(opponentData, "Opponent data not found!");
-        }
-
-        void OnCollisionEnter(Collision other)
+		void OnCollisionEnter(Collision other)
         {
             //If hit by opponent's lance then raise/send event
             if (other.collider == opponentData.LanceCollider)
             {
-                ////Stickman
                 TakeDamage(opponentData.LanceData.Attack);
-                // OnCollision(other);
             }
         }
 
         public override void TakeDamage(float damage)
         {
-            playerData.LeftArmHP -= damage;
-			if (playerData.LeftArmHP <= 0)
+			//Take damage based on velocity of horse/lance
+			//TODO var finalDamage = playerData.PlayerMover.Velocity * damageFactor * damage;
+			playerData.RightArmHP -= damage;
+
+			//Play knockback animation
+			playerData.Animator.SetTrigger("Knockback");
+
+			if (playerData.RightArmHP <= 0)
 				Death();
         }
 
         public override void Death()
         {
-			//Heads gets knocked off
-			transform.SetParent(null);
+			//Limb gets knocked off
+			//Hide the limb
+			// leftArmMesh.SetActive(false);
+			gameObject.SetActive(false);
 
-            //Stickman
-            foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
-            {
-                mesh.enabled = false;
-            }
-            GetComponent<Rigidbody>().isKinematic = false;
-            var newKnockedOff = Instantiate(knockedOffPrefab, transform.position, transform.rotation);
-            Destroy(newKnockedOff, 3f);
+			//Spawn in new limb to simulate getting knocked off
+			var newKnockedoff = Instantiate(knockedOffPrefab, knockedOffInstatiatePoint.position, knockedOffInstatiatePoint.rotation);
 
-            //Let system know the Left Arm has been knocked off
-            //Reduce lance aim accuracy
-
+            //TODO Let system know the Left Arm has been knocked off ie. reduce lance accuracy
         }
 
-    }
+
+		#region Inits
+		void Start()
+		{
+			AutoRetrieveReferences();
+			AssertReferences();
+		}
+		public override void AutoRetrieveReferences()
+		{
+			playerData = GetComponentInParent<Player>().Data;
+			opponentData = GetComponentInParent<Player>().Data.GetOpponent();
+		}
+		public override void AssertReferences()
+		{
+			Assert.IsNotNull(playerData, "Player data not found!");
+			Assert.IsNotNull(opponentData, "Opponent data not found!");
+		}
+		#endregion
+	}
 }

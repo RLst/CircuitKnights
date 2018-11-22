@@ -344,7 +344,11 @@ namespace CircuitKnights
                 MovePlayersToEndPoints();
 
                 //Move player around the loop ...once they have reached the ends
-                yield return new WaitUntil(() => PlayersHaveReachedTheEnds(1.5f));
+                // yield return new WaitUntil(() => PlayersHaveReachedTheEnds(1.5f));
+                while (!PlayersHaveReachedTheEnds(1.5f))
+                {
+					yield return null;
+				}
 
                 yield return StartCoroutine(SwingPlayersAroundEndsOfTrack(1f));
 
@@ -391,11 +395,11 @@ namespace CircuitKnights
             var p1MidPoint = ((startPoints[oneIfOdd].position + endPoints[zeroIfOdd].position) / 2f);
             var p2MidPoint = ((startPoints[zeroIfOdd].position + endPoints[oneIfOdd].position) / 2f);
             // var p1MidPoint = (startPoints[zeroIfOdd].position + endPoints[zeroIfOdd].position) / 2f;
-            // var p2MidPoint = (startPoints[oneIfOdd].position + endPoints[zeroIfOdd].position) / 2f; 
+            // var p2MidPoint = (startPoints[oneIfOdd].position + endPoints[zeroIfOdd].position) / 2f;
 
             for (float angle = 180f; angle > 0f; angle -= speed)
             {
-                Debug.Log(angle);
+                Debug.Log("Angle: " + angle);
                 ///Arch players around
                 //Position
                 var p1Offset = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad)) * radius;

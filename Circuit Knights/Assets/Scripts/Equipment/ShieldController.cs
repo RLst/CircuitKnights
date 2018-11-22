@@ -13,8 +13,8 @@ namespace CircuitKnights
 	public class ShieldController : MonoBehaviour
 	{
 		PlayerInput playerInput;
-		ShieldData shieldData;
-		[SerializeField][Range(0f,1f)] float deadZone = 0.1f;
+		[SerializeField] ShieldData shieldData;
+		[SerializeField][Range(0f, 1f)] float deadzone = 0.1f;
 
 		void Awake()
 		{
@@ -32,10 +32,10 @@ namespace CircuitKnights
 		{
 			// Debug.Log("X: "+playerInput.ShieldAxisX);
 			// Debug.Log("Y: "+playerInput.ShieldAxisY);
-			if (playerInput.ShieldAxisX < deadZone &&
-				playerInput.ShieldAxisX > -deadZone &&
-				playerInput.ShieldAxisY < deadZone &&
-				playerInput.ShieldAxisY > -deadZone)
+			if (playerInput.ShieldAxisX < deadzone &&
+				playerInput.ShieldAxisX > -deadzone &&
+				playerInput.ShieldAxisY < deadzone &&
+				playerInput.ShieldAxisY > -deadzone)
 			{
 				// Debug.Log("Shield resting");
 				RestShield();
@@ -48,45 +48,46 @@ namespace CircuitKnights
 
 		private void MoveShield()
 		{
-            var centre = shieldData.CentreOffset;
-            var offset = Vector3.zero;
+			var centre = shieldData.CentreOffset;
+			var offset = Vector3.zero;
 			var angleOffset = Vector3.zero;
 
 			///Calculate position offset (Don't worry about the angle for now)
 			//X offset (horizontal movement)
-			if (playerInput.ShieldAxisX < Mathf.Abs(deadZone))	//Left
+			if (playerInput.ShieldAxisX < Mathf.Abs(deadzone))	//left movement
 			{
 				offset.x = shieldData.BlockOffset.x * shieldData.BlockLeftWeight * playerInput.ShieldAxisX;
-            }
-			else if (playerInput.ShieldAxisX > Mathf.Abs(deadZone)) //Right
-            {
-                offset.x = shieldData.BlockOffset.x * shieldData.BlockRightWeight * playerInput.ShieldAxisX;
-            }   //else offset.x = 0;
+			}
+			else if (playerInput.ShieldAxisX > Mathf.Abs(deadzone))	//Right movement
+			{
+				offset.x = shieldData.BlockOffset.x * shieldData.BlockRightWeight * playerInput.ShieldAxisX;
+			}
 
-            //Y offset (vertical movement)
-            if (playerInput.ShieldAxisY > Mathf.Abs(deadZone))  //Up
-            {
-                offset.y = shieldData.BlockOffset.y * shieldData.BlockUpWeight * playerInput.ShieldAxisY;
-            }
-            else if (playerInput.ShieldAxisY < Mathf.Abs(deadZone)) //Down
-            {
-                offset.y = shieldData.BlockOffset.y * shieldData.BlockDownWeight * playerInput.ShieldAxisY;
-            }   //else offset.y = 0;
-
-            // offset.x = shield.BlockXOffset.x * playerInput.ShieldAxisX;
-            // offset.y = shield.BlockXOffset.y * playerInput.ShieldAxisY;
-
-            // angleOffset.x = shield.BlockAngOffset.x * playerInput.ShieldAxisY;
-			// angleOffset.y = shield.BlockAngOffset.y * playerInput.ShieldAxisY;
+			//Y offset (vertical movement)
+			if (playerInput.ShieldAxisY > Mathf.Abs(deadzone))	//Up movement
+			{
+				offset.y = shieldData.BlockOffset.y * shieldData.BlockUpWeight * playerInput.ShieldAxisY;
+			}
+			else if (playerInput.ShieldAxisY < Mathf.Abs(deadzone))	//Down movement
+			{
+				offset.y = shieldData.BlockOffset.y * shieldData.BlockDownWeight * playerInput.ShieldAxisY;
+			}
 
 			transform.localPosition = Vector3.Lerp(transform.localPosition, offset, shieldData.tValue);
 			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(angleOffset), shieldData.tValue);
+
+			// offset.x = shieldData.BlockingOffset.x * playerInput.ShieldAxisX;
+			// offset.z = shieldData.BlockingOffset.y * playerInput.ShieldAxisY;
+			// angleOffset.x = shieldData.BlockingAngOffset.x * playerInput.ShieldAxisY;
+			// angleOffset.y = shieldData.BlockingAngOffset.y * playerInput.ShieldAxisY;
 		}
 
 		private void RestShield()
 		{
 			transform.localPosition = Vector3.Lerp(transform.localPosition, shieldData.CentreOffset, shieldData.tValue);
 			transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(shieldData.CentreAngFactor), shieldData.tValue);
+			// transform.localPosition = Vector3.Lerp(transform.localPosition, shieldData.RestingOffset, shieldData.tValue);
+			// transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(shieldData.RestingAngOffset), shieldData.tValue);
 		}
 	}
 }

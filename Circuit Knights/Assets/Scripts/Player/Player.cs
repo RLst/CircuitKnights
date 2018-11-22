@@ -38,10 +38,10 @@ namespace CircuitKnights.Objects
         [Header("Controllers")]
         [SerializeField] PlayerMover playerMover;
         [SerializeField] Animator playerAnimator;
-        [SerializeField] ShieldController shieldController;
-        [SerializeField] PlayerIKHoldLance IKLanceHolder;
-        [SerializeField] PlayerIKHoldShield IKShieldHolder;
-        [SerializeField] PlayerIKLook IKLook;
+        ShieldController shieldController;
+        PlayerIKHoldLance IKLanceHolder;
+        PlayerIKHoldShield IKShieldHolder;
+        PlayerIKLook IKLook;
 
 
         [Header("Colliders")]
