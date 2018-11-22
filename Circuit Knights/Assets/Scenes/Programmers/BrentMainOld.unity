@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Sets actual custom Circuit Knights object data to this object and handles
     mounting.
-  objectData: {fileID: 0}
+  objectData: {fileID: 11400000, guid: 60d10e3e538da48069f9a3af13d33e6d, type: 2}
   mountPoint: {fileID: 1670614764}
 --- !u!1 &70564961
 GameObject:
@@ -4537,8 +4537,33 @@ Prefab:
       propertyPath: m_TagString
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 114885316075649012, guid: cb0c313a926b14343ac3e49c8aba1b8b,
+        type: 2}
+      propertyPath: objectData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d2d1447018964128843a5119bbe4122,
+        type: 2}
+    - target: {fileID: 114655352468840294, guid: cb0c313a926b14343ac3e49c8aba1b8b,
+        type: 2}
+      propertyPath: objectData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f530db19d51d4194899209614a061cf,
+        type: 2}
+    - target: {fileID: 114510494726810346, guid: cb0c313a926b14343ac3e49c8aba1b8b,
+        type: 2}
+      propertyPath: objectData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f6f1173a911f45d9abedaaba2f05874,
+        type: 2}
+    - target: {fileID: 114637896182570322, guid: cb0c313a926b14343ac3e49c8aba1b8b,
+        type: 2}
+      propertyPath: objectData
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54363482813177932, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
+    - {fileID: 114181171812157344, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
+    - {fileID: 114040978455849750, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cb0c313a926b14343ac3e49c8aba1b8b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &309919021
@@ -8540,7 +8565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eba5eafa9af462fa57536d20478aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockedOffPrefab: {fileID: 0}
+  knockedOffPrefab: {fileID: 1363043817}
   dataObject: {fileID: 0}
 --- !u!1 &627802154 stripped
 GameObject:
@@ -16639,7 +16664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Sets actual custom Circuit Knights object data to this object and handles
     mounting.
-  objectData: {fileID: 0}
+  objectData: {fileID: 11400000, guid: 70cbf333d428f49d5993ebe6f20fd92b, type: 2}
   mountPoint: {fileID: 183443773}
 --- !u!4 &905152350 stripped
 Transform:
@@ -18200,7 +18225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Sets actual custom Circuit Knights object data to this object and handles
     mounting.
-  objectData: {fileID: 0}
+  objectData: {fileID: 11400000, guid: c39a989e8ba944c4286828c8b02f658c, type: 2}
   mountPoint: {fileID: 1492997929}
 --- !u!1 &995083306
 GameObject:
@@ -19571,7 +19596,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1078593696}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -26424,6 +26449,11 @@ Transform:
   m_Father: {fileID: 798044367}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1363043817 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1328866463853696, guid: 8b76cc471ffa120429fba271a9fc0e36,
+    type: 2}
+  m_PrefabInternal: {fileID: 1177756736}
 --- !u!4 &1363397062 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4008123923951076, guid: f6330e3854281524287d0a747e8a8ec8,
@@ -29438,9 +29468,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isVibration: {fileID: 11400000, guid: 5993fbe2c4ede304d983be6de4eeba4f, type: 2}
-  LeftMotor: 0.5
   player: {fileID: 779890448}
-  vibratefor: 1
+  VibrateOnCollisionFor: 0.2
+  VibrateMovementOn: 0
+  VibrateCollisionOn: 1
 --- !u!1 &1540433340
 GameObject:
   m_ObjectHideFlags: 0
@@ -30060,7 +30091,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.087945044, y: -0.014120972, z: 0.22941902}
+  m_ConnectedAnchor: {x: 0.08794502, y: -0.014120964, z: 0.22941898}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
