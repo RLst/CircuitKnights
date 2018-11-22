@@ -13,11 +13,7 @@ namespace CircuitKnights
 	// [RequireComponent(typeof(Player))]
     public class PlayerMover : MonoBehaviour
     {
-        //Brent's
-       
-        //[SerializeField] float LeftMotor = .5f;
-       // [SerializeField] float RightMotor = .5f;
-        //////
+
 
         [TextArea]
         [SerializeField]
@@ -28,6 +24,18 @@ namespace CircuitKnights
 		private PlayerInput playerInput;
 		Vector3 startPosition;
 		Vector3 tarPos;
+
+		#region Physics
+		// [SerializeField] float force;
+		[Tooltip("Drag factor of 0.5 reduces factor by half")][Range(0f, 1f)] public float DragFactor;
+		public float MaxForce = 50f;
+		public float MaxSpeed;
+		public Vector3 Force { get; private set; }
+		public Vector3 Accel { get; private set; }
+        public Vector3 Vel { get; private set; }
+        public Vector3 Pos { get; private set; }
+		public float LinearSpeed { get { return Vel.magnitude; } }
+		#endregion
 
 		void Awake()
         {
@@ -40,52 +48,85 @@ namespace CircuitKnights
 
             RememberInitialStartPositions();
             Assertions();
-        }
 
-        private void RememberInitialStartPositions()
+			PhysicsPrecalculations();
+		}
+		private void RememberInitialStartPositions()
         {
             startPosition = transform.position;
             tarPos = transform.position;
         }
-
         private void Assertions()
         {
             Assert.IsNotNull(playerData, "Player component required on same object.");
             Assert.IsNotNull(horseData, "Horse data not found.");
         }
+		private void PhysicsPrecalculations()
+		{
+			// Accel = for
+			Accel = Vector3.zero;
+			Vel = Vector3.zero;
+			Pos = transform.position;
+		}
+
 
 		void FixedUpdate()
         {
-            MoveByLerp();
+            // MoveByLerp();
+			MoveByCustomPhysics();
+		}
 
-            //Brent's
-       //     BrentsVibrationCode();
-        }
 
-       // private void BrentsVibrationCode()
-       // {
-       // //Is this supposed to vibrate when the horse moves past a certain speed?
-       // //horseData.speed is essentially a constant. Need to implement custom physics so that the horse has a velocity
-       // //which can then be referenced...
-       //     if (horseData.speed > 1)
-       //     {
-       //       
-       //         Debug.Log(horseData.speed);
-       //         //LeftMotor = .2f;
-       //         RightMotor = .2f;
-       //         //selects what controlers to vibrate
-       //
-       //         VibrateOnMovment(XInputDotNetPure.PlayerIndex.One);
-       //         Debug.Log("vibrating ON");
-       //         VibrateOnMovment(XInputDotNetPure.PlayerIndex.Two);
-       //     }
-       // }
-
+        #region Custom Physics
         private void MoveByCustomPhysics()
         {
-            throw new NotImplementedException();
-        }
+            if (playerInput.AccelAxis != 0)
+			{
+				Force = MaxForce * transform.forward * playerInput.AccelAxis;
+			}
+			else {
+				Force = Vector3.zero;
+				ApplyDrag();
+			}
+			DoPhysics();
+			ApplyFinalTransform();
+		}
 
+		private void DoPhysics()
+		{
+			Pos = transform.position;   //This avoid "charging"
+			//Do physics
+			// Force = MaxForce * transform.forward * playerInput.AccelAxis;
+			Accel = Force / horseData.Mass;
+			Vel += Accel * Time.fixedDeltaTime;
+			ClampMaxSpeed();
+			Pos += Vel * Time.fixedDeltaTime;
+		}
+		private void ClampMaxSpeed()
+		{
+            if (Vel.magnitude > MaxSpeed)
+            {
+				Vel = Vel.normalized * MaxSpeed;
+			}
+		}
+		public void ApplyDrag()
+        {
+			Vel *= (1f-DragFactor);     //Don't use deltatime!!!
+		}
+
+        private void ApplyFinalTransform()
+		{
+			transform.position = Pos;
+		}
+        ///////////////////////
+        void ArriveToPosition(Vector3 arrivePos, float arriveRadius)
+        {
+			// Vel = Mathf.Min(Vector3.Distance(transform.position, arrivePos) / arriveRadius, MaxSpeed);
+		}
+
+        #endregion
+
+        #region Lerp
         void MoveByLerp()
 		{
 			//Adjust the target position
@@ -94,38 +135,22 @@ namespace CircuitKnights
 			//Lerp towards it
 			transform.position = Vector3.Lerp(transform.position, tarPos, horseData.lerpSmoothness);
 		}
-
 		internal void SetDesiredPosition(Vector3 desiredPos)
 		{
 			//Used after a pass has occurred
 			tarPos = desiredPos;
 		}
-
 		internal void SetPosition(Vector3 position)
 		{
 			//Used to instantly position the object ie. To reset the positions etc
 			transform.position = position;
 			tarPos = position;
 		}
-
 		internal void SetRotation(Quaternion rotation)
 		{
             transform.rotation = rotation;
         }
-        //void VibrateOnMovment(XInputDotNetPure.PlayerIndex playerIndex)
-        //{
-        //    if (GameSettings.Instance.isVibrationOn.Value == true)
-        //    {
-        //        XInputDotNetPure.GamePad.SetVibration(playerIndex, 0, RightMotor);
-        //    }
-        //    else
-        //    {
-        //        //LeftMotor = .0f;
-        //        RightMotor = .0f;
-        //        XInputDotNetPure.GamePad.SetVibration(playerIndex, 0, RightMotor);
-        //    }
-        //}
-
+        #endregion
     }
 
 }

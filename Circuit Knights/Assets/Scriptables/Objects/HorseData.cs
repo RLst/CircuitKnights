@@ -11,11 +11,15 @@ namespace CircuitKnights.Objects
     [CreateAssetMenu(fileName = "New Horse Data", menuName = "Horse", order = 52)]
     public class HorseData : ObjectData
     {
-        [TextArea] [SerializeField] string description = 
+        [TextArea] [SerializeField] string description =
             "The player's horse";
 
-        #region Controls
-        [Header("Controls")]
+		#region Physics
+		public float Mass = 1;  //Lazy property
+		#endregion
+
+		#region Controls
+		[Header("Controls")]
         [SerializeField] XboxAxis accelAxis;
         [SerializeField] XboxButton decelButton;
 
