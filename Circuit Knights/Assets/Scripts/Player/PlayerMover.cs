@@ -6,7 +6,6 @@ using UnityEngine;
 using CircuitKnights.Objects;
 using UnityEngine.Assertions;
 using XInputDotNetPure;
-using CircuitKnights.Variables;
 using System;
 
 namespace CircuitKnights
@@ -15,9 +14,9 @@ namespace CircuitKnights
     public class PlayerMover : MonoBehaviour
     {
         //Brent's
-        [SerializeField] BoolVariable isVibration;
-        [SerializeField] float LeftMotor = .5f;
-        [SerializeField] float RightMotor = .5f;
+       
+        //[SerializeField] float LeftMotor = .5f;
+       // [SerializeField] float RightMotor = .5f;
         //////
 
         [TextArea]
@@ -60,26 +59,27 @@ namespace CircuitKnights
             MoveByLerp();
 
             //Brent's
-            BrentsVibrationCode();
+       //     BrentsVibrationCode();
         }
 
-        private void BrentsVibrationCode()
-        {
-        //Is this supposed to vibrate when the horse moves past a certain speed?
-        //horseData.speed is essentially a constant. Need to implement custom physics so that the horse has a velocity
-        //which can then be referenced...
-            if (horseData.speed > 1)
-            {
-                Debug.Log(horseData.speed);
-                LeftMotor = .2f;
-                RightMotor = .2f;
-                //selects what controlers to vibrate
-
-                VibrateOnMovment(XInputDotNetPure.PlayerIndex.One);
-                Debug.Log("vibrating ON");
-                VibrateOnMovment(XInputDotNetPure.PlayerIndex.Two);
-            }
-        }
+       // private void BrentsVibrationCode()
+       // {
+       // //Is this supposed to vibrate when the horse moves past a certain speed?
+       // //horseData.speed is essentially a constant. Need to implement custom physics so that the horse has a velocity
+       // //which can then be referenced...
+       //     if (horseData.speed > 1)
+       //     {
+       //       
+       //         Debug.Log(horseData.speed);
+       //         //LeftMotor = .2f;
+       //         RightMotor = .2f;
+       //         //selects what controlers to vibrate
+       //
+       //         VibrateOnMovment(XInputDotNetPure.PlayerIndex.One);
+       //         Debug.Log("vibrating ON");
+       //         VibrateOnMovment(XInputDotNetPure.PlayerIndex.Two);
+       //     }
+       // }
 
         private void MoveByCustomPhysics()
         {
@@ -112,13 +112,19 @@ namespace CircuitKnights
 		{
             transform.rotation = rotation;
         }
-        void VibrateOnMovment(XInputDotNetPure.PlayerIndex playerIndex)
-        {
-            if (isVibration.Value == true)
-            {
-                XInputDotNetPure.GamePad.SetVibration(playerIndex, LeftMotor, RightMotor);
-            }
-        }
+        //void VibrateOnMovment(XInputDotNetPure.PlayerIndex playerIndex)
+        //{
+        //    if (GameSettings.Instance.isVibrationOn.Value == true)
+        //    {
+        //        XInputDotNetPure.GamePad.SetVibration(playerIndex, 0, RightMotor);
+        //    }
+        //    else
+        //    {
+        //        //LeftMotor = .0f;
+        //        RightMotor = .0f;
+        //        XInputDotNetPure.GamePad.SetVibration(playerIndex, 0, RightMotor);
+        //    }
+        //}
 
     }
 

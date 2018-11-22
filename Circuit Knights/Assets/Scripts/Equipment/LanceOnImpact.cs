@@ -12,7 +12,7 @@ namespace CircuitKnights {
 
         [SerializeField] BoolVariable isVibration;
         [SerializeField] float LeftMotor = .5f;
-        [SerializeField] float RightMotor = .5f;
+       // [SerializeField] float RightMotor = .5f;
         public GameObject player;
         private float timer = 0.0f;
         private bool timing = false;
@@ -34,7 +34,7 @@ namespace CircuitKnights {
                 {
                     // changes the values of the vibratio so it stops vibrating
                     LeftMotor = .0f;
-                    RightMotor = .0f;
+                   // RightMotor = .0f;
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
                     Debug.Log("vibrating OFF");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
@@ -55,7 +55,7 @@ namespace CircuitKnights {
                 timing = true;
                 //resets the vibration on enter
                 LeftMotor = 1.0f;
-                RightMotor = 1.0f;
+                //RightMotor = 1.0f;
                 //selects what controlers to vibrate
                 VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
                 Debug.Log("vibrating ON");
@@ -81,7 +81,7 @@ namespace CircuitKnights {
         {
             if (isVibration.Value == true)
             {
-                XInputDotNetPure.GamePad.SetVibration(playerIndex, LeftMotor, RightMotor);
+                XInputDotNetPure.GamePad.SetVibration(playerIndex, LeftMotor, 0);
             }
         }
     }
