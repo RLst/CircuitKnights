@@ -37,7 +37,7 @@ namespace CircuitKnights
 			playerData.HeadHP -= damage;    //TODO make damage => finalDamage
 
 			//Play knockback animation
-			playerData.Animator.SetTrigger("Knockback");
+			//playerData.Animator.SetTrigger("Knockback");
 
 			if (playerData.HeadHP <= 0)
 				Death();
@@ -50,8 +50,10 @@ namespace CircuitKnights
 			// headMesh.SetActive(false);
 			gameObject.SetActive(false);
 
-			//Spawn in new head to simulate getting knocked off
-			var newKnockedOff = Instantiate(knockedOffPrefab, knockedOffInstatiatePoint.position, knockedOffInstatiatePoint.rotation);
+            //Spawn in new head to simulate getting knocked off
+            var newKnockedOff = Instantiate(knockedOffPrefab, knockedOffInstatiatePoint.position, knockedOffInstatiatePoint.rotation);
+            //var newKnockedOff = Instantiate(knockedOffPrefab, transform.localPosition, transform.localRotation);
+
 
             //TODO let the system know that the player's head has fallen off
 

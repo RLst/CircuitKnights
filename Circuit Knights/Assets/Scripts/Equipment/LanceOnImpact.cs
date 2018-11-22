@@ -11,16 +11,14 @@ namespace CircuitKnights {
     public class LanceOnImpact : MonoBehaviour {
 
         [SerializeField] BoolVariable isVibration;
-        private float LeftMotor;
-        private float RightMotor;
+        private float LeftMotor = .5f;
+        private float RightMotor = .5f;
         public GameObject player;
         private float timer = 0.0f;
         private bool timing = false;
         public float VibrateOnCollisionFor = .5f;
         public bool VibrateMovementOn;
         public bool VibrateCollisionOn;
-
-        
        
 
         private void Update()
@@ -47,7 +45,6 @@ namespace CircuitKnights {
                     Debug.Log("vibrating Collision ON");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
                     //VibrateOnCollision((PlayerIndex)playerData.No as PlayerIndex);
-                    
                 }
             }
         }
@@ -85,20 +82,16 @@ namespace CircuitKnights {
                     Debug.Log("Vibrating on Movement");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
-                    
-                    
                 }
             }
 
             if(VibrateMovementOn == false)
             {
-                if (timing == false)
-                {
-                    LeftMotor = .0f;
-                    RightMotor = .0f;
-                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
-                }
+                LeftMotor = .0f;
+                RightMotor = .0f;
+                VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
+                VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+
             }
                
            

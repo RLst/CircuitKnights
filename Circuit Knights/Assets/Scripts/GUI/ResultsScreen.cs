@@ -40,7 +40,7 @@ namespace CircuitKnights
             if (Input.GetKeyDown(KeyCode.V))
             {
                 ResultScreen.SetActive(true);
-                MainMenuButton.PlayerCamerasActive = false;
+                //MainMenuButton.PlayerCamerasActive = false;
                 ResultCameraActive = true;
             }
 
