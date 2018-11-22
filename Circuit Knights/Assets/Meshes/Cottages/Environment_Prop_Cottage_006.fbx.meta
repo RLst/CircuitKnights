@@ -1,16 +1,17 @@
 fileFormatVersion: 2
-guid: 80f1e27e947ea3d4ca2bb84d9c366f8f
-timeCreated: 1541023713
+guid: 33995ac5343294e4587885512325ae6a
+timeCreated: 1542769132
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: lambert2
+    2100000: lambert3
+    2100002: lambert4
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Environment_Prop_Cottage_001
+    4300000: Environment_Prop_Cottage_006
     9500000: //RootNode
   externalObjects: {}
   materials:
