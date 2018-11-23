@@ -7,7 +7,7 @@ namespace CircuitKnights
     public class LanceController : MonoBehaviour
     {
         [TextArea][SerializeField] string description =
-            "Controls the player's lance. The Lance should ONLY HAVE ONE rigidbody attached to the lance mesh itself.";
+            "Attach to root object of lance. Controls the player's lance. The Lance should ONLY HAVE ONE rigidbody attached to the lance mesh itself.";
 
         ///References
         PlayerData playerData;
@@ -28,7 +28,6 @@ namespace CircuitKnights
         void Start()
         {
             AutoRetrieveData();
-
             Assertions();
 
             //Match the initial lance orientation

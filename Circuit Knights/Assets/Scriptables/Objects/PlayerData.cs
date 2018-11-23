@@ -52,22 +52,23 @@ namespace CircuitKnights.Objects
 			Two		//2
 		}
 		[SerializeField] PlayerNumber playerNo;
-		public PlayerNumber No { get { return playerNo; } } 	//(Number)
-	#endregion
+		public PlayerNumber No { get { return playerNo; } }     //(Number)
+		#endregion
 
-	#region Controls
+		#region Controls
 		[Header("Controls")]
+		[Tooltip("Lerp")] public float LeanInertia = 0.8f;
 		[SerializeField] XboxController controller;
 		[SerializeField] XboxAxis lanceAxisX, lanceAxisY;
-		[SerializeField] XboxAxis leanAxisX, leanAxisY;
+		[SerializeField] XboxAxis leanLeft, leanRight;
 		[SerializeField] XboxAxis shieldAxisX, shieldAxisY;
 		[SerializeField] XboxButton thrustLanceButton;
 
 		public XboxController Controller { get { return controller; } }
 		public XboxAxis LanceAxisX { get { return lanceAxisX; } }
 		public XboxAxis LanceAxisY { get { return lanceAxisY; } }
-		public XboxAxis LeanAxisX { get { return leanAxisX; } }
-		public XboxAxis LeanAxisY { get { return leanAxisY; } }
+		public XboxAxis LeanLeft { get { return leanLeft; } }
+		public XboxAxis LeanRight { get { return leanRight; } }
 		public XboxAxis ShieldAxisX { get { return shieldAxisX; } }
 		public XboxAxis ShieldAxisY { get { return shieldAxisY; } }
 		public XboxButton ThrustLanceButton { get { return thrustLanceButton; } }
@@ -139,20 +140,6 @@ namespace CircuitKnights.Objects
 			// Root.transform.position = position;
             Root.transform.rotation = rotation;
         }
-
-        public void EnableMovement() {
-            PlayerMover.enabled = true;
-		}
-		public void DisableMovement() {
-            PlayerMover.enabled = false;
-		}
-		public void EnableCamera() {
-			Camera.enabled = true;
-		}
-		public void DisableCamera() {
-			Camera.enabled = false;
-		}
-
 	#endregion
 	}
 }

@@ -8,7 +8,13 @@ AnimatorController:
   m_Name: RobotController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: LeanAxisX
+  - m_Name: LeanAxis
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: KnockbackAxis
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -57,7 +63,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: f811c4ee1aed1754f8967595ea6b72d7, type: 3}
     m_Threshold: -1
-    m_Position: {x: 0, y: 0}
+    m_Position: {x: -1, y: 0.1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: LeanAxisX
@@ -73,16 +79,16 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: dbb087134348d8946a0c6d7e63884d31, type: 3}
     m_Threshold: 1
-    m_Position: {x: 0, y: 0}
+    m_Position: {x: 1, y: 0.1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: LeanAxisX
     m_Mirror: 0
-  m_BlendParameter: LeanAxisX
-  m_BlendParameterY: LeanAxisX
+  m_BlendParameter: LeanAxis
+  m_BlendParameterY: KnockbackAxis
   m_MinThreshold: -1
   m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
+  m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
 --- !u!1101 &1101376095365235768

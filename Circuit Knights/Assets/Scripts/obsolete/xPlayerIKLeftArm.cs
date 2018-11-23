@@ -1,47 +1,47 @@
-﻿using CircuitKnights.Variables;
-using UnityEngine;
+﻿// using CircuitKnights.Variables;
+// using UnityEngine;
 
-namespace CircuitKnights
-{
-	public class xPlayerIKLeftArm : MonoBehaviour
-	{
+// namespace CircuitKnights
+// {
+// 	public class xPlayerIKLeftArm : MonoBehaviour
+// 	{
 
-		[Multiline]
-		public string description =
-			"Connected to the shield.\n Can also hold the reins if any.\n" +
-			"Shield handle should be offsetted to the left with empty game object." +
-			"This script should be disabled upon events: PlayerDeath, LeftArmDeath." +
-			"Attach to root object of animator.";
+// 		[Multiline]
+// 		public string description =
+// 			"Connected to the shield.\n Can also hold the reins if any.\n" +
+// 			"Shield handle should be offsetted to the left with empty game object." +
+// 			"This script should be disabled upon events: PlayerDeath, LeftArmDeath." +
+// 			"Attach to root object of animator.";
 
-		Animator anim;
+// 		Animator anim;
 
-		[SerializeField] Transform leftHand;
-		[SerializeField] Transform leftElbow;
-		[SerializeField] FloatReference IKWeight;
+// 		[SerializeField] Transform leftHand;
+// 		[SerializeField] Transform leftElbow;
+// 		[SerializeField] FloatReference IKWeight;
 
-		private void Start()
-		{
-			anim = GetComponent<Animator>();
-		}
+// 		private void Start()
+// 		{
+// 			anim = GetComponent<Animator>();
+// 		}
 
-		private void OnAnimatorIK(int layerIndex)
-		{
-			if (!leftHand && !leftElbow)
-			{
-				Debug.LogWarning("Left arm not set up yet!");
-				return;
-			}
+// 		private void OnAnimatorIK(int layerIndex)
+// 		{
+// 			if (!leftHand && !leftElbow)
+// 			{
+// 				Debug.LogWarning("Left arm not set up yet!");
+// 				return;
+// 			}
 
-			//Hand
-			anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, IKWeight.Value);
-			anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, IKWeight.Value);
-			anim.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
-			anim.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
+// 			//Hand
+// 			anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, IKWeight.Value);
+// 			anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, IKWeight.Value);
+// 			anim.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
+// 			anim.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
 
-			//Elbow
-			anim.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, IKWeight.Value);
-			anim.SetIKHintPosition(AvatarIKHint.LeftElbow, leftElbow.position);
+// 			//Elbow
+// 			anim.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, IKWeight.Value);
+// 			anim.SetIKHintPosition(AvatarIKHint.LeftElbow, leftElbow.position);
 
-		}
-	}
-}
+// 		}
+// 	}
+// }

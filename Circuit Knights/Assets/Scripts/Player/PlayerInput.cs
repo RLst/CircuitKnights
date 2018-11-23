@@ -9,7 +9,7 @@ using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
-    // [RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(Player))]
     public class PlayerInput : MonoBehaviour
     {
         [TextArea] [SerializeField] string description = "Handles controller/keyboard input for the player. Attach to the root object";
@@ -21,8 +21,9 @@ namespace CircuitKnights
 		#region Outputs
 		public float LanceAxisX { get; private set; }
         public float LanceAxisY { get; private set; }
-        public float LeanAxisX { get; private set; }
-        public float LeanAxisY { get; private set; }
+
+        public float LeanLeft { get; private set; }
+        public float LeanRight { get; private set; }
 
         public float ShieldAxisX { get; private set; }
         public float ShieldAxisY { get; private set; }
@@ -53,13 +54,13 @@ namespace CircuitKnights
         void ReadControllerInput()
         {
             // Controller = player.Controller;
-            LanceAxisX = XCI.GetAxis(playerData.LanceAxisX, playerData.Controller);
-            LanceAxisY = XCI.GetAxis(playerData.LanceAxisY, playerData.Controller);
-            LeanAxisX = XCI.GetAxis(playerData.LeanAxisX, playerData.Controller);
-            LeanAxisY = XCI.GetAxis(playerData.LeanAxisY, playerData.Controller);
+            LanceAxisX = XCI.GetAxisRaw(playerData.LanceAxisX, playerData.Controller);
+            LanceAxisY = XCI.GetAxisRaw(playerData.LanceAxisY, playerData.Controller);
+            LeanLeft = XCI.GetAxisRaw(playerData.LeanLeft, playerData.Controller);
+            LeanRight = XCI.GetAxisRaw(playerData.LeanRight, playerData.Controller);
 
-            ShieldAxisX = XCI.GetAxis(playerData.ShieldAxisX, playerData.Controller);
-            ShieldAxisY = XCI.GetAxis(playerData.ShieldAxisY, playerData.Controller);
+            ShieldAxisX = XCI.GetAxisRaw(playerData.ShieldAxisX, playerData.Controller);
+            ShieldAxisY = XCI.GetAxisRaw(playerData.ShieldAxisY, playerData.Controller);
 
             AccelAxis = XCI.GetAxis(horseData.AccelAxis, playerData.Controller);
             DecelButton = XCI.GetButton(horseData.DecelButton, playerData.Controller);
@@ -70,13 +71,13 @@ namespace CircuitKnights
         void xReadKeyboardInput()
 		{
 			///hardcoded for debugging/ease of use purposes
-			LeanAxisX = Input.GetAxis("Horizontal2");
-			LeanAxisY = Input.GetAxis("Vertical2");
+			LeanLeft = Input.GetAxis("Horizontal2");
+			LeanRight = Input.GetAxis("Vertical2");
 			LanceAxisX = Input.GetAxis("Horizontal");
 			LanceAxisY = Input.GetAxis("Vertical");
             ShieldAxisX = Input.GetAxis("Horizontal2");
 			ShieldAxisY = Input.GetAxis("Vertical2");
-            
+
             //Temp
             if (Input.GetKey(KeyCode.Space))
                 AccelAxis = 1f;

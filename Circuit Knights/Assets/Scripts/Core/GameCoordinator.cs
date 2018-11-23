@@ -225,6 +225,7 @@ namespace CircuitKnights
             //Odd numbered round
             if (GameSettings.Instance.Round % 2 == 1)
             {
+                // playerOne.PlayerMover.
                 p1.SetPositionAndRotation(startPoints[0].position, startPoints[0].rotation);
                 p2.SetPositionAndRotation(startPoints[1].position, startPoints[1].rotation);
             }
