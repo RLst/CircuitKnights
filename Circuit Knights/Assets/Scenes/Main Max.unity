@@ -2517,14 +2517,6 @@ Prefab:
       propertyPath: m_Name
       value: Environment_Tree_Palm_001 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4461970095746408, guid: 688f6121ca501964d85adf625da869e5, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 33.670002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4461970095746408, guid: 688f6121ca501964d85adf625da869e5, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 10.990001
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 688f6121ca501964d85adf625da869e5, type: 2}
   m_IsPrefabParent: 0
@@ -33729,7 +33721,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831102159}
-  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
+  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
