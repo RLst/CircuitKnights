@@ -14,18 +14,17 @@ namespace CircuitKnights
 
 		Animator anim;
 
-		[SerializeField] TransformVariable lookTarget;
-		[SerializeField] FloatReference overallIKWeight;
-		[SerializeField] FloatReference lookIKWeight;
-		[SerializeField] FloatReference bodyIKWeight;
-		[SerializeField] FloatReference headIKWeight;
+		[SerializeField] Transform lookTarget;
+		[SerializeField] [Range(0f, 1f)] float overallIKWeight = 1f;
+		[SerializeField] [Range(0f, 1f)] float lookIKWeight = 1f;
+		[SerializeField] [Range(0f, 1f)] float bodyIKWeight = 1f;
+		[SerializeField] [Range(0f, 1f)] float headIKWeight = 1f;
 		float eyesIKWeight = 0f;	//Not really applicable as our robots don't have eyes
-		[SerializeField] FloatReference clampIKWeight;
+		[SerializeField] [Range(0f, 1f)] float clampIKWeight = 1f;
 
 		private void Awake()
 		{
-			anim = GetComponent<Animator>();
-			if (!anim) anim = GetComponentInParent<Animator>();
+			anim = GetComponentInChildren<Animator>();
 		}
 
 		void Start()
@@ -39,14 +38,14 @@ namespace CircuitKnights
 			{
 				//Weights
 				anim.SetLookAtWeight(
-					overallIKWeight.Value,
-					bodyIKWeight.Value,
-					headIKWeight.Value,
+					overallIKWeight,
+					bodyIKWeight,
+					headIKWeight,
 					eyesIKWeight,
-					clampIKWeight.Value);
+					clampIKWeight);
 
 				//IK
-				anim.SetLookAtPosition(lookTarget.Value.position);
+				anim.SetLookAtPosition(lookTarget.position);
 			}
 			else
 			{

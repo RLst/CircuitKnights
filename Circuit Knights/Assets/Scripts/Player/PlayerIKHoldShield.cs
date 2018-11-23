@@ -8,20 +8,20 @@ namespace CircuitKnights
 
 		[Multiline]
 		public string description =
+			"Attach to the robot/player root" +
 			"Connected to the shield.\n Can also hold the reins if any.\n" +
 			"Shield handle should be offsetted to the left with empty game object." +
-			"This script should be disabled upon events: PlayerDeath, LeftArmDeath." +
-			"Attach to root object of animator.";
+			"This script should be disabled upon events: PlayerDeath, LeftArmDeath.";
 
 		Animator anim;
 
 		[SerializeField] Transform leftHand;
 		[SerializeField] Transform leftElbow;
-		[SerializeField] FloatReference IKWeight;
+		[SerializeField][Range(0f,1f)] float IKWeight = 0.9f;
 
 		private void Awake()
 		{
-			anim = GetComponent<Animator>();
+			anim = GetComponentInChildren<Animator>();
 		}
 
 		private void OnAnimatorIK(int layerIndex)
@@ -33,13 +33,13 @@ namespace CircuitKnights
 			}
 
 			//Hand
-			anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, IKWeight.Value);
-			anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, IKWeight.Value);
+			anim.SetIKPositionWeight(AvatarIKGoal.LeftHand, IKWeight);
+			anim.SetIKRotationWeight(AvatarIKGoal.LeftHand, IKWeight);
 			anim.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
 			anim.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
 
 			//Elbow
-			anim.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, IKWeight.Value);
+			anim.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, IKWeight);
 			anim.SetIKHintPosition(AvatarIKHint.LeftElbow, leftElbow.position);
 
 		}

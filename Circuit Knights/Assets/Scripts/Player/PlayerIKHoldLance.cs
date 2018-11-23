@@ -17,11 +17,11 @@ namespace CircuitKnights
 
 		[SerializeField] Transform rightHand;
 		[SerializeField] Transform rightElbow;
-		[SerializeField] FloatReference IKWeight;
+		[SerializeField][Range(0f, 1f)] float IKWeight = 0.9f;
 
 		private void Awake()
 		{
-			anim = GetComponent<Animator>();
+			anim = GetComponentInChildren<Animator>();
 		}
 
 		private void OnAnimatorIK(int layerIndex)
@@ -33,13 +33,13 @@ namespace CircuitKnights
 			}
 
 			//Hand
-			anim.SetIKPositionWeight(AvatarIKGoal.RightHand, IKWeight.Value);
-			anim.SetIKRotationWeight(AvatarIKGoal.RightHand, IKWeight.Value);
+			anim.SetIKPositionWeight(AvatarIKGoal.RightHand, IKWeight);
+			anim.SetIKRotationWeight(AvatarIKGoal.RightHand, IKWeight);
 			anim.SetIKPosition(AvatarIKGoal.RightHand, rightHand.position);
 			anim.SetIKRotation(AvatarIKGoal.RightHand, rightHand.rotation);
 
 			//Elbow
-			anim.SetIKHintPositionWeight(AvatarIKHint.RightElbow, IKWeight.Value);
+			anim.SetIKHintPositionWeight(AvatarIKHint.RightElbow, IKWeight);
 			anim.SetIKHintPosition(AvatarIKHint.RightElbow, rightElbow.position);
 
 		}
