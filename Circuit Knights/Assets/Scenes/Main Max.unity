@@ -384,6 +384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 28296930}
   - component: {fileID: 28296929}
+  - component: {fileID: 28296931}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -409,10 +410,10 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.467
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_Strength: 0.421
+    m_Bias: 0
+    m_NormalBias: 0
+    m_NearPlane: 0.1
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
@@ -440,6 +441,72 @@ Transform:
   m_Father: {fileID: 990424421}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 64.672005, y: 1029.513, z: 943.635}
+--- !u!114 &28296931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 28296928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da396d4547fa3ff45a6bc1e4f6ca6964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseTexture3D: {fileID: 0}
+  NoiseScale: {x: 0.5, y: 0.5, z: 0.5}
+  NoiseVelocity: {x: 1, y: 1, z: 0}
+  LightFalloff: {fileID: 0}
+  NearPlane: 0
+  NoiseEnabled: 0
+  CustomMieScatter: 1
+  CustomExtinction: 0
+  CustomExtinctionEffect: 0
+  CustomDensity: 1
+  CustomSampleCount: 0
+  CustomColor: 1
+  CustomNoiseEnabled: 1
+  CustomNoiseTexture: 0
+  CustomNoiseScale: 0
+  CustomNoiseVelocity: 0
+  CustomNoiseContrast: 0
+  CustomFogHeightEnabled: 1
+  CustomFogHeight: 1
+  CustomFogTransitionSize: 1
+  CustomAboveFogPercent: 1
+  CustomSunSize: 0
+  CustomSunBleed: 0
+  ShadowCasting: 1
+  CustomStrength: 1
+  CustomIntensity: 1
+  CustomTintMode: 0
+  CustomTintColor: 0
+  CustomTintColor2: 0
+  CustomTintGradient: 0
+  CustomTintIntensity: 0
+  CustomMaxLightDistance: 0
+  NoiseContrast: 1
+  TintMode: 2
+  TintColor: {r: 1, g: 0, b: 0, a: 1}
+  TintColor2: {r: 0, g: 0, b: 1, a: 1}
+  TintIntensity: 130.98
+  TintGradient: 0.2
+  Intensity: 2.43
+  Strength: 1
+  Color: {r: 0.38039216, g: 0.47058824, b: 0.5372549, a: 1}
+  MieScattering: 0.407
+  SunSize: 0
+  SunBleed: 1
+  Extinction: 0.01
+  Density: 0.045
+  ExtraDensity: 0.022
+  SampleCount: 4
+  Shadows: 1
+  FogHeightEnabled: 1
+  FogHeight: 4.97
+  FogTransitionSize: 4.22
+  MaxLightDistance: 128
+  AboveFogPercent: -2.91
+  Offset: {x: 119.52038, y: 119.52038, z: 0}
 --- !u!4 &29638757 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4383584932332024, guid: d00a6d38e0ba462428b2290843669587,
@@ -3253,10 +3320,7 @@ MonoBehaviour:
     to root object of animator."
   rightHand: {fileID: 1689946549}
   rightElbow: {fileID: 1745118734}
-  IKWeight:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
+  IKWeight: NaN
 --- !u!114 &264390350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3275,10 +3339,7 @@ MonoBehaviour:
     of animator.'
   leftHand: {fileID: 152327768}
   leftElbow: {fileID: 2082786512}
-  IKWeight:
-    UseConstant: 1
-    ConstantValue: 0.9
-    Variable: {fileID: 0}
+  IKWeight: NaN
 --- !u!114 &264390351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3296,10 +3357,7 @@ MonoBehaviour:
     object of animator."
   rightHand: {fileID: 1689946549}
   rightElbow: {fileID: 1745118734}
-  IKWeight:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
+  IKWeight: NaN
 --- !u!114 &264390352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3313,27 +3371,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Controls where the player looks.Should be set to the opponent at gameplay.Could
     possibly be set to look around at the audience.
-  lookTarget: {fileID: 11400000, guid: 5b5533eff612c4810a679528ee7ae0c6, type: 2}
-  overallIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  lookIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  bodyIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  headIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  clampIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
+  lookTarget: {fileID: 0}
+  overallIKWeight: NaN
+  lookIKWeight: 8
+  bodyIKWeight: NaN
+  headIKWeight: NaN
+  clampIKWeight: NaN
 --- !u!4 &268767525 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4538187660523168, guid: 531ebdda9358d3945896d6e9064f57bc,
@@ -13830,10 +13873,7 @@ MonoBehaviour:
     of animator.'
   leftHand: {fileID: 1007818392}
   leftElbow: {fileID: 1983374286}
-  IKWeight:
-    UseConstant: 1
-    ConstantValue: 0.9
-    Variable: {fileID: 0}
+  IKWeight: NaN
 --- !u!114 &810692416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13851,10 +13891,7 @@ MonoBehaviour:
     object of animator."
   rightHand: {fileID: 768834889}
   rightElbow: {fileID: 1511354882}
-  IKWeight:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
+  IKWeight: NaN
 --- !u!114 &810692417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13868,27 +13905,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Controls where the player looks.Should be set to the opponent at gameplay.Could
     possibly be set to look around at the audience.
-  lookTarget: {fileID: 11400000, guid: 4e596a849ba494f04af9e1af77b75df3, type: 2}
-  overallIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  lookIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  bodyIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  headIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  clampIKWeight:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
+  lookTarget: {fileID: 0}
+  overallIKWeight: NaN
+  lookIKWeight: 8
+  bodyIKWeight: NaN
+  headIKWeight: NaN
+  clampIKWeight: NaN
 --- !u!114 &810692418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13906,10 +13928,7 @@ MonoBehaviour:
     to root object of animator."
   rightHand: {fileID: 768834889}
   rightElbow: {fileID: 1511354882}
-  IKWeight:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
+  IKWeight: NaN
 --- !u!95 &810692419
 Animator:
   serializedVersion: 3
@@ -26954,6 +26973,8 @@ MonoBehaviour:
   VibrateOnCollisionFor: 0.5
   VibrateMovementOn: 0
   VibrateCollisionOn: 1
+  _as: {fileID: 0}
+  audioClipArray: []
 --- !u!1 &1377810614
 GameObject:
   m_ObjectHideFlags: 0
@@ -28200,9 +28221,11 @@ GameObject:
   - component: {fileID: 1451116404}
   - component: {fileID: 1451116403}
   - component: {fileID: 1451116402}
+  - component: {fileID: 1451116408}
   - component: {fileID: 1451116406}
   - component: {fileID: 1451116401}
   - component: {fileID: 1451116400}
+  - component: {fileID: 1451116407}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -28375,6 +28398,186 @@ MonoBehaviour:
   desiredPos: {fileID: 0}
   rotationSpeed: 0
   lookAt: {fileID: 0}
+--- !u!114 &1451116407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1451116398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12601acaf9af72343b85bace4eb57570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RenderOrder: 0
+--- !u!114 &1451116408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1451116398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf64743a1a6b454fb27131f0e59793c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RenderOrder: 0
+  callBackImageEffect: {fileID: 1451116407}
+  callBackImageEffectOpaque: {fileID: 0}
+  ShadowFix: 1
+  TemporalSampling: 1
+  DitherSpeed: 0.6256256
+  LuminanceFeedback: 0.8
+  MaxFeedback: 0.9
+  NoiseContrast: 1
+  NoiseTexture3D: {fileID: 11700000, guid: ea166c3018822e44fb93eca537a773fc, type: 2}
+  resolution: 1
+  SampleCount: 4
+  DirectionalSampleCount: 8
+  MaxDirectionalRayDistance: 128
+  MaxLightDistance: 128
+  Density: 0.05
+  AmbientLightingStrength: 0.5
+  MieScattering: 0.4
+  SunSize: 0
+  SunBleed: 1
+  Extinction: 0.05
+  ExtinctionEffect: 0
+  FogHeightEnabled: 0
+  FogHeight: 5
+  FogTransitionSize: 5
+  AboveFogPercent: 0.1
+  Ambient: 0
+  AmbientSky: {r: 1, g: 1, b: 1, a: 1}
+  AmbientEquator: {r: 1, g: 1, b: 1, a: 1}
+  AmbientGround: {r: 1, g: 1, b: 1, a: 1}
+  AmbientIntensity: 1
+  TintMode: 0
+  TintColor: {r: 1, g: 0, b: 0, a: 1}
+  TintColor2: {r: 0, g: 0, b: 1, a: 1}
+  TintIntensity: 0.2
+  TintGradient: 0.2
+  CurrentTint: {x: 0.2, y: 0, z: 0}
+  CurrentTintEdge: {x: 0, y: 0, z: 0.2}
+  NoiseEnabled: 0
+  NoiseScale: {x: 0.1, y: 0.1, z: 0.1}
+  NoiseVelocity: {x: 1, y: 0, z: 1}
+  ParticleDensitySupport: 0
+  densityResolution: 3
+  densityDistance: 64
+  TransparencySupport: 0
+  transparencyDistance: 64
+  BlurTransparency: 1
+  blurCount: 1
+  BlurDepthFalloff: 5
+  DownsampledBlurDepthFalloff: 5
+  UpSampledblurCount: 0
+  DepthThreshold: 0.06
+  GaussianWeights: 0
+  MapToLDR: 0
+  RemoveColorBanding: 1
+  MatrixVP:
+    e00: -0.23373024
+    e01: 0.0005055701
+    e02: -2.1509733
+    e03: 45.03759
+    e10: -0.3059426
+    e11: -1.8961823
+    e12: 0.032803807
+    e13: -5.5923295
+    e20: -0.00029445993
+    e21: 0.00004860221
+    e22: 0.000031572632
+    e23: 0.28808323
+    e30: 0.98117536
+    e31: -0.16194832
+    e32: -0.10520375
+    e33: 40.00815
+  LastMatrixVP:
+    e00: -0.23127988
+    e01: 0.00010112692
+    e02: -2.151236
+    e03: 45.137505
+    e10: 0.30739298
+    e11: 1.8959428
+    e12: -0.03295932
+    e13: 5.6514707
+    e20: -0.00029445993
+    e21: 0.00004860221
+    e22: 0.000031572632
+    e23: 0.28808323
+    e30: 0.98117536
+    e31: -0.16194832
+    e32: -0.10520375
+    e33: 40.00815
+  LastMatrixVPInv:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  LastMatrixVP2:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  LastMatrixVPInv2:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  MatrixV:
+    e00: -0.10661113
+    e01: 0.000000007450581
+    e02: -0.9943009
+    e03: 20.873455
+    e10: 0.16102535
+    e11: 0.98679924
+    e12: -0.017265476
+    e13: 2.9830177
+    e20: -0.98117536
+    e21: 0.16194832
+    e22: 0.10520375
+    e23: -40.00815
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
 --- !u!1001 &1451164598
 Prefab:
   m_ObjectHideFlags: 0
@@ -32012,10 +32215,7 @@ MonoBehaviour:
     of animator.'
   leftHand: {fileID: 152327768}
   leftElbow: {fileID: 2082786512}
-  IKWeight:
-    UseConstant: 1
-    ConstantValue: 0.9
-    Variable: {fileID: 0}
+  IKWeight: 2
 --- !u!114 &1697569863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32034,26 +32234,11 @@ MonoBehaviour:
 
     Could possibly be set to look around at the audience.'
   lookTarget: {fileID: 0}
-  overallIKWeight:
-    UseConstant: 1
-    ConstantValue: 0.9
-    Variable: {fileID: 0}
-  lookIKWeight:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
-  bodyIKWeight:
-    UseConstant: 1
-    ConstantValue: 0.7
-    Variable: {fileID: 0}
-  headIKWeight:
-    UseConstant: 1
-    ConstantValue: 0.9
-    Variable: {fileID: 0}
-  clampIKWeight:
-    UseConstant: 1
-    ConstantValue: 0.95
-    Variable: {fileID: 0}
+  overallIKWeight: NaN
+  lookIKWeight: 8
+  bodyIKWeight: NaN
+  headIKWeight: NaN
+  clampIKWeight: NaN
 --- !u!114 &1697569864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32625,10 +32810,12 @@ GameObject:
   - component: {fileID: 1765023270}
   - component: {fileID: 1765023269}
   - component: {fileID: 1765023268}
+  - component: {fileID: 1765023272}
   - component: {fileID: 1765023267}
   - component: {fileID: 1765023266}
   - component: {fileID: 1765023265}
   - component: {fileID: 1765023264}
+  - component: {fileID: 1765023271}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -32801,6 +32988,186 @@ MonoBehaviour:
   desiredPos: {fileID: 927884286}
   rotationSpeed: 0.5
   lookAt: {fileID: 1186632786}
+--- !u!114 &1765023271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1765023262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12601acaf9af72343b85bace4eb57570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RenderOrder: 0
+--- !u!114 &1765023272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1765023262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf64743a1a6b454fb27131f0e59793c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RenderOrder: 0
+  callBackImageEffect: {fileID: 1765023271}
+  callBackImageEffectOpaque: {fileID: 0}
+  ShadowFix: 1
+  TemporalSampling: 1
+  DitherSpeed: 0.6256256
+  LuminanceFeedback: 0.8
+  MaxFeedback: 0.9
+  NoiseContrast: 1
+  NoiseTexture3D: {fileID: 11700000, guid: ea166c3018822e44fb93eca537a773fc, type: 2}
+  resolution: 1
+  SampleCount: 4
+  DirectionalSampleCount: 8
+  MaxDirectionalRayDistance: 128
+  MaxLightDistance: 128
+  Density: 0.05
+  AmbientLightingStrength: 0.5
+  MieScattering: 0.4
+  SunSize: 0
+  SunBleed: 1
+  Extinction: 0.05
+  ExtinctionEffect: 0
+  FogHeightEnabled: 0
+  FogHeight: 5
+  FogTransitionSize: 5
+  AboveFogPercent: 0.1
+  Ambient: 0
+  AmbientSky: {r: 1, g: 1, b: 1, a: 1}
+  AmbientEquator: {r: 1, g: 1, b: 1, a: 1}
+  AmbientGround: {r: 1, g: 1, b: 1, a: 1}
+  AmbientIntensity: 1
+  TintMode: 0
+  TintColor: {r: 1, g: 0, b: 0, a: 1}
+  TintColor2: {r: 0, g: 0, b: 1, a: 1}
+  TintIntensity: 0.2
+  TintGradient: 0.2
+  CurrentTint: {x: 0.2, y: 0, z: 0}
+  CurrentTintEdge: {x: 0, y: 0, z: 0.2}
+  NoiseEnabled: 0
+  NoiseScale: {x: 0.1, y: 0.1, z: 0.1}
+  NoiseVelocity: {x: 1, y: 0, z: 1}
+  ParticleDensitySupport: 0
+  densityResolution: 3
+  densityDistance: 64
+  TransparencySupport: 0
+  transparencyDistance: 64
+  BlurTransparency: 1
+  blurCount: 1
+  BlurDepthFalloff: 5
+  DownsampledBlurDepthFalloff: 5
+  UpSampledblurCount: 0
+  DepthThreshold: 0.06
+  GaussianWeights: 0
+  MapToLDR: 0
+  RemoveColorBanding: 1
+  MatrixVP:
+    e00: 0.23066588
+    e01: -0.000000016120318
+    e02: 2.1513016
+    e03: -58.7559
+    e10: 0.3093268
+    e11: -1.8956237
+    e12: -0.033166498
+    e13: -2.34791
+    e20: 0.00029440143
+    e21: 0.00004859256
+    e22: -0.000031566164
+    e23: 0.2913048
+    e30: -0.9811753
+    e31: -0.16194832
+    e32: 0.10520309
+    e33: 29.279232
+  LastMatrixVP:
+    e00: 0.23066588
+    e01: -0.000000016120318
+    e02: 2.1513016
+    e03: -58.7559
+    e10: -0.3093268
+    e11: 1.8956237
+    e12: 0.033166498
+    e13: 2.34791
+    e20: 0.00029440143
+    e21: 0.00004859256
+    e22: -0.000031566164
+    e23: 0.2913048
+    e30: -0.9811753
+    e31: -0.16194832
+    e32: 0.10520309
+    e33: 29.279232
+  LastMatrixVPInv:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  LastMatrixVP2:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  LastMatrixVPInv2:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  MatrixV:
+    e00: 0.10661048
+    e01: -0.000000007450581
+    e02: 0.99430084
+    e03: -27.15614
+    e10: -0.16102535
+    e11: 0.98679924
+    e12: 0.017265387
+    e13: 1.2222445
+    e20: 0.9811753
+    e21: 0.16194832
+    e22: -0.10520309
+    e23: -29.279232
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
 --- !u!1 &1765612687
 GameObject:
   m_ObjectHideFlags: 0
@@ -33721,7 +34088,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831102159}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
