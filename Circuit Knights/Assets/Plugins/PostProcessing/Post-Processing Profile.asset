@@ -31,19 +31,19 @@ MonoBehaviour:
   antialiasing:
     m_Enabled: 1
     m_Settings:
-      method: 0
+      method: 1
       fxaaSettings:
         preset: 4
       taaSettings:
-        jitterSpread: 0.75
-        sharpen: 0.3
-        stationaryBlending: 0.95
-        motionBlending: 0.85
+        jitterSpread: 0.949
+        sharpen: 0
+        stationaryBlending: 0.684
+        motionBlending: 0.764
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 1
-      radius: 0.61
+      intensity: 0.79
+      radius: 1.53
       sampleCount: 16
       downsampling: 1
       forceForwardCompatibility: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Settings:
       reflection:
         blendType: 0
-        reflectionQuality: 0
+        reflectionQuality: 2
         maxDistance: 80
         iterationCount: 256
         stepSize: 3
@@ -71,9 +71,9 @@ MonoBehaviour:
   depthOfField:
     m_Enabled: 0
     m_Settings:
-      focusDistance: 1
-      aperture: 12.5
-      focalLength: 7
+      focusDistance: 10
+      aperture: 5.6
+      focalLength: 50
       useCameraFov: 0
       kernelSize: 1
   motionBlur:
@@ -100,10 +100,10 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.1
-        threshold: 0.8
-        softKnee: 0.5
-        radius: 4
+        intensity: 0.17
+        threshold: 0.66
+        softKnee: 0.831
+        radius: 5.76
         antiFlicker: 1
       lensDirt:
         texture: {fileID: 0}
@@ -120,12 +120,12 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: -0.03
-        temperature: 4
-        tint: 12
-        hueShift: 3
-        saturation: 1.16
-        contrast: 1.04
+        postExposure: -0.07
+        temperature: -4
+        tint: 14
+        hueShift: 0
+        saturation: 1.17
+        contrast: 1.02
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.219
+      intensity: 0.228
   grain:
     m_Enabled: 0
     m_Settings:
@@ -298,14 +298,14 @@ MonoBehaviour:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.525
-      smoothness: 0.256
+      intensity: 0.459
+      smoothness: 0.263
       roundness: 0.818
       mask: {fileID: 0}
       opacity: 1
       rounded: 1
   dithering:
-    m_Enabled: 0
+    m_Enabled: 1
   monitors:
     currentMonitorID: 0
     refreshOnPlay: 0
