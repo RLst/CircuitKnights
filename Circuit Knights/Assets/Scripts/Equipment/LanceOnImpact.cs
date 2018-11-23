@@ -15,6 +15,7 @@ namespace CircuitKnights {
         private float RightMotor = .5f;
         public GameObject player;
         private float timer = 0.0f;
+
         private bool timing = false;
         public float VibrateOnCollisionFor = .5f;
         public bool VibrateMovementOn;
@@ -23,6 +24,13 @@ namespace CircuitKnights {
         public AudioSource _as;
 	    public AudioClip[] audioClipArray;
 
+        public AudioSource _asTwo;
+	    public AudioClip audioClip;
+      //  public AudioSource _asThree;
+     //   public AudioClip audioClipThree;
+        public CameraShake CameraShake;
+        public float ScreenShakeTime = .15f;
+        public float ScreenShakeMagnitude = .1f;
 
         void Awake () {
 		_as = GetComponent<AudioSource> ();
@@ -32,6 +40,8 @@ namespace CircuitKnights {
         {
             collisionVibrationOff();
           VibrationOnMovment();
+         // SoundOnMovement();
+ 
 
 
         }
@@ -51,21 +61,24 @@ namespace CircuitKnights {
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
                     Debug.Log("vibrating Collision ON");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+                    StartCoroutine(CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude));
                     //_as.clip = audioClipArray[Random.Range(0,audioClipArray.Length)];
 		           // _as.PlayOneShot (_as.clip);
                     //VibrateOnCollision((PlayerIndex)playerData.No as PlayerIndex);
                 }
             }
         }
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject == player)
-                {
-                    _as.clip = audioClipArray[Random.Range(0,audioClipArray.Length)];
+       private void OnCollisionEnter(Collision collision){
+           if (collision.gameObject == player)
+             {
+                    
+                   _as.clip = audioClipArray[Random.Range(0,audioClipArray.Length)];
 		           _as.PlayOneShot (_as.clip);
-                }
 
-        }
+                   _asTwo.clip = audioClip;
+		           _asTwo.PlayOneShot (_asTwo.clip);                  
+               }
+       }
 
         private void collisionVibrationOff()
         {
@@ -87,10 +100,13 @@ namespace CircuitKnights {
 
             }
         }
+
+   
       
         // this currently vibrates all the time as tony is creating a way to get the players velocit than the vibration will change depending on there velocity
        private void VibrationOnMovment()
        {
+           //needs an if statment to check if the player is moving
             if (VibrateMovementOn == true)
             {
                 if (timing == false)
@@ -100,9 +116,9 @@ namespace CircuitKnights {
                     Debug.Log("Vibrating on Movement");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+                    
                 }
             }
-
            // if(VibrateMovementOn == false)
           //  {
             //    LeftMotor = .0f;
@@ -111,9 +127,14 @@ namespace CircuitKnights {
             //    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
 
           //  }
-               
-           
        }
+
+    //   private void SoundOnMovement()
+    //   {
+    //       //needs an if statment to check if the player is moving
+    //                _asThree.clip = audioClip;
+	///	            _asThree.PlayOneShot (_asThree.clip);
+     //  }
 
         //this is to check if the vibrating setting is ticked for any of the code to work
         void VibrateOnCollision(XInputDotNetPure.PlayerIndex playerIndex)
