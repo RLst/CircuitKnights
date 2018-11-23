@@ -169,7 +169,8 @@ namespace CircuitKnights
                         skipButton.SetActive(true);
 
                         //Manual skip
-                        if (XCI.GetButtonDown(XboxButton.Start) ||
+                        if (XCI.GetButtonDown(XboxButton.A, XboxController.First) ||
+                            XCI.GetButtonDown(XboxButton.A, XboxController.Second) ||
                             Input.GetKeyDown(KeyCode.Space))
                         {
                             playCutscene = false;
@@ -180,13 +181,6 @@ namespace CircuitKnights
                 //Exit if animation is finished
                 if (!cameraAnimation.isPlaying)
                     playCutscene = false;
-
-                //Manual skip
-                if (XCI.GetButtonDown(XboxButton.A) ||
-                    Input.GetKeyDown(KeyCode.Space))
-                {
-                    playCutscene = false;
-                }
 
                 yield return null;
             }
