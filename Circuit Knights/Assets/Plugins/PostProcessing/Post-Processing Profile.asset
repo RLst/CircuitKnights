@@ -42,8 +42,8 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 0.79
-      radius: 1.53
+      intensity: 3.17
+      radius: 0.45
       sampleCount: 16
       downsampling: 1
       forceForwardCompatibility: 0
@@ -72,8 +72,8 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       focusDistance: 10
-      aperture: 5.6
-      focalLength: 50
+      aperture: 11.5
+      focalLength: 175
       useCameraFov: 0
       kernelSize: 1
   motionBlur:
@@ -100,10 +100,10 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.17
-        threshold: 0.66
-        softKnee: 0.831
-        radius: 5.76
+        intensity: 0.14
+        threshold: 0.74
+        softKnee: 0.838
+        radius: 5.32
         antiFlicker: 1
       lensDirt:
         texture: {fileID: 0}
@@ -113,19 +113,19 @@ MonoBehaviour:
     m_Settings:
       tonemapping:
         tonemapper: 0
-        neutralBlackIn: 0.02
-        neutralWhiteIn: 10
-        neutralBlackOut: 0
+        neutralBlackIn: 0.008
+        neutralWhiteIn: 5.8
+        neutralBlackOut: -0.025
         neutralWhiteOut: 10
-        neutralWhiteLevel: 5.3
+        neutralWhiteLevel: 5.2
         neutralWhiteClip: 10
       basic:
-        postExposure: -0.07
-        temperature: -4
-        tint: 14
-        hueShift: 0
-        saturation: 1.17
-        contrast: 1.02
+        postExposure: 0
+        temperature: 32
+        tint: -6
+        hueShift: 3
+        saturation: 1
+        contrast: 0.96
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
@@ -134,9 +134,9 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 1, g: 1, b: 1, a: 0}
-          power: {r: 1, g: 1, b: 1, a: 0}
-          offset: {r: 1, g: 1, b: 1, a: 0}
+          slope: {r: 0.7944575, g: 0.7719381, b: 1, a: 0}
+          power: {r: 0.6986768, g: 0.79196817, b: 1, a: 0.09056604}
+          offset: {r: 0.97451735, g: 1, b: 0.92352134, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
           gamma: {r: 0, g: 0, b: 0, a: 0}
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.228
+      intensity: 0.25
   grain:
     m_Enabled: 0
     m_Settings:
@@ -293,7 +293,7 @@ MonoBehaviour:
       size: 1
       luminanceContribution: 0.8
   vignette:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
