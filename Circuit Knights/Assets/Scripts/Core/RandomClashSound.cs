@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace CircuitKnights {
 public class RandomClashSound : MonoBehaviour {
 
 	public AudioSource _as;
@@ -11,9 +12,9 @@ public class RandomClashSound : MonoBehaviour {
 		_as = GetComponent<AudioSource> ();
 	}
 	
-	
-	void Start () {
+	public void PlayHitSound () {
 		_as.clip = audioClipArray[Random.Range(0,audioClipArray.Length)];
 		_as.PlayOneShot (_as.clip);
 	}
+}
 }

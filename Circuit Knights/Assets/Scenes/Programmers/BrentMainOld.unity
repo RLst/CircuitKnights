@@ -3045,6 +3045,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: Moves the horse.
+  DragFactor: 0
+  MaxForce: 4000
+  MaxSpeed: 30
 --- !u!114 &183443771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3063,10 +3066,6 @@ MonoBehaviour:
   horseData: {fileID: 11400000, guid: 70cbf333d428f49d5993ebe6f20fd92b, type: 2}
   playerMover: {fileID: 0}
   playerAnimator: {fileID: 0}
-  shieldController: {fileID: 0}
-  IKLanceHolder: {fileID: 0}
-  IKShieldHolder: {fileID: 0}
-  IKLook: {fileID: 0}
   headCollider: {fileID: 0}
   torsoCollider: {fileID: 0}
   leftArmCollider: {fileID: 0}
@@ -8655,7 +8654,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockedOffPrefab: {fileID: 1363043817}
-  dataObject: {fileID: 0}
+  knockedOffInstatiatePoint: {fileID: 0}
+  damageFactor: 1
 --- !u!1 &627802154 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1495095543303020, guid: 0317a172e9b1f2443ac0ad4316d06172,
@@ -19886,11 +19886,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4008123923951076, guid: f6330e3854281524287d0a747e8a8ec8,
     type: 2}
   m_PrefabInternal: {fileID: 1457821165}
---- !u!1 &1120717731 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1941851990540222, guid: 0317a172e9b1f2443ac0ad4316d06172,
-    type: 2}
-  m_PrefabInternal: {fileID: 2111580655}
 --- !u!1001 &1124523856
 Prefab:
   m_ObjectHideFlags: 0
@@ -28018,6 +28013,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6e60c79fa85384e88e192c7d328b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockedOffPrefab: {fileID: 0}
+  knockedOffSpawnPoint: {fileID: 0}
+  damageFactor: 1
 --- !u!33 &1447133771
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29644,11 +29642,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVibration: {fileID: 11400000, guid: 5993fbe2c4ede304d983be6de4eeba4f, type: 2}
   player: {fileID: 779890448}
-  VibrateOnCollisionFor: 0.2
+  VibrateOnCollisionFor: 0.5
   VibrateMovementOn: 0
   VibrateCollisionOn: 1
-  onCollision: {fileID: 8300000, guid: 37ca56a392f752645a6963e0b15a7dac, type: 3}
-  onMovement: {fileID: 8300000, guid: 98e931c57ee6fc344bd3707182f3480c, type: 3}
+  _as: {fileID: 1539750228}
+  audioClipArray:
+  - {fileID: 8300000, guid: 37ca56a392f752645a6963e0b15a7dac, type: 3}
+  - {fileID: 8300000, guid: 6293d68e8bfffaa47bc6cead0c5abf82, type: 3}
+  - {fileID: 8300000, guid: a12cbaada5f704d43bbf1e16ee71f34e, type: 3}
+  - {fileID: 8300000, guid: 346b4c655ca99784798eb9a0ab18b3e1, type: 3}
+  - {fileID: 8300000, guid: 4a1487e1cb08b3448a6972705409eaa4, type: 3}
+  - {fileID: 8300000, guid: c6edae5d576ebc4409b257a0927dd9bd, type: 3}
 --- !u!82 &1539750228
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29658,9 +29662,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 37ca56a392f752645a6963e0b15a7dac, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.499
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -31368,6 +31372,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockedOffPrefab: {fileID: 0}
+  knockedOffInstatiatePoint: {fileID: 0}
+  damageFactor: 1
 --- !u!1001 &1674006847
 Prefab:
   m_ObjectHideFlags: 0
@@ -31625,6 +31631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da833483371d34480aeca7d69d4e8e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageFactor: 1
 --- !u!144 &1693145996
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -32951,11 +32958,6 @@ Transform:
   m_Father: {fileID: 1722547117}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.0000000021313, y: -7.7026653, z: 0.54700685}
---- !u!1 &1769988949 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1941851990540222, guid: 0317a172e9b1f2443ac0ad4316d06172,
-    type: 2}
-  m_PrefabInternal: {fileID: 96726424}
 --- !u!1 &1770061646
 GameObject:
   m_ObjectHideFlags: 0
@@ -37384,13 +37386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23529bb8f1579e49b1c26f865ef00ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenu: {fileID: 1407792389}
-  PlayerCameraOne: {fileID: 1120717731}
-  PlayerCameraTwo: {fileID: 1769988949}
-  CountDownCanvas: {fileID: 382387724}
-  SpinningCamera: {fileID: 1296481823}
-  EventSystemOne: {fileID: 0}
-  PlayButton: {fileID: 2098942574}
 --- !u!114 &2089211921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37765,6 +37760,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockedOffPrefab: {fileID: 0}
+  knockedOffInstatiatePoint: {fileID: 0}
+  damageFactor: 1
 --- !u!4 &2105565359 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4529387272448166, guid: 49917ee03b3207748b914a58c4714ab4,

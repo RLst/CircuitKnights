@@ -20,6 +20,13 @@ namespace CircuitKnights {
         public bool VibrateMovementOn;
         public bool VibrateCollisionOn;
        
+        public AudioSource _as;
+	    public AudioClip[] audioClipArray;
+
+
+        void Awake () {
+		_as = GetComponent<AudioSource> ();
+	    }
 
         private void Update()
         {
@@ -44,9 +51,20 @@ namespace CircuitKnights {
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
                     Debug.Log("vibrating Collision ON");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+                    //_as.clip = audioClipArray[Random.Range(0,audioClipArray.Length)];
+		           // _as.PlayOneShot (_as.clip);
                     //VibrateOnCollision((PlayerIndex)playerData.No as PlayerIndex);
                 }
             }
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject == player)
+                {
+                    _as.clip = audioClipArray[Random.Range(0,audioClipArray.Length)];
+		           _as.PlayOneShot (_as.clip);
+                }
+
         }
 
         private void collisionVibrationOff()
@@ -85,14 +103,14 @@ namespace CircuitKnights {
                 }
             }
 
-            if(VibrateMovementOn == false)
-            {
-                LeftMotor = .0f;
-                RightMotor = .0f;
-                VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-                VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+           // if(VibrateMovementOn == false)
+          //  {
+            //    LeftMotor = .0f;
+            //    RightMotor = .0f;
+            //    VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
+            //    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
 
-            }
+          //  }
                
            
        }
