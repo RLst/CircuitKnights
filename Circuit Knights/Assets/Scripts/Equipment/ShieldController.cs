@@ -13,7 +13,7 @@ namespace CircuitKnights
 	public class ShieldController : MonoBehaviour
 	{
 		PlayerInput playerInput;
-		[SerializeField] ShieldData shieldData;
+		ShieldData shieldData;
 		[SerializeField][Range(0f, 1f)] float deadzone = 0.1f;
 
 		void Awake()

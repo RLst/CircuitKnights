@@ -19,9 +19,9 @@ MonoBehaviour:
   lerpFactor: 0.2
   pitchTorque: 50000
   yawTorque: 50000
-  attack: 999
+  attack: 20
   clamped: 1
-  startingPitchAngle: -90
-  startingYawAngle: -40
-  PitchRange: 90
-  YawRange: 60
+  startingPitchAngle: -20
+  startingYawAngle: -42.4
+  PitchRange: 24.5
+  YawRange: 40

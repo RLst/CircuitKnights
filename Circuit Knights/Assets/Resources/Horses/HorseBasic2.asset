@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: HorseBasic2
   m_EditorClassIdentifier: 
   description: The player's horse
-  horseType: 0
+  Mass: 750
   accelAxis: 5
   decelButton: 0
   speed: 30

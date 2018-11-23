@@ -28,7 +28,7 @@ ModelImporter:
     4300002: Arena_Crowd_Cutout_Arm_Upper_L
     4300004: Arena_Crowd_Cutout_Arm_Upper_R
     4300006: Arena_Crowd_Cutout_Arm_Lower
-    7400000: Take 001
+    7400000: Crowd animation varient 3
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -58,7 +58,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Crowd animation varient 3
       takeName: Take 001
       firstFrame: 1
       lastFrame: 29

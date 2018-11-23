@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4da2b5b08e6b21c4890fc6f782a4f188
-timeCreated: 1542931998
+guid: 0cf1f0c9a6054394ba54d06e3245ac7c
+timeCreated: 1542927137
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -133,7 +133,7 @@ ModelImporter:
     400122: Jnt_Thumb_R_3
     400124: Jnt_wrist_L
     400126: Jnt_wrist_R
-    7400000: Idle
+    7400000: Knockback
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -163,7 +163,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: Knockback
       takeName: Take 001
       firstFrame: 1
       lastFrame: 90
@@ -173,14 +173,14 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -383,6 +383,110 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: Jnt_plume_01
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_fingers_L_1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_fingers_L_2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_fingers_L_3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_Thumb_L_1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_Thumb_L_2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_Thumb_L_3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_fingers_R_1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_fingers_R_2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_fingers_R_3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_Thumb_R_1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_Thumb_R_2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_Thumb_R_3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     - boneName: Jnt_neck
       humanName: UpperChest
       limit:
@@ -391,110 +495,14 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Jnt_Thumb_L_1
-      humanName: Left Thumb Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_Thumb_L_2
-      humanName: Left Thumb Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_Thumb_L_3
-      humanName: Left Thumb Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_fingers_L_1
-      humanName: Left Middle Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_fingers_L_2
-      humanName: Left Middle Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_fingers_L_3
-      humanName: Left Middle Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_fingers_R_1
-      humanName: Right Middle Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_fingers_R_2
-      humanName: Right Middle Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_fingers_R_3
-      humanName: Right Middle Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_Thumb_R_1
-      humanName: Right Thumb Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_Thumb_R_2
-      humanName: Right Thumb Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_Thumb_R_3
-      humanName: Right Thumb Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     skeleton:
-    - name: Character_Robot_001_Idle_001_V002(Clone)
+    - name: Character_Robot_001_Knockback_001_V002(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Grp_Spine_01
-      parentName: Character_Robot_001_Idle_001_V002(Clone)
+      parentName: Character_Robot_001_Knockback_001_V002(Clone)
       position: {x: 4.2632563e-16, y: 1, z: 0}
       rotation: {x: 0.053588364, y: 0.053588364, z: -0.70507324, w: 0.70507324}
       scale: {x: 1, y: 1, z: 1}
@@ -624,7 +632,7 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_Hip
-      parentName: Character_Robot_001_Idle_001_V002(Clone)
+      parentName: Character_Robot_001_Knockback_001_V002(Clone)
       position: {x: 4.2632563e-16, y: 0.5820558, z: 0}
       rotation: {x: 0.05358836, y: 0.05358836, z: -0.70507324, w: 0.70507324}
       scale: {x: 1, y: 1, z: 1}
@@ -696,7 +704,7 @@ ModelImporter:
     - name: Jnt_elbow_L
       parentName: Jnt_shoulder_L
       position: {x: -0.3411547, y: -2.842171e-16, z: 1.4210854e-16}
-      rotation: {x: -0.00042417643, y: 0.0006605983, z: 0.01740964, w: 0.9998482}
+      rotation: {x: -0.0004241764, y: 0.0006605982, z: 0.017409638, w: 0.9998481}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_wrist_L
       parentName: Jnt_elbow_L
@@ -706,7 +714,7 @@ ModelImporter:
     - name: Jnt_fingers_L_1
       parentName: Jnt_wrist_L
       position: {x: -0.101819456, y: 7.105427e-16, z: -8.881784e-18}
-      rotation: {x: -0.07152814, y: 0.0107218325, z: -0.025855623, w: 0.9970458}
+      rotation: {x: -0.07152813, y: 0.010721832, z: -0.025855621, w: 0.99704576}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_fingers_L_2
       parentName: Jnt_fingers_L_1
@@ -721,7 +729,7 @@ ModelImporter:
     - name: Jnt_Thumb_L_1
       parentName: Jnt_wrist_L
       position: {x: -0.06498535, y: -0.07190185, z: -0.019188672}
-      rotation: {x: -0.013773433, y: 0.30201414, z: -0.09834047, w: 0.9481176}
+      rotation: {x: -0.02348363, y: 0.034292337, z: -0.03934083, w: 0.9983611}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_Thumb_L_2
       parentName: Jnt_Thumb_L_1
@@ -741,7 +749,7 @@ ModelImporter:
     - name: Jnt_shoulder_R
       parentName: Jnt_clav_R
       position: {x: 0.15156578, y: -0.000007657804, z: -0.00000010644516}
-      rotation: {x: -0.1692197, y: 0.14406145, z: 0.07262038, w: 0.97228456}
+      rotation: {x: -0.16921969, y: 0.14406145, z: 0.07262037, w: 0.97228456}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_elbow_R
       parentName: Jnt_shoulder_R
@@ -771,7 +779,7 @@ ModelImporter:
     - name: Jnt_Thumb_R_1
       parentName: Jnt_wrist_R
       position: {x: 0.06499242, y: 0.07190365, z: 0.019188467}
-      rotation: {x: -0.013435004, y: 0.3023628, z: -0.097470626, w: 0.94810116}
+      rotation: {x: -0.022954464, y: 0.032931037, z: -0.038228083, w: 0.9984625}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_Thumb_R_2
       parentName: Jnt_Thumb_R_1

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4da2b5b08e6b21c4890fc6f782a4f188
-timeCreated: 1542931998
+guid: dbb087134348d8946a0c6d7e63884d31
+timeCreated: 1542932248
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -133,7 +133,7 @@ ModelImporter:
     400122: Jnt_Thumb_R_3
     400124: Jnt_wrist_L
     400126: Jnt_wrist_R
-    7400000: Idle
+    7400000: LeanRight
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -163,17 +163,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: LeanRight
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 90
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -383,8 +383,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Jnt_neck
-      humanName: UpperChest
+    - boneName: Jnt_plume_01
+      humanName: RightEye
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -409,6 +409,38 @@ ModelImporter:
         modified: 0
     - boneName: Jnt_Thumb_L_3
       humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_Thumb_R_1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_Thumb_R_2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_Thumb_R_3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jnt_neck
+      humanName: UpperChest
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -463,38 +495,14 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Jnt_Thumb_R_1
-      humanName: Right Thumb Proximal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_Thumb_R_2
-      humanName: Right Thumb Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: Jnt_Thumb_R_3
-      humanName: Right Thumb Distal
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     skeleton:
-    - name: Character_Robot_001_Idle_001_V002(Clone)
+    - name: Character_Robot_001_Right_001_V002(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Grp_Spine_01
-      parentName: Character_Robot_001_Idle_001_V002(Clone)
+      parentName: Character_Robot_001_Right_001_V002(Clone)
       position: {x: 4.2632563e-16, y: 1, z: 0}
       rotation: {x: 0.053588364, y: 0.053588364, z: -0.70507324, w: 0.70507324}
       scale: {x: 1, y: 1, z: 1}
@@ -510,8 +518,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Ctrl_Hand_L
       parentName: Grp_Hand_L
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      position: {x: 0.324128, y: 0.03199041, z: 0.42500716}
+      rotation: {x: -0.1524084, y: 0.24764304, z: 0.71863073, w: 0.63167596}
       scale: {x: 1, y: 1, z: 1}
     - name: Grp_Hand_R
       parentName: Ctrl_Spine_01
@@ -521,7 +529,7 @@ ModelImporter:
     - name: Ctrl_Hand_R
       parentName: Grp_Hand_R
       position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: -0.8168883, y: 0, z: -0, w: 0.57679594}
       scale: {x: 1, y: 1, z: 1}
     - name: Grp_Spine_02
       parentName: Ctrl_Spine_01
@@ -624,7 +632,7 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_Hip
-      parentName: Character_Robot_001_Idle_001_V002(Clone)
+      parentName: Character_Robot_001_Right_001_V002(Clone)
       position: {x: 4.2632563e-16, y: 0.5820558, z: 0}
       rotation: {x: 0.05358836, y: 0.05358836, z: -0.70507324, w: 0.70507324}
       scale: {x: 1, y: 1, z: 1}
@@ -691,22 +699,22 @@ ModelImporter:
     - name: Jnt_shoulder_L
       parentName: Jnt_clav_L
       position: {x: -0.15156503, y: 0, z: 0}
-      rotation: {x: -0.18597001, y: 0.14267495, z: 0.07509577, w: 0.9692367}
+      rotation: {x: -0.6221752, y: 0.1019703, z: 0.1349181, w: 0.7643934}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_elbow_L
       parentName: Jnt_shoulder_L
       position: {x: -0.3411547, y: -2.842171e-16, z: 1.4210854e-16}
-      rotation: {x: -0.00042417643, y: 0.0006605983, z: 0.01740964, w: 0.9998482}
+      rotation: {x: 0.00843948, y: 0.006801664, z: 0.0018330736, w: 0.9999396}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_wrist_L
       parentName: Jnt_elbow_L
       position: {x: -0.30652127, y: -2.1316282e-16, z: 2.842171e-16}
-      rotation: {x: 0.36070868, y: -0.07954134, z: 0.050606523, w: 0.9279016}
+      rotation: {x: -0.28367227, y: -0.35058862, z: 0.3469963, w: 0.82232064}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_fingers_L_1
       parentName: Jnt_wrist_L
       position: {x: -0.101819456, y: 7.105427e-16, z: -8.881784e-18}
-      rotation: {x: -0.07152814, y: 0.0107218325, z: -0.025855623, w: 0.9970458}
+      rotation: {x: -0.06377631, y: 0.41934073, z: -0.1726148, w: 0.88898265}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_fingers_L_2
       parentName: Jnt_fingers_L_1
@@ -721,7 +729,7 @@ ModelImporter:
     - name: Jnt_Thumb_L_1
       parentName: Jnt_wrist_L
       position: {x: -0.06498535, y: -0.07190185, z: -0.019188672}
-      rotation: {x: -0.013773433, y: 0.30201414, z: -0.09834047, w: 0.9481176}
+      rotation: {x: -0.079484664, y: 0.19144781, z: 0.18624486, w: 0.9603868}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_Thumb_L_2
       parentName: Jnt_Thumb_L_1
@@ -741,7 +749,7 @@ ModelImporter:
     - name: Jnt_shoulder_R
       parentName: Jnt_clav_R
       position: {x: 0.15156578, y: -0.000007657804, z: -0.00000010644516}
-      rotation: {x: -0.1692197, y: 0.14406145, z: 0.07262038, w: 0.97228456}
+      rotation: {x: -0.16921969, y: 0.14406145, z: 0.07262037, w: 0.97228456}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_elbow_R
       parentName: Jnt_shoulder_R
@@ -751,12 +759,12 @@ ModelImporter:
     - name: Jnt_wrist_R
       parentName: Jnt_elbow_R
       position: {x: 0.3065161, y: -0.0000010272748, z: -0.0000014424445}
-      rotation: {x: 0.34347966, y: -0.07574599, z: 0.051248, w: 0.93469673}
+      rotation: {x: -0.5654252, y: -0.08555387, z: -0.03231638, w: 0.8197137}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_fingers_R_1
       parentName: Jnt_wrist_R
       position: {x: 0.101827264, y: 0.0000018651808, z: -0.00000019477122}
-      rotation: {x: -0.07153137, y: 0.009877195, z: -0.024479061, w: 0.997089}
+      rotation: {x: -0.07153117, y: 0.01976464, z: 0.017500876, w: 0.997089}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_fingers_R_2
       parentName: Jnt_fingers_R_1
@@ -771,7 +779,7 @@ ModelImporter:
     - name: Jnt_Thumb_R_1
       parentName: Jnt_wrist_R
       position: {x: 0.06499242, y: 0.07190365, z: 0.019188467}
-      rotation: {x: -0.013435004, y: 0.3023628, z: -0.097470626, w: 0.94810116}
+      rotation: {x: -0.011098057, y: 0.018435962, z: 0.37234637, w: 0.92784435}
       scale: {x: 1, y: 1, z: 1}
     - name: Jnt_Thumb_R_2
       parentName: Jnt_Thumb_R_1
