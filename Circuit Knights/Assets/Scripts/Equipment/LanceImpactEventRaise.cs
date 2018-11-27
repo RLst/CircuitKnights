@@ -27,7 +27,7 @@ namespace CircuitKnights
 			//If this object gets hit by the opponents lance
 			if (other.collider == playerData.GetOpponent().LanceCollider)
 			{
-				onLanceCollision(playerData.No, playerData.PlayerMover.Vel.magnitude);
+				onLanceCollision(playerData.No, playerData.Horse.Vel.magnitude);
 			}
 		}
 	}
