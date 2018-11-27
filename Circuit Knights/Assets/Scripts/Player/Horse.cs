@@ -85,8 +85,9 @@ namespace CircuitKnights
         public IEnumerator ArriveAtDestination(Transform destination, float arrivalDistance, float arrivalThreshold)
         {
             //Temp; move outside or make serializable
-            const float slowingDistance = 50f;
-            const float fineTune = 1f;        //Garbage
+            // const float slowingDistance = 50f;
+            // const float fineTune = 0.75f;        //Garbage
+            const float maxSlowDownForce = -30000f;
 
             ////Move toward destination as usual
             //Initialise position
@@ -105,9 +106,38 @@ namespace CircuitKnights
 
                 //Get velocity vector toward destination
 
+                Force = MaxForce;       //dt or fixedDT?
 
+                //If within arrival zone then start clamping the velocity directly
+                // if (distanceToDestination < arrivalDistance)
+                    // float rampedForce = (distanceToDestination / (arrivalDistance * fineTune));
+                    // float clampedForce = Mathf.Min(rampedForce, MaxForce);
+                    // Vector3 arriveForce = clampedForce * arriveSteerNorm;
+                    //Vel = arriveVel - Vel;
 
-                Try1(arriveSteerNorm);
+                if (distanceToDestination < arrivalDistance)
+                {
+                    Force = -(arrivalDistance / distanceToDestination) * MaxForce;
+                    // Force = -(distanceToDestination * MaxForce / arrivalDistance) * fineTune;
+                    Force = Mathf.Clamp(Force, maxSlowDownForce, Force);
+                    Debug.Log("Slowing down... Force: " + Force);
+                }
+
+                //Get acceleration toward destination
+                Accel = arriveSteerNorm * Force / horseData.Mass;
+
+                //Get velocity
+                Vel += Accel * Time.deltaTime;
+
+                // Vel = Vel * -0.5f;
+
+                //Get position
+                Pos += Vel * Time.deltaTime;
+
+                //Apply transform
+                transform.position = Pos;
+
+                // Try1(arriveSteerNorm);
 
                 yield return null;
             }
@@ -136,10 +166,10 @@ namespace CircuitKnights
 
             //If within arrival zone then start clamping the velocity directly
             // if (distanceToDestination < arrivalDistance)
-            // float rampedSpeed = (distanceToDestination / (slowingDistance * fineTune));
-            // float clampedSpeed = Mathf.Min(rampedSpeed, MaxSpeed);
-            // Vector3 arriveVel = clampedSpeed * arriveSteerNorm;
-            // Vel = arriveVel - Vel;
+                // float rampedSpeed = (distanceToDestination / (slowingDistance * fineTune));
+                // float clampedSpeed = Mathf.Min(rampedSpeed, MaxSpeed);
+                // Vector3 arriveVel = clampedSpeed * arriveSteerNorm;
+                // Vel = arriveVel - Vel;
 
             //Get position
             Pos += Vel * Time.deltaTime;

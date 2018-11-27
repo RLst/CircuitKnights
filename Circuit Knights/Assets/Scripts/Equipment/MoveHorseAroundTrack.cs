@@ -45,7 +45,7 @@ namespace CircuitKnights
             ////Move this horse toward the end
             Debug.Log(nextEndPoint);
             //Test
-            const float arrivalDistance = 25f;  //Should be in horseData
+            const float arrivalDistance = 50f;  //Should be in horseData
             const float arrivalThreshold = 0.1f;
             const float maxForce = 2500f;       //should be in horseData
             const float maxSpeed = 2000f;        //Should be in horseData
