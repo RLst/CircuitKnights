@@ -39,7 +39,7 @@ namespace CircuitKnights.Tests
 
 
         [Header("Controllers")]
-        [SerializeField] PlayerMover playerMover;
+        [SerializeField] Horse playerMover;
         [SerializeField] Animator playerAnimator;
         [SerializeField] ShieldController shieldController;
         [SerializeField] PlayerIKHoldLance IKLanceHolder;
@@ -92,7 +92,7 @@ namespace CircuitKnights.Tests
             playerData.Camera = this.camera;
 
             //Tricky bastard! Set both this and playerData
-            playerData.PlayerMover = playerMover = this.GetComponent<PlayerMover>();
+            playerData.Horse = playerMover = this.GetComponent<Horse>();
 			playerData.Animator = playerAnimator;
 			// playerData.Animator = playerAnimator = this.GetComponentInChildren<Animator>();
 			playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
@@ -165,12 +165,6 @@ namespace CircuitKnights.Tests
             playerData.LeftArmCollider = this.leftArmCollider;
             playerData.ShieldCollider = this.shieldCollider;
             playerData.LanceCollider = this.lanceCollider;
-        }
-
-        public void SetPlayerPositionAndRotation(Vector3 position, Quaternion rotation)
-        {
-            playerMover.SetPosition(position);
-            playerMover.SetRotation(rotation);
         }
 
         public void MountAllEquipment()

@@ -34,9 +34,8 @@ namespace CircuitKnights.Objects
         // Equipment currentShield;
         // Equipment currentHorse;
 
-
         [Header("Controllers")]
-        [SerializeField] PlayerMover playerMover;
+        [SerializeField] Horse horse;
         [SerializeField] Animator playerAnimator;
         ShieldController shieldController;
         PlayerIKHoldLance IKLanceHolder;
@@ -65,6 +64,11 @@ namespace CircuitKnights.Objects
             SetPlayerData();
         }
 
+        void Start()
+        {
+            SetPlayerColliders();
+        }
+
         private void SetPlayerData()
         {
             ////[IS THIS ACTUALLY NECESSARY?]
@@ -84,20 +88,13 @@ namespace CircuitKnights.Objects
             playerData.Camera = this.camera;
 
             //Tricky bastard! Set both this and playerData
-            playerData.PlayerMover = playerMover = this.GetComponent<PlayerMover>();
+            playerData.Horse = horse = this.GetComponent<Horse>();
 			playerData.Animator = playerAnimator;
 			// playerData.Animator = playerAnimator = this.GetComponentInChildren<Animator>();
 			playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
             playerData.IKLanceHolder = this.IKLanceHolder = GetComponentInChildren<PlayerIKHoldLance>();
             playerData.IKShieldHold = this.IKShieldHolder = GetComponentInChildren<PlayerIKHoldShield>();
             playerData.IKLook = this.IKLook = GetComponentInChildren<PlayerIKLook>();
-        }
-
-        void Start()
-        {
-            // SetPlayerData();
-            SetPlayerColliders();
-            MountAllEquipment();
         }
 
         private void SetPlayerColliders()
@@ -111,16 +108,6 @@ namespace CircuitKnights.Objects
             playerData.LanceCollider = this.lanceCollider;
         }
 
-        public void SetPlayerPositionAndRotation(Vector3 position, Quaternion rotation)
-        {
-            playerMover.SetPosition(position);
-            playerMover.SetRotation(rotation);
-        }
-
-        public void MountAllEquipment()
-        {
-
-        }
 
         //Test - equipment switching
         // void Update()

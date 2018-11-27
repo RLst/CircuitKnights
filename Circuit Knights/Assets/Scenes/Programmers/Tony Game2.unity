@@ -7324,7 +7324,7 @@ MonoBehaviour:
   centerText: {fileID: 1632367631}
   skipButton: {fileID: 886682939}
   countDownTextSize: 60
-  countDownDuration: 2
+  countDownDuration: 0
   goTextSize: 90
   goTextShowDuration: 1.5
   unskippableDuration: 0.5
@@ -7377,7 +7377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db567e95b3e2f04689ee4874dfffcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSlowMoFactor: 0.05
+  defaultSlowMoFactor: 0.1
   defaultSlowMoDuration: 2
 --- !u!1 &347973478
 GameObject:
@@ -8296,7 +8296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1616c220ab3cd484ca847eac0e7e9a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldData: {fileID: 0}
   deadzone: 0.1
 --- !u!114 &400000516
 MonoBehaviour:
@@ -10038,7 +10037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1616c220ab3cd484ca847eac0e7e9a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldData: {fileID: 0}
   deadzone: 0.1
 --- !u!114 &494351808
 MonoBehaviour:
@@ -20969,11 +20967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f909a30d33640aab54eb7805a38bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Moves the player's 'horse', which in turns moves the entire player
-    including equipment
-  DragFactor: 0
-  MaxForce: 0
-  MaxSpeed: 0
 --- !u!114 &851567217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27037,14 +27030,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1151407432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1f909a30d33640aab54eb7805a38bed, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f0eba868ec054b729fe661616dbed5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   description: Moves the player's 'horse', which in turns moves the entire player
     including equipment
-  DragFactor: 0
-  MaxForce: 0
-  MaxSpeed: 0
+  DragFactor: 0.02
+  MaxForce: 5000
+  MaxSpeed: 100
+  startingForce: 4000
+  forceIncreasePerPass: 250
+  startPoints:
+  - {fileID: 1337693646}
+  - {fileID: 2086674407}
+  endPoints:
+  - {fileID: 1584199144}
+  - {fileID: 45477035}
 --- !u!114 &1151407438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33013,7 +33014,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1616c220ab3cd484ca847eac0e7e9a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldData: {fileID: 0}
   deadzone: 0.1
 --- !u!114 &1297161949
 MonoBehaviour:
@@ -38068,7 +38068,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1616c220ab3cd484ca847eac0e7e9a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldData: {fileID: 0}
   deadzone: 0.1
 --- !u!114 &1532313511
 MonoBehaviour:
@@ -38666,10 +38665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f909a30d33640aab54eb7805a38bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Moves the horse.
-  DragFactor: 0
-  MaxForce: 0
-  MaxSpeed: 0
 --- !u!114 &1561313708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45893,11 +45888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f909a30d33640aab54eb7805a38bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Moves the player's 'horse', which in turns moves the entire player
-    including equipment
-  DragFactor: 0.1
-  MaxForce: 10000
-  MaxSpeed: 100
 --- !u!114 &1944500900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45926,19 +45916,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b2183b9cf164f388346c8c152ccb35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 60d10e3e538da48069f9a3af13d33e6d, type: 2}
-  camera: {fileID: 2107682797}
-  lanceData: {fileID: 11400000, guid: af53f14d86dcd42c6aee56bd825bb93b, type: 2}
-  shieldData: {fileID: 11400000, guid: c39a989e8ba944c4286828c8b02f658c, type: 2}
-  horseData: {fileID: 11400000, guid: 70cbf333d428f49d5993ebe6f20fd92b, type: 2}
-  playerMover: {fileID: 1944500899}
-  playerAnimator: {fileID: 1576575666}
+  playerData: {fileID: 0}
+  camera: {fileID: 0}
+  lanceData: {fileID: 0}
+  shieldData: {fileID: 0}
+  horseData: {fileID: 0}
+  playerMover: {fileID: 0}
+  playerAnimator: {fileID: 0}
   headCollider: {fileID: 0}
   torsoCollider: {fileID: 0}
   leftArmCollider: {fileID: 0}
   rightArmCollider: {fileID: 0}
-  shieldCollider: {fileID: 196984793}
-  lanceCollider: {fileID: 1680562505}
+  shieldCollider: {fileID: 0}
+  lanceCollider: {fileID: 0}
 --- !u!4 &1944500903
 Transform:
   m_ObjectHideFlags: 0
@@ -48411,10 +48401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f909a30d33640aab54eb7805a38bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Moves the horse.
-  DragFactor: 0
-  MaxForce: 0
-  MaxSpeed: 0
 --- !u!4 &2080063189
 Transform:
   m_ObjectHideFlags: 0
@@ -49496,7 +49482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1616c220ab3cd484ca847eac0e7e9a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldData: {fileID: 0}
   deadzone: 0.1
 --- !u!114 &2136790215
 MonoBehaviour:

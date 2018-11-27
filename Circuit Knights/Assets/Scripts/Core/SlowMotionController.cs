@@ -13,18 +13,20 @@ namespace CircuitKnights
         [SerializeField] float defaultSlowMoDuration = 2.0f;
 
         bool toggleSlowMo = false;
+
         void Update()
         {
             //DEBUG
-            if (Input.GetKeyDown("s"))
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetKey(KeyCode.RightShift))
                 {
-                    Debug.Log("slowmo2");
-                    SlowMotionOn(defaultSlowMoDuration);
+                    Debug.Log("Transition Slow Mo");
+                    SlowMotionOn(0.1f, 5f);
                 }
                 else
                 {
+                    Debug.Log("Toggle Default Slow Mo");
                     toggleSlowMo = !toggleSlowMo;
                     if (toggleSlowMo)
                         SlowMotionOn();
@@ -69,6 +71,7 @@ namespace CircuitKnights
             while (Time.timeScale < 1f)
             {
                 Time.timeScale += (1f / transitionOutDuration) * Time.unscaledDeltaTime;
+                //
                 yield return null;
             }
 
@@ -79,25 +82,3 @@ namespace CircuitKnights
         }
     }
 }
-
-
-
-// if (Time.timeScale < 1f)   //Slight optimization
-// {
-//     Time.timeScale += (1f / slowdownDuration) * Time.unscaledDeltaTime;
-// }
-
-// //Calc distance
-// var dist = Vector3.Distance(playerOne.Value.position, playerTwo.Value.position);
-// var playerOneFacing = playerOne.Value.TransformDirection(Vector3.forward);
-// var toPlayerTwo = playerTwo.Value.position - playerOne.Value.position;
-
-// //If the players are facing each other...
-// if (Vector3.Dot(playerOneFacing, toPlayerTwo) > 0)
-// {
-//     //and within range
-//     if (dist <= range)
-//     {
-//         SlowMotion();
-//     }
-// }

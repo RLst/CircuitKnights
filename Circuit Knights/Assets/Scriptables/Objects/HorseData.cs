@@ -15,7 +15,7 @@ namespace CircuitKnights.Objects
             "The player's horse";
 
 		#region Physics
-		public float Mass = 1;  //Lazy property
+		public float Mass = 500f;  //Lazy property
 		#endregion
 
 		#region Controls
@@ -34,10 +34,6 @@ namespace CircuitKnights.Objects
         public float Speed { get { return speed; } }
         public float tValue { get { return lerpSmoothness; } }
         #endregion
-        public void ClampTValue()
-        {
-            lerpSmoothness = Mathf.Clamp01(lerpSmoothness);
-        }
     }
 
 }

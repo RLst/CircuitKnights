@@ -35,7 +35,7 @@ namespace CircuitKnights.Objects
 			//WORK IN PROGRESS!!
 	#endregion
 	#region Controllers
-		public PlayerMover PlayerMover { get; set; }
+		public Horse Horse { get; set; }
 		public Animator Animator { get; set; }
         public ShieldController ShieldController { get; set; }
 		public PlayerIKHoldLance IKLanceHolder { get; set; }
@@ -134,12 +134,12 @@ namespace CircuitKnights.Objects
 		// public void SetPosition(Vector3 position) {
 		// 	this.gameObject.transform.position = position;	//Is this OK? Could be hard to debug
 		// }
-        public void SetPositionAndRotation(Vector3 position, Quaternion rotation)
-		{
-			PlayerMover.SetDesiredPosition(position);
-			// Root.transform.position = position;
-            Root.transform.rotation = rotation;
-        }
+        // public void SetPositionAndRotation(Vector3 position, Quaternion rotation)
+		// {
+		// 	Horse.SetDesiredPosition(position);
+		// 	// Root.transform.position = position;
+        //     Root.transform.rotation = rotation;
+        // }
 	#endregion
 	}
 }

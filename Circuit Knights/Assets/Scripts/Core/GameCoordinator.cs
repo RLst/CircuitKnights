@@ -205,7 +205,7 @@ namespace CircuitKnights
         private IEnumerator StartRound()
         {
             //Initialise
-            PositionPlayersAtStartPoints();
+            // PositionPlayersAtStartPoints();
             onDisablePlayerCameras.Raise();
 
             //Only run cutscene on the first round
@@ -226,14 +226,14 @@ namespace CircuitKnights
             if (GameSettings.Instance.Round % 2 == 1)
             {
                 // playerOne.PlayerMover.
-                p1.SetPositionAndRotation(startPoints[0].position, startPoints[0].rotation);
-                p2.SetPositionAndRotation(startPoints[1].position, startPoints[1].rotation);
+                // p1.SetPositionAndRotation(startPoints[0].position, startPoints[0].rotation);
+                // p2.SetPositionAndRotation(startPoints[1].position, startPoints[1].rotation);
             }
             //Even numbered round
             else
             {
-                p1.SetPositionAndRotation(startPoints[1].position, startPoints[1].rotation);
-                p2.SetPositionAndRotation(startPoints[0].position, startPoints[0].rotation);
+                // p1.SetPositionAndRotation(startPoints[1].position, startPoints[1].rotation);
+                // p2.SetPositionAndRotation(startPoints[0].position, startPoints[0].rotation);
             }
         }
 
@@ -336,7 +336,7 @@ namespace CircuitKnights
                 //Disable player input (if applicable) and automatically move player to end points
                 //Move players to their end points using PlayerMover.SetDesiredPosition();
                 onDisablePlayerInput.Raise();
-                MovePlayersToEndPoints();
+                // MovePlayersToEndPoints();
 
                 //Move player around the loop ...once they have reached the ends
                 // yield return new WaitUntil(() => PlayersHaveReachedTheEnds(1.5f));
@@ -394,7 +394,7 @@ namespace CircuitKnights
 
             for (float angle = 180f; angle > 0f; angle -= speed)
             {
-                Debug.Log("Angle: " + angle);
+                // Debug.Log("Angle: " + angle);
                 ///Arch players around
                 //Position
                 var p1Offset = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad)) * radius;
@@ -438,29 +438,29 @@ namespace CircuitKnights
             return false;
         }
 
-        private void MovePlayersToEndPoints()
-        {
-            Debug.Log("Players moving to end points");
-            var p1 = GameSettings.Instance.PlayerOne;
-            var p2 = GameSettings.Instance.PlayerTwo;
+        // private void MovePlayersToEndPoints()
+        // {
+        //     Debug.Log("Players moving to end points");
+        //     var p1 = GameSettings.Instance.PlayerOne;
+        //     var p2 = GameSettings.Instance.PlayerTwo;
 
-            //Odd numbered round
-            if (GameSettings.Instance.Round % 2 == 1)
-            {
-                p1.SetPositionAndRotation(endPoints[0].position, endPoints[0].rotation);
-                p2.SetPositionAndRotation(endPoints[1].position, endPoints[1].rotation);
-                // p1.PlayerMover.SetDesiredPosition(endPoints[0].position);
-                // p2.PlayerMover.SetDesiredPosition(endPoints[1].position);
-            }
-            //Even numbered round
-            else
-            {
-                p1.SetPositionAndRotation(endPoints[1].position, endPoints[1].rotation);
-                p2.SetPositionAndRotation(endPoints[0].position, endPoints[0].rotation);
-                // p1.PlayerMover.SetDesiredPosition(endPoints[1].position);
-                // p2.PlayerMover.SetDesiredPosition(endPoints[0].position);
-            }
-        }
+        //     //Odd numbered round
+        //     if (GameSettings.Instance.Round % 2 == 1)
+        //     {
+        //         p1.SetPositionAndRotation(endPoints[0].position, endPoints[0].rotation);
+        //         p2.SetPositionAndRotation(endPoints[1].position, endPoints[1].rotation);
+        //         // p1.PlayerMover.SetDesiredPosition(endPoints[0].position);
+        //         // p2.PlayerMover.SetDesiredPosition(endPoints[1].position);
+        //     }
+        //     //Even numbered round
+        //     else
+        //     {
+        //         p1.SetPositionAndRotation(endPoints[1].position, endPoints[1].rotation);
+        //         p2.SetPositionAndRotation(endPoints[0].position, endPoints[0].rotation);
+        //         // p1.PlayerMover.SetDesiredPosition(endPoints[1].position);
+        //         // p2.PlayerMover.SetDesiredPosition(endPoints[0].position);
+        //     }
+        // }
 
         void CheckAndSetPlayersState()
         {
