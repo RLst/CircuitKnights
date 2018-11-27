@@ -1267,7 +1267,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 45477034}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -16.85, y: 0, z: 1.92}
+  m_LocalPosition: {x: -16.887, y: 0, z: 1.938}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 646102347}
@@ -7330,12 +7330,13 @@ MonoBehaviour:
   unskippableDuration: 0.5
   StartOfMatchCamera: {fileID: 668948976}
   StartOfRoundCamera: {fileID: 1657200684}
-  startPoints:
+  StartPoints:
   - {fileID: 1337693646}
   - {fileID: 2086674407}
-  endPoints:
+  EndPoints:
   - {fileID: 1584199144}
   - {fileID: 45477035}
+  onStartNextPass: {fileID: 11400000, guid: 83a6ed98d3d398f47a27a32519617ed6, type: 2}
   onEnablePlayerInput: {fileID: 11400000, guid: c55fa54d4ca45b74dbfb983ef4aa6b14,
     type: 2}
   onEnablePlayerMovement: {fileID: 11400000, guid: 92b36a5b7b1b7c541ab31658fde53f2c,
@@ -21000,7 +21001,7 @@ MonoBehaviour:
   lanceData: {fileID: 11400000, guid: 032f5fe60cb924204b768569c69d0483, type: 2}
   shieldData: {fileID: 11400000, guid: 7f530db19d51d4194899209614a061cf, type: 2}
   horseData: {fileID: 11400000, guid: 7d2d1447018964128843a5119bbe4122, type: 2}
-  playerMover: {fileID: 851567216}
+  horse: {fileID: 0}
   playerAnimator: {fileID: 737727967}
   headCollider: {fileID: 302191770}
   torsoCollider: {fileID: 1075735104}
@@ -24555,7 +24556,7 @@ MonoBehaviour:
   lanceData: {fileID: 11400000, guid: af53f14d86dcd42c6aee56bd825bb93b, type: 2}
   shieldData: {fileID: 0}
   horseData: {fileID: 11400000, guid: 70cbf333d428f49d5993ebe6f20fd92b, type: 2}
-  playerMover: {fileID: 0}
+  horse: {fileID: 0}
   playerAnimator: {fileID: 0}
   headCollider: {fileID: 0}
   torsoCollider: {fileID: 0}
@@ -26891,13 +26892,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1151407440}
   - component: {fileID: 1151407439}
+  - component: {fileID: 1151407444}
   - component: {fileID: 1151407438}
   - component: {fileID: 1151407437}
+  - component: {fileID: 1151407441}
   - component: {fileID: 1151407436}
   - component: {fileID: 1151407435}
   - component: {fileID: 1151407434}
   - component: {fileID: 1151407433}
-  - component: {fileID: 1151407444}
+  - component: {fileID: 1151407442}
   m_Layer: 0
   m_Name: Character_IKComplete
   m_TagString: Player1
@@ -27038,14 +27041,6 @@ MonoBehaviour:
   DragFactor: 0.02
   MaxForce: 5000
   MaxSpeed: 100
-  startingForce: 4000
-  forceIncreasePerPass: 250
-  startPoints:
-  - {fileID: 1337693646}
-  - {fileID: 2086674407}
-  endPoints:
-  - {fileID: 1584199144}
-  - {fileID: 45477035}
 --- !u!114 &1151407438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27079,7 +27074,7 @@ MonoBehaviour:
   lanceData: {fileID: 11400000, guid: af53f14d86dcd42c6aee56bd825bb93b, type: 2}
   shieldData: {fileID: 11400000, guid: c39a989e8ba944c4286828c8b02f658c, type: 2}
   horseData: {fileID: 11400000, guid: 70cbf333d428f49d5993ebe6f20fd92b, type: 2}
-  playerMover: {fileID: 1151407437}
+  horse: {fileID: 0}
   playerAnimator: {fileID: 797406209}
   headCollider: {fileID: 0}
   torsoCollider: {fileID: 0}
@@ -27107,6 +27102,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!114 &1151407441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1151407432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710309737a91e44fdbe75b0431718914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1151407442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1151407432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54bbf9decbc65d48965d7e8d6d43dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 83a6ed98d3d398f47a27a32519617ed6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1151407441}
+        m_MethodName: StartNextPass
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1151407444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33819,7 +33853,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1337693645}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -16.85, y: 0, z: -0.14}
+  m_LocalPosition: {x: -16.887, y: 0, z: -0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 646102347}
@@ -38698,7 +38732,7 @@ MonoBehaviour:
   lanceData: {fileID: 11400000, guid: af53f14d86dcd42c6aee56bd825bb93b, type: 2}
   shieldData: {fileID: 0}
   horseData: {fileID: 11400000, guid: 70cbf333d428f49d5993ebe6f20fd92b, type: 2}
-  playerMover: {fileID: 1561313707}
+  horse: {fileID: 0}
   playerAnimator: {fileID: 430276230}
   headCollider: {fileID: 0}
   torsoCollider: {fileID: 0}
@@ -39318,7 +39352,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1584199143}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 173.57, y: 0, z: -0.07}
+  m_LocalPosition: {x: 173.7, y: 0, z: -0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 646102347}
@@ -45921,7 +45955,7 @@ MonoBehaviour:
   lanceData: {fileID: 0}
   shieldData: {fileID: 0}
   horseData: {fileID: 0}
-  playerMover: {fileID: 0}
+  horse: {fileID: 0}
   playerAnimator: {fileID: 0}
   headCollider: {fileID: 0}
   torsoCollider: {fileID: 0}
@@ -48366,7 +48400,7 @@ MonoBehaviour:
   lanceData: {fileID: 11400000, guid: af53f14d86dcd42c6aee56bd825bb93b, type: 2}
   shieldData: {fileID: 0}
   horseData: {fileID: 11400000, guid: 70cbf333d428f49d5993ebe6f20fd92b, type: 2}
-  playerMover: {fileID: 0}
+  horse: {fileID: 0}
   playerAnimator: {fileID: 990738616}
   headCollider: {fileID: 0}
   torsoCollider: {fileID: 0}
@@ -48711,7 +48745,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2086674406}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 173.57, y: 0, z: 1.92}
+  m_LocalPosition: {x: 173.7, y: 0, z: 1.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 646102347}

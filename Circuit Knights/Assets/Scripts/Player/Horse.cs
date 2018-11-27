@@ -14,46 +14,36 @@ namespace CircuitKnights
     [RequireComponent(typeof(Player))]
     public class Horse : MonoBehaviour
     {
-        [TextArea]
-        [SerializeField]
+        [TextArea][SerializeField]
         string description =
-            "Moves the player's 'horse', which is the root object in this case, which moves the entire player including equipment";
+            "Hold method to move the player's 'horse', which is the root object in this case, which moves the entire player including equipment";
 
         PlayerData playerData;
         HorseData horseData;
-        PlayerInput playerInput;
 
-
-        Vector3 startPosition;  //obsolete; prevents unintended moving at start
-        Vector3 tarPos;     //discontinued; lerp
+        // PlayerInput playerInput;
+        // Vector3 startPosition;  //obsolete; prevents unintended moving at start
+        // Vector3 tarPos;     //discontinued; lerp
 
 
         [Header("Physics")]
         [Range(0f, 1f)] [SerializeField] float DragFactor = 0.02f;
         [SerializeField] float MaxForce = 5000f;
-        [SerializeField] float MaxSpeed = 100f;
+        [SerializeField] float MaxSpeed = 1000f;
         public float Force { get; private set; }
         public Vector3 Accel { get; private set; }
         public Vector3 Vel { get; private set; }
         public Vector3 Pos { get; private set; }
         public float LinearSpeed { get { return Vel.magnitude; } }
 
-
-        [Header("Pass configuration")]
-        [SerializeField] float startingForce = 4000f;
-        [SerializeField] float forceIncreasePerPass = 250f;
-
-        [SerializeField] Transform[] startPoints;
-        //Player one will always start at startPoint[0], player two will always start at startpoint[1]
-        [SerializeField] Transform[] endPoints;
-
+        // [Header("Pass configuration")]
+        // [SerializeField] float startingForce = 4000f;
+        // [SerializeField] float forceIncreasePerPass = 250f;
 
         ////Events required
         //onStartPass: The horses will start moving
         //onEndPass: The horses start slowing down to get ready for the next pass
         //onReady: Let's the system know that the players are ready and horse can receive event onStartPass to start them moving
-
-
 
         void Awake()
         {
@@ -70,22 +60,177 @@ namespace CircuitKnights
             Vel = Vector3.zero;
             Pos = transform.position;
 
+            //Get starting and end points
+            
+
             //Polls input via PlayerInput. If none present or disabled then the player can't move
             // playerInput = GetComponent<PlayerInput>();
             // RememberInitialStartPositions();
             // PhysicsPrecalculations();
         }
 
-        void Start()
-        {
-            DoPass(endPoints[0], 10f, 2500f);
-        }
 
         void FixedUpdate()
         {
             // MoveByLerp();
             // MoveByCustomPhysics();
         }
+
+        public void HardSetPositionAndRotation(Vector3 position, Quaternion rotation)
+        {
+            transform.position = position;
+            transform.rotation = rotation;
+        }
+
+        public IEnumerator ArriveAtDestination(Transform destination, float arrivalDistance, float arrivalThreshold)
+        {
+            //Temp; move outside or make serializable
+            const float slowingDistance = 50f;
+            const float fineTune = 1f;        //Garbage
+
+            ////Move toward destination as usual
+            //Initialise position
+            Pos = transform.position;
+
+            float distanceToDestination = Mathf.Infinity;
+            while (distanceToDestination > arrivalThreshold)
+            {
+                Vector3 arriveSteer = destination.position - transform.position;
+                Vector3 arriveSteerNorm = Vector3.Normalize(arriveSteer);
+                distanceToDestination = arriveSteer.magnitude;
+
+                //Move toward the destination using max force
+
+                //Get acceleration vector toward destination
+
+                //Get velocity vector toward destination
+
+
+
+                Try1(arriveSteerNorm);
+
+                yield return null;
+            }
+
+            //Zero all forces
+            Accel = Vector3.zero;
+            Vel = Vector3.zero;
+
+            Debug.Log("Do Pass Test Completed!");
+
+            ////If within arrival boundary then start clamping the velocity directly
+
+            ////If reached destination (ie: distance < = arrivalThreshold); stop and declare that player has reached the end of the track
+        }
+
+        private void Try1(Vector3 arriveSteerNorm)
+        {
+            //Move toward destination using max force
+            Force = MaxForce;       //dt or fixedDT?
+
+            //Get acceleration toward destination
+            Accel = arriveSteerNorm * Force / horseData.Mass;
+
+            //Get velocity
+            Vel += Accel * Time.deltaTime;
+
+            //If within arrival zone then start clamping the velocity directly
+            // if (distanceToDestination < arrivalDistance)
+            // float rampedSpeed = (distanceToDestination / (slowingDistance * fineTune));
+            // float clampedSpeed = Mathf.Min(rampedSpeed, MaxSpeed);
+            // Vector3 arriveVel = clampedSpeed * arriveSteerNorm;
+            // Vel = arriveVel - Vel;
+
+            //Get position
+            Pos += Vel * Time.deltaTime;
+
+            //Apply transform
+            transform.position = Pos;
+        }
+
+
+        #region Custom Physics
+        // private void MoveByCustomPhysics()
+        // {
+        //     if (playerInput.AccelAxis != 0)
+        //     {
+        //         Force = MaxForce * playerInput.AccelAxis;
+        //     }
+        //     else
+        //     {
+        //         Force = 0f;
+        //         ApplyDrag();
+        //     }
+        //     DoPhysics();
+        //     ApplyFinalTransform();
+        // }
+
+        private void DoPhysics()
+        {
+            //This avoid unintended "charging"
+            Pos = transform.position;
+
+            Accel = transform.forward * Force / horseData.Mass;     //Always moves forward
+            Vel += Accel * Time.fixedDeltaTime;
+            ClampMaxSpeed();
+            Pos += Vel * Time.fixedDeltaTime;
+        }
+        private void ClampMaxSpeed()
+        {
+            if (Vel.magnitude > MaxSpeed)
+            {
+                Vel = Vel.normalized * MaxSpeed;
+            }
+        }
+        public void ApplyDrag()
+        {
+            Vel *= (1f - DragFactor);     //Doesn't work well with deltatime for some reason!!!
+        }
+
+        private void ApplyFinalTransform()
+        {
+            transform.position = Pos;
+        }
+        ///////////////////////
+        // void SetDestination(Vector3 arrivePos, float arriveRadius)
+        // {
+        //     //Do a coroutine?
+
+        // 	//Keep updating the velocity until this is reached
+
+        //     StartCoroutine(Arrive(arrivePos, arriveRadius));
+
+        // }
+
+        // IEnumerator Arrive(Vector3 destination, float arriveDistance)
+        // {
+        //     var seekSteerVec = Vector3.Normalize(destination - transform.position);
+
+        // 	while (true)
+        // 	{
+        //     	var distance = Vector3.Distance(destination, transform.position);
+
+        // 		//If the player is within arrive distance
+        // 		if (distance < arriveDistance)
+        // 		{
+        //             //Seek toward destination using arrival
+        //             Accel = Vector3.zero;   //Override and cancel out any acceleration
+
+
+        // 			// Vel = seekSteerVec * 
+        //             // Vel = Mathf.Min(Vector3.Distance(destination, transform.position) / arriveDistance, MaxSpeed);
+        //             // Vel = Mathf.Min(Vector3.Distance(transform.position, arrivePos) / arriveRadius, MaxSpeed);
+        //             // Accel = seekSteerNVector * (Force / horseData.Mass) * ;
+        //         }
+        // 		//Otherwise move as usual
+
+
+        //         yield return null;
+        //     }
+        // }
+
+        #endregion  //Custom Physics
+
 
         // Transform GetNextEndOfTrack()
         // {
@@ -105,71 +250,6 @@ namespace CircuitKnights
         //         return endPoints[1];
         //     }
         // }
-
-        public void DoPass(Transform destination, float arrivalDistance, float maxForce)
-        {
-            ////Seeks toward a certain destination and then starts arriving when within arrival distance
-
-            //Get seek steering normalised vector
-            // var seekSteer = Vector3.Normalize(destination.position - transform.position);
-
-            StartCoroutine(DoPassTest(destination, arrivalDistance, maxForce, 0.2f));
-
-            // StartCoroutine(Arrive(destination, arrivalDistance, maxForce, 0.2f));
-        }
-
-        private IEnumerator DoPassTest(Transform destination, float arrivalDistance, float maxForce, float arrivalThreshold)
-        {
-            //Temp; move outside or make serializable
-            const float slowingDistance = 50f;
-
-            ////Move toward destination as usual
-            //Initialise position
-            Pos = transform.position;
-
-            float distanceToDestination = Mathf.Infinity;
-            while (distanceToDestination > arrivalThreshold)
-            {
-                Vector3 arriveSteer = destination.position - transform.position;
-                Vector3 arriveSteerNorm = Vector3.Normalize(arriveSteer);
-                distanceToDestination = arriveSteer.magnitude;
-
-                //Move toward destination using max force
-                Force = maxForce;       //dt or fixedDT?
-
-                //Get acceleration toward destination
-                Accel = arriveSteerNorm * Force / horseData.Mass;
-
-                //Get velocity
-                Vel += Accel * Time.deltaTime;
-
-                //If within arrival zone then start clamping the velocity directly
-                // if (distanceToDestination < arrivalDistance)
-                    const float DecelerationTweak = 1f;        //Garbage
-                    float rampedVel = MaxSpeed * (distanceToDestination / (slowingDistance * DecelerationTweak));
-                    float clampedVel = Mathf.Min(rampedVel, MaxSpeed);
-                	Vector3 arriveVel = clampedVel * arriveSteerNorm;
-                	Vel = arriveVel - Vel;
-
-                //Get position
-                Pos += Vel * Time.deltaTime;
-
-                //Apply transform
-                transform.position = Pos;
-
-                yield return null;
-            }
-
-            Debug.Log("Arrivved!");
-
-            ////If within arrival boundary then start clamping the velocity directly
-
-            ////If reached destination (ie: distance < = arrivalThreshold); stop and declare that player has reached the end of the track
-
-
-
-        }
-
 
         /// Destination is the position you want the horse to move and arrive toward
         /// Arrival Distance is the distance at which the horse starts slowing down
@@ -250,87 +330,7 @@ namespace CircuitKnights
         // }
 
 
-        #region Custom Physics
-        private void MoveByCustomPhysics()
-        {
-            if (playerInput.AccelAxis != 0)
-            {
-                Force = MaxForce * playerInput.AccelAxis;
-            }
-            else
-            {
-                Force = 0f;
-                ApplyDrag();
-            }
-            DoPhysics();
-            ApplyFinalTransform();
-        }
 
-        private void DoPhysics()
-        {
-            //This avoid unintended "charging"
-            Pos = transform.position;
-
-            Accel = transform.forward * Force / horseData.Mass;     //Always moves forward
-            Vel += Accel * Time.fixedDeltaTime;
-            ClampMaxSpeed();
-            Pos += Vel * Time.fixedDeltaTime;
-        }
-        private void ClampMaxSpeed()
-        {
-            if (Vel.magnitude > MaxSpeed)
-            {
-                Vel = Vel.normalized * MaxSpeed;
-            }
-        }
-        public void ApplyDrag()
-        {
-            Vel *= (1f - DragFactor);     //Doesn't work well with deltatime for some reason!!!
-        }
-
-        private void ApplyFinalTransform()
-        {
-            transform.position = Pos;
-        }
-        ///////////////////////
-        // void SetDestination(Vector3 arrivePos, float arriveRadius)
-        // {
-        //     //Do a coroutine?
-
-        // 	//Keep updating the velocity until this is reached
-
-        //     StartCoroutine(Arrive(arrivePos, arriveRadius));
-
-        // }
-
-        // IEnumerator Arrive(Vector3 destination, float arriveDistance)
-        // {
-        //     var seekSteerVec = Vector3.Normalize(destination - transform.position);
-
-        // 	while (true)
-        // 	{
-        //     	var distance = Vector3.Distance(destination, transform.position);
-
-        // 		//If the player is within arrive distance
-        // 		if (distance < arriveDistance)
-        // 		{
-        //             //Seek toward destination using arrival
-        //             Accel = Vector3.zero;   //Override and cancel out any acceleration
-
-
-        // 			// Vel = seekSteerVec * 
-        //             // Vel = Mathf.Min(Vector3.Distance(destination, transform.position) / arriveDistance, MaxSpeed);
-        //             // Vel = Mathf.Min(Vector3.Distance(transform.position, arrivePos) / arriveRadius, MaxSpeed);
-        //             // Accel = seekSteerNVector * (Force / horseData.Mass) * ;
-        //         }
-        // 		//Otherwise move as usual
-
-
-        //         yield return null;
-        //     }
-        // }
-
-        #endregion  //Custom Physics
 
         // #region Lerp
         // void MoveByLerp()

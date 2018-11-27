@@ -42,7 +42,7 @@ namespace CircuitKnights
         public PlayerData PlayerOne;
         public PlayerData PlayerTwo;
 
-        public PlayerData[] Players { get; set; }
+        // public PlayerData[] Players { get; set; }
         #endregion
 
         #region Game Settings
@@ -57,7 +57,7 @@ namespace CircuitKnights
 
         [SerializeField] BoolVariable gamepadVibrationOn;
         public BoolVariable isVibrationOn { get { return gamepadVibrationOn; } }
-	#endregion
+		#endregion
 
 		////DIRTY
 		internal void SetMatchOver(bool isMatchOver)

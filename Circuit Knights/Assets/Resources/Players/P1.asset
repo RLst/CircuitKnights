@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: P1
   m_EditorClassIdentifier: 
   description: Holds almost all data to do with a player.
-  playerNo: 1
+  playerNo: 0
   LeanInertia: 0.1
   controller: 1
   lanceAxisX: 2

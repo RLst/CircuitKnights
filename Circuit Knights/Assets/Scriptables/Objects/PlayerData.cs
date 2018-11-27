@@ -48,7 +48,7 @@ namespace CircuitKnights.Objects
 		// public int PlayerNumber { get { return playerNumber; }}
 		public enum PlayerNumber {
 			// None, 	//0
-			One = 1,	//1
+			One = 0,	//1
 			Two		//2
 		}
 		[SerializeField] PlayerNumber playerNo;

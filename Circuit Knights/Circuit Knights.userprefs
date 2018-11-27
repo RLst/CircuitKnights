@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Core\GameCoordinator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerMover.cs">
     <Files>
-      <File FileName="Assets\Scripts\Core\GameCoordinator.cs" Line="227" Column="24" />
-      <File FileName="Assets\SloMoOnImpact.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Core\GameCoordinator.cs" Line="227" Column="14" />
       <File FileName="Assets\Scripts\GUI\testStatDisplay.cs" Line="1" Column="1" />
       <File FileName="Assets\Scriptables\Objects\PlayerData.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerMover.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -48,10 +48,11 @@ namespace CircuitKnights
 
 
         [Header("Positions")]
-        [SerializeField] Transform[] startPoints;
-        [SerializeField] Transform[] endPoints;
+        public Transform[] StartPoints;
+        public Transform[] EndPoints;
 
         [Header("Events")]
+        [SerializeField] GameEvent onStartNextPass;
         [SerializeField] GameEvent onEnablePlayerInput;
         [SerializeField] GameEvent onEnablePlayerMovement;
         [SerializeField] GameEvent onEnablePlayerCameras;
@@ -80,8 +81,8 @@ namespace CircuitKnights
             Assert.IsNotNull(StartOfMatchCamera);
             Assert.IsNotNull(StartOfRoundCamera);
 
-            Assert.IsNotNull(startPoints);
-            Assert.IsNotNull(endPoints);
+            Assert.IsNotNull(StartPoints);
+            Assert.IsNotNull(EndPoints);
         }
         private void InitGame()
         {
@@ -257,13 +258,12 @@ namespace CircuitKnights
         #region Round Playing
         private IEnumerator PlayRound()
         {
-            //Show the go text
-            StartCoroutine(ShowGoText());
-
             //Start the round!
             onEnablePlayerMovement.Raise();
             onEnablePlayerInput.Raise();
-
+            onStartNextPass.Raise();
+            //Show the go text
+            StartCoroutine(ShowGoText());
 
             //// MAIN GAME LOOP ///
             roundIsRunning = true;
@@ -345,7 +345,7 @@ namespace CircuitKnights
 					yield return null;
 				}
 
-                yield return StartCoroutine(SwingPlayersAroundEndsOfTrack(1f));
+                yield return StartCoroutine(SwingPlayersAroundEndsOfTrack(2f));
 
                 //STRECTH GOAL: If player's speed is above a certain number then ragdoll the player off the horse
                 //(because he's obviously got too much momentum)
@@ -387,28 +387,50 @@ namespace CircuitKnights
             var radius = 1f;
             // var radius = ((startPoints[0].position + endPoints[0].position) / 2f).magnitude;	//MESSY!
 
-            var p1MidPoint = ((startPoints[oneIfOdd].position + endPoints[zeroIfOdd].position) / 2f);
-            var p2MidPoint = ((startPoints[zeroIfOdd].position + endPoints[oneIfOdd].position) / 2f);
+            var p1MidPoint = ((StartPoints[oneIfOdd].position + EndPoints[zeroIfOdd].position) / 2f);
+            var p2MidPoint = ((StartPoints[zeroIfOdd].position + EndPoints[oneIfOdd].position) / 2f);
             // var p1MidPoint = (startPoints[zeroIfOdd].position + endPoints[zeroIfOdd].position) / 2f;
             // var p2MidPoint = (startPoints[oneIfOdd].position + endPoints[zeroIfOdd].position) / 2f;
 
-            for (float angle = 180f; angle > 0f; angle -= speed)
+            ///Arch players around the track ends
+            if (GameSettings.Instance.Round % 2 == 1)
             {
-                // Debug.Log("Angle: " + angle);
-                ///Arch players around
-                //Position
-                var p1Offset = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad)) * radius;
-                var p2Offset = new Vector3(Mathf.Sin((180f - angle) * Mathf.Deg2Rad), 0f, Mathf.Cos((180f - angle) * Mathf.Deg2Rad)) * radius;
-                playerOne.Root.position = p1MidPoint + p1Offset;
-                playerTwo.Root.position = p2MidPoint + p2Offset;
-                // playerOne.Root.RotateAround(Vector3.zero, Vector3.up, angle);
-                // playerTwo.Root.RotateAround(p2MidPoint, Vector3.up, angle);
+                for (float angle = 180f; angle > 0f; angle -= speed)
+                {
+                    // Debug.Log("Angle: " + angle);
 
-                //Rotation
-                playerOne.Root.Rotate(Vector3.up, angle * Mathf.Deg2Rad);
-                playerTwo.Root.Rotate(Vector3.up, (180f - angle) * Mathf.Deg2Rad);
+                    //Position
+                    var p1Offset = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad)) * radius;
+                    var p2Offset = new Vector3(Mathf.Sin((180f - angle) * Mathf.Deg2Rad), 0f, Mathf.Cos((180f - angle) * Mathf.Deg2Rad)) * radius;
+                    playerOne.Root.position = p1MidPoint + p1Offset;
+                    playerTwo.Root.position = p2MidPoint + p2Offset;
 
-                yield return null;
+                    //Rotation
+                    playerOne.Root.Rotate(playerOne.Root.up * -speed);
+                    playerTwo.Root.Rotate(playerTwo.Root.up * -speed);
+                    
+                    yield return null;
+                }
+
+            }
+            else if (GameSettings.Instance.Round % 2 == 0)
+            {
+                for (float angle = 180f; angle > 0f; angle -= speed)
+                {
+                    // Debug.Log("Angle: " + angle);
+
+                    //Position
+                    var p1Offset = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad)) * radius;
+                    var p2Offset = new Vector3(Mathf.Sin((180f - angle) * Mathf.Deg2Rad), 0f, Mathf.Cos((180f - angle) * Mathf.Deg2Rad)) * radius;
+                    playerOne.Root.position = p1MidPoint + p1Offset;
+                    playerTwo.Root.position = p2MidPoint + p2Offset;
+
+                    //Rotation
+                    playerOne.Root.Rotate(playerOne.Root.up * -speed);
+                    playerTwo.Root.Rotate(playerTwo.Root.up * -speed);
+                    
+                    yield return null;
+                }
             }
         }
 
@@ -420,8 +442,8 @@ namespace CircuitKnights
             if (GameSettings.Instance.Round % 2 == 1)
             {
                 //If both players have reached the end
-                if (Vector3.Distance(playerOne.Root.position, endPoints[0].position) <= tolerance ||
-                    Vector3.Distance(playerTwo.Root.position, endPoints[1].position) <= tolerance)
+                if (Vector3.Distance(playerOne.Root.position, EndPoints[0].position) <= tolerance ||
+                    Vector3.Distance(playerTwo.Root.position, EndPoints[1].position) <= tolerance)
                 {
                     return true;
                 }
@@ -429,8 +451,8 @@ namespace CircuitKnights
             //Even numbered round
             else
             {
-                if (Vector3.Distance(playerOne.Root.position, endPoints[1].position) <= tolerance ||
-                    Vector3.Distance(playerTwo.Root.position, endPoints[0].position) <= tolerance)
+                if (Vector3.Distance(playerOne.Root.position, EndPoints[1].position) <= tolerance ||
+                    Vector3.Distance(playerTwo.Root.position, EndPoints[0].position) <= tolerance)
                 {
                     return true;
                 }

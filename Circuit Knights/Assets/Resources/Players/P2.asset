@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Name: P2
   m_EditorClassIdentifier: 
   description: Holds almost all data to do with a player.
-  playerNo: 2
+  playerNo: 1
+  LeanInertia: 0.8
   controller: 2
   lanceAxisX: 2
   lanceAxisY: 3
-  leanAxisX: 4
-  leanAxisY: 5
+  leanLeft: 0
+  leanRight: 0
   shieldAxisX: 0
   shieldAxisY: 1
   thrustLanceButton: 7
