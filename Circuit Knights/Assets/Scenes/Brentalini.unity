@@ -2622,6 +2622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OffCanvasOne: {fileID: 106570958}
+  OffCanvasTwo: {fileID: 0}
   OnCanvas: {fileID: 344354565}
   FirstObject: {fileID: 503579263}
 --- !u!114 &183321328
@@ -7040,6 +7041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OffCanvasOne: {fileID: 1171928291}
+  OffCanvasTwo: {fileID: 0}
   OnCanvas: {fileID: 106570958}
   FirstObject: {fileID: 1706401653}
 --- !u!114 &503579266
@@ -13483,6 +13485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OffCanvasOne: {fileID: 106570958}
+  OffCanvasTwo: {fileID: 0}
   OnCanvas: {fileID: 1171928291}
   FirstObject: {fileID: 1428639489}
 --- !u!114 &711599137
@@ -14613,7 +14616,6 @@ GameObject:
   - component: {fileID: 810692416}
   - component: {fileID: 810692415}
   - component: {fileID: 810692421}
-  - component: {fileID: 810692420}
   m_Layer: 0
   m_Name: Character_Robot_001_V9
   m_TagString: Player2
@@ -14729,21 +14731,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!54 &810692420
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 810692413}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!65 &810692421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14751,7 +14738,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 810692413}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.48246, y: 3.0619664, z: 1}
@@ -28356,7 +28343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVibration: {fileID: 11400000, guid: 5993fbe2c4ede304d983be6de4eeba4f, type: 2}
   player: {fileID: 810692413}
-  VibrateOnCollisionFor: 0.5
+  VibrateOnCollisionFor: 5
   VibrateMovementOn: 0
   VibrateCollisionOn: 1
   _as: {fileID: 1377329982}
@@ -28367,10 +28354,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 346b4c655ca99784798eb9a0ab18b3e1, type: 3}
   - {fileID: 8300000, guid: 4a1487e1cb08b3448a6972705409eaa4, type: 3}
   - {fileID: 8300000, guid: c6edae5d576ebc4409b257a0927dd9bd, type: 3}
-  slowMoScript: {fileID: 1377329984}
   CameraShake: {fileID: 1451116407}
   ScreenShakeTime: 0.5
-  ScreenShakeMagnitude: 0.002
+  ScreenShakeMagnitude: 0.02
 --- !u!82 &1377329982
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29252,6 +29238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OffCanvasOne: {fileID: 1171928291}
+  OffCanvasTwo: {fileID: 0}
   OnCanvas: {fileID: 344354565}
   FirstObject: {fileID: 711599134}
 --- !u!114 &1428639492

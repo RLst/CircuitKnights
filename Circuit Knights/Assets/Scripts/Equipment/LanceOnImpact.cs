@@ -17,17 +17,13 @@ namespace CircuitKnights {
         private float timer = 0.0f;
 
         private bool timing = false;
-        public float VibrateOnCollisionFor = .5f;
+        public float VibrateOnCollisionFor = 5.0f;
         public bool VibrateMovementOn;
         public bool VibrateCollisionOn;
        
         public AudioSource _as;
 	    public AudioClip[] audioClipArray;
 
-        //public AudioSource _asTwo;
-	   // public AudioClip audioClip;
-      //  public AudioSource _asThree;
-     //   public AudioClip audioClipThree;
         public CameraShake CameraShake;
         public float ScreenShakeTime = .15f;
         public float ScreenShakeMagnitude = .1f;
@@ -38,20 +34,19 @@ namespace CircuitKnights {
 
         private void Update()
         {
+            
             collisionVibrationOff();
-          VibrationOnMovment();
-         // SoundOnMovement();
- 
-
+            VibrationOnMovment();
 
         }
-        //vibrates on collision
-        private void OnCollisionStay(Collision collision)
+
+
+        public void OnTriggerEnter(Collider other)
         {
             if (VibrateCollisionOn == true)
             {
                 //checks if the lance is hiting the player 
-                if (collision.gameObject == player)
+                if (other.gameObject == player)
                 {
                     timing = true;
                     //resets the vibration on enter
@@ -61,23 +56,21 @@ namespace CircuitKnights {
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
                     Debug.Log("vibrating Collision ON");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
-                    StartCoroutine(CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude));
-                    //_as.clip = audioClipArray[Random.Range(0,audioClipArray.Length)];
-		           // _as.PlayOneShot (_as.clip);
-                    //VibrateOnCollision((PlayerIndex)playerData.No as PlayerIndex);
                 }
             }
         }
-       private void OnCollisionEnter(Collision collision){
-           if (collision.gameObject == player)
-             {
-                    
-                   _as.clip = audioClipArray[Random.Range(0,audioClipArray.Length)];
-		           _as.PlayOneShot (_as.clip);
+        private void OnTriggerStay(Collider collision)
+        {
+            if (collision.gameObject == player)
+            {
 
-                                   
-               }
-       }
+                _as.clip = audioClipArray[Random.Range(0, audioClipArray.Length)];
+                _as.PlayOneShot(_as.clip);
+
+
+                    StartCoroutine(CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude));
+            }
+        }
 
         private void collisionVibrationOff()
         {
@@ -118,14 +111,6 @@ namespace CircuitKnights {
                     
                 }
             }
-            if(VibrateMovementOn == false)
-           {
-                LeftMotor = .0f;
-                RightMotor = .0f;
-                VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-                VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
-
-           }
        }
 
 
