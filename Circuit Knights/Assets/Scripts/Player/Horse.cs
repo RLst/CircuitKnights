@@ -82,6 +82,7 @@ namespace CircuitKnights
                 Vector3 arriveSteer = destination.position - transform.position;
                 Vector3 arriveSteerNorm = Vector3.Normalize(arriveSteer);
                 distanceToDestination = arriveSteer.magnitude;
+                Debug.Log("distance: " + distanceToDestination);
 
                 //Max force increases per round
                 MaxForce = horseData.StartingForce + GameSettings.Instance.Round * horseData.ForceIncreasePerPass;
@@ -94,7 +95,7 @@ namespace CircuitKnights
                     // Force = -(arrivalDistance / distanceToDestination * MaxForce / dampeningForceFineTune);
 
                     //Clamp the dampening force
-                    Debug.Log("Slowing down... Force: " + Force);
+                    // Debug.Log("Slowing down... Force: " + Force);
                 }
 
                 //Get acceleration toward destination
@@ -102,6 +103,9 @@ namespace CircuitKnights
 
                 //Get velocity
                 Vel += Accel * Time.deltaTime;
+                // Debug.Log("Before Clamp: " + Vel.magnitude);
+                ClampSpeed();
+                // Debug.Log("After Clamp: " + Vel.magnitude);
 
                 //Get position
                 Pos += Vel * Time.deltaTime;
