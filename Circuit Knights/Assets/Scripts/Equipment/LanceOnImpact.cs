@@ -118,14 +118,14 @@ namespace CircuitKnights {
                     
                 }
             }
-           // if(VibrateMovementOn == false)
-          //  {
-            //    LeftMotor = .0f;
-            //    RightMotor = .0f;
-            //    VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-            //    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+            if(VibrateMovementOn == false)
+           {
+                LeftMotor = .0f;
+                RightMotor = .0f;
+                VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
+                VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
 
-          //  }
+           }
        }
 
 
