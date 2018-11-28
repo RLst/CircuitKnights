@@ -27,6 +27,7 @@ namespace CircuitKnights {
         public CameraShake CameraShake;
         public float ScreenShakeTime = .15f;
         public float ScreenShakeMagnitude = .1f;
+        public SlowMotionController slowMotionController;
 
         void Awake () {
 		_as = GetComponent<AudioSource> ();
@@ -41,7 +42,7 @@ namespace CircuitKnights {
         }
 
 
-        public void OnTriggerEnter(Collider other)
+        public void OnTriggerStay(Collider other)
         {
             if (VibrateCollisionOn == true)
             {
@@ -59,7 +60,7 @@ namespace CircuitKnights {
                 }
             }
         }
-        private void OnTriggerStay(Collider collision)
+        private void OnTriggerEnter(Collider collision)
         {
             if (collision.gameObject == player)
             {
@@ -69,6 +70,7 @@ namespace CircuitKnights {
 
 
                     StartCoroutine(CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude));
+                    slowMotionController.SlowMotionOn(0.05f, 2.0f);
             }
         }
 
