@@ -61,28 +61,28 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: f811c4ee1aed1754f8967595ea6b72d7, type: 3}
+    m_Motion: {fileID: 7400000, guid: 2962bfb6750ad2e44b91abeeec87d704, type: 3}
     m_Threshold: -1
-    m_Position: {x: -1, y: 0.1}
+    m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
-    m_DirectBlendParameter: LeanAxisX
+    m_DirectBlendParameter: LeanAxis
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 63dce58b43de9ce458d118a8f52d461b, type: 3}
+    m_Motion: {fileID: 7400000, guid: 7107ba730a0d41843a7c6648a4e31d74, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
-    m_DirectBlendParameter: LeanAxisX
+    m_DirectBlendParameter: LeanAxis
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: dbb087134348d8946a0c6d7e63884d31, type: 3}
+    m_Motion: {fileID: 7400000, guid: 035d370b1e094564bb3654ef909c1065, type: 3}
     m_Threshold: 1
-    m_Position: {x: 1, y: 0.1}
+    m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
-    m_DirectBlendParameter: LeanAxisX
+    m_DirectBlendParameter: LeanAxis
     m_Mirror: 0
   m_BlendParameter: LeanAxis
   m_BlendParameterY: KnockbackAxis
@@ -211,7 +211,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 612, y: 192, z: 0}
-  m_EntryPosition: {x: 360, y: 0, z: 0}
+  m_EntryPosition: {x: 360, y: -12, z: 0}
   m_ExitPosition: {x: 840, y: 0, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102150415239537930}
