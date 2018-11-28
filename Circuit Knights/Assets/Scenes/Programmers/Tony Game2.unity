@@ -7252,8 +7252,7 @@ GameObject:
 --- !u!114 &345429764
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114060429938647096, guid: bfd1b9b56ca374a0390e94f5c4e5a75f,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 345429763}
   m_Enabled: 1
@@ -7261,12 +7260,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a54bbf9decbc65d48965d7e8d6d43dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: a90443a5824e94f2d99c2fb0a2fb4979, type: 2}
+  Event: {fileID: 11400000, guid: cc34c1302c6beb24badf219b2f04f551, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 345429766}
-        m_MethodName: MovePlayersToEndPoints
+        m_MethodName: OnPlayerReachedTheEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10312,7 +10311,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 507208631}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20891,6 +20890,8 @@ GameObject:
   - component: {fileID: 851567220}
   - component: {fileID: 851567215}
   - component: {fileID: 851567214}
+  - component: {fileID: 851567222}
+  - component: {fileID: 851567223}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player1
@@ -20965,9 +20966,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 851567213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1f909a30d33640aab54eb7805a38bed, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f0eba868ec054b729fe661616dbed5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  description: Hold method to move the player's 'horse', which is the root object
+    in this case, which moves the entire player including equipment
+  DragFactor: 0.02
+  MaxForce: 5000
+  MaxSlowDownForce: -20000
+  MaxSpeed: 1000
+  MinSpeed: 20
 --- !u!114 &851567217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21082,6 +21090,49 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &851567222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 851567213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710309737a91e44fdbe75b0431718914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrivalDistance: 50
+  arrivalThreshold: 0.2
+  OnPlayerReachedTheEnd: {fileID: 11400000, guid: cc34c1302c6beb24badf219b2f04f551,
+    type: 2}
+--- !u!114 &851567223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 851567213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54bbf9decbc65d48965d7e8d6d43dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 83a6ed98d3d398f47a27a32519617ed6, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 851567222}
+        m_MethodName: StartNextPass
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -25065,7 +25116,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.087945566, y: -0.0141215455, z: 0.22941935}
+  m_ConnectedAnchor: {x: 0.08794559, y: -0.014121534, z: 0.22941932}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -26895,11 +26946,11 @@ GameObject:
   - component: {fileID: 1151407444}
   - component: {fileID: 1151407438}
   - component: {fileID: 1151407437}
-  - component: {fileID: 1151407441}
   - component: {fileID: 1151407436}
   - component: {fileID: 1151407435}
   - component: {fileID: 1151407434}
   - component: {fileID: 1151407433}
+  - component: {fileID: 1151407441}
   - component: {fileID: 1151407442}
   m_Layer: 0
   m_Name: Character_IKComplete
@@ -27038,10 +27089,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Moves the player's 'horse', which in turns moves the entire player
     including equipment
+  DragFactor: 0.02
   MaxForce: 5000
-  MaxDampeningForce: -10000
+  MaxSlowDownForce: -20000
   MaxSpeed: 100
-  MinSpeed: 25
+  MinSpeed: 20
 --- !u!114 &1151407438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27114,8 +27166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710309737a91e44fdbe75b0431718914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrivalDistance: 60
+  arrivalDistance: 50
   arrivalThreshold: 0.2
+  OnPlayerReachedTheEnd: {fileID: 11400000, guid: cc34c1302c6beb24badf219b2f04f551,
+    type: 2}
 --- !u!114 &1151407442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27132,7 +27186,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1151407441}
-        m_MethodName: DoNextPass
+        m_MethodName: StartNextPass
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -37610,7 +37664,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1512879274}
-  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
+  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
