@@ -27,9 +27,12 @@ namespace CircuitKnights
 
 
         [Header("Physics")]
-        [Range(0f, 1f)] [SerializeField] float DragFactor = 0.02f;
+        // [Range(0f, 1f)] [SerializeField] float DragFactor = 0.02f;
         [SerializeField] float MaxForce = 5000f;
+        [SerializeField] float MaxDampeningForce = -30000f;
         [SerializeField] float MaxSpeed = 1000f;
+        [SerializeField] float MinSpeed = 25f;
+
         public float Force { get; private set; }
         public Vector3 Accel { get; private set; }
         public Vector3 Vel { get; private set; }
@@ -60,13 +63,6 @@ namespace CircuitKnights
             Vel = Vector3.zero;
             Pos = transform.position;
 
-            //Get starting and end points
-            
-
-            //Polls input via PlayerInput. If none present or disabled then the player can't move
-            // playerInput = GetComponent<PlayerInput>();
-            // RememberInitialStartPositions();
-            // PhysicsPrecalculations();
         }
 
 
@@ -76,10 +72,20 @@ namespace CircuitKnights
             // MoveByCustomPhysics();
         }
 
-        public void HardSetPositionAndRotation(Vector3 position, Quaternion rotation)
+        // public void HardSetPositionAndRotation(Vector3 position, Quaternion rotation)
+        // {
+        //     transform.position = position;
+        //     transform.rotation = rotation;
+        // }
+
+        public void SetPosition(Vector3 position)
         {
             transform.position = position;
-            transform.rotation = rotation;
+        }
+
+        public void RotateY(float angDegreesY)
+        {
+            transform.Rotate(0f, angDegreesY, 0f);
         }
 
         public IEnumerator ArriveAtDestination(Transform destination, float arrivalDistance, float arrivalThreshold)
@@ -87,7 +93,7 @@ namespace CircuitKnights
             //Temp; move outside or make serializable
             // const float slowingDistance = 50f;
             // const float fineTune = 0.75f;        //Garbage
-            const float maxSlowDownForce = -30000f;
+            // const float maxSlowDownForce = -30000f;
 
             ////Move toward destination as usual
             //Initialise position
@@ -101,12 +107,8 @@ namespace CircuitKnights
                 distanceToDestination = arriveSteer.magnitude;
 
                 //Move toward the destination using max force
-
                 //Get acceleration vector toward destination
-
                 //Get velocity vector toward destination
-
-                Force = MaxForce;       //dt or fixedDT?
 
                 //If within arrival zone then start clamping the velocity directly
                 // if (distanceToDestination < arrivalDistance)
@@ -115,11 +117,13 @@ namespace CircuitKnights
                     // Vector3 arriveForce = clampedForce * arriveSteerNorm;
                     //Vel = arriveVel - Vel;
 
+                Force = MaxForce;       //dt or fixedDT?
+
                 if (distanceToDestination < arrivalDistance)
                 {
                     Force = -(arrivalDistance / distanceToDestination) * MaxForce;
                     // Force = -(distanceToDestination * MaxForce / arrivalDistance) * fineTune;
-                    Force = Mathf.Clamp(Force, maxSlowDownForce, Force);
+                    Force = Mathf.Clamp(Force, MaxDampeningForce, Force);
                     Debug.Log("Slowing down... Force: " + Force);
                 }
 
@@ -127,22 +131,20 @@ namespace CircuitKnights
                 Accel = arriveSteerNorm * Force / horseData.Mass;
 
                 //Get velocity
-                Vel += Accel * Time.deltaTime;
-
-                // Vel = Vel * -0.5f;
+                Vel += Accel * Time.fixedDeltaTime;
+                //Prevent it from going backwards
+                // Vel = Vector3.Max(Vel.normalized * MinSpeed, Vel);
 
                 //Get position
-                Pos += Vel * Time.deltaTime;
+                Pos += Vel * Time.fixedDeltaTime;
 
                 //Apply transform
                 transform.position = Pos;
 
-                // Try1(arriveSteerNorm);
-
                 yield return null;
             }
 
-            //Zero all forces
+            //Reset all forces
             Accel = Vector3.zero;
             Vel = Vector3.zero;
 
@@ -153,240 +155,134 @@ namespace CircuitKnights
             ////If reached destination (ie: distance < = arrivalThreshold); stop and declare that player has reached the end of the track
         }
 
-        private void Try1(Vector3 arriveSteerNorm)
+                private IEnumerator SwingPlayerAroundEndsOfTrack(float speed)
         {
-            //Move toward destination using max force
-            Force = MaxForce;       //dt or fixedDT?
+            ////Players follows the track around to the next side
 
-            //Get acceleration toward destination
-            Accel = arriveSteerNorm * Force / horseData.Mass;
+            //Automatically calculate useful and comprehensive variables to do work with
+            var currentRound = GameSettings.Instance.Round;
+            var playerNumber = (int)player.Data.No;
 
-            //Get velocity
-            Vel += Accel * Time.deltaTime;
+            int zeroIfRoundEven, oneIfRoundOdd;
+            zeroIfRoundEven = oneIfRoundOdd = GameSettings.Instance.Round % 2;   //0 if even, 1 if odd
+            int zeroIfRoundOdd, oneIfRoundEven;
+            zeroIfRoundOdd = oneIfRoundEven = 1 - zeroIfRoundEven;    
 
-            //If within arrival zone then start clamping the velocity directly
-            // if (distanceToDestination < arrivalDistance)
-                // float rampedSpeed = (distanceToDestination / (slowingDistance * fineTune));
-                // float clampedSpeed = Mathf.Min(rampedSpeed, MaxSpeed);
-                // Vector3 arriveVel = clampedSpeed * arriveSteerNorm;
-                // Vel = arriveVel - Vel;
+            /*
+            p1, r1
+            abs(0-1) = 1, abs(0-0) = 0;   OK
+            p1, r0
+            abs(0-0) = 0, abs(0-1) = 1;     OK
+            P2, r1 needs to be SP = 0, EP = 1
+            abs(1-1) = 0, abs(1-0) = 1;     OK
+            p2, r0 nees to be SP = 1, EP = 0
+            abs(1-0) = 1, abs(1-1) = 0;     OK
+            */
 
-            //Get position
-            Pos += Vel * Time.deltaTime;
+            var trackEndRadius = 1f;        //Crunch crap
+            //Just trust that this works for all situations
+            var midPoint = ((startPoints[Mathf.Abs(playerNumber - oneIfRoundOdd)].position + endPoints[Mathf.Abs(playerNumber - zeroIfRoundOdd)].position) / 2f);
 
-            //Apply transform
-            transform.position = Pos;
+            // var p1MidPoint = ((startPoints[oneIfOdd].position + endPoints[zeroIfOdd].position) / 2f);
+            // var p2MidPoint = ((startPoints[zeroIfOdd].position + endPoints[oneIfOdd].position) / 2f);
+
+            Vector3 playerPos;
+            Quaternion playerAng;
+
+            ///Arch players around the track ends
+            if (GameSettings.Instance.Round % 2 == 1)
+            {
+                for (float degrees = 180f; degrees > 0f; degrees -= speed)
+                {
+                    var rads = (playerNumber * 180f + degrees) * Mathf.Deg2Rad;
+
+                    //Trackend midpoint offset
+                    var offset = new Vector3(Mathf.Sin(rads), 0f, Mathf.Cos(rads) * trackEndRadius);
+
+                    playerPos = midPoint + offset;
+
+                    player.Data.Horse.SetPosition(playerPos);
+                    player.Data.Horse.RotateY(-speed);
+
+                    // var p1Offset = new Vector3(Mathf.Sin(degrees * Mathf.Deg2Rad), 0f, Mathf.Cos(degrees * Mathf.Deg2Rad)) * trackEndRadius;
+                    // var p2Offset = new Vector3(Mathf.Sin((180f - degrees) * Mathf.Deg2Rad), 0f, Mathf.Cos((180f - degrees) * Mathf.Deg2Rad)) * trackEndRadius;
+
+                    // playerOne.Root.position = p1MidPoint + p1Offset;
+                    // playerTwo.Root.position = p2MidPoint + p2Offset;
+
+                    //Rotation
+                    // playerOne.Root.Rotate(playerOne.Root.up * -speed);
+                    // playerTwo.Root.Rotate(playerTwo.Root.up * -speed);
+
+                    yield return null;
+                }
+
+            }
+            else if (GameSettings.Instance.Round % 2 == 0)
+            {
+                for (float degrees = 0f; degrees < 180f; degrees += speed)
+                {
+                    var rads = (playerNumber * 180f + degrees) * Mathf.Deg2Rad;
+
+                    //Trackend midpoint offset
+                    var offset = new Vector3(Mathf.Sin(rads), 0f, Mathf.Cos(rads) * trackEndRadius);
+
+                    playerPos = midPoint + offset;
+
+                    player.Data.Horse.SetPosition(playerPos);
+                    player.Data.Horse.RotateY(speed);
+
+                    yield return null;
+                }
+            }
         }
+
+
+
+
+
+
+
+
+
+
 
 
         #region Custom Physics
-        // private void MoveByCustomPhysics()
-        // {
-        //     if (playerInput.AccelAxis != 0)
-        //     {
-        //         Force = MaxForce * playerInput.AccelAxis;
-        //     }
-        //     else
-        //     {
-        //         Force = 0f;
-        //         ApplyDrag();
-        //     }
-        //     DoPhysics();
-        //     ApplyFinalTransform();
-        // }
 
-        private void DoPhysics()
-        {
-            //This avoid unintended "charging"
-            Pos = transform.position;
-
-            Accel = transform.forward * Force / horseData.Mass;     //Always moves forward
-            Vel += Accel * Time.fixedDeltaTime;
-            ClampMaxSpeed();
-            Pos += Vel * Time.fixedDeltaTime;
-        }
-        private void ClampMaxSpeed()
+        private void ClampSpeed()
         {
             if (Vel.magnitude > MaxSpeed)
             {
                 Vel = Vel.normalized * MaxSpeed;
             }
+            if (Vel.magnitude < MinSpeed)
+            {
+                Vel = Vel.normalized * MinSpeed;
+            }
         }
-        public void ApplyDrag()
-        {
-            Vel *= (1f - DragFactor);     //Doesn't work well with deltatime for some reason!!!
-        }
+        // public void ApplyDrag()
+        // {
+        //     Vel *= (1f - DragFactor);     //Doesn't work well with deltatime for some reason!!!
+        // }
 
         private void ApplyFinalTransform()
         {
             transform.position = Pos;
         }
-        ///////////////////////
-        // void SetDestination(Vector3 arrivePos, float arriveRadius)
+
+        // private void DoPhysics()
         // {
-        //     //Do a coroutine?
+        //     //This avoid unintended "charging"
+        //     Pos = transform.position;
 
-        // 	//Keep updating the velocity until this is reached
-
-        //     StartCoroutine(Arrive(arrivePos, arriveRadius));
-
-        // }
-
-        // IEnumerator Arrive(Vector3 destination, float arriveDistance)
-        // {
-        //     var seekSteerVec = Vector3.Normalize(destination - transform.position);
-
-        // 	while (true)
-        // 	{
-        //     	var distance = Vector3.Distance(destination, transform.position);
-
-        // 		//If the player is within arrive distance
-        // 		if (distance < arriveDistance)
-        // 		{
-        //             //Seek toward destination using arrival
-        //             Accel = Vector3.zero;   //Override and cancel out any acceleration
-
-
-        // 			// Vel = seekSteerVec * 
-        //             // Vel = Mathf.Min(Vector3.Distance(destination, transform.position) / arriveDistance, MaxSpeed);
-        //             // Vel = Mathf.Min(Vector3.Distance(transform.position, arrivePos) / arriveRadius, MaxSpeed);
-        //             // Accel = seekSteerNVector * (Force / horseData.Mass) * ;
-        //         }
-        // 		//Otherwise move as usual
-
-
-        //         yield return null;
-        //     }
+        //     Accel = transform.forward * Force / horseData.Mass;     //Always moves forward
+        //     Vel += Accel * Time.fixedDeltaTime;
+        //     ClampSpeed();
+        //     Pos += Vel * Time.fixedDeltaTime;
         // }
 
         #endregion  //Custom Physics
-
-
-        // Transform GetNextEndOfTrack()
-        // {
-        //     var round = GameSettings.Instance.Round;
-
-        // 	if (round % 2 == 0)		//Even
-        // 	{
-        // 		return (playerData.No == 0) ? 
-        // 	}
-        // 	else if (round % 2 == 1)	//Odd
-        // 	{
-
-        // 	}
-        // 	//Player 1
-        //     if (playerData.No == 0)
-        // 	{
-        //         return endPoints[1];
-        //     }
-        // }
-
-        /// Destination is the position you want the horse to move and arrive toward
-        /// Arrival Distance is the distance at which the horse starts slowing down
-        /// MaxForce
-        // /// Arrive threshold is the distance to destination deadzone at which it is considered that the horse has reached its destination
-        // private IEnumerator Arrive(Transform destination, float arrivalDistance, float maxForce, float arriveThreshold)
-        // {
-        //     //Initialise position
-        //     Pos = transform.position;
-
-        //     while (Vector3.Distance(destination.position, transform.position) > arriveThreshold)
-        //     //Stop once the horse has reached the target
-        //     {
-        //         //Move toward destination using max force
-        //         Force = maxForce * Time.deltaTime;       //dt or fixedDT?
-
-        //         var arriveForce = Arrive(destination, 100f);
-        //         Debug.Log("arriveForce: " + arriveForce);
-        //         Accel = arriveForce / horseData.Mass;
-        //         // Accel = seekSteer * (Force / horseData.Mass);
-
-        //         Vel += Accel * Time.deltaTime;
-        //         ClampMaxSpeed();
-
-        //         Pos += Vel * Time.deltaTime;
-
-        //         ApplyFinalTransform();
-
-        //         yield return null;
-        //     }
-        //     Debug.Log("Arrived!");
-        // }
-
-        // Vector3 Arrive(Transform destination, float slowingDistance)
-        // {
-        //     const float arriveThreshold = 0.1f;
-
-        //     Vector3 arriveSteer = destination.position - transform.position;
-        //     Vector3 arriveSteerNorm = Vector3.Normalize(arriveSteer);
-        //     Debug.Log("ToTarget: " + arriveSteer);
-
-        //     float distance = arriveSteer.magnitude;
-        //     Debug.Log("Distance: " + distance + ", SlowDist: " + slowingDistance);
-
-        //     // if (distance == arriveThreshold) return Vector3.zero;		//Arrived at destination
-
-        //     if (distance < slowingDistance)
-        //     {   //Within slow range
-        //         const float DecelerationTweak = 10f;        //Garbage
-        //         float ramped = MaxForce * (distance / (slowingDistance * DecelerationTweak));
-
-        //         float clamped = Mathf.Min(ramped, MaxForce);
-
-        //         Vector3 desiredForce = clamped * arriveSteerNorm;
-
-        //         return desiredForce - Vel;
-        //     }
-        //     else
-        //     {
-        //         return arriveSteer * MaxForce;
-        //     }
-
-
-
-
-        //     // float slowing = 1f;	//Why 100? slowing distance?
-        //     // var seek = destination.position - transform.position;
-        //     // var distToDest = seek.magnitude;
-        //     // var ramped = MaxSpeed * (distToDest / slowing);
-        //     // var clamped = Mathf.Min(MaxSpeed, ramped);
-        //     // Vector3 desired = (clamped / distToDest) * seek;
-        //     // return (desired - Vel);	//Why 8?
-        // }
-
-        // public void HardSetPositionAndRotation(Vector3 position, Quaternion rotation)
-        // {
-
-        // }
-
-
-
-
-        // #region Lerp
-        // void MoveByLerp()
-        // {
-        // 	//Adjust the target position
-        // 	tarPos += transform.forward * horseData.speed * playerInput.AccelAxis * Time.deltaTime;
-
-        // 	//Lerp towards it
-        // 	transform.position = Vector3.Lerp(transform.position, tarPos, horseData.lerpSmoothness);
-        // }
-        // internal void SetDesiredPosition(Vector3 desiredPos)
-        // {
-        // 	//Used after a pass has occurred
-        // 	tarPos = desiredPos;
-        // }
-        // internal void SetPosition(Vector3 position)
-        // {
-        // 	//Used to instantly position the object ie. To reset the positions etc
-        // 	transform.position = position;
-        // 	tarPos = position;
-        // }
-        // internal void SetRotation(Quaternion rotation)
-        // {
-        //     transform.rotation = rotation;
-        // }
-        // #endregion	//Lerp
     }
 
 }

@@ -27038,9 +27038,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Moves the player's 'horse', which in turns moves the entire player
     including equipment
-  DragFactor: 0.02
   MaxForce: 5000
+  MaxDampeningForce: -10000
   MaxSpeed: 100
+  MinSpeed: 25
 --- !u!114 &1151407438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27113,6 +27114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710309737a91e44fdbe75b0431718914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrivalDistance: 60
+  arrivalThreshold: 0.2
 --- !u!114 &1151407442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27129,7 +27132,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1151407441}
-        m_MethodName: StartNextPass
+        m_MethodName: DoNextPass
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
