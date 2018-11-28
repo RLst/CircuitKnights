@@ -56,7 +56,6 @@ namespace CircuitKnights {
                     //selects what controlers to vibrate
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
                     Debug.Log("vibrating Collision ON");
-                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
                 }
             }
         }

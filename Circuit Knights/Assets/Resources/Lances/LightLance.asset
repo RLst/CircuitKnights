@@ -22,6 +22,6 @@ MonoBehaviour:
   attack: 20
   clamped: 1
   startingPitchAngle: -20
-  startingYawAngle: -42.4
+  startingYawAngle: -56.01
   PitchRange: 24.5
-  YawRange: 40
+  YawRange: 62.54
