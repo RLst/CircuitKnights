@@ -12,7 +12,7 @@ public class AudioControler : MonoBehaviour {
 
     public GameObject player;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject == player)
         {
