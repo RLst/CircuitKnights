@@ -285,8 +285,7 @@ namespace CircuitKnights
                 //Get the midpoint between the start and end, set this as the "pivot" point and rotate around it while
                 //Stop player once they've reached the new start positions
 
-                    //Temp
-                    yield return null;
+                    yield return null;  //TEMP
                 ////CONTINUE ONTO RESET AND START ROUND
             }
             //Else if there are still rounds left to play out
@@ -302,66 +301,6 @@ namespace CircuitKnights
             // }
 
             ////WILL GO BACK TO StartRound() AGAIN...
-        }
-        private IEnumerator SwingPlayersAroundEndsOfTrack(float speed)
-        {
-            ////Players follows the track around to the next side
-
-            //Automatically calculate useful and comprehensive variables to do work with
-            int zeroIfEven, oneIfOdd;
-            int zeroIfOdd, oneIfEven;
-            zeroIfEven = oneIfOdd = GameSettings.Instance.Round % 2;   //0 if even, 1 if odd
-            zeroIfOdd = oneIfEven = 1 - zeroIfEven;     //Odd: 1 - 1 = 0; Even: 1 - 0 = 1;
-                                                        // Debug.Log("Round: " + GameSettings.Instance.Round + ", ZeroIfEven: " + zeroIfEven + ", ZeroIfOdd: " + zeroIfOdd);
-
-            var radius = 1f;
-            // var radius = ((startPoints[0].position + endPoints[0].position) / 2f).magnitude;	//MESSY!
-
-            var p1MidPoint = ((StartPoints[oneIfOdd].position + EndPoints[zeroIfOdd].position) / 2f);
-            var p2MidPoint = ((StartPoints[zeroIfOdd].position + EndPoints[oneIfOdd].position) / 2f);
-            // var p1MidPoint = (startPoints[zeroIfOdd].position + endPoints[zeroIfOdd].position) / 2f;
-            // var p2MidPoint = (startPoints[oneIfOdd].position + endPoints[zeroIfOdd].position) / 2f;
-
-            ///Arch players around the track ends
-            if (GameSettings.Instance.Round % 2 == 1)
-            {
-                for (float angle = 180f; angle > 0f; angle -= speed)
-                {
-                    // Debug.Log("Angle: " + angle);
-
-                    //Position
-                    var p1Offset = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad)) * radius;
-                    var p2Offset = new Vector3(Mathf.Sin((180f - angle) * Mathf.Deg2Rad), 0f, Mathf.Cos((180f - angle) * Mathf.Deg2Rad)) * radius;
-                    playerOne.Root.position = p1MidPoint + p1Offset;
-                    playerTwo.Root.position = p2MidPoint + p2Offset;
-
-                    //Rotation
-                    playerOne.Root.Rotate(playerOne.Root.up * -speed);
-                    playerTwo.Root.Rotate(playerTwo.Root.up * -speed);
-
-                    yield return null;
-                }
-
-            }
-            else if (GameSettings.Instance.Round % 2 == 0)
-            {
-                for (float angle = 180f; angle > 0f; angle -= speed)
-                {
-                    // Debug.Log("Angle: " + angle);
-
-                    //Position
-                    var p1Offset = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad)) * radius;
-                    var p2Offset = new Vector3(Mathf.Sin((180f - angle) * Mathf.Deg2Rad), 0f, Mathf.Cos((180f - angle) * Mathf.Deg2Rad)) * radius;
-                    playerOne.Root.position = p1MidPoint + p1Offset;
-                    playerTwo.Root.position = p2MidPoint + p2Offset;
-
-                    //Rotation
-                    playerOne.Root.Rotate(playerOne.Root.up * -speed);
-                    playerTwo.Root.Rotate(playerTwo.Root.up * -speed);
-
-                    yield return null;
-                }
-            }
         }
 
         // private bool PlayersHaveReachedTheEnds(float tolerance)

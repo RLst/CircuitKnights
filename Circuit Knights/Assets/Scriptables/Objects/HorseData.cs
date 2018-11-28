@@ -16,24 +16,26 @@ namespace CircuitKnights.Objects
 
 		#region Physics
 		public float Mass = 500f;  //Lazy property
+        public float StartingForce = 5000f;
+        public float ForceIncreasePerPass = 500f;
 		#endregion
 
-		#region Controls
-		[Header("Controls")]
-        [SerializeField] XboxAxis accelAxis;
-        [SerializeField] XboxButton decelButton;
+		// #region Controls
+		// [Header("Controls")]
+        // [SerializeField] XboxAxis accelAxis;
+        // [SerializeField] XboxButton decelButton;
 
-        public XboxAxis AccelAxis { get { return accelAxis; } }
-        public XboxButton DecelButton { get { return decelButton; } }
-        #endregion
-        #region Movement
-        [Header("Movement")]
-        [Range(1f, 100f)] public float speed;
-        [Range(0f, 10f)] public float lerpSmoothness = 1.02f;
+        // public XboxAxis AccelAxis { get { return accelAxis; } }
+        // public XboxButton DecelButton { get { return decelButton; } }
+        // #endregion
+        // #region Movement
+        // [Header("Movement")]
+        // [Range(1f, 100f)] public float speed;
+        // [Range(0f, 10f)] public float lerpSmoothness = 1.02f;
 
-        public float Speed { get { return speed; } }
-        public float tValue { get { return lerpSmoothness; } }
-        #endregion
+        // public float Speed { get { return speed; } }
+        // public float tValue { get { return lerpSmoothness; } }
+        // #endregion
     }
 
 }

@@ -13,7 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: The player's horse
   Mass: 750
-  accelAxis: 5
-  decelButton: 0
-  speed: 30
-  lerpSmoothness: 0.05
+  StartingForce: 5000
+  ForceIncreasePerPass: 1000

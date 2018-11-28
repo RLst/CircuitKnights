@@ -28,10 +28,10 @@ namespace CircuitKnights
         public float ShieldAxisX { get; private set; }
         public float ShieldAxisY { get; private set; }
 
-        public float AccelAxis { get; private set; }
-        public bool DecelButton { get; private set; }
+        // public float AccelAxis { get; private set; }
+        // public bool DecelButton { get; private set; }
 
-        public bool ThrustLanceButton { get; private set; }
+        // public bool ThrustLanceButton { get; private set; }
         #endregion
 
 
@@ -62,10 +62,10 @@ namespace CircuitKnights
             ShieldAxisX = XCI.GetAxisRaw(playerData.ShieldAxisX, playerData.Controller);
             ShieldAxisY = XCI.GetAxisRaw(playerData.ShieldAxisY, playerData.Controller);
 
-            AccelAxis = XCI.GetAxis(horseData.AccelAxis, playerData.Controller);
-            DecelButton = XCI.GetButton(horseData.DecelButton, playerData.Controller);
+            // AccelAxis = XCI.GetAxis(horseData.AccelAxis, playerData.Controller);
+            // DecelButton = XCI.GetButton(horseData.DecelButton, playerData.Controller);
 
-            ThrustLanceButton = XCI.GetButton(playerData.ThrustLanceButton, playerData.Controller);
+            // ThrustLanceButton = XCI.GetButton(playerData.ThrustLanceButton, playerData.Controller);
         }
 
         void xReadKeyboardInput()
@@ -79,19 +79,14 @@ namespace CircuitKnights
 			ShieldAxisY = Input.GetAxis("Vertical2");
 
             //Temp
-            if (Input.GetKey(KeyCode.Space))
-                AccelAxis = 1f;
-            if (Input.GetKey(KeyCode.B))
-                AccelAxis = -1f;
-            if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.B))
-                AccelAxis = 0;
+            // if (Input.GetKey(KeyCode.Space))
+            //     AccelAxis = 1f;
+            // if (Input.GetKey(KeyCode.B))
+            //     AccelAxis = -1f;
+            // if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.B))
+            //     AccelAxis = 0;
 
-			ReadThrustInput();
-		}
-
-		private void ReadThrustInput()
-		{
-            ThrustLanceButton = Input.GetKey(thrustKey);
+            // ThrustLanceButton = Input.GetKey(thrustKey);
 		}
 	}
 }

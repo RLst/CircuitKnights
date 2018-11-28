@@ -46,14 +46,18 @@ namespace CircuitKnights
         #endregion
 
         #region Game Settings
-        [Range(1, 20)] [SerializeField] int xNoOfPasses;
+        // [Range(1, 20)] [SerializeField] int xNoOfPasses;
+        // public int Pass { get; set; }
+        // public int NoOfPasses { get { return xNoOfPasses; } }
         [Range(1, 10)] [SerializeField] int noOfRounds;
-        public int Pass { get; set; }
-        public int NoOfPasses { get { return xNoOfPasses; } }
         public int Round { get; set; }
         public int NoOfRounds { get { return noOfRounds; } }
         public bool isMatchOver { get; private set; }
 
+		[Header("Horse Arrival")]
+		public float ArrivalDistance = 75f;
+		public float ArrivalThreshold = 0.3f;
+		public float ArrivalBrakingFineTuneFactor = 1.25f;
 
         [SerializeField] BoolVariable gamepadVibrationOn;
         public BoolVariable isVibrationOn { get { return gamepadVibrationOn; } }
@@ -96,14 +100,14 @@ namespace CircuitKnights
 		public void Reset()
 		{
 			isMatchOver = false;
-			Pass = 0;
 			Round = 0;
+			// Pass = 0;
 		}
 
-		public void BeginPass()
-		{
-			Pass++;
-		}
+		// public void BeginPass()
+		// {
+		// 	Pass++;
+		// }
 
 		public void BeginNewRound()
 		{

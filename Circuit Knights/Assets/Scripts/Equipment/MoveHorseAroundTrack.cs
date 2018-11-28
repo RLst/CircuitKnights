@@ -12,13 +12,14 @@ namespace CircuitKnights
         Horse horse;
         Player player;
         GameCoordinator gameCoordinator;
-
-        [SerializeField] float arrivalDistance = 75f;
-        [SerializeField] float arrivalThreshold = 0.1f;
-        [SerializeField] GameEvent OnPlayerReachedTheEnd;
-
+        float arrivalDistance;
+        float arrivalThreshold;
         Transform[] startPoints;
         Transform[] endPoints;
+
+
+        ////Events
+        [SerializeField] GameEvent OnPlayerReachedTheEnd;
 
         void Awake()
         {
@@ -30,6 +31,9 @@ namespace CircuitKnights
             gameCoordinator = FindObjectOfType<GameCoordinator>();
             startPoints = gameCoordinator.StartPoints;
             endPoints = gameCoordinator.EndPoints;
+
+            arrivalDistance = GameSettings.Instance.ArrivalDistance;
+            arrivalThreshold = GameSettings.Instance.ArrivalThreshold;
         }
 
         public void StartNextPass()

@@ -14,6 +14,8 @@ MonoBehaviour:
   description: Holds the game settings
   PlayerOne: {fileID: 11400000, guid: 60d10e3e538da48069f9a3af13d33e6d, type: 2}
   PlayerTwo: {fileID: 11400000, guid: 1f6f1173a911f45d9abedaaba2f05874, type: 2}
-  xNoOfPasses: 0
   noOfRounds: 0
+  ArrivalDistance: 75
+  ArrivalThreshold: 0.5
+  ArrivalBrakingFineTuneFactor: 2
   gamepadVibrationOn: {fileID: 11400000, guid: 5993fbe2c4ede304d983be6de4eeba4f, type: 2}

@@ -28,8 +28,7 @@ namespace CircuitKnights
 
         [Header("Physics")]
         [Range(0f, 1f)] [SerializeField] float DragFactor = 0.02f;
-        [SerializeField] float MaxForce = 5000f;
-        [SerializeField] float MaxDampeningForce = -20000f;
+        float MaxForce { get; set; }
         [SerializeField] float MaxSpeed = 1000f;
         [SerializeField] float MinSpeed = 20f;
 
@@ -71,7 +70,6 @@ namespace CircuitKnights
             // PhysicsPrecalculations();
         }
 
-
         public IEnumerator ArriveAtDestination(Transform destination, float arrivalDistance, float arrivalThreshold)
         {
             ////Move toward destination as usual
@@ -85,15 +83,18 @@ namespace CircuitKnights
                 Vector3 arriveSteerNorm = Vector3.Normalize(arriveSteer);
                 distanceToDestination = arriveSteer.magnitude;
 
-                Force = MaxForce;       //dt or fixedDT?
+                //Max force increases per round
+                MaxForce = horseData.StartingForce + GameSettings.Instance.Round * horseData.ForceIncreasePerPass;
+                
+                Force = MaxForce;
 
                 if (distanceToDestination < arrivalDistance)
                 {
-                    Force = -(arrivalDistance / distanceToDestination) * MaxForce;
+                    Force = -MaxForce * GameSettings.Instance.ArrivalBrakingFineTuneFactor;
+                    // Force = -(arrivalDistance / distanceToDestination * MaxForce / dampeningForceFineTune);
 
                     //Clamp the dampening force
-                    Force = Mathf.Clamp(Force, MaxDampeningForce, Force);
-                    // Debug.Log("Slowing down... Force: " + Force);
+                    Debug.Log("Slowing down... Force: " + Force);
                 }
 
                 //Get acceleration toward destination
