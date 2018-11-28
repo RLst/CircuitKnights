@@ -24,8 +24,8 @@ namespace CircuitKnights {
         public AudioSource _as;
 	    public AudioClip[] audioClipArray;
 
-        public AudioSource _asTwo;
-	    public AudioClip audioClip;
+        //public AudioSource _asTwo;
+	   // public AudioClip audioClip;
       //  public AudioSource _asThree;
      //   public AudioClip audioClipThree;
         public CameraShake CameraShake;
@@ -75,8 +75,7 @@ namespace CircuitKnights {
                    _as.clip = audioClipArray[Random.Range(0,audioClipArray.Length)];
 		           _as.PlayOneShot (_as.clip);
 
-                   _asTwo.clip = audioClip;
-		           _asTwo.PlayOneShot (_asTwo.clip);                  
+                                   
                }
        }
 
@@ -129,12 +128,6 @@ namespace CircuitKnights {
           //  }
        }
 
-    //   private void SoundOnMovement()
-    //   {
-    //       //needs an if statment to check if the player is moving
-    //                _asThree.clip = audioClip;
-	///	            _asThree.PlayOneShot (_asThree.clip);
-     //  }
 
         //this is to check if the vibrating setting is ticked for any of the code to work
         void VibrateOnCollision(XInputDotNetPure.PlayerIndex playerIndex)

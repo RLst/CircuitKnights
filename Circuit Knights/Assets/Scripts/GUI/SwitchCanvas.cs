@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class SwitchCanvas : MonoBehaviour {
 
     [SerializeField] GameObject OffCanvasOne;
+    [SerializeField] GameObject OffCanvasTwo;
     [SerializeField] GameObject OnCanvas;
     [SerializeField] GameObject FirstObject;
     
@@ -16,6 +17,8 @@ public class SwitchCanvas : MonoBehaviour {
     {
         
         OffCanvasOne.SetActive(false);
+        OffCanvasTwo.SetActive(false);
+
         OnCanvas.SetActive(true);
         GameObject.Find("EventSystemOne").GetComponent<EventSystem>().SetSelectedGameObject(FirstObject, null);
     }
