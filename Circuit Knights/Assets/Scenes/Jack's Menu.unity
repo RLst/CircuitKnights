@@ -2078,15 +2078,15 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1126380774}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 43.6
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 945047043}
-        m_MethodName: SetVolume
-        m_Mode: 0
+      - m_Target: {fileID: 2089211928}
+        m_MethodName: ChangeVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13804,7 +13804,6 @@ GameObject:
   - component: {fileID: 945047041}
   - component: {fileID: 945047040}
   - component: {fileID: 945047039}
-  - component: {fileID: 945047043}
   m_Layer: 0
   m_Name: Options
   m_TagString: Untagged
@@ -13893,18 +13892,6 @@ RectTransform:
   m_AnchoredPosition: {x: 328.1, y: -11.8}
   m_SizeDelta: {x: 154.72, y: 282.78}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &945047043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 945047038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c387db5522a1746b3afc17e59bcdf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 1b355bcae3cfd1545af30da8a0cf6ab0, type: 2}
 --- !u!1 &945258153
 GameObject:
   m_ObjectHideFlags: 0
@@ -21724,7 +21711,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1414802727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1417349798
@@ -27608,6 +27606,7 @@ GameObject:
   - component: {fileID: 2089211926}
   - component: {fileID: 2089211925}
   - component: {fileID: 2089211927}
+  - component: {fileID: 2089211928}
   m_Layer: 0
   m_Name: 'UI '
   m_TagString: Untagged
@@ -27937,6 +27936,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &2089211928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2089211918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c387db5522a1746b3afc17e59bcdf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGameUISlider: {fileID: 183247184}
 --- !u!1001 &2090172189
 Prefab:
   m_ObjectHideFlags: 0
