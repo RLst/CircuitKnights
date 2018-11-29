@@ -5,7 +5,6 @@
 using CircuitKnights.Cameras;
 using CircuitKnights.Objects;
 using UnityEngine;
-// using CircuitKnights.Objects;
 
 namespace CircuitKnights
 {
@@ -18,7 +17,6 @@ namespace CircuitKnights
 		{
 			player = GetComponent<Player>();
 
-			// playerCamera = GetComponent<PlayerCamera>();
 			HeadHealth.OnHeadDeath += SetHeadDeathCam;
 		}
 

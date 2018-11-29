@@ -12,12 +12,17 @@ namespace CircuitKnights
     [RequireComponent(typeof(Collider))]
 	public class HeadHealth : Damageable
 	{
+		//Head falls off upon death
+
+        ////Events
+        //Death event broadcast; Broadcast an event upon death of this limb to whomever wants to tune in
+        public static event Action<PlayerData.PlayerNumber, float> OnHeadHit = delegate { };
+        public static event Action<PlayerData.PlayerNumber, GameObject> OnHeadDeath = delegate { };     //Subject or broadcaster; And observer needs to implement this
+		
+		
 		[SerializeField] GameObject knockedOffPrefab;   //The limb that falls off
 		[SerializeField] GameObject meshToHide;
 		Transform InstantiatePoint;
-
-		//Broadcast event
-		public static event Action<PlayerData.PlayerNumber, GameObject> OnHeadDeath = delegate { };     //Subject or broadcaster; And observer needs to implement this
 
 
 
@@ -45,15 +50,21 @@ namespace CircuitKnights
 				if (!isInvincible)
 				{
 					//Calculate impact; impact is the amount of damage based on the speed of the horse and lance attack rating
-					float attackMultiplierBasedOnSpeed;
+					float attackMultiplier;
 					var attack = opponentData.LanceData.Attack;
-                    var impact = CalculateImpact(attack, out attackMultiplierBasedOnSpeed);  
+                    var impact = CalculateImpact(attack, out attackMultiplier);
+
+                    //This damageable is first hit; set the rest to temp invincibility
+                    SetIFrames(playerData.No);
 
                     //Limb takes damage
 					TakeDamage(impact);
-                    
+
+                    //Let ether know head was hit
+                    OnHeadHit(playerData.No, attackMultiplier);
+
                     //Knockback
-			        playerData.KnockbackController.Execute(attackMultiplierBasedOnSpeed);
+                    playerData.ImpactHandler.Execute(attackMultiplier);
 				}
 			}
 		}
@@ -63,9 +74,6 @@ namespace CircuitKnights
 		{
 			playerData.HeadHP -= damage;    //TODO make damage => finalDamage
 
-			//Set invincibility for all the other limbs/shield
-			SetIFrames(playerData.No, damage);
-
 			if (playerData.HeadHP <= 0)
 				Death();
 		}
@@ -73,7 +81,7 @@ namespace CircuitKnights
 
 		public override void Death()
 		{
-			////Heads gets knocked off
+			////Knock head off
 			//Hide the head
 			meshToHide.SetActive(false);
 
@@ -82,7 +90,10 @@ namespace CircuitKnights
 
 			//Let the system know that the player's head has fallen off
 			OnHeadDeath(playerData.No, knockedOffHead);
-		}
+
+            //Finally disable this object so no more commands will be received
+            this.gameObject.SetActive(false);
+        }
 
 	}
 }

@@ -33,7 +33,7 @@ namespace CircuitKnights.Objects
         PlayerIKHoldLance IKLanceHolder;
         PlayerIKHoldShield IKShieldHolder;
         PlayerIKLook IKLook;
-        KnockbackController knockbackController;
+        ImpactHandler impactHandler;
 
 
         [Header("Colliders")]
@@ -75,7 +75,7 @@ namespace CircuitKnights.Objects
 			playerData.Animator = this.playerAnimator;
 
             ///Automatics
-            playerData.KnockbackController = this.knockbackController = this.GetComponent<KnockbackController>();
+            playerData.ImpactHandler = this.impactHandler = this.GetComponent<ImpactHandler>();
             playerData.Horse = horse = this.GetComponent<Horse>();
 			playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
             playerData.IKLanceHolder = this.IKLanceHolder = GetComponentInChildren<PlayerIKHoldLance>();

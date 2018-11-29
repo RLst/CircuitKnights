@@ -44,7 +44,7 @@ namespace CircuitKnights.Objects
 		public PlayerIKHoldLance IKLanceHolder { get; set; }
 		public PlayerIKHoldShield IKShieldHold { get; set; }
 		public PlayerIKLook IKLook { get; set; }
-		public KnockbackController KnockbackController { get; set; }
+		public ImpactHandler ImpactHandler { get; set; }
 		#endregion
 
 		#region Player Numbers
@@ -76,7 +76,7 @@ namespace CircuitKnights.Objects
 		public XboxAxis LeanRight { get { return leanRight; } }
 		public XboxAxis ShieldAxisX { get { return shieldAxisX; } }
 		public XboxAxis ShieldAxisY { get { return shieldAxisY; } }
-		public XboxButton ThrustLanceButton { get { return thrustLanceButton; } }
+		// public XboxButton ThrustLanceButton { get { return thrustLanceButton; } }
 		#endregion
 
 		#region Stats

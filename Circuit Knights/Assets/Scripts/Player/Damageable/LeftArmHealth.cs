@@ -12,12 +12,17 @@ namespace CircuitKnights
 	[RequireComponent(typeof(Collider))]
 	public class LeftArmHealth : Damageable
 	{
+		//Left arm falls off upon death
+
+        ////Events
+        //Death event broadcast; Broadcast an event upon death of this limb to whomever wants to tune in
+        public static event Action<PlayerData.PlayerNumber, float> OnLeftArmHit = delegate { };
+        public static event Action<PlayerData.PlayerNumber> OnLeftArmDeath = delegate { };      //Subject or broadcaster; And observer needs to implement this
+		
 		[SerializeField] GameObject knockedOffPrefab;
 		[SerializeField] GameObject meshToHide;
 		Transform InstatiatePoint;
 
-		//Broadcast events
-		public static event Action<PlayerData.PlayerNumber> OnLeftArmDeath = delegate { };      //Subject or broadcaster; And observer needs to implement this
 
 
 
@@ -37,24 +42,37 @@ namespace CircuitKnights
 		}
 
 
-		void OnCollisionEnter(Collision other)
-		{
-			//If hit by opponent's lance then raise/send event
-			if (other.collider == opponentData.LanceCollider)
-			{
-				TakeDamage(opponentData.LanceData.Attack);
-			}
-		}
+        void OnCollisionEnter(Collision other)
+        {
+            if (other.collider == opponentData.LanceCollider)
+            {
+                //If another limb or shield has already be hit
+                if (!isInvincible)
+                {
+                    //Calculate impact; impact is the amount of damage based on the speed of the horse and lance attack rating
+                    float attackMultiplier;
+                    var attack = opponentData.LanceData.Attack;
+                    var impact = CalculateImpact(attack, out attackMultiplier);
+
+                    //This damageable is first hit; set the rest to temp invincibility
+                    SetIFrames(playerData.No);
+
+                    //Limb takes damage
+                    TakeDamage(impact);
+
+                    //Let ether know head was hit
+                    OnLeftArmHit(playerData.No, attackMultiplier);
+
+                    //Knockback
+                    playerData.ImpactHandler.Execute(attackMultiplier);
+                }
+            }
+        }
 
 
 		public override void TakeDamage(float damage)
 		{
-			//Take damage based on velocity of horse/lance
-			//TODO var finalDamage = playerData.PlayerMover.Velocity * damageFactor * damage;
 			playerData.RightArmHP -= damage;
-
-			//Play knockback animation
-			playerData.Animator.SetTrigger("Knockback");
 
 			if (playerData.RightArmHP <= 0)
 				Death();
@@ -63,16 +81,20 @@ namespace CircuitKnights
 
 		public override void Death()
 		{
-			//Limb gets knocked off
-			//Hide the limb
-			// leftArmMesh.SetActive(false);
-			gameObject.SetActive(false);
+            ////Knock off left arm
+            //Hide the mesh
+            meshToHide.SetActive(false);
 
-			//Spawn in new limb to simulate getting knocked off
-			var newKnockedoff = Instantiate(knockedOffPrefab, InstatiatePoint.position, InstatiatePoint.rotation);
+            //Spawn in new limb to simulate getting knocked off
+            var newKnockedoff = Instantiate(knockedOffPrefab, InstatiatePoint.position, InstatiatePoint.rotation);
 
-			//TODO Let system know the Left Arm has been knocked off ie. reduce lance accuracy
-		}
+            //Let system know the Left Arm has been knocked off
+            OnLeftArmDeath(playerData.No);
+            	//TODO reduce lance accuracy?
+
+            //Finally disable this object so no more commands will be received
+            this.gameObject.SetActive(false);
+        }
 
 	}
 }

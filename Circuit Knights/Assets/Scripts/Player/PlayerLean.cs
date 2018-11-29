@@ -30,10 +30,9 @@ namespace CircuitKnights
 
 		private void DoLean()
 		{
-			var desLeanAxis = -playerInput.LeanLeft + playerInput.LeanRight;
-			leanAxis = Mathf.Lerp(leanAxis, desLeanAxis, playerData.LeanInertia);
+			var desiredLeanAxis = -playerInput.LeanLeft + playerInput.LeanRight;
+			leanAxis = Mathf.Lerp(leanAxis, desiredLeanAxis, playerData.LeanInertia);
 			animator.SetFloat("LeanAxis", leanAxis);
-			animator.SetFloat("KnockbackAxis", 0f);
 		}
 	}
 

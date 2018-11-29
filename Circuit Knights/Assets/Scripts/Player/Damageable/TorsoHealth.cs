@@ -13,65 +13,94 @@ namespace CircuitKnights
 	[RequireComponent(typeof(Collider))]
 	public class TorsoHealth : Damageable
 	{
-		///Events
-        public static event Action<PlayerData.PlayerNumber> OnPlayerLose = delegate { };		//Subject or broadcaster; And observer needs to implement this
+        //Torso doesn't break apart upon death
+        //Player loses upon death
+
+        ////Events
+        //Death event broadcast; Broadcast an event upon death of this limb to whomever wants to tune in
+        public static event Action<PlayerData.PlayerNumber, float> OnTorsoHit = delegate { };
+        public static event Action<PlayerData.PlayerNumber> OnTorsoDeath = delegate { };  //Params: PlayerNo
 
 
-		void OnCollisionEnter(Collision other)
+		void Awake()
+		{
+			//Register for invincibility
+            Damageable.OnFirstHit += SetIFrames;
+        }
+        void Start()
         {
-            //Make sure it's the opponent's lance
-            if (other.collider == opponentData.LanceCollider)
-            {
-                var damage = opponentData.LanceData.Attack - playerData.ShieldData.Defense;
-				///Take damage
-				TakeDamage(damage);
+            playerData = GetComponentInParent<Player>().Data;
+            opponentData = playerData.GetOpponent();
+            Assert.IsNotNull(playerData, "Player data not found!");
+            Assert.IsNotNull(opponentData, "Opponent data not found!");
+        }
 
-                Debug.Log("Damage taken to torso: " + damage);
+
+        void OnCollisionEnter(Collision other)
+        {
+            if (other.collider == opponentData.LanceCollider)	//Must have collided with the opponent's lance
+            {
+				if (!isInvincible)	//if first limb to be hit
+				{
+                    //Calculate impact; impact is the amount of damage based on the speed of the horse and lance attack rating
+                    float attackMultiplier;
+                    var attack = opponentData.LanceData.Attack;
+                    var impact = CalculateImpact(attack, out attackMultiplier);
+
+                    //This damageable is first hit; set the rest to temp invincibility
+                    SetIFrames(playerData.No);
+
+                    //Limb takes damage
+                    TakeDamage(impact);
+
+                    //Let ether know
+                    OnTorsoHit(playerData.No, attackMultiplier);
+
+                    //Knockback
+                    playerData.ImpactHandler.Execute(attackMultiplier);
+				}
             }
         }
+
 
 		public override void TakeDamage(float damage)
 		{
 			playerData.TorsoHP -= damage;
+
             if (playerData.TorsoHP <= 0)
                 Death();
 		}
 
+
 		public override void Death()
 		{
-            Debug.Log("Torso dead!");
+            ////Kill player
 
-            var RB = GetComponent<Rigidbody>();
-            var C = GetComponent<Collider>();
-
-            ///Player gets killed
-            //Turn into a ragdoll: turn off kinematic, turn off animator
+			//Ragdoll by turning off the player's animator
             playerData.Animator.enabled = false;
 
-            //Let the system know the player has lost
-            OnPlayerLose(playerData.No);    //Send this player's number to the ether
-		}
+            //Let the ether know this player has lost
+            OnTorsoDeath(playerData.No);
+                //TODO Camera locks onto this player
+                //TODO Slow motion etc
+
+            //Finally disable this object so no more commands will be received
+            this.gameObject.SetActive(false);
+        }
 
 
-		#region Inits
-		void Start()
-		{
-			AutoRetrieveReferences();
-			AssertReferences();
-		}
-		public void AutoRetrieveReferences()
-		{
-			playerData = GetComponentInParent<Player>().Data;
-			opponentData = playerData.GetOpponent();
-		}
-		public void AssertReferences()
-		{
-			Assert.IsNotNull(playerData, "Player data not found!");
-			Assert.IsNotNull(opponentData, "Opponent data not found!");
-		}
-		#endregion
+
 	}
 }
+
+
+
+
+
+
+
+
+
 
 
 // Debug.Log("Torso hit!");

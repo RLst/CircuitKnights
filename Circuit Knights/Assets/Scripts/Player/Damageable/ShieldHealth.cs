@@ -13,19 +13,17 @@ namespace CircuitKnights
     [RequireComponent(typeof(Collider))]
     public class ShieldHealth : Damageable
     {
-        // public static event Action<PlayerData.PlayerNumber> onShieldDeath = delegate { };   //Pass shield death with player
+        //Shield detaches from player upon death; Turns into standard rigidbody
+
+        ////Events
+        public static event Action<PlayerData.PlayerNumber, float> OnShieldHit = delegate { };
+        public static event Action<PlayerData.PlayerNumber> OnShieldDeath = delegate { };   //Pass shield death with player
         private ShieldData shieldData;
-		[SerializeField] GameObject knockedOffPrefab;   //The limb that falls off
+		
+        
+        [SerializeField] GameObject knockedOffPrefab;   //The limb that falls off
 		[SerializeField] Transform knockedOffSpawnPoint;
 		// [Tooltip("The mesh that will be hidden upon impact")] [SerializeField] GameObject shieldMesh;   //The mesh of the head that needs to disappear
-
-		//// Test collision data
-		Vector3 collisionDirection;
-        Vector3 collisionContact;
-        
-        float forceMultiplier = 0f;
-        ForceMode forceMode = ForceMode.Force;
-        /////////////////////
 
 
         void Start()
@@ -36,47 +34,41 @@ namespace CircuitKnights
             Assert.IsNotNull(opponentData, "Opponent data not found!");
         }
 
-
         void OnCollisionEnter(Collision other)
         {
-            //If hit by opponent's lance then raise/send event
             if (other.collider == opponentData.LanceCollider)
             {
-                // var RB = GetComponent<Rigidbody>();
-                // var C = GetComponent<Collider>();
-                // var oppRB = opponentData.LanceData.gameObject.GetComponentInChildren<Rigidbody>();
+                //If another limb or shield has already be hit
+                if (!isInvincible)
+                {
+                    //Calculate impact; impact is the amount of damage based on the speed of the horse and lance attack rating
+                    float attackMultiplier;
+                    var attack = opponentData.LanceData.Attack;
+                    var impact = CalculateImpact(attack, out attackMultiplier);
 
-                ///Take damage
-                TakeDamage(opponentData.LanceData.Attack - playerData.ShieldData.Defense);
+                    //This damageable is first hit; set the rest to temp invincibility
+                    SetIFrames(playerData.No);
 
-                // ///Make player semi-ragdoll
-                // //Disable animator and kinematic?
-                // playerData.Animator.enabled = false;
+                    //Limb takes damage
+                    TakeDamage(impact);
 
-                // ///Apply force/impulse to player at point of contact
-                // //Get opponent's lance direction vector
-                // collisionDirection = other.gameObject.transform.forward.normalized;
-                // collisionContact = other.contacts[0].point;
+                    //Let ether know head was hit
+                    OnShieldHit(playerData.No, attackMultiplier);
 
-                // //Detach the shield and make into plain rigidbody
-                // transform.SetParent(null);
-                // RB.isKinematic = false;
-                // C.isTrigger = false;
-
-                // //Add force to the shield which should chain reaction up the player
-                // RB.AddForceAtPosition(collisionDirection * forceMultiplier, collisionContact, forceMode);
-
-                // ///Release opponent's lance
-                // oppRB.isKinematic = false;
-                // other.transform.SetParent(null);
-                // opponentData.IKLanceHolder.enabled = false;
+                    //Knockback
+                    playerData.ImpactHandler.Execute(attackMultiplier);
+                }
             }
         }
 
 
         public override void TakeDamage(float damage)
         {
-            playerData.ShieldData.HP -= damage;
+            //Shield reduces attack due to defense rating
+            var defendedDamage = damage - playerData.ShieldData.Defense;
+
+            playerData.ShieldData.HP -= defendedDamage;
+
 			if (playerData.ShieldData.HP <= 0)
 				Death();
         }
@@ -84,14 +76,15 @@ namespace CircuitKnights
 
         public override void Death()
         {
-			//Object gets knocked off
-			//Hide the object
-			// shieldMesh.SetActive(false);
-			gameObject.SetActive(false);
+            //Detach shield and fall to ground?
+            transform.SetParent(null);
+            GetComponent<Rigidbody>().isKinematic = false;
 
-			//Spawn in new limb to simulate getting knocked off
-			var newKnockedoff = Instantiate(knockedOffPrefab, knockedOffSpawnPoint.position, knockedOffSpawnPoint.rotation);
+            //Let ether know shield has been destroyed
+            OnShieldDeath(playerData.No)
 
+            //Finally disable this object so no more commands will be received
+            this.gameObject.SetActive(false);
         }
 
     }

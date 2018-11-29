@@ -16,7 +16,6 @@ namespace CircuitKnights
         PlayerData playerData;
         HorseData horseData;
         [SerializeField] bool getKBInput = false;
-		[SerializeField] KeyCode thrustKey = KeyCode.RightControl;
 
 		#region Outputs
 		public float LanceAxisX { get; private set; }
@@ -53,17 +52,14 @@ namespace CircuitKnights
 
         void ReadControllerInput()
         {
-            // Controller = player.Controller;
             LanceAxisX = XCI.GetAxisRaw(playerData.LanceAxisX, playerData.Controller);
             LanceAxisY = XCI.GetAxisRaw(playerData.LanceAxisY, playerData.Controller);
+
             LeanLeft = XCI.GetAxisRaw(playerData.LeanLeft, playerData.Controller);
             LeanRight = XCI.GetAxisRaw(playerData.LeanRight, playerData.Controller);
 
             ShieldAxisX = XCI.GetAxisRaw(playerData.ShieldAxisX, playerData.Controller);
             ShieldAxisY = XCI.GetAxisRaw(playerData.ShieldAxisY, playerData.Controller);
-
-            // AccelAxis = XCI.GetAxis(horseData.AccelAxis, playerData.Controller);
-            // DecelButton = XCI.GetButton(horseData.DecelButton, playerData.Controller);
 
             // ThrustLanceButton = XCI.GetButton(playerData.ThrustLanceButton, playerData.Controller);
         }
@@ -71,22 +67,21 @@ namespace CircuitKnights
         void xReadKeyboardInput()
 		{
 			///hardcoded for debugging/ease of use purposes
-			LeanLeft = Input.GetAxis("Horizontal2");
-			LeanRight = Input.GetAxis("Vertical2");
+            if (Input.GetKey(KeyCode.Q))
+			    LeanLeft = 1;
+            else
+                LeanLeft = 0;
+
+            if (Input.GetKey(KeyCode.E))
+                LeanRight = 1;
+            else
+                LeanRight = 0;
+
 			LanceAxisX = Input.GetAxis("Horizontal");
 			LanceAxisY = Input.GetAxis("Vertical");
+
             ShieldAxisX = Input.GetAxis("Horizontal2");
 			ShieldAxisY = Input.GetAxis("Vertical2");
-
-            //Temp
-            // if (Input.GetKey(KeyCode.Space))
-            //     AccelAxis = 1f;
-            // if (Input.GetKey(KeyCode.B))
-            //     AccelAxis = -1f;
-            // if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.B))
-            //     AccelAxis = 0;
-
-            // ThrustLanceButton = Input.GetKey(thrustKey);
 		}
 	}
 }
