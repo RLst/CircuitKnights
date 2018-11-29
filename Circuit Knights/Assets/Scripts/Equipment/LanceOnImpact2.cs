@@ -24,10 +24,15 @@ namespace CircuitKnights {
         public AudioSource _as;
 	    public AudioClip[] audioClipArray;
 
+        public AudioSource CrowdCheer;
+        public AudioClip crowdCheering;     
+
         public CameraShake CameraShake;
         public float ScreenShakeTime = .15f;
         public float ScreenShakeMagnitude = .1f;
         public SlowMotionController slowMotionController;
+
+        public ParticleSystem Sparks;
 
         void Awake () {
 		_as = GetComponent<AudioSource> ();
@@ -54,8 +59,8 @@ namespace CircuitKnights {
                     LeftMotor = 1.0f;
                     RightMotor = 1.0f;
                     //selects what controlers to vibrate
-                    Debug.Log("vibrating Collision ON");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+                    Debug.Log("vibrating Collision ON");
                 }
             }
         }
@@ -64,9 +69,13 @@ namespace CircuitKnights {
             if (collision.gameObject == player)
             {
 
+                Sparks.Play();
+
                 _as.clip = audioClipArray[Random.Range(0, audioClipArray.Length)];
                 _as.PlayOneShot(_as.clip);
 
+                CrowdCheer.clip = crowdCheering;
+                CrowdCheer.PlayOneShot(CrowdCheer.clip);
 
                     StartCoroutine(CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude));
                     slowMotionController.SlowMotionOn(0.05f, 2.0f);
@@ -84,9 +93,9 @@ namespace CircuitKnights {
                     // changes the values of the vibratio so it stops vibrating
                     LeftMotor = .0f;
                     RightMotor = .0f;
-                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-                    //Debug.Log("Vibrating Collision OFF");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+                    Debug.Log("Vibrating Collision OFF");
+             
                     timer = 0.0f;
                     timing = false;
                 }
@@ -108,7 +117,6 @@ namespace CircuitKnights {
                     RightMotor = .1f;
                     Debug.Log("Vibrating on Movement");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
                     
                 }
             }

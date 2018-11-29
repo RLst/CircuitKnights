@@ -32,6 +32,8 @@ namespace CircuitKnights {
         public float ScreenShakeMagnitude = .1f;
         public SlowMotionController slowMotionController;
 
+        public ParticleSystem Sparks;
+
         void Awake () {
 		_as = GetComponent<AudioSource> ();
 	    }
@@ -67,6 +69,8 @@ namespace CircuitKnights {
             if (collision.gameObject == player)
             {
 
+                Sparks.Play();
+
                 _as.clip = audioClipArray[Random.Range(0, audioClipArray.Length)];
                 _as.PlayOneShot(_as.clip);
 
@@ -91,7 +95,7 @@ namespace CircuitKnights {
                     RightMotor = .0f;
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
                     Debug.Log("Vibrating Collision OFF");
-                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
+             
                     timer = 0.0f;
                     timing = false;
                 }
@@ -113,7 +117,6 @@ namespace CircuitKnights {
                     RightMotor = .1f;
                     Debug.Log("Vibrating on Movement");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-                    VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
                     
                 }
             }
