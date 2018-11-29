@@ -1,15 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿//DuckBike
+//Brent
+//Tony, 29 Nov 2018
+
 using UnityEngine;
 
 
-public class MouseDisabler : MonoBehaviour {
+public class MouseDisabler : MonoBehaviour
+{
+    [SerializeField] new bool enabled = true;
 
-	// Use this for initialization
-	void Awake () 
-	{
-		Cursor.lockState = CursorLockMode.Locked;
- 		Cursor.visible = false;
-	}
-	
+    void Awake()
+    {
+		if (enabled)
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
+    }
+
 }

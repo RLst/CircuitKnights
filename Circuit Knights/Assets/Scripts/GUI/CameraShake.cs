@@ -1,4 +1,7 @@
-﻿//Jack Dawes
+﻿//Duckbike
+//Tony Le
+//Jack Dawes
+//30 Nov 2018
 
 using System.Collections;
 using UnityEngine;
@@ -6,7 +9,12 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
 
-    public IEnumerator Shake(float duration, float magnitude)
+    public void Shake(float duration, float magnitude)
+    {
+        StartCoroutine(ShakeRoutine(duration, magnitude));
+    }
+
+    public IEnumerator ShakeRoutine(float duration, float magnitude)
     {
         Vector3 originalPos = transform.localPosition;
 

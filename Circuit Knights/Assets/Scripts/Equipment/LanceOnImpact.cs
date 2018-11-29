@@ -5,6 +5,7 @@ using CircuitKnights.Variables;
 using CircuitKnights;
 using CircuitKnights.Objects;
 using XInputDotNetPure;
+using CircuitKnights.Controllers;
 
 //Brent D'Auria
 namespace CircuitKnights { 
@@ -44,7 +45,7 @@ namespace CircuitKnights {
             collisionVibrationOff();
             VibrationOnMovment();
             if(Input.GetKey(KeyCode.B)){
-                StartCoroutine(CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude));
+                CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude);
               //  slowMotionController.SlowMotionOn(0.05f, 2.0f);
             }
 
@@ -81,7 +82,7 @@ namespace CircuitKnights {
                 CrowdCheer.clip = crowdCheering;
                 CrowdCheer.PlayOneShot(CrowdCheer.clip);
 
-                    StartCoroutine(CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude));
+                    CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude);
                     slowMotionController.SlowMotionOn(0.05f, 2.0f);
             }
         }

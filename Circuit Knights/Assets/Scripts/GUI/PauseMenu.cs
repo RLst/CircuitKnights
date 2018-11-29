@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using XboxCtrlrInput;
+using CircuitKnights.Controllers;
 
 //Jack Dawes
 //10th of October, 2018

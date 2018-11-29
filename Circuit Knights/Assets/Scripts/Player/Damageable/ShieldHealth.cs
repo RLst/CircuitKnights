@@ -81,7 +81,7 @@ namespace CircuitKnights
             GetComponent<Rigidbody>().isKinematic = false;
 
             //Let ether know shield has been destroyed
-            OnShieldDeath(playerData.No)
+            OnShieldDeath(playerData.No);
 
             //Finally disable this object so no more commands will be received
             this.gameObject.SetActive(false);
