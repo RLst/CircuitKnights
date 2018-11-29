@@ -34,17 +34,17 @@ namespace CircuitKnights.Tests
 
         void Update()
 		{
-            headOne.text = "HeadHP: " + Convert.ToInt32(playerOne.HeadHP.ToString());
-            torsoOne.text = "TorsoHP: " + Convert.ToInt32(playerOne.TorsoHP.ToString());
-            leftArmOne.text = "LeftArmHP: " + Convert.ToInt32(playerOne.LeftArmHP.ToString());
-            rightArmOne.text = "RightArmHP: " + Convert.ToInt32(playerOne.RightArmHP.ToString());
-            shieldOne.text = "ShieldHP: " + Convert.ToInt32(playerOne.ShieldData.HP.ToString());
+            headOne.text = "HeadHP: " + Convert.ToInt32(playerOne.HeadHP.ToString()).ToString();
+            torsoOne.text = "TorsoHP: " + Convert.ToInt32(playerOne.TorsoHP.ToString()).ToString();
+            leftArmOne.text = "LeftArmHP: " + Convert.ToInt32(playerOne.LeftArmHP.ToString()).ToString();
+            rightArmOne.text = "RightArmHP: " + Convert.ToInt32(playerOne.RightArmHP.ToString()).ToString();
+            shieldOne.text = "ShieldHP: " + Convert.ToInt32(playerOne.ShieldData.HP.ToString()).ToString();
 
-            headTwo.text = "HeadHP: " + Convert.ToInt32(playerTwo.HeadHP.ToString());
-            torsoTwo.text = "TorsoHP: " + Convert.ToInt32(playerTwo.TorsoHP.ToString());
-            leftArmTwo.text = "LeftArmHP: " + Convert.ToInt32(playerTwo.LeftArmHP.ToString());
-            rightArmTwo.text = "RightArmHP: " + Convert.ToInt32(playerTwo.RightArmHP.ToString());
-            shieldTwo.text = "ShieldHP: " + Convert.ToInt32(playerTwo.ShieldData.HP.ToString());
+            headTwo.text = "HeadHP: " + Convert.ToInt32(playerTwo.HeadHP.ToString()).ToString();
+            torsoTwo.text = "TorsoHP: " + Convert.ToInt32(playerTwo.TorsoHP.ToString()).ToString();
+            leftArmTwo.text = "LeftArmHP: " + Convert.ToInt32(playerTwo.LeftArmHP.ToString()).ToString();
+            rightArmTwo.text = "RightArmHP: " + Convert.ToInt32(playerTwo.RightArmHP.ToString()).ToString();
+            shieldTwo.text = "ShieldHP: " + Convert.ToInt32(playerTwo.ShieldData.HP.ToString()).ToString();
         }
     }
 
