@@ -23,9 +23,11 @@ namespace CircuitKnights
             //Make sure it's the opponent's lance
             if (other.collider == opponentData.LanceCollider)
             {
+                var damage = opponentData.LanceData.Attack - playerData.ShieldData.Defense;
 				///Take damage
-				TakeDamage(opponentData.LanceData.Attack - playerData.ShieldData.Defense);
+				TakeDamage(damage);
 
+                Debug.Log("Damage taken to torso: " + damage);
             }
         }
 

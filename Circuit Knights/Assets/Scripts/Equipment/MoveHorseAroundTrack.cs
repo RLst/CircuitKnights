@@ -62,7 +62,7 @@ namespace CircuitKnights
             Debug.Log("Swung around end of track!");
 
             //Let the system know that the pass has finished?
-            Debug.Log("Pass completed!");
+            //Debug.Log("Pass completed!");
             OnPlayerReachedTheEnd.Raise();
         }
 

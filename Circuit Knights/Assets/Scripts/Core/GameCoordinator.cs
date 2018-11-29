@@ -213,7 +213,7 @@ namespace CircuitKnights
                     EndCurrentRound();  //End current round once both players have hit the end
 
                     //Test
-                    Debug.Log("PlayRound() loop..." + playersThatHaveReachedTheEnds);
+                    //Debug.Log("PlayRound() loop..." + playersThatHaveReachedTheEnds);
 
                 yield return null;
             }

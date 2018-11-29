@@ -85,7 +85,7 @@ namespace CircuitKnights {
                     LeftMotor = .0f;
                     RightMotor = .0f;
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.One);
-                    Debug.Log("Vibrating Collision OFF");
+                    //Debug.Log("Vibrating Collision OFF");
                     VibrateOnCollision(XInputDotNetPure.PlayerIndex.Two);
                     timer = 0.0f;
                     timing = false;

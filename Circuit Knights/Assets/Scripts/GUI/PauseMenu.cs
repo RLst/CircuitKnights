@@ -40,8 +40,7 @@ namespace CircuitKnights
         {        
             ////Handle Pause    
             //Any controller...
-            if (XCI.GetButtonDown(XboxButton.Start) ||
-                Input.GetButtonDown("Cancel"))
+            if (XCI.GetButtonDown(XboxButton.Start, XboxController.First) || XCI.GetButtonDown(XboxButton.Start, XboxController.Second) || Input.GetButtonDown("Cancel"))
             {
                 TogglePause();
             }

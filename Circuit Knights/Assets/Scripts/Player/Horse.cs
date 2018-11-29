@@ -82,7 +82,7 @@ namespace CircuitKnights
                 Vector3 arriveSteer = destination.position - transform.position;
                 Vector3 arriveSteerNorm = Vector3.Normalize(arriveSteer);
                 distanceToDestination = arriveSteer.magnitude;
-                Debug.Log("distance: " + distanceToDestination);
+                //Debug.Log("distance: " + distanceToDestination);
 
                 //Max force increases per round
                 MaxForce = horseData.StartingForce + GameSettings.Instance.Round * horseData.ForceIncreasePerPass;
