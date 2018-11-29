@@ -27,25 +27,15 @@ namespace CircuitKnights
 
 
         [Header("Physics")]
-        [Range(0f, 1f)] [SerializeField] float DragFactor = 0.02f;
-        float MaxForce { get; set; }
-        [SerializeField] float MaxSpeed = 1000f;
-        [SerializeField] float MinSpeed = 20f;
+        // float MaxForce { get; set; }
+        [SerializeField] float MaxSpeed = 200f;
+        [SerializeField] float MinSpeed = 0f;
 
         public float Force { get; private set; }
         public Vector3 Accel { get; private set; }
         public Vector3 Vel { get; private set; }
         public Vector3 Pos { get; private set; }
         public float LinearSpeed { get { return Vel.magnitude; } }
-
-        // [Header("Pass configuration")]
-        // [SerializeField] float startingForce = 4000f;
-        // [SerializeField] float forceIncreasePerPass = 250f;
-
-        ////Events required
-        //onStartPass: The horses will start moving
-        //onEndPass: The horses start slowing down to get ready for the next pass
-        //onReady: Let's the system know that the players are ready and horse can receive event onStartPass to start them moving
 
         void Awake()
         {
@@ -61,13 +51,6 @@ namespace CircuitKnights
             Accel = Vector3.zero;
             Vel = Vector3.zero;
             Pos = transform.position;
-
-            //Get starting and end points
-            
-            //Polls input via PlayerInput. If none present or disabled then the player can't move
-            // playerInput = GetComponent<PlayerInput>();
-            // RememberInitialStartPositions();
-            // PhysicsPrecalculations();
         }
 
         public IEnumerator ArriveAtDestination(Transform destination, float arrivalDistance, float arrivalThreshold)
@@ -82,16 +65,14 @@ namespace CircuitKnights
                 Vector3 arriveSteer = destination.position - transform.position;
                 Vector3 arriveSteerNorm = Vector3.Normalize(arriveSteer);
                 distanceToDestination = arriveSteer.magnitude;
-                //Debug.Log("distance: " + distanceToDestination);
+                Debug.Log("distance: " + distanceToDestination);
 
                 //Max force increases per round
-                MaxForce = horseData.StartingForce + GameSettings.Instance.Round * horseData.ForceIncreasePerPass;
+                Force = horseData.StartingForce + GameSettings.Instance.Round * horseData.ForceIncreasePerPass;
                 
-                Force = MaxForce;
-
                 if (distanceToDestination < arrivalDistance)
                 {
-                    Force = -MaxForce * GameSettings.Instance.ArrivalBrakingFineTuneFactor;
+                    Force = -Force * GameSettings.Instance.ArrivalBrakingFineTuneFactor;
                     // Force = -(arrivalDistance / distanceToDestination * MaxForce / dampeningForceFineTune);
 
                     //Clamp the dampening force
@@ -102,13 +83,13 @@ namespace CircuitKnights
                 Accel = arriveSteerNorm * Force / horseData.Mass;
 
                 //Get velocity
-                Vel += Accel * Time.deltaTime;
+                Vel += Accel * Time.fixedDeltaTime;
                 // Debug.Log("Before Clamp: " + Vel.magnitude);
                 ClampSpeed();
                 // Debug.Log("After Clamp: " + Vel.magnitude);
 
                 //Get position
-                Pos += Vel * Time.deltaTime;
+                Pos += Vel * Time.fixedDeltaTime;
 
                 //Apply transform
                 transform.position = Pos;

@@ -107,28 +107,5 @@ namespace CircuitKnights.Objects
             playerData.ShieldCollider = this.shieldCollider;
             playerData.LanceCollider = this.lanceCollider;
         }
-
-
-        //Test - equipment switching
-        // void Update()
-        // {
-        //     if (Input.GetKeyDown(KeyCode.S))
-        //     {
-        //         SwitchLances();
-        //     }
-        // }
-        // public void SwitchLances()
-        // {
-        //     lanceIndex++;
-        //     if (lanceIndex >= lances.Count)
-        //         lanceIndex = 0;
-
-        //     if (currentLance != null)
-        //         currentLance.Unequip();
-
-        //     currentLance = lances[lanceIndex];
-        //     currentLance.Equip();
-        // }
-        //Test - Equipment switching
     }
 }

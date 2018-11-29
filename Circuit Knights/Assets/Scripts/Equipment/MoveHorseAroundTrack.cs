@@ -56,7 +56,7 @@ namespace CircuitKnights
             Debug.Log("Next End Point: "+nextEndPoint);
 
             yield return StartCoroutine(horse.ArriveAtDestination(nextEndPoint, arrivalDistance, arrivalThreshold));
-            Debug.Log("Arrived at destination!");
+            Debug.Log("Arrived at destination!: "+arrivalDistance);
 
             yield return StartCoroutine(horse.SwingAroundEndOfTrack(2f, startPoints, endPoints));
             Debug.Log("Swung around end of track!");
