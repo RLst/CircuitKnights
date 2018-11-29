@@ -9,7 +9,7 @@ using XInputDotNetPure;
 using System;
 using System.Collections;
 
-namespace CircuitKnights
+namespace CircuitKnights.Controllers
 {
     [RequireComponent(typeof(Player))]
     public class Horse : MonoBehaviour
@@ -28,8 +28,8 @@ namespace CircuitKnights
 
         [Header("Physics")]
         // float MaxForce { get; set; }
-        [SerializeField] float MaxSpeed = 200f;
-        [SerializeField] float MinSpeed = 0f;
+        public float MaxSpeed = 200f;
+        public float MinSpeed = 0f;
 
         public float Force { get; private set; }
         public Vector3 Accel { get; private set; }
@@ -65,7 +65,7 @@ namespace CircuitKnights
                 Vector3 arriveSteer = destination.position - transform.position;
                 Vector3 arriveSteerNorm = Vector3.Normalize(arriveSteer);
                 distanceToDestination = arriveSteer.magnitude;
-                Debug.Log("distance: " + distanceToDestination);
+                // Debug.Log("distance: " + distanceToDestination);
 
                 //Max force increases per round
                 Force = horseData.StartingForce + GameSettings.Instance.Round * horseData.ForceIncreasePerPass;
