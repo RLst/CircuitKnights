@@ -12,20 +12,25 @@ namespace CircuitKnights
     public class HeadDeathCamera : MonoBehaviour
     {
 		// PlayerCamera playerCamera;
-		// Player player;
+		Player player;
 
 		void Awake()
 		{
-			// player = GetComponent<Player>();
+			player = GetComponent<Player>();
 
 			// playerCamera = GetComponent<PlayerCamera>();
 			HeadHealth.OnHeadDeath += SetHeadDeathCam;
 		}
 
-		void SetHeadDeathCam(PlayerData.PlayerNumber playerNo)
+		void SetHeadDeathCam(PlayerData.PlayerNumber playerNo, GameObject knockedOffHead)
 		{
-			// if (playerNo)
-			// player.Data.Camera.DesiredPosition = 
+			//Check that this is the decapitated player
+			if (playerNo == player.Data.No)
+			{
+                player.Data.Camera.DesiredPosition = knockedOffHead.transform;		//Move camera to a 
+                player.Data.Camera.LookAt = player.Data.gameObject.transform;		//Look at the Player's root
+
+            }
 		}
     }
 

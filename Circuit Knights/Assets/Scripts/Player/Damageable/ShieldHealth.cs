@@ -22,9 +22,19 @@ namespace CircuitKnights
 		//// Test collision data
 		Vector3 collisionDirection;
         Vector3 collisionContact;
+        
         float forceMultiplier = 0f;
         ForceMode forceMode = ForceMode.Force;
         /////////////////////
+
+
+        void Start()
+        {
+            playerData = GetComponentInParent<Player>().Data;
+            opponentData = playerData.GetOpponent();
+            Assert.IsNotNull(playerData, "Player data not found!");
+            Assert.IsNotNull(opponentData, "Opponent data not found!");
+        }
 
 
         void OnCollisionEnter(Collision other)
@@ -63,12 +73,14 @@ namespace CircuitKnights
             }
         }
 
+
         public override void TakeDamage(float damage)
         {
             playerData.ShieldData.HP -= damage;
 			if (playerData.ShieldData.HP <= 0)
 				Death();
         }
+
 
         public override void Death()
         {
@@ -82,26 +94,6 @@ namespace CircuitKnights
 
         }
 
-
-        #region Inits
-		void Start()
-		{
-			AutoRetrieveReferences();
-			AssertReferences();
-		}
-
-		public void AutoRetrieveReferences()
-		{
-			playerData = GetComponentInParent<Player>().Data;
-			opponentData = playerData.GetOpponent();
-		}
-
-		public void AssertReferences()
-		{
-			Assert.IsNotNull(playerData, "Player data not found!");
-			Assert.IsNotNull(opponentData, "Opponent data not found!");
-		}
-        #endregion
     }
 }
 

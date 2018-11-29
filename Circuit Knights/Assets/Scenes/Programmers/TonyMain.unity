@@ -5932,6 +5932,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 65634277353742808, guid: 576746c984a41df47ace43cb11c5d3ce,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 0.8472999
+      objectReference: {fileID: 0}
+    - target: {fileID: 65634277353742808, guid: 576746c984a41df47ace43cb11c5d3ce,
+        type: 2}
+      propertyPath: m_Center.z
+      value: 5.2572947
+      objectReference: {fileID: 0}
+    - target: {fileID: 65634277353742808, guid: 576746c984a41df47ace43cb11c5d3ce,
+        type: 2}
+      propertyPath: m_Center.x
+      value: 0.030204594
+      objectReference: {fileID: 0}
+    - target: {fileID: 65634277353742808, guid: 576746c984a41df47ace43cb11c5d3ce,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 0.4266108
+      objectReference: {fileID: 0}
+    - target: {fileID: 65634277353742808, guid: 576746c984a41df47ace43cb11c5d3ce,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.42371854
+      objectReference: {fileID: 0}
+    - target: {fileID: 65634277353742808, guid: 576746c984a41df47ace43cb11c5d3ce,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.021198127
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114624476897261078, guid: 576746c984a41df47ace43cb11c5d3ce, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 576746c984a41df47ace43cb11c5d3ce, type: 2}
@@ -31043,7 +31073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14bacbc405b7b447b1c068061589513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadScene: Main
 --- !u!114 &2107857963
 MonoBehaviour:
   m_ObjectHideFlags: 0

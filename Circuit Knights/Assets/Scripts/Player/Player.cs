@@ -27,8 +27,8 @@ namespace CircuitKnights.Objects
         [SerializeField] HorseData horseData;
 
         [Header("Controllers")]
+        [SerializeField] Animator playerAnimator;
         Horse horse;
-        Animator playerAnimator;
         ShieldController shieldController;
         PlayerIKHoldLance IKLanceHolder;
         PlayerIKHoldShield IKShieldHolder;
@@ -72,13 +72,11 @@ namespace CircuitKnights.Objects
 
             playerData.Root = this.transform;
             playerData.Camera = this.playerCamera;
-
-			playerData.Animator = playerAnimator;
+			playerData.Animator = this.playerAnimator;
 
             ///Automatics
             playerData.KnockbackController = this.knockbackController = this.GetComponent<KnockbackController>();
             playerData.Horse = horse = this.GetComponent<Horse>();
-			playerData.Animator = playerAnimator = this.GetComponentInChildren<Animator>();
 			playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
             playerData.IKLanceHolder = this.IKLanceHolder = GetComponentInChildren<PlayerIKHoldLance>();
             playerData.IKShieldHold = this.IKShieldHolder = GetComponentInChildren<PlayerIKHoldShield>();

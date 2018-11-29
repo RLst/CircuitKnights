@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6fed35ae41a8b34da64217d2b38eaac, type: 3}
+  m_Name: DefaultGameSettings
+  m_EditorClassIdentifier: 
+  description: Holds the game settings
+  PlayerOne: {fileID: 11400000, guid: 60d10e3e538da48069f9a3af13d33e6d, type: 2}
+  PlayerTwo: {fileID: 11400000, guid: 1f6f1173a911f45d9abedaaba2f05874, type: 2}
+  noOfRounds: 0
+  ArrivalDistance: 50
+  ArrivalThreshold: 0.6
+  ArrivalBrakingFineTuneFactor: 1.4
+  gamepadVibrationOn: {fileID: 0}

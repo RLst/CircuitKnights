@@ -6,11 +6,10 @@ using UnityEngine;
 using CircuitKnights.Objects;
 using System;
 using UnityEngine.Assertions;
-using System.Collections;
 
 namespace CircuitKnights
 {
-	[RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Collider))]
 	public class HeadHealth : Damageable
 	{
 		[SerializeField] GameObject knockedOffPrefab;   //The limb that falls off
@@ -18,11 +17,10 @@ namespace CircuitKnights
 		Transform InstantiatePoint;
 
 		//Broadcast event
-		public static event Action<PlayerData.PlayerNumber> OnHeadDeath = delegate { };     //Subject or broadcaster; And observer needs to implement this
+		public static event Action<PlayerData.PlayerNumber, GameObject> OnHeadDeath = delegate { };     //Subject or broadcaster; And observer needs to implement this
 
 
 
-		#region Inits
 		void Awake()
 		{
 			//Register for events
@@ -32,13 +30,11 @@ namespace CircuitKnights
 		{
 			playerData = GetComponentInParent<Player>().Data;
 			opponentData = playerData.GetOpponent();
-
 			Assert.IsNotNull(playerData, "Player data not found!");
 			Assert.IsNotNull(opponentData, "Opponent data not found!");
 
 			if (InstantiatePoint == null) InstantiatePoint = transform;     //Set to default if none
 		}
-		#endregion
 
 
 		void OnCollisionEnter(Collision other)
@@ -62,6 +58,7 @@ namespace CircuitKnights
 			}
 		}
 
+
 		public override void TakeDamage(float damage)
 		{
 			playerData.HeadHP -= damage;    //TODO make damage => finalDamage
@@ -73,18 +70,18 @@ namespace CircuitKnights
 				Death();
 		}
 
+
 		public override void Death()
 		{
 			////Heads gets knocked off
-
 			//Hide the head
 			meshToHide.SetActive(false);
 
 			//Spawn in new head to simulate getting knocked off
-			var newKnockedOff = Instantiate(knockedOffPrefab, InstantiatePoint.position, InstantiatePoint.rotation);
+			var knockedOffHead = Instantiate(knockedOffPrefab, InstantiatePoint.position, InstantiatePoint.rotation);
 
 			//Let the system know that the player's head has fallen off
-			OnHeadDeath(playerData.No);
+			OnHeadDeath(playerData.No, knockedOffHead);
 		}
 
 	}

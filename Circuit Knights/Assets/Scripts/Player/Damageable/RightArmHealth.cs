@@ -17,11 +17,15 @@ namespace CircuitKnights
 		// [Tooltip("The mesh that will be hidden upon impact")][SerializeField] GameObject rightArmMesh;
 		[Tooltip("Used to fine tune the damage")][SerializeField] float damageFactor = 1f;
 
+
 		void Start()
         {
-            AutoRetrieveReferences();
-            AssertReferences();
+            playerData = GetComponentInParent<Player>().Data;
+            opponentData = GetComponentInParent<Player>().Data.GetOpponent();
+            Assert.IsNotNull(playerData, "Player data not found!");
+            Assert.IsNotNull(opponentData, "Opponent data not found!");
         }
+
 
         void OnCollisionEnter(Collision other)
         {
@@ -58,19 +62,5 @@ namespace CircuitKnights
 			//TODO let system know that Right Arm has fallen off via event
 		}
 
-
-        #region Inits
-		public void AutoRetrieveReferences()
-		{
-			playerData = GetComponentInParent<Player>().Data;
-			opponentData = GetComponentInParent<Player>().Data.GetOpponent();
-		}
-
-		public void AssertReferences()
-		{
-			Assert.IsNotNull(playerData, "Player data not found!");
-			Assert.IsNotNull(opponentData, "Opponent data not found!");
-		}
-        #endregion
 	}
 }

@@ -21,7 +21,6 @@ namespace CircuitKnights
 
 
 
-		#region Inits
 		void Awake()
 		{
 			//Register for the Iframe event
@@ -36,7 +35,6 @@ namespace CircuitKnights
 
 			InstatiatePoint = transform;
 		}
-		#endregion
 
 
 		void OnCollisionEnter(Collision other)
@@ -47,6 +45,7 @@ namespace CircuitKnights
 				TakeDamage(opponentData.LanceData.Attack);
 			}
 		}
+
 
 		public override void TakeDamage(float damage)
 		{
@@ -60,6 +59,7 @@ namespace CircuitKnights
 			if (playerData.RightArmHP <= 0)
 				Death();
 		}
+
 
 		public override void Death()
 		{
