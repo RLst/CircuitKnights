@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using CircuitKnights;
 using CircuitKnights.Objects;
+using System;
 
 namespace CircuitKnights.Tests
 {
@@ -33,17 +34,17 @@ namespace CircuitKnights.Tests
 
         void Update()
 		{
-            headOne.text = "HeadHP: " + playerOne.HeadHP.ToString();
-            torsoOne.text = "TorsoHP: " + playerOne.TorsoHP.ToString();
-            leftArmOne.text = "LeftArmHP: " + playerOne.LeftArmHP.ToString();
-            rightArmOne.text = "RightArmHP: " + playerOne.RightArmHP.ToString();
-            shieldOne.text = "ShieldHP: " + playerOne.ShieldData.HP.ToString();
+            headOne.text = "HeadHP: " + Convert.ToInt32(playerOne.HeadHP.ToString());
+            torsoOne.text = "TorsoHP: " + Convert.ToInt32(playerOne.TorsoHP.ToString());
+            leftArmOne.text = "LeftArmHP: " + Convert.ToInt32(playerOne.LeftArmHP.ToString());
+            rightArmOne.text = "RightArmHP: " + Convert.ToInt32(playerOne.RightArmHP.ToString());
+            shieldOne.text = "ShieldHP: " + Convert.ToInt32(playerOne.ShieldData.HP.ToString());
 
-            headTwo.text = "HeadHP: " + playerTwo.HeadHP.ToString();
-            torsoTwo.text = "TorsoHP: " + playerTwo.TorsoHP.ToString();
-            leftArmTwo.text = "LeftArmHP: " + playerTwo.LeftArmHP.ToString();
-            rightArmTwo.text = "RightArmHP: " + playerTwo.RightArmHP.ToString();
-            shieldTwo.text = "ShieldHP: " + playerTwo.ShieldData.HP.ToString();
+            headTwo.text = "HeadHP: " + Convert.ToInt32(playerTwo.HeadHP.ToString());
+            torsoTwo.text = "TorsoHP: " + Convert.ToInt32(playerTwo.TorsoHP.ToString());
+            leftArmTwo.text = "LeftArmHP: " + Convert.ToInt32(playerTwo.LeftArmHP.ToString());
+            rightArmTwo.text = "RightArmHP: " + Convert.ToInt32(playerTwo.RightArmHP.ToString());
+            shieldTwo.text = "ShieldHP: " + Convert.ToInt32(playerTwo.ShieldData.HP.ToString());
         }
     }
 
