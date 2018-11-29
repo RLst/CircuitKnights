@@ -24,6 +24,9 @@ namespace CircuitKnights {
         public AudioSource _as;
 	    public AudioClip[] audioClipArray;
 
+        public AudioSource CrowdCheer;
+        public AudioClip crowdCheering;     
+
         public CameraShake CameraShake;
         public float ScreenShakeTime = .15f;
         public float ScreenShakeMagnitude = .1f;
@@ -67,6 +70,8 @@ namespace CircuitKnights {
                 _as.clip = audioClipArray[Random.Range(0, audioClipArray.Length)];
                 _as.PlayOneShot(_as.clip);
 
+                CrowdCheer.clip = crowdCheering;
+                CrowdCheer.PlayOneShot(CrowdCheer.clip);
 
                     StartCoroutine(CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude));
                     slowMotionController.SlowMotionOn(0.05f, 2.0f);
