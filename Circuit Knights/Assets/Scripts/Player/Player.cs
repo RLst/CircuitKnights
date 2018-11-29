@@ -5,6 +5,7 @@
 using UnityEngine;
 using CircuitKnights;
 using System.Collections.Generic;
+using CircuitKnights.Controllers;
 
 namespace CircuitKnights.Objects
 {

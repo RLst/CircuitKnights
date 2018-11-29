@@ -5,6 +5,7 @@
 using UnityEngine;
 using XboxCtrlrInput;
 using CircuitKnights.Variables;
+using CircuitKnights.Controllers;
 
 namespace CircuitKnights.Objects
 {

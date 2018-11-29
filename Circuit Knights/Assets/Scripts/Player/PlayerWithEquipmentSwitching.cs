@@ -8,6 +8,7 @@ using CircuitKnights;
 using System.Collections.Generic;
 using System;
 using CircuitKnights.Objects;
+using CircuitKnights.Controllers;
 
 namespace CircuitKnights.Tests
 {
