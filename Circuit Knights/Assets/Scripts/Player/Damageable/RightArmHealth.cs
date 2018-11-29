@@ -9,6 +9,7 @@ using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
+    [RequireComponent(typeof(Collider))]
     public class RightArmHealth : Damageable
     {
         [SerializeField] GameObject knockedOffPrefab;
@@ -59,13 +60,13 @@ namespace CircuitKnights
 
 
         #region Inits
-		public override void AutoRetrieveReferences()
+		public void AutoRetrieveReferences()
 		{
 			playerData = GetComponentInParent<Player>().Data;
 			opponentData = GetComponentInParent<Player>().Data.GetOpponent();
 		}
 
-		public override void AssertReferences()
+		public void AssertReferences()
 		{
 			Assert.IsNotNull(playerData, "Player data not found!");
 			Assert.IsNotNull(opponentData, "Opponent data not found!");

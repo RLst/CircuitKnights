@@ -10,12 +10,11 @@ using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
+	[RequireComponent(typeof(Collider))]
 	public class TorsoHealth : Damageable
 	{
 		///Events
-        public static event Action<PlayerData.PlayerNumber> OnPlayerLose = delegate { };
-
-		[Tooltip("Used to fine tune the damage")] [SerializeField] float damageFactor = 1f;
+        public static event Action<PlayerData.PlayerNumber> OnPlayerLose = delegate { };		//Subject or broadcaster; And observer needs to implement this
 
 
 		void OnCollisionEnter(Collision other)
@@ -60,12 +59,12 @@ namespace CircuitKnights
 			AutoRetrieveReferences();
 			AssertReferences();
 		}
-		public override void AutoRetrieveReferences()
+		public void AutoRetrieveReferences()
 		{
 			playerData = GetComponentInParent<Player>().Data;
 			opponentData = playerData.GetOpponent();
 		}
-		public override void AssertReferences()
+		public void AssertReferences()
 		{
 			Assert.IsNotNull(playerData, "Player data not found!");
 			Assert.IsNotNull(opponentData, "Opponent data not found!");

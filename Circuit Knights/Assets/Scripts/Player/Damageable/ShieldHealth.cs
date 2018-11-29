@@ -10,7 +10,7 @@ using CircuitKnights.Events;
 
 namespace CircuitKnights
 {
-    [SerializeField]
+    [RequireComponent(typeof(Collider))]
     public class ShieldHealth : Damageable
     {
         // public static event Action<PlayerData.PlayerNumber> onShieldDeath = delegate { };   //Pass shield death with player
@@ -18,8 +18,6 @@ namespace CircuitKnights
 		[SerializeField] GameObject knockedOffPrefab;   //The limb that falls off
 		[SerializeField] Transform knockedOffSpawnPoint;
 		// [Tooltip("The mesh that will be hidden upon impact")] [SerializeField] GameObject shieldMesh;   //The mesh of the head that needs to disappear
-		[Tooltip("Used to fine tune the damage")] [SerializeField] float damageFactor = 1f;
-
 
 		//// Test collision data
 		Vector3 collisionDirection;
@@ -92,13 +90,13 @@ namespace CircuitKnights
 			AssertReferences();
 		}
 
-		public override void AutoRetrieveReferences()
+		public void AutoRetrieveReferences()
 		{
 			playerData = GetComponentInParent<Player>().Data;
 			opponentData = playerData.GetOpponent();
 		}
 
-		public override void AssertReferences()
+		public void AssertReferences()
 		{
 			Assert.IsNotNull(playerData, "Player data not found!");
 			Assert.IsNotNull(opponentData, "Opponent data not found!");
