@@ -29,6 +29,7 @@ namespace CircuitKnights.Cameras
         EventSystem eventSystem;
         [SerializeField] List<_3DMenuItem> menuItems;
         _3DMenuItem currentItem = null;
+        _3DMenuItem lastItem = null;
 
 
         [Header("Camera")]
@@ -47,16 +48,21 @@ namespace CircuitKnights.Cameras
 		{
             //Get the current 3D menu item
             currentItem = eventSystem.currentSelectedGameObject.GetComponent<_3DMenuItem>();
+            
+            //Save the last item in case current item becomes null
+            if (lastItem != currentItem)
+                lastItem = currentItem;
 
-			if (currentItem != null)
+            if (currentItem != null)
 			{
 				//Move camera to the currently selected item
 				SetCameraPosition(currentItem.CamTransform);
 			}
 			else
 			{
-				//Just hang around until there a menu item is selected
-			}
+                //Otherwise go to the last used item before current item went null
+                SetCameraPosition(lastItem.CamTransform);
+            }
         }
 
         void SetCameraPosition(Transform camTransform)
@@ -73,45 +79,45 @@ namespace CircuitKnights.Cameras
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, camTransform.rotation, speed * dt);
         }
 
-		// void Start()
-		// {
-		// 	//Seed for camera perlin sway
-		// 	randomNumber = UnityEngine.Random.Range(0f, 1f);
-
-		// 	//Resets
-		// 	curMenuIndex = 0;
-		// 	menuText.Value = "";
-
-		// 	//Auto sets the name of each menu item
-		// 	foreach (var menuItem in menuItems)
-		// 	{
-		// 		menuItem.name = menuItem.point.name;
-		// 	}
-		// }
-
-		// void Update()
-        // {
-        //     //Set menu text
-        //     menuText.Value = menuItems[curMenuIndex].name;
-
-        //     //Select between camera points
-        //     if (Input.GetKeyDown(KeyCode.LeftArrow))
-        //     {
-        //         curMenuIndex--;
-        //         if (curMenuIndex < 0)
-        //             curMenuIndex = 0;
-        //     }
-        //     if (Input.GetKeyDown(KeyCode.RightArrow))
-        //     {
-        //         curMenuIndex++;
-        //         if (curMenuIndex > menuItems.Count - 1)
-        //             curMenuIndex = menuItems.Count - 1;
-        //     }
-
-        //     SetCameraPosition();
-        // }
-
     }
 }
 
 
+
+// void Start()
+// {
+// 	//Seed for camera perlin sway
+// 	randomNumber = UnityEngine.Random.Range(0f, 1f);
+
+// 	//Resets
+// 	curMenuIndex = 0;
+// 	menuText.Value = "";
+
+// 	//Auto sets the name of each menu item
+// 	foreach (var menuItem in menuItems)
+// 	{
+// 		menuItem.name = menuItem.point.name;
+// 	}
+// }
+
+// void Update()
+// {
+//     //Set menu text
+//     menuText.Value = menuItems[curMenuIndex].name;
+
+//     //Select between camera points
+//     if (Input.GetKeyDown(KeyCode.LeftArrow))
+//     {
+//         curMenuIndex--;
+//         if (curMenuIndex < 0)
+//             curMenuIndex = 0;
+//     }
+//     if (Input.GetKeyDown(KeyCode.RightArrow))
+//     {
+//         curMenuIndex++;
+//         if (curMenuIndex > menuItems.Count - 1)
+//             curMenuIndex = menuItems.Count - 1;
+//     }
+
+//     SetCameraPosition();
+// }
