@@ -54,13 +54,13 @@ namespace CircuitKnights
             {
                 nextEndPoint = endPoints[(1 - (int)player.Data.No)];
             }
-            Debug.Log("Next End Point: "+nextEndPoint);
+            // Debug.Log("Next End Point: "+nextEndPoint);
 
             yield return StartCoroutine(horse.ArriveAtDestination(nextEndPoint, arrivalDistance, arrivalThreshold));
-            Debug.Log("Arrived at destination!: "+arrivalDistance);
+            // Debug.Log("Arrived at destination!: "+arrivalDistance);
 
             yield return StartCoroutine(horse.SwingAroundEndOfTrack(2f, startPoints, endPoints));
-            Debug.Log("Swung around end of track!");
+            // Debug.Log("Swung around end of track!");
 
             //Let the system know that the pass has finished?
             //Debug.Log("Pass completed!");

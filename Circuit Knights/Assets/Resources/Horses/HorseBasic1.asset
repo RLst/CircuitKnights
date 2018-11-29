@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: The player's horse
   Mass: 750
-  StartingForce: 5000
-  ForceIncreasePerPass: 500
+  StartingForce: 2500
+  ForceIncreasePerPass: 250

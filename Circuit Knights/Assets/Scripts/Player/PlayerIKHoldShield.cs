@@ -1,7 +1,7 @@
 ﻿using CircuitKnights.Variables;
 using UnityEngine;
 
-namespace CircuitKnights
+namespace CircuitKnights.Controllers
 {
 	public class PlayerIKHoldShield : MonoBehaviour
 	{

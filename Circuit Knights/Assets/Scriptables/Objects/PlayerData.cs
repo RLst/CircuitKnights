@@ -5,6 +5,7 @@
 using UnityEngine;
 using XboxCtrlrInput;
 using CircuitKnights.Variables;
+using CircuitKnights.Cameras;
 using CircuitKnights.Controllers;
 
 namespace CircuitKnights.Objects
@@ -13,44 +14,47 @@ namespace CircuitKnights.Objects
 	[CreateAssetMenu(fileName = "New Player Data", menuName = "Player", order = 51)]
 	public class PlayerData : ObjectData
 	{
-		[TextArea][SerializeField] string description =
+		[TextArea]
+		[SerializeField]
+		string description =
 			"Inject into Player.cs. Holds almost all data to do with a player.";
 
-    #region Cache
-        //[These could also be arrays ie. be able to change lances and shields]
+		#region Cache
+		//[These could also be arrays ie. be able to change lances and shields]
 		public Transform Root { get; set; }
+		public PlayerCamera Camera { get; set; }
+		public HorseData HorseData { get; set; }
+		public LanceData LanceData { get; set; }
+		public ShieldData ShieldData { get; set; }
 
-		public Camera Camera { get; set; }
-        public HorseData HorseData { get; set; }
-        public LanceData LanceData { get; set; }
-        public ShieldData ShieldData { get; set; }
-
-    #endregion
-	#region Colliders
+		#endregion
+		#region Colliders
 		public Collider HeadCollider { get; set; }
 		public Collider TorsoCollider { get; set; }
 		public Collider RightArmCollider { get; set; }
 		public Collider LeftArmCollider { get; set; }
 		public Collider ShieldCollider { get; set; }
 		public Collider LanceCollider { get; set; }
-			//WORK IN PROGRESS!!
-	#endregion
-	#region Controllers
+		//WORK IN PROGRESS!!
+		#endregion
+		#region Controllers
 		public Horse Horse { get; set; }
 		public Animator Animator { get; set; }
-        public ShieldController ShieldController { get; set; }
+		public ShieldController ShieldController { get; set; }
 		public PlayerIKHoldLance IKLanceHolder { get; set; }
 		public PlayerIKHoldShield IKShieldHold { get; set; }
 		public PlayerIKLook IKLook { get; set; }
-	#endregion
+		public KnockbackController KnockbackController { get; set; }
+		#endregion
 
-	#region Player Numbers
+		#region Player Numbers
 		// [SerializeField] int playerNumber;
 		// public int PlayerNumber { get { return playerNumber; }}
-		public enum PlayerNumber {
+		public enum PlayerNumber
+		{
 			// None, 	//0
-			One = 0,	//1
-			Two		//2
+			One = 0,    //1
+			Two     //2
 		}
 		[SerializeField] PlayerNumber playerNo;
 		public PlayerNumber No { get { return playerNo; } }     //(Number)
@@ -73,9 +77,9 @@ namespace CircuitKnights.Objects
 		public XboxAxis ShieldAxisX { get { return shieldAxisX; } }
 		public XboxAxis ShieldAxisY { get { return shieldAxisY; } }
 		public XboxButton ThrustLanceButton { get { return thrustLanceButton; } }
-	#endregion
+		#endregion
 
-	#region Stats
+		#region Stats
 		[Header("Health")]
 		[SerializeField] float maxHeadHP;
 		[SerializeField] float maxTorsoHP;
@@ -92,24 +96,15 @@ namespace CircuitKnights.Objects
 		public bool isDead { get { return TorsoHP <= 0; } }
 		public bool isLeftArmDestroyed { get { return LeftArmHP <= 0; } }
 		public bool isRightArmDestroyed { get { return RightArmHP <= 0; } }
-	#endregion
+		#endregion
 
-	#region Methods
+		#region Methods
 		void OnEnable()
-        {
-            ResetStats();
+		{
+			ResetStats();
+		}
 
-			// //Get colliders
-			// HeadCollider = Head.GetComponent<Collider>();
-			// TorsoCollider = Torso.GetComponent<Collider>();
-			// LeftArmCollider = LeftArm.GetComponent<Collider>();
-			// RightArmCollider = RightArm.GetComponent<Collider>();
-
-			// LanceCollider = Lance.gameObject.GetComponentInChildren<Collider>();
-			// ShieldCollider = Shield.gameObject.GetComponentInChildren<Collider>();
-        }
-
-        public void ResetStats()
+		public void ResetStats()
 		{
 			//Use this say at the end of a match or round?
 			HeadHP = maxHeadHP;
@@ -127,20 +122,10 @@ namespace CircuitKnights.Objects
 				case PlayerNumber.Two:
 					return GameSettings.Instance.PlayerOne;
 				default:
-                    Debug.LogError("Invalid player number");
-                    return null;
-            }
+					Debug.LogError("Invalid player number");
+					return null;
+			}
 		}
-
-		// public void SetPosition(Vector3 position) {
-		// 	this.gameObject.transform.position = position;	//Is this OK? Could be hard to debug
-		// }
-        // public void SetPositionAndRotation(Vector3 position, Quaternion rotation)
-		// {
-		// 	Horse.SetDesiredPosition(position);
-		// 	// Root.transform.position = position;
-        //     Root.transform.rotation = rotation;
-        // }
-	#endregion
+		#endregion
 	}
 }

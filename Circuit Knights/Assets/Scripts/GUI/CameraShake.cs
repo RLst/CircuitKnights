@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Jack Dawes
+
+using System.Collections;
 using UnityEngine;
 
 public class CameraShake : MonoBehaviour

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace CircuitKnights
+namespace CircuitKnights.Controllers
 {
 	public class PlayerIKLook : MonoBehaviour
 	{

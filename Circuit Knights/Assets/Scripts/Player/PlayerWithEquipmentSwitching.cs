@@ -90,7 +90,7 @@ namespace CircuitKnights.Tests
             // playerData.HorseData = this.horseData;
 
             playerData.Root = this.transform;
-            playerData.Camera = this.camera;
+            // playerData.Camera = this.;
 
             //Tricky bastard! Set both this and playerData
             playerData.Horse = playerMover = this.GetComponent<Horse>();

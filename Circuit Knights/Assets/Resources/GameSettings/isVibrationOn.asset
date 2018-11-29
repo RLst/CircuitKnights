@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: isVibrationOn
   m_EditorClassIdentifier: 
   description: Use this to toggle vibration on or off
-  Value: 1
+  Value: 0

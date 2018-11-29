@@ -8,7 +8,7 @@ using CircuitKnights.Objects;
 using System;
 using UnityEngine.Assertions;
 
-namespace CircuitKnights
+namespace CircuitKnights.Controllers
 {
 	public class ShieldController : MonoBehaviour
 	{

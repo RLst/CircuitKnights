@@ -43,8 +43,6 @@ namespace CircuitKnights
 
 		void OnCollisionEnter(Collision other)
 		{
-			Debug.Log("Limb.isInvincible: " + isInvincible);
-
 			if (other.collider == opponentData.LanceCollider)
 			{
 				//If another limb or shield has already be hit
@@ -57,9 +55,9 @@ namespace CircuitKnights
 
                     //Limb takes damage
 					TakeDamage(impact);
-
+                    
                     //Knockback
-			        // playerData.KnockbackController.Execute(attackMultiplierBasedOnSpeed);
+			        playerData.KnockbackController.Execute(attackMultiplierBasedOnSpeed);
 				}
 			}
 		}
@@ -84,56 +82,10 @@ namespace CircuitKnights
 
 			//Spawn in new head to simulate getting knocked off
 			var newKnockedOff = Instantiate(knockedOffPrefab, InstantiatePoint.position, InstantiatePoint.rotation);
-			//var newKnockedOff = Instantiate(knockedOffPrefab, transform.localPosition, transform.localRotation);
 
-			//TODO let the system know that the player's head has fallen off
+			//Let the system know that the player's head has fallen off
 			OnHeadDeath(playerData.No);
-		}
-
-		private float CalculateImpact(float attack, out float attackMultiplierBasedOnSpeed)
-		{
-			var minSpeed = playerData.Horse.MinSpeed;
-			var maxSpeed = playerData.Horse.MaxSpeed;
-			var currentVelocity = playerData.Horse.Vel.magnitude;
-
-			var baseAttack = attack;
-			attackMultiplierBasedOnSpeed = (currentVelocity - minSpeed) / (maxSpeed - minSpeed);    //Maps within 0 & 1 based on min and max speeds
-
-			return baseAttack * attackMultiplierBasedOnSpeed;
 		}
 
 	}
 }
-
-
-
-
-
-		// void SetIFrames(PlayerData.PlayerNumber playerHit, float impact)
-		// {
-		//     StartCoroutine(IFrames(playerHit, impact));
-		// }
-		// private IEnumerator IFrames(PlayerData.PlayerNumber playerHit, float impact)
-		// {
-		//     if (playerHit == playerData.No)
-		//     {
-		//         const float timeFactorTweak = 1f;
-		//         //Make this invicible for a period of time
-		//         isInvincible = true;
-		//         yield return new WaitForSeconds(impact * timeFactorTweak);
-		//         isInvincible = false;
-		//     }
-		// }
-
-////Stickman
-//         foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
-//         {
-
-//             //mesh.enabled = false;
-//         }
-//         GetComponent<Rigidbody>().isKinematic = false;
-//         var newKnockedOff = Instantiate(knockedOffPrefab, transform.position, transform.rotation);
-//         Destroy(newKnockedOff, 3f);
-
-////Let the system know somehow that the head has been knocked off via event
-//             //Camera now looks from

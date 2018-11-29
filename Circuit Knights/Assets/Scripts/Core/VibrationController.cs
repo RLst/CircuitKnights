@@ -2,25 +2,30 @@
 //Tony Le, Brent D'Auria
 //23 Nov 2018
 
+using CircuitKnights.Objects;
 using UnityEngine;
-
 
 namespace CircuitKnights
 {
 	public class VibrationController : MonoBehaviour
 	{
-
-		// Use this for initialization
-		void Start()
+		public void VibrateOn(PlayerData.PlayerNumber player)
 		{
 
 		}
 
-		// Update is called once per frame
-		void Update()
+
+		public void VibrateOn()
 		{
 
 		}
+
+		public void VibrateOff(PlayerData.PlayerNumber player)
+		{
+
+		}
+
+
 	}
 
 }

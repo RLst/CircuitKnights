@@ -5,6 +5,7 @@
 using UnityEngine;
 using CircuitKnights;
 using System.Collections.Generic;
+using CircuitKnights.Cameras;
 using CircuitKnights.Controllers;
 
 namespace CircuitKnights.Objects
@@ -15,7 +16,8 @@ namespace CircuitKnights.Objects
         [TextArea][Multiline] string description =
             "Sets all critical references inside the instance of Player.";
 		[SerializeField] PlayerData playerData;
-		[SerializeField] new Camera camera;
+		// [SerializeField] new Camera camera;
+        [SerializeField] PlayerCamera playerCamera;
 
 
         [Header("Equipment")]
@@ -24,24 +26,14 @@ namespace CircuitKnights.Objects
 		[SerializeField] ShieldData shieldData;
         [SerializeField] HorseData horseData;
 
-        // //Test - Weapon switching
-        // [SerializeField] Equipment[] lances;
-        // [SerializeField] Equipment[] shields;
-        // [SerializeField] Equipment[] horses;
-        // int lanceIndex = 0;
-        // int shieldIndex = 0;
-        // int horseIndex = 0;
-        // Equipment currentLance;
-        // Equipment currentShield;
-        // Equipment currentHorse;
-
         [Header("Controllers")]
-        [SerializeField] Horse horse;
-        [SerializeField] Animator playerAnimator;
+        Horse horse;
+        Animator playerAnimator;
         ShieldController shieldController;
         PlayerIKHoldLance IKLanceHolder;
         PlayerIKHoldShield IKShieldHolder;
         PlayerIKLook IKLook;
+        KnockbackController knockbackController;
 
 
         [Header("Colliders")]
@@ -74,24 +66,19 @@ namespace CircuitKnights.Objects
         {
             ////[IS THIS ACTUALLY NECESSARY?]
             ////These are some of the crucial first things in the game that must be set
-
-            //Test - equipment switching - Set the current equipment to the first item in their arrays
-            // currentLance = lances[0];
-            // currentHorse = horses[0];
-            // currentShield = shields[0];
-            //Test
-
             playerData.LanceData = this.lanceData;
             playerData.ShieldData = this.shieldData;
             playerData.HorseData = this.horseData;
 
             playerData.Root = this.transform;
-            playerData.Camera = this.camera;
+            playerData.Camera = this.playerCamera;
 
-            //Tricky bastard! Set both this and playerData
-            playerData.Horse = horse = this.GetComponent<Horse>();
 			playerData.Animator = playerAnimator;
-			// playerData.Animator = playerAnimator = this.GetComponentInChildren<Animator>();
+
+            ///Automatics
+            playerData.KnockbackController = this.knockbackController = this.GetComponent<KnockbackController>();
+            playerData.Horse = horse = this.GetComponent<Horse>();
+			playerData.Animator = playerAnimator = this.GetComponentInChildren<Animator>();
 			playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
             playerData.IKLanceHolder = this.IKLanceHolder = GetComponentInChildren<PlayerIKHoldLance>();
             playerData.IKShieldHold = this.IKShieldHolder = GetComponentInChildren<PlayerIKHoldShield>();
