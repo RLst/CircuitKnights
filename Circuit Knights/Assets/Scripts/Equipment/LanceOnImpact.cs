@@ -45,7 +45,7 @@ namespace CircuitKnights {
             collisionVibrationOff();
             VibrationOnMovment();
             if(Input.GetKey(KeyCode.B)){
-                CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude);
+               //CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude);
               //  slowMotionController.SlowMotionOn(0.05f, 2.0f);
             }
 
