@@ -37,12 +37,12 @@ namespace CircuitKnights
         }
 
         void Update() {
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                ResultScreen.SetActive(true);
+           // if (Input.GetKeyDown(KeyCode.V))
+            //{
+             //   ResultScreen.SetActive(true);
                 //MainMenuButton.PlayerCamerasActive = false;
-                ResultCameraActive = true;
-            }
+             //   ResultCameraActive = true;
+           // }
 
             if (ResultCameraActive == true)
             {
