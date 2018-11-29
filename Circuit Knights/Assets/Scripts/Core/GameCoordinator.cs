@@ -100,8 +100,27 @@ namespace CircuitKnights
                 // yield return StartCoroutine(EndRound());
             }
 
-            //Match is over, load results scene
-            SceneManager.LoadScene(2);     //TODO Results screen scene
+            ////Match is over, load the correct scene based on the result
+            var p1 = GameSettings.Instance.PlayerOne;
+            var p2 = GameSettings.Instance.PlayerTwo;
+
+            //Draw
+            if (p1.isDead && p2.isDead)
+            {
+                SceneManager.LoadScene(2);     //TODO Results screen scene
+            }
+            //Player One Wins
+            else if (p2.isDead)
+            {
+                SceneManager.LoadScene(3);
+            }
+            //Player Two Wins
+            else if (p1.isDead)
+            {
+                SceneManager.LoadScene(4);
+            }
+
+            ////END OF GAME
         }
         private void BeginNewRound()
         {
@@ -345,6 +364,16 @@ namespace CircuitKnights
         #endregion
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
         // private bool PlayersHaveReachedTheEnds(float tolerance)
