@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Jack's Menu.unity
-    guid: 6a9de55f81470c945b284f30b2a0395e
+    path: Assets/Scenes/Programmers/TonyMenu.unity
+    guid: 7065bab3a6c1c41eeb219305686f2acd
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 96cf015039abb7d4ca501158d11cb1e2
+    path: Assets/Scenes/Programmers/TonyMain.unity
+    guid: 6d8d4e075f85141dbbd15aafdf9822fe
