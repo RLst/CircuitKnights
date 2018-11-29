@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Playagain : MonoBehaviour {
 
     public string GameScene;
-    public string MenueScene;
+    public string MenuScene;
 
 
     public void PlayAgain()
@@ -15,7 +15,7 @@ public class Playagain : MonoBehaviour {
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene(MenueScene);
+        SceneManager.LoadScene(MenuScene);
     }
 
 }
