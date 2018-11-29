@@ -5,53 +5,37 @@
 using UnityEngine;
 using System.Collections;
 
-namespace CircuitKnights
+namespace CircuitKnights.Controllers
 {
     public class SlowMotionController : MonoBehaviour
     {
-        [SerializeField] float defaultSlowMoFactor = 0.05f;
-        [SerializeField] float defaultSlowMoDuration = 2.0f;
-
-        bool toggleSlowMo = false;
-
-        void Update()
-        {
-            //DEBUG
-            if (Input.GetKeyDown(KeyCode.LeftBracket))
-            {
-                if (Input.GetKey(KeyCode.RightShift))
-                {
-                    Debug.Log("Transition Slow Mo");
-                    SlowMotionOn(0.1f, 5f);
-                }
-                else
-                {
-                    Debug.Log("Toggle Default Slow Mo");
-                    toggleSlowMo = !toggleSlowMo;
-                    if (toggleSlowMo)
-                        SlowMotionOn();
-                    else
-                        SlowMotionOff();
-                }
-            }
+        #region Singleton
+        public static SlowMotionController Instance { get; private set; }
+        private void Awake() {
+            if (!Instance) Destroy(gameObject);
+            Instance = this;
         }
+        #endregion
+
+        [SerializeField] float defaultSlowMoSpeed = 0.05f;
+        [SerializeField] float defaultSlowMoDuration = 2.0f;
 
         public void SlowMotionOn()
         {
             //Does default slow motion
-            Time.timeScale = defaultSlowMoFactor;
+            Time.timeScale = defaultSlowMoSpeed;
             Time.fixedDeltaTime = Time.timeScale * 1f / 60f;
         }
 
-        public void SlowMotionOn(float slowMoFactor)
+        public void SlowMotionOn(float slowMoSpeed)
         {
-            Time.timeScale = slowMoFactor;
+            Time.timeScale = slowMoSpeed;
             Time.fixedDeltaTime = Time.timeScale * 1f / 60f;
         }
 
-        public void SlowMotionOn(float slowMoFactor, float transitionOutDuration)
+        public void SlowMotionOn(float slowMoSpeed, float transitionOutDuration)
         {
-            StartCoroutine(TransitionBackToRealtime(slowMoFactor, transitionOutDuration));
+            StartCoroutine(TransitionBackToRealtime(slowMoSpeed, transitionOutDuration));
         }
 
         public void SlowMotionOff()
@@ -60,13 +44,13 @@ namespace CircuitKnights
             Time.fixedDeltaTime = Time.timeScale * 1f / 60f;;
         }
 
-        private IEnumerator TransitionBackToRealtime(float slowMoFactor, float transitionOutDuration)
+        IEnumerator TransitionBackToRealtime(float slowMoSpeed, float transitionOutDuration)
         {
             //Slow motion factor has to be a valid value
-            Mathf.Clamp01(slowMoFactor);
+            Mathf.Clamp01(slowMoSpeed);
 
             //Set the initial slow motion
-            Time.timeScale = slowMoFactor;
+            Time.timeScale = slowMoSpeed;
 
             while (Time.timeScale < 1f)
             {
@@ -82,3 +66,27 @@ namespace CircuitKnights
         }
     }
 }
+
+
+// bool toggleSlowMo = false;
+// void Update()
+// {
+//     //DEBUG
+//     if (Input.GetKeyDown(KeyCode.LeftBracket))
+//     {
+//         if (Input.GetKey(KeyCode.RightShift))
+//         {
+//             Debug.Log("Transition Slow Mo");
+//             SlowMotionOn(0.1f, 5f);
+//         }
+//         else
+//         {
+//             Debug.Log("Toggle Default Slow Mo");
+//             toggleSlowMo = !toggleSlowMo;
+//             if (toggleSlowMo)
+//                 SlowMotionOn();
+//             else
+//                 SlowMotionOff();
+//         }
+//     }
+// }
