@@ -23,6 +23,6 @@ MonoBehaviour:
   shieldAxisY: 1
   thrustLanceButton: 7
   maxHeadHP: 25
-  maxTorsoHP: 50000
+  maxTorsoHP: 75
   maxLeftArmHP: 50
   maxRightArmHP: 50
