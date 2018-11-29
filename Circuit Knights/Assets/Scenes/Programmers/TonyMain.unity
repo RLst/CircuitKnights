@@ -1078,8 +1078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockedOffPrefab: {fileID: 1385068408629424, guid: 1df7842ad2d8aee4ca32fbfb5b333fce,
     type: 2}
-  knockedOffInstatiatePoint: {fileID: 1477325714}
-  damageFactor: 1
+  meshToHide: {fileID: 0}
 --- !u!65 &27561116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44373,6 +44372,7 @@ GameObject:
   - component: {fileID: 1233283057}
   - component: {fileID: 1233283056}
   - component: {fileID: 1233283055}
+  - component: {fileID: 1233283066}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player1
@@ -44628,6 +44628,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!114 &1233283066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1233283054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8acb5c5ea9f04c8bbbff08e9d7196a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minVibration: 0
+  maxVibration: 1
 --- !u!1 &1233797624
 GameObject:
   m_ObjectHideFlags: 0
@@ -80190,6 +80203,7 @@ GameObject:
   - component: {fileID: 2043676219}
   - component: {fileID: 2043676218}
   - component: {fileID: 2043676217}
+  - component: {fileID: 2043676227}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player1
@@ -80239,6 +80253,7 @@ MonoBehaviour:
   impactVibrationDeadzone: 0
   maxVibrationSpeed: 1
   maxVibrationDuration: 2
+  audioSource: {fileID: 0}
   particleSystem: {fileID: 0}
   particleFX: {fileID: 0}
   particlePoint: {fileID: 0}
@@ -80469,6 +80484,19 @@ MonoBehaviour:
   rightArmCollider: {fileID: 0}
   shieldCollider: {fileID: 1720320633}
   lanceCollider: {fileID: 445369068}
+--- !u!114 &2043676227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2043676214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8acb5c5ea9f04c8bbbff08e9d7196a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minVibration: 0
+  maxVibration: 1
 --- !u!1001 &2044937659
 Prefab:
   m_ObjectHideFlags: 0
