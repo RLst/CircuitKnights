@@ -111,6 +111,7 @@ namespace CircuitKnights.Objects
 			TorsoHP = maxTorsoHP;
 			LeftArmHP = maxLeftArmHP;
 			RightArmHP = maxRightArmHP;
+			ShieldData.ResetHP();
 		}
 
 		internal PlayerData GetOpponent()

@@ -20,7 +20,7 @@ namespace CircuitKnights.Objects
         [SerializeField] float defense = 10f;
         public float Defense { get { return defense; } }
 		public float HP { get; set; }
-        public bool IsDead { get; private set; }
+        public bool IsDead { get { return HP <= 0; } }
         public float tValue { get { return smoothness; } }
 
 
@@ -55,19 +55,6 @@ namespace CircuitKnights.Objects
         public void ResetHP()
         {
             HP = maxHP;
-            IsDead = false;
-        }
-
-        public void TakeDamage(float damage)
-        {
-            HP -= damage;
-            if (HP <= 0)
-                Death();
-        }
-
-        public void Death()
-        {
-            IsDead = true;
         }
     }
 }

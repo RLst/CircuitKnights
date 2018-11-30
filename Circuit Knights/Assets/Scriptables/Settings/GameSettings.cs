@@ -46,9 +46,6 @@ namespace CircuitKnights
         #endregion
 
         #region Game Settings
-        // [Range(1, 20)] [SerializeField] int xNoOfPasses;
-        // public int Pass { get; set; }
-        // public int NoOfPasses { get { return xNoOfPasses; } }
         [Range(1, 10)] [SerializeField] int noOfRounds;
         public int Round { get; set; }
         public int NoOfRounds { get { return noOfRounds; } }
@@ -86,9 +83,14 @@ namespace CircuitKnights
 
 		public void Reset()
 		{
+            ////Reset everything back to zero
+            //Game
 			isMatchOver = false;
 			Round = 0;
-			// Pass = 0;
+
+            //Players and Shields
+            PlayerOne.ResetStats();
+            PlayerTwo.ResetStats();
 		}
 
 		public void BeginNewRound()
