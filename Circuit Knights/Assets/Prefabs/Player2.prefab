@@ -197,7 +197,6 @@ GameObject:
   - component: {fileID: 82556411228268914}
   - component: {fileID: 82215676176133268}
   - component: {fileID: 65463576487156162}
-  - component: {fileID: 114264362508312360}
   - component: {fileID: 114445740681571044}
   m_Layer: 0
   m_Name: Character_Lance_001_V006 (1)
@@ -352,6 +351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4095182696959652}
   - component: {fileID: 114872516473494966}
+  - component: {fileID: 114692196661502000}
   - component: {fileID: 114435731073616284}
   - component: {fileID: 114590294077597130}
   - component: {fileID: 114309288748899586}
@@ -3780,19 +3780,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114264362508312360
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1102526603645156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2db567e95b3e2f04689ee4874dfffcd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultSlowMoSpeed: 0.05
-  defaultSlowMoDuration: 2
 --- !u!114 &114304626364034962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3917,7 +3904,7 @@ MonoBehaviour:
   CameraShake: {fileID: 114184218284929942}
   ScreenShakeTime: 0.15
   ScreenShakeMagnitude: 0.1
-  slowMotionController: {fileID: 114264362508312360}
+  slowMotionController: {fileID: 0}
   Sparks: {fileID: 0}
 --- !u!114 &114465752290999494
 MonoBehaviour:
@@ -4201,6 +4188,33 @@ MonoBehaviour:
   bodyIKWeight: 1
   headIKWeight: 1
   clampIKWeight: 1
+--- !u!114 &114692196661502000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1169034428497168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91883cc2aeaab417d8940b151fb5e3f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  help: Place this on each player's root object. Handles anything to do with being
+    struck by the lanceie. animation, slowmotion, vibration, audio, particles...
+  leftHandBone: {fileID: 0}
+  rightHandBone: {fileID: 0}
+  impactSlowMoDeadzone: 0.2
+  minSlowMoSpeed: 0.05
+  maxSlowMoDuration: 4
+  impactVibrationDeadzone: 0
+  maxVibrationSpeed: 1
+  maxVibrationDuration: 2
+  audioSource: {fileID: 0}
+  cheerSounds: []
+  lanceCollisionSounds: []
+  particleSystem: {fileID: 0}
+  particleFX: {fileID: 0}
+  particlePoint: {fileID: 0}
 --- !u!114 &114714865091508306
 MonoBehaviour:
   m_ObjectHideFlags: 1

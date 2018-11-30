@@ -68,19 +68,6 @@ namespace CircuitKnights
 		{
 			this.isMatchOver = isMatchOver;
 		}
-        // internal bool isMatchOver()
-        // {
-		// 	//Check if any or both players are dead and respond accordingly
-		// 	if (PlayerOne.isDead)
-		// 	{
-		// 		return true;
-		// 	}
-		// 	else if (PlayerTwo.isDead)
-		// 	{
-		// 		return true;
-		// 	}
-		// 	return false;
-        // }
 
 		////DIRTY
 		internal bool isDraw()
@@ -103,11 +90,6 @@ namespace CircuitKnights
 			Round = 0;
 			// Pass = 0;
 		}
-
-		// public void BeginPass()
-		// {
-		// 	Pass++;
-		// }
 
 		public void BeginNewRound()
 		{

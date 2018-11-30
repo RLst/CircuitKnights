@@ -1,4 +1,5 @@
-﻿using CircuitKnights.Variables;
+﻿using CircuitKnights.Objects;
+using CircuitKnights.Variables;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -13,8 +14,9 @@ namespace CircuitKnights.Controllers
 			"Could possibly be set to look around at the audience.";
 
 		Animator anim;
+		Player player;
 
-		[SerializeField] Transform lookTarget;
+		Transform lookTarget;
 		[SerializeField] [Range(0f, 1f)] float overallIKWeight = 1f;
 		[SerializeField] [Range(0f, 1f)] float lookIKWeight = 1f;
 		[SerializeField] [Range(0f, 1f)] float bodyIKWeight = 1f;
@@ -25,6 +27,8 @@ namespace CircuitKnights.Controllers
 		private void Awake()
 		{
 			anim = GetComponentInChildren<Animator>();
+			player = GetComponentInParent<Player>();
+			lookTarget = player.Data.GetOpponent().HeadCollider.transform;
 		}
 
 		void Start()

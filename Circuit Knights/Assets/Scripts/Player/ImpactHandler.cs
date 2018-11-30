@@ -44,6 +44,8 @@ namespace CircuitKnights.Controllers
 
         [Header("Audio")]
         [SerializeField] AudioSource audioSource;
+		[SerializeField] AudioClip[] cheerSounds;
+		[SerializeField] AudioClip[] lanceCollisionSounds;
 		
 
 

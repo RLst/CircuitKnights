@@ -19,8 +19,12 @@ namespace CircuitKnights.Controllers
         private void Awake()
         {
             //Setup singleton
-            if (!Instance) Destroy(gameObject);
-            Instance = this;
+            if (Instance == null)
+                Instance = this;
+            else
+                Destroy(gameObject);
+            // if (!Instance) Destroy(gameObject);
+            // Instance = this;
         }
         #endregion
 

@@ -17,5 +17,5 @@ MonoBehaviour:
   noOfRounds: 0
   ArrivalDistance: 50
   ArrivalThreshold: 0.6
-  ArrivalBrakingFineTuneFactor: 1.4
+  ArrivalBrakingFineTuneFactor: 1.25
   gamepadVibrationOn: {fileID: 0}

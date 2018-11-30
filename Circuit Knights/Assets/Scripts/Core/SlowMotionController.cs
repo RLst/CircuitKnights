@@ -12,7 +12,7 @@ namespace CircuitKnights.Controllers
         #region Singleton
         public static SlowMotionController Instance { get; private set; }
         private void Awake() {
-            if (!Instance) Destroy(gameObject);
+            if (Instance) Destroy(gameObject);
             Instance = this;
         }
         #endregion
