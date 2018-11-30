@@ -81,8 +81,9 @@ namespace CircuitKnights
         IEnumerator RunFullGame()
         {
             //Runs coroutines in sequence once
-            if (GameSettings.Instance.Round == 0)
-                yield return StartCoroutine(RunCutscene(StartOfMatchCamera));
+            // if (GameSettings.Instance.Round == 0)
+            //     yield return StartCoroutine(RunCutscene(StartOfMatchCamera));
+
             yield return StartCoroutine(RoundGameLoop());
         }
         private IEnumerator RoundGameLoop()
@@ -180,8 +181,8 @@ namespace CircuitKnights
             onDisablePlayerCameras.Raise();
 
             //Only run cutscene on the first round
-            if (GameSettings.Instance.Round == 1)
-                yield return StartCoroutine(RunCutscene(StartOfRoundCamera, false));
+            // if (GameSettings.Instance.Round == 1)
+            //     yield return StartCoroutine(RunCutscene(StartOfRoundCamera, false));
 
             //Continue straight to playing game after count down
             onEnablePlayerCameras.Raise();
