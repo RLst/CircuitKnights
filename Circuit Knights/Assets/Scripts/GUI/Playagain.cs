@@ -15,7 +15,7 @@ public class Playagain : MonoBehaviour {
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene(MenuScene);
+        SceneManager.LoadScene(0);
     }
 
 }

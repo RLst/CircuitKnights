@@ -12,7 +12,7 @@ namespace CircuitKnights
         //Handles the movement of the horses around the track
         Horse horse;
         Player player;
-        GameCoordinator gameCoordinator;
+        public GameCoordinator gameCoordinator;
         float arrivalDistance;
         float arrivalThreshold;
         Transform[] startPoints;
@@ -22,14 +22,14 @@ namespace CircuitKnights
         ////Events
         [SerializeField] GameEvent OnPlayerReachedTheEnd;
 
-        void Awake()
+        void Start()
         {
             //Cache and setup stuff
             horse = GetComponent<Horse>();
             player = GetComponent<Player>();
 
             //Get start and end points
-            gameCoordinator = FindObjectOfType<GameCoordinator>();
+            //gameCoordinator = GameObject.FindGameObjectWithTag("GameCoordinator").GetComponent<GameCoordinator>();
             startPoints = gameCoordinator.StartPoints;
             endPoints = gameCoordinator.EndPoints;
 

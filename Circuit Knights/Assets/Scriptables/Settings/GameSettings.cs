@@ -11,7 +11,7 @@ using UnityEngine;
 namespace CircuitKnights
 {
     [CreateAssetMenu(fileName = "New Game Settings", menuName = "Game Settings", order = 32)]
-    public class GameSettings : ScriptableObject
+    public class GameSettings : MonoBehaviour
     {
         //[Multiline] [SerializeField] string description = "Holds the game settings";
 
@@ -20,16 +20,10 @@ namespace CircuitKnights
         public static GameSettings Instance
         {
             get {
-                //If an instance of
-                if (!_instance)
-                    _instance = Resources.FindObjectsOfTypeAll<GameSettings>().FirstOrDefault();
-#if UNITY_EDITOR
-                if (!_instance)
-                    InitializeFromDefault(UnityEditor.AssetDatabase.LoadAssetAtPath<GameSettings>("Assets/Resources/GameSettings/DefaultGameSettings.asset"));
-#endif
                 return _instance;
             }
         }
+
         public static void InitializeFromDefault(GameSettings settings)
         {
             if (_instance) DestroyImmediate(_instance);
@@ -78,7 +72,8 @@ namespace CircuitKnights
 
 		void Awake()
 		{
-			Reset();
+            _instance = this;
+            Reset();
 		}
 
 		public void Reset()

@@ -375,6 +375,11 @@ namespace CircuitKnights
             cutSceneCamera.SetActive(false);
         }
         #endregion
+
+        void Update()
+        {
+            playersThatHaveReachedTheEnds = 0;
+        }
     }
 }
 

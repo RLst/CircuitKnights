@@ -31,7 +31,7 @@ namespace CircuitKnights {
         public CameraShake CameraShake;
         public float ScreenShakeTime = .15f;
         public float ScreenShakeMagnitude = .1f;
-        public SlowMotionController slowMotionController;
+        //public SlowMotionController slowMotionController;
 
         public ParticleSystem Sparks;
 
@@ -79,7 +79,7 @@ namespace CircuitKnights {
                 CrowdCheer.PlayOneShot(CrowdCheer.clip);
 
                     CameraShake.Shake(ScreenShakeTime, ScreenShakeMagnitude);
-                    slowMotionController.SlowMotionOn(0.05f, 2.0f);
+                    SlowMotionController.Instance.SlowMotionOn(0.05f, 2.0f);
             }
         }
 

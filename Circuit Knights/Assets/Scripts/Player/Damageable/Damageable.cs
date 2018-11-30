@@ -44,7 +44,8 @@ namespace CircuitKnights
 		const float invincibilityTime = 1f;		//1 second of invincibility should be enough right?
 		protected void SetIFrames(PlayerData.PlayerNumber playerHit)
 		{
-			StartCoroutine(IFramesRoutine(playerHit));
+            if(gameObject.activeInHierarchy)
+			    StartCoroutine(IFramesRoutine(playerHit));
 		}
 		protected IEnumerator IFramesRoutine(PlayerData.PlayerNumber playerNoHit)
 		{
