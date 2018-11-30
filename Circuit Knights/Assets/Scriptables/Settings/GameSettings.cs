@@ -86,6 +86,8 @@ namespace CircuitKnights
             //Players and Shields
             PlayerOne.ResetStats();
             PlayerTwo.ResetStats();
+            PlayerOne.ShieldData.ResetHP();
+            PlayerTwo.ShieldData.ResetHP();
 		}
 
 		public void BeginNewRound()

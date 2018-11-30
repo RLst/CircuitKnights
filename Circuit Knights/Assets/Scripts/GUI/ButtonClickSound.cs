@@ -37,7 +37,7 @@ namespace CircuitKnights
 
 		public void PlayHoverSound()
 		{
-			source.PlayOneShot(hoverSound);
+			//source.PlayOneShot(hoverSound);
 		}
 
 	}

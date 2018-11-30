@@ -10,6 +10,7 @@ namespace CircuitKnights
     public class VolumeSlider : MonoBehaviour
     {
         public Slider inGameUISlider;
+        //public AudioListener listen;
 
         private void Start()
         {
@@ -18,7 +19,7 @@ namespace CircuitKnights
 
         public void ChangeVolume()
         {
-            AudioListener.volume = inGameUISlider.value;
+            //AudioListener.volume = inGameUISlider.value;
         }
     }
 }
