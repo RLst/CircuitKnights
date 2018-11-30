@@ -10,8 +10,8 @@ namespace CircuitKnights.Objects
     [CreateAssetMenu(fileName = "New Lance Data", menuName = "Lance", order = 53)]
     public class LanceData : ObjectData
     {
-        [TextArea][SerializeField] string description = 
-			"The player's lance";
+   //     [TextArea][SerializeField] string description = 
+			//"The player's lance";
 
         [Header("Physics")]
 		[SerializeField] float mass = 25f;

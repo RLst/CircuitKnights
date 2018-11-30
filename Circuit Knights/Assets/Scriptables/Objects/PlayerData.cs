@@ -14,10 +14,10 @@ namespace CircuitKnights.Objects
 	[CreateAssetMenu(fileName = "New Player Data", menuName = "Player", order = 51)]
 	public class PlayerData : ObjectData
 	{
-		[TextArea]
-		[SerializeField]
-		string description =
-			"Inject into Player.cs. Holds almost all data to do with a player.";
+		//[TextArea]
+		//[SerializeField]
+		//string description =
+		//	"Inject into Player.cs. Holds almost all data to do with a player.";
 
 		#region Cache
 		//[These could also be arrays ie. be able to change lances and shields]

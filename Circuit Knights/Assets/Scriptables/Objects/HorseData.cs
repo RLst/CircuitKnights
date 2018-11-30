@@ -11,8 +11,8 @@ namespace CircuitKnights.Objects
     [CreateAssetMenu(fileName = "New Horse Data", menuName = "Horse", order = 52)]
     public class HorseData : ObjectData
     {
-        [TextArea] [SerializeField] string description =
-            "The player's horse";
+        //[TextArea] [SerializeField] string description =
+        //    "The player's horse";
 
 		#region Physics
 		public float Mass = 500f;  //Lazy property

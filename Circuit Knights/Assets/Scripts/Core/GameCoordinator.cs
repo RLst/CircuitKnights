@@ -16,10 +16,10 @@ namespace CircuitKnights
 {
     public class GameCoordinator : MonoBehaviour
     {
-        [Multiline]
-        [SerializeField]
-        string description =
-            "Monolithic class that controls the entirety of the main gameplay.";
+        //[Multiline]
+        //[SerializeField]
+        //string description =
+        //    "Monolithic class that controls the entirety of the main gameplay.";
 
         #region Player References
         PlayerData playerOne;
@@ -81,8 +81,8 @@ namespace CircuitKnights
         IEnumerator RunFullGame()
         {
             //Runs coroutines in sequence once
-            // if (GameSettings.Instance.Round == 0)
-            //     yield return StartCoroutine(RunCutscene(StartOfMatchCamera));
+            if (GameSettings.Instance.Round == 0)
+                yield return StartCoroutine(RunCutscene(StartOfMatchCamera));
 
             yield return StartCoroutine(RoundGameLoop());
         }
@@ -181,8 +181,8 @@ namespace CircuitKnights
             onDisablePlayerCameras.Raise();
 
             //Only run cutscene on the first round
-            // if (GameSettings.Instance.Round == 1)
-            //     yield return StartCoroutine(RunCutscene(StartOfRoundCamera, false));
+            if (GameSettings.Instance.Round == 1)
+                yield return StartCoroutine(RunCutscene(StartOfRoundCamera, false));
 
             //Continue straight to playing game after count down
             onEnablePlayerCameras.Raise();

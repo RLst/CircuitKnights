@@ -10,10 +10,10 @@ namespace CircuitKnights.Objects
     [CreateAssetMenu(fileName = "New Shield Data", menuName = "Shield", order = 54)]
     public class ShieldData : ObjectData
     {
-        [TextArea][SerializeField] string description = 
-            "Holds shield data. Defense is how much of the lance's attack get's taken off.";
+        //[TextArea][SerializeField] string description = 
+        //    "Holds shield data. Defense is how much of the lance's attack get's taken off.";
         [Tooltip("Lower is smoother")][Range(0f, 1f)][SerializeField] float smoothness = 0.25f;
-        [SerializeField] float mass = 10f;
+        //[SerializeField] float mass = 10f;
 
         [Header("Stats")]
         [SerializeField] float maxHP = 100;

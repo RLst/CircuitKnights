@@ -13,7 +13,7 @@ namespace CircuitKnights
     [CreateAssetMenu(fileName = "New Game Settings", menuName = "Game Settings", order = 32)]
     public class GameSettings : ScriptableObject
     {
-        [Multiline] [SerializeField] string description = "Holds the game settings";
+        //[Multiline] [SerializeField] string description = "Holds the game settings";
 
         #region Singleton
         private static GameSettings _instance;

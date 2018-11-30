@@ -10,10 +10,10 @@ namespace CircuitKnights
 {
 	public class LanceImpactEventRaise : MonoBehaviour
 	{
-		[TextArea]
-		[SerializeField]
-		string description =
-			"Attach to actual lance object with the collider. Relays OnCollisionEnter(lance)";
+		//[TextArea]
+		//[SerializeField]
+		//string description =
+		//	"Attach to actual lance object with the collider. Relays OnCollisionEnter(lance)";
 		public static event Action<PlayerData.PlayerNumber, float> onLanceCollision = delegate { };
 		PlayerData playerData;
 

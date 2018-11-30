@@ -114,6 +114,7 @@ namespace CircuitKnights.Controllers
             var playerNumber = (int)playerData.No;
             int zeroIfRoundEven, oneIfRoundOdd;
             zeroIfRoundEven = oneIfRoundOdd = GameSettings.Instance.Round % 2;   //0 if even, 1 if odd
+
             int zeroIfRoundOdd, oneIfRoundEven;
             zeroIfRoundOdd = oneIfRoundEven = 1 - zeroIfRoundEven;
             /*

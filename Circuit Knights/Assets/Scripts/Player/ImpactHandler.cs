@@ -50,7 +50,7 @@ namespace CircuitKnights.Controllers
 
 
         [Header("Particles")]
-        [SerializeField] new ParticleSystem particleSystem;
+        [SerializeField] ParticleSystem particleSystem;
         [SerializeField] GameObject particleFX;
         [SerializeField] Transform particlePoint;
 

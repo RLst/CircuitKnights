@@ -37,14 +37,14 @@ namespace CircuitKnights.Tests
 
             headOne.text = "HeadHP: " + (int)playerOne.HeadHP;
             torsoOne.text = "TorsoHP: " + (int)playerOne.TorsoHP;
-            leftArmOne.text = "LeftArmHP: " + (int)playerOne.LeftArmHP;
-            rightArmOne.text = "RightArmHP: " + (int)playerOne.RightArmHP;
+            //leftArmOne.text = "LeftArmHP: " + (int)playerOne.LeftArmHP;
+            //rightArmOne.text = "RightArmHP: " + (int)playerOne.RightArmHP;
             shieldOne.text = "ShieldHP: " + (int)playerOne.ShieldData.HP;
 
             headTwo.text = "HeadHP: " + (int)playerTwo.HeadHP;
             torsoTwo.text = "TorsoHP: " + (int)playerTwo.TorsoHP;
-            leftArmTwo.text = "LeftArmHP: " + (int)playerTwo.LeftArmHP;
-            rightArmTwo.text = "RightArmHP: " + (int)playerTwo.RightArmHP;
+            //leftArmTwo.text = "LeftArmHP: " + (int)playerTwo.LeftArmHP;
+            //rightArmTwo.text = "RightArmHP: " + (int)playerTwo.RightArmHP;
             shieldTwo.text = "ShieldHP: " + (int)playerTwo.ShieldData.HP;
         }
     }

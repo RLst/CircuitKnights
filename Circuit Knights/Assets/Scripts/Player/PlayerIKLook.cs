@@ -28,11 +28,11 @@ namespace CircuitKnights.Controllers
 		{
 			anim = GetComponentInChildren<Animator>();
 			player = GetComponentInParent<Player>();
-			lookTarget = player.Data.GetOpponent().HeadCollider.transform;
 		}
 
 		void Start()
 		{
+			lookTarget = player.Data.GetOpponent().HeadCollider.transform;
 			Assert.IsNotNull(anim, "Animator not found!");
 		}
 

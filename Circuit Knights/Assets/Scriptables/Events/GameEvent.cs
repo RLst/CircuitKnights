@@ -13,8 +13,8 @@ namespace CircuitKnights.Events
 
 		private List<GameEventListener> listeners = new List<GameEventListener>();
 
-		[SerializeField][Multiline] string Description = 
-			"The event object that can be raised to trigger responses from listeners.";
+		//[SerializeField][Multiline] string Description = 
+		//	"The event object that can be raised to trigger responses from listeners.";
 
 		public void Raise()
 		{

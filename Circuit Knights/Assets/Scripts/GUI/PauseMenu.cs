@@ -26,7 +26,7 @@ namespace CircuitKnights
 
         [SerializeField] Button MenuButton;
 
-        bool isPaused = false;
+        //bool isPaused = false;
 
         SlowMotionController SlowMotionController;     //Used to disable the time controller when paused
 

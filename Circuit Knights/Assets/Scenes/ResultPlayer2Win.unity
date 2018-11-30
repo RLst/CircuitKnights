@@ -73597,7 +73597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameScene: Main
-  MenuScene: Jack's Menu
+  MenuScene: MainMenu
 --- !u!114 &1974614712
 MonoBehaviour:
   m_ObjectHideFlags: 0

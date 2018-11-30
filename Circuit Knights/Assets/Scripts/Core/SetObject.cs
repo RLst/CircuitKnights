@@ -10,8 +10,8 @@ namespace CircuitKnights.Objects
     public class SetObject : MonoBehaviour
     {
         ////NOTE: Maybe this doesn't need to be set on the character object
-        [TextArea][SerializeField] string description = 
-            "Sets actual custom Circuit Knights object data to this object and handles mounting.";
+        //[TextArea][SerializeField] string description = 
+        //    "Sets actual custom Circuit Knights object data to this object and handles mounting.";
         [SerializeField] ObjectData objectData;      //Each object can only have one obj data associated with it
         [SerializeField] Transform mountPoint;
 

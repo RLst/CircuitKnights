@@ -9,9 +9,9 @@ namespace CircuitKnights.Tests
 {
     public class Equipment : MonoBehaviour
     {
-        [TextArea][SerializeField]
-        string description =
-            "Sets current object as a particular kind of equipment and mounting point.";
+        //[TextArea][SerializeField]
+        //string description =
+        //    "Sets current object as a particular kind of equipment and mounting point.";
         //Temp
         public ObjectData objectData;
         public Transform mountPoint;	//Default mount point?

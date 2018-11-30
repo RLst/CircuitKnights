@@ -6,14 +6,14 @@ namespace CircuitKnights
 {
     public class LanceController : MonoBehaviour
     {
-        [TextArea][SerializeField] string description =
-            "Attach to root object of lance. Controls the player's lance. The Lance should ONLY HAVE ONE rigidbody attached to the lance mesh itself.";
+        //[TextArea][SerializeField] string description =
+        //    "Attach to root object of lance. Controls the player's lance. The Lance should ONLY HAVE ONE rigidbody attached to the lance mesh itself.";
 
         ///References
         PlayerData playerData;
         LanceData lanceData;
         PlayerInput playerInput;
-        new Rigidbody rigidbody;
+        Rigidbody rigidbody;
 
         ///Internal vars
         Vector3 angAccel;
