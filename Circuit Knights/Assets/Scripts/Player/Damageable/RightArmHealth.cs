@@ -64,7 +64,7 @@ namespace CircuitKnights
                     OnRightArmHit(playerData.No, attackMultiplier);
 
                     //Knockback
-                    playerData.ImpactHandler.Execute(attackMultiplier);
+                    // playerData.ImpactHandler.Execute(attackMultiplier);
                 }
             }
         }

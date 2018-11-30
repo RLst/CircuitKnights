@@ -12,9 +12,9 @@ namespace CircuitKnights.Objects
 {
     public class Player : MonoBehaviour
     {
-        //// Sets references for player's lance, shield, horse so that the can be retrieved from the player's SO
-        [TextArea][Multiline] string description =
-            "Sets all critical references inside the instance of Player.";
+        // //// Sets references for player's lance, shield, horse so that the can be retrieved from the player's SO
+        // [TextArea][Multiline] string description =
+        //     "Sets all critical references inside the instance of Player.";
 		[SerializeField] PlayerData playerData;
 		// [SerializeField] new Camera camera;
         [SerializeField] PlayerCamera playerCamera;
@@ -33,7 +33,7 @@ namespace CircuitKnights.Objects
         PlayerIKHoldLance IKLanceHolder;
         PlayerIKHoldShield IKShieldHolder;
         PlayerIKLook IKLook;
-        ImpactHandler impactHandler;
+        // ImpactHandler impactHandler;
 
 
         [Header("Colliders")]
@@ -75,7 +75,7 @@ namespace CircuitKnights.Objects
 			playerData.Animator = this.playerAnimator;
 
             ///Automatics
-            playerData.ImpactHandler = this.impactHandler = this.GetComponent<ImpactHandler>();
+            // playerData.ImpactHandler = this.impactHandler = this.GetComponent<ImpactHandler>();
             playerData.Horse = horse = this.GetComponent<Horse>();
 			playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
             playerData.IKLanceHolder = this.IKLanceHolder = GetComponentInChildren<PlayerIKHoldLance>();

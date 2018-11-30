@@ -30,6 +30,7 @@ namespace CircuitKnights
         {
             playerData = GetComponentInParent<Player>().Data;
             opponentData = playerData.GetOpponent();
+            shieldData = playerData.ShieldData;
             Assert.IsNotNull(playerData, "Player data not found!");
             Assert.IsNotNull(opponentData, "Opponent data not found!");
         }
@@ -56,7 +57,7 @@ namespace CircuitKnights
                     OnShieldHit(playerData.No, attackMultiplier);
 
                     //Knockback
-                    playerData.ImpactHandler.Execute(attackMultiplier);
+                    // playerData.ImpactHandler.Execute(attackMultiplier);
                 }
             }
         }

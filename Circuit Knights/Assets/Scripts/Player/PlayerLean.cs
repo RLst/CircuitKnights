@@ -6,10 +6,10 @@ namespace CircuitKnights
 	[RequireComponent(typeof(Player))]
 	public class PlayerLean : MonoBehaviour
 	{
-		[SerializeField]
-		[TextArea]
-		string description =
-			"Attach to root object.";
+		// [SerializeField]
+		// [TextArea]
+		// string description =
+		// 	"Attach to root object.";
 
 		PlayerData playerData;
 		Animator animator;

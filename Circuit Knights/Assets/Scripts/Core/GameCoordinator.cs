@@ -173,6 +173,9 @@ namespace CircuitKnights
         }
         #endregion  //Core
 
+
+
+
         #region Round Starting
         private IEnumerator StartRound()
         {
@@ -205,6 +208,9 @@ namespace CircuitKnights
             centerText.enabled = false;
         }
         #endregion
+
+
+
 
         #region Round Playing
         private IEnumerator PlayRound()
@@ -265,6 +271,9 @@ namespace CircuitKnights
         }
         #endregion
 
+
+
+
         #region Round Ending
 
         private void EndRound()
@@ -295,6 +304,9 @@ namespace CircuitKnights
             }
         }
         #endregion
+
+
+
 
         #region Public accessible methods
         public void OnSkipCutscene()

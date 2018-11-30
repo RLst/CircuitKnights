@@ -14,11 +14,13 @@ namespace CircuitKnights.Controllers
 			"Could possibly be set to look around at the audience.";
 
 		Animator anim;
+		// [SerializeField] 
 		Player player;
 
-		Transform lookTarget;
+		public Transform lookTarget;
+
 		[SerializeField] [Range(0f, 1f)] float overallIKWeight = 1f;
-		[SerializeField] [Range(0f, 1f)] float lookIKWeight = 1f;
+		// [SerializeField] [Range(0f, 1f)] float lookIKWeight = 1f;
 		[SerializeField] [Range(0f, 1f)] float bodyIKWeight = 1f;
 		[SerializeField] [Range(0f, 1f)] float headIKWeight = 1f;
 		float eyesIKWeight = 0f;	//Not really applicable as our robots don't have eyes
@@ -32,7 +34,7 @@ namespace CircuitKnights.Controllers
 
 		void Start()
 		{
-			lookTarget = player.Data.GetOpponent().HeadCollider.transform;
+			// lookTarget = player.Data.GetOpponent().HeadCollider.transform;
 			Assert.IsNotNull(anim, "Animator not found!");
 		}
 

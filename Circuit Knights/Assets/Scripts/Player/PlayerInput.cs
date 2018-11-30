@@ -12,7 +12,7 @@ namespace CircuitKnights
     [RequireComponent(typeof(Player))]
     public class PlayerInput : MonoBehaviour
     {
-        [TextArea] [SerializeField] string description = "Handles controller/keyboard input for the player. Attach to the root object";
+        // [TextArea] [SerializeField] string description = "Handles controller/keyboard input for the player. Attach to the root object";
         PlayerData playerData;
         HorseData horseData;
         [SerializeField] bool getKBInput = false;
