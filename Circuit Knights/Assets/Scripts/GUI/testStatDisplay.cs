@@ -34,17 +34,18 @@ namespace CircuitKnights.Tests
 
         void Update()
 		{
-            headOne.text = "HeadHP: " + Convert.ToInt32(playerOne.HeadHP.ToString()).ToString();
-            torsoOne.text = "TorsoHP: " + Convert.ToInt32(playerOne.TorsoHP.ToString()).ToString();
-            leftArmOne.text = "LeftArmHP: " + Convert.ToInt32(playerOne.LeftArmHP.ToString()).ToString();
-            rightArmOne.text = "RightArmHP: " + Convert.ToInt32(playerOne.RightArmHP.ToString()).ToString();
-            shieldOne.text = "ShieldHP: " + Convert.ToInt32(playerOne.ShieldData.HP.ToString()).ToString();
 
-            headTwo.text = "HeadHP: " + Convert.ToInt32(playerTwo.HeadHP.ToString()).ToString();
-            torsoTwo.text = "TorsoHP: " + Convert.ToInt32(playerTwo.TorsoHP.ToString()).ToString();
-            leftArmTwo.text = "LeftArmHP: " + Convert.ToInt32(playerTwo.LeftArmHP.ToString()).ToString();
-            rightArmTwo.text = "RightArmHP: " + Convert.ToInt32(playerTwo.RightArmHP.ToString()).ToString();
-            shieldTwo.text = "ShieldHP: " + Convert.ToInt32(playerTwo.ShieldData.HP.ToString()).ToString();
+            headOne.text = "HeadHP: " + (int)playerOne.HeadHP;
+            torsoOne.text = "TorsoHP: " + (int)playerOne.TorsoHP;
+            leftArmOne.text = "LeftArmHP: " + (int)playerOne.LeftArmHP;
+            rightArmOne.text = "RightArmHP: " + (int)playerOne.RightArmHP;
+            shieldOne.text = "ShieldHP: " + (int)playerOne.ShieldData.HP;
+
+            headTwo.text = "HeadHP: " + (int)playerTwo.HeadHP;
+            torsoTwo.text = "TorsoHP: " + (int)playerTwo.TorsoHP;
+            leftArmTwo.text = "LeftArmHP: " + (int)playerTwo.LeftArmHP;
+            rightArmTwo.text = "RightArmHP: " + (int)playerTwo.RightArmHP;
+            shieldTwo.text = "ShieldHP: " + (int)playerTwo.ShieldData.HP;
         }
     }
 
