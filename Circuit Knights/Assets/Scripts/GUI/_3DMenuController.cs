@@ -50,8 +50,7 @@ namespace CircuitKnights.Cameras
             currentItem = eventSystem.currentSelectedGameObject.GetComponent<_3DMenuItem>();
             
             //Save the last item in case current item becomes null
-            if (lastItem != currentItem)
-                lastItem = currentItem;
+            if (currentItem != null) lastItem = currentItem;
 
             if (currentItem != null)
 			{
