@@ -4,7 +4,8 @@
 
 using UnityEngine;
 using CircuitKnights.Controllers;
-using CircuitKnights.Objects;
+using CircuitKnights.Players;
+using CircuitKnights.Gear;
 
 namespace CircuitKnights
 {
@@ -28,7 +29,7 @@ namespace CircuitKnights
         private void Update() {
             //Constantly poll the horse's speed and set vibration accordingly
             var horseMotorVibration = Map(horse.Vel.magnitude, horse.MinSpeed, horse.MaxSpeed, minVibration, maxVibration);
-            vibrationController.VibrateOn(player.Data.No, 0f, horseMotorVibration);
+            vibrationController.VibrateOn(player.No, 0f, horseMotorVibration);
         }
 
 

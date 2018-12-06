@@ -3,10 +3,10 @@
 //9 Nov 2018
 
 using UnityEngine;
-using CircuitKnights.Objects;
 using System;
 using UnityEngine.Assertions;
-using CircuitKnights.Events;
+using CircuitKnights.Players;
+using CircuitKnights.Gear;
 
 namespace CircuitKnights
 {
@@ -16,9 +16,9 @@ namespace CircuitKnights
         //Shield detaches from player upon death; Turns into standard rigidbody
 
         ////Events
-        public static event Action<PlayerData.PlayerNumber, float> OnShieldHit = delegate { };
-        public static event Action<PlayerData.PlayerNumber> OnShieldDeath = delegate { };   //Pass shield death with player
-        private ShieldData shieldData;
+        public static event Action<Player.Number, float> OnShieldHit = delegate { };
+        public static event Action<Player.Number> OnShieldDeath = delegate { };   //Pass shield death with player
+        private Shield shield;
 		
         
         [SerializeField] GameObject knockedOffPrefab;   //The limb that falls off
@@ -28,33 +28,33 @@ namespace CircuitKnights
 
         void Start()
         {
-            playerData = GetComponentInParent<Player>().Data;
-            opponentData = playerData.GetOpponent();
-            shieldData = playerData.ShieldData;
-            Assert.IsNotNull(playerData, "Player data not found!");
-            Assert.IsNotNull(opponentData, "Opponent data not found!");
+            player = GetComponentInParent<Player>();
+            opponent = player.GetOpponent();
+            shield = player.Shield;
+            Assert.IsNotNull(player, "Player not found!");
+            Assert.IsNotNull(opponent, "Opponent not found!");
         }
 
         void OnCollisionEnter(Collision other)
         {
-            if (other.collider == opponentData.LanceCollider)
+            if (other.collider == opponent.LanceCollider)
             {
                 //If another limb or shield has already be hit
                 if (!isInvincible)
                 {
                     //Calculate impact; impact is the amount of damage based on the speed of the horse and lance attack rating
                     float attackMultiplier;
-                    var attack = opponentData.LanceData.Attack;
+                    var attack = opponent.Lance.Attack;
                     var impact = CalculateImpact(attack, out attackMultiplier);
 
                     //This damageable is first hit; set the rest to temp invincibility
-                    SetIFrames(playerData.No);
+                    SetIFrames(player.No);
 
                     //Limb takes damage
                     TakeDamage(impact);
 
                     //Let ether know head was hit
-                    OnShieldHit(playerData.No, attackMultiplier);
+                    OnShieldHit(player.No, attackMultiplier);
 
                     //Knockback
                     // playerData.ImpactHandler.Execute(attackMultiplier);
@@ -66,11 +66,11 @@ namespace CircuitKnights
         public override void TakeDamage(float damage)
         {
             //Shield reduces attack due to defense rating
-            var defendedDamage = damage - playerData.ShieldData.Defense;
+            var defendedDamage = damage - player.Shield.Defense;
 
-            playerData.ShieldData.HP -= defendedDamage;
+            player.Shield.HP -= defendedDamage;
 
-			if (playerData.ShieldData.HP <= 0)
+			if (player.Shield.HP <= 0)
 				Death();
         }
 
@@ -82,7 +82,7 @@ namespace CircuitKnights
             GetComponent<Rigidbody>().isKinematic = false;
 
             //Let ether know shield has been destroyed
-            OnShieldDeath(playerData.No);
+            OnShieldDeath(player.No);
 
             //Finally disable this object so no more commands will be received
             this.gameObject.SetActive(false);

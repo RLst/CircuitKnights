@@ -3,50 +3,48 @@
 //31 Oct 2018
 
 using UnityEngine;
-using CircuitKnights.Objects;
 using UnityEngine.Assertions;
-using XInputDotNetPure;
-using System;
 using System.Collections;
+using CircuitKnights.Players;
 
-namespace CircuitKnights.Controllers
+namespace CircuitKnights.Gear
 {
-    [RequireComponent(typeof(Player))]
-    public class Horse : MonoBehaviour
+    public class Horse : Equipment
     {
-        [TextArea][SerializeField]
-        string description =
-            "Hold method to move the player's 'horse', which is the root object in this case, which moves the entire player including equipment";
+        // [TextArea][SerializeField]
+        // string description =
+        //     "Hold method to move the player's 'horse', which is the root object in this case, which moves the entire player including equipment";
 
-        PlayerData playerData;
-        HorseData horseData;
-
-        // PlayerInput playerInput;
-        // Vector3 startPosition;  //obsolete; prevents unintended moving at start
-        // Vector3 tarPos;     //discontinued; lerp
-
+        Player player;
+        Horse horse;
 
         [Header("Physics")]
-        // float MaxForce { get; set; }
+        public float Mass = 750f;
         public float MaxSpeed = 200f;
         public float MinSpeed = 0f;
-
         public float Force { get; private set; }
         public Vector3 Accel { get; private set; }
         public Vector3 Vel { get; private set; }
         public Vector3 Pos { get; private set; }
         public float LinearSpeed { get { return Vel.magnitude; } }
 
+
+        [Header("Rounds speed up")]
+        public float StartingForce = 5000f;
+        public float ForceIncreasePerPass = 1000f;
+
+
         void Awake()
         {
             //Retrieve player datas from central Player component
-            playerData = GetComponent<Player>().Data;     //Player should be on the same object
-            horseData = GetComponent<Player>().HorseData;
+            player = GetComponentInParent<Player>();
 
             //Check for errors
-            Assert.IsNotNull(playerData, "Player component required on same object.");
-            Assert.IsNotNull(horseData, "Horse data not found.");
+            Assert.IsNotNull(player, "Player component required on same object.");
+        }
 
+        void Start()
+        {
             //Init physics
             Accel = Vector3.zero;
             Vel = Vector3.zero;
@@ -68,7 +66,7 @@ namespace CircuitKnights.Controllers
                 // Debug.Log("distance: " + distanceToDestination);
 
                 //Max force increases per round
-                Force = horseData.StartingForce + GameSettings.Instance.Round * horseData.ForceIncreasePerPass;
+                Force = StartingForce + GameSettings.Instance.Round * ForceIncreasePerPass;
                 
                 if (distanceToDestination < arrivalDistance)
                 {
@@ -80,7 +78,7 @@ namespace CircuitKnights.Controllers
                 }
 
                 //Get acceleration toward destination
-                Accel = arriveSteerNorm * Force / horseData.Mass;
+                Accel = arriveSteerNorm * Force / Mass;
 
                 //Get velocity
                 Vel += Accel * Time.fixedDeltaTime;
@@ -111,7 +109,7 @@ namespace CircuitKnights.Controllers
             ////Players follows the track around to the next side
             //Automatically calculate useful and comprehensive variables to do work with
             var currentRound = GameSettings.Instance.Round;
-            var playerNumber = (int)playerData.No;
+            var playerNumber = (int)player.No;
             int zeroIfRoundEven, oneIfRoundOdd;
             zeroIfRoundEven = oneIfRoundOdd = GameSettings.Instance.Round % 2;   //0 if even, 1 if odd
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
-using CircuitKnights.Objects;
+using CircuitKnights.Players;
+using CircuitKnights.Gear;
 
 namespace CircuitKnights
 {
@@ -10,19 +11,17 @@ namespace CircuitKnights
         //    "Attach to root object of lance. Controls the player's lance. The Lance should ONLY HAVE ONE rigidbody attached to the lance mesh itself.";
 
         ///References
-        PlayerData playerData;
-        LanceData lanceData;
+        Player player;
+        Lance lance;
         PlayerInput playerInput;
-        Rigidbody rigidbody;
+        Rigidbody rb;
+        // PlayerData playerData;
+        // LanceData lanceData;
 
         ///Internal vars
         Vector3 angAccel;
 		Vector3 angVel;
 		Vector3 angPos;
-
-        //Equipment switching
-        ObjectData lanceObjectData;
-
 
     #region Initialise
         void Start()
@@ -35,21 +34,22 @@ namespace CircuitKnights
 
             //Set the mass of the lance
             //Important for calculated the damage dealt and when the lance becomes a standard rigidbody
-            rigidbody.mass = lanceData.Mass;
+            rb.mass = lance.Mass;
         }
         private void AutoRetrieveData()
         {
-            playerData = GetComponentInParent<Player>().Data;
-            lanceData = GetComponentInParent<Player>().LanceData;
+            // playerData = GetComponentInParent<Player>().Data;
+            player = GetComponent<Player>();
+            lance = GetComponentInParent<Lance>();
             playerInput = GetComponentInParent<PlayerInput>();
-            rigidbody = GetComponentInChildren<Rigidbody>();
+            rb = GetComponentInChildren<Rigidbody>();
         }
 
         private void Assertions()
         {
             //Lance needs these components otherwise it won't work properly
             Assert.IsNotNull(playerInput, "Player Input not found!");
-            Assert.IsNotNull(rigidbody, "Lance rigidbody not found!");
+            Assert.IsNotNull(rb, "Lance rigidbody not found!");
         }
 
     #endregion
@@ -57,18 +57,18 @@ namespace CircuitKnights
         void Update()
         {
             HandleLanceAim();
-            if (lanceData.isClamped) ClampLanceMovement();
+            if (lance.isClamped) ClampLanceMovement();
             ApplyTransform();
         }
 
         private void HandleLanceAim()
         {
             //Calc angular accel
-            angAccel.x -= playerInput.LanceAxisY * lanceData.PitchTorque / lanceData.MomentOfInertia * Time.deltaTime;
-            angAccel.y += playerInput.LanceAxisX * lanceData.YawTorque / lanceData.MomentOfInertia * Time.deltaTime;
+            angAccel.x -= playerInput.LanceAxisY * lance.PitchTorque / lance.MomentOfInertia * Time.deltaTime;
+            angAccel.y += playerInput.LanceAxisX * lance.YawTorque / lance.MomentOfInertia * Time.deltaTime;
 
             //Apply "gravity"
-            angAccel.x += lanceData.GravityFactor * Time.deltaTime;
+            angAccel.x += lance.GravityFactor * Time.deltaTime;
 
             //Calc angular vel
             angVel.x += angAccel.x * Time.deltaTime;
@@ -79,22 +79,22 @@ namespace CircuitKnights
             angPos.y += angVel.y * Time.deltaTime;
 
             //Apply drag by reducing the accel and vel
-            angAccel = angAccel / lanceData.DragFactor;
-            angVel /= lanceData.DragFactor;
+            angAccel = angAccel / lance.DragFactor;
+            angVel /= lance.DragFactor;
         }
 
         void ClampLanceMovement()
         {
             //Clamp and also zero accel and vel to mitigate lance getting stuck at limits effect
-            if (angPos.x < lanceData.MinPitch || angPos.x > lanceData.MaxPitch)
+            if (angPos.x < lance.MinPitch || angPos.x > lance.MaxPitch)
             {
-                angPos.x = Mathf.Clamp(angPos.x, lanceData.MinPitch, lanceData.MaxPitch);
+                angPos.x = Mathf.Clamp(angPos.x, lance.MinPitch, lance.MaxPitch);
                 angVel.x = angAccel.x = 0f;
             }
 
-            if (angPos.y < lanceData.MinYaw || angPos.y > lanceData.MaxYaw)
+            if (angPos.y < lance.MinYaw || angPos.y > lance.MaxYaw)
             {
-                angPos.y = Mathf.Clamp(angPos.y, lanceData.MinYaw, lanceData.MaxYaw);
+                angPos.y = Mathf.Clamp(angPos.y, lance.MinYaw, lance.MaxYaw);
                 angVel.y = angAccel.y = 0f;
             }
         }
@@ -103,7 +103,7 @@ namespace CircuitKnights
         {
             angPos.z = angVel.z = angAccel.z = 0;           //These should always be zero to avoid any unwanted gimbal lock effects
             var currentRotation = this.transform.localRotation;
-            lanceData.gameObject.transform.localRotation = Quaternion.Lerp(currentRotation, Quaternion.Euler(angPos), lanceData.LerpFactor);
+            lance.gameObject.transform.localRotation = Quaternion.Lerp(currentRotation, Quaternion.Euler(angPos), lance.LerpFactor);
             // lanceTranform.localRotation = Quaternion.Euler(angPos);
         }
     }

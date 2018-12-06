@@ -3,31 +3,31 @@
 //15 Nov 2018
 
 using UnityEngine;
-using CircuitKnights.Objects;
 using System;
+using CircuitKnights.Players;
 
 namespace CircuitKnights
 {
-	public class LanceImpactEventRaise : MonoBehaviour
+    public class LanceImpactEventRaise : MonoBehaviour
 	{
 		//[TextArea]
 		//[SerializeField]
 		//string description =
 		//	"Attach to actual lance object with the collider. Relays OnCollisionEnter(lance)";
-		public static event Action<PlayerData.PlayerNumber, float> onLanceCollision = delegate { };
-		PlayerData playerData;
+		public static event Action<Player.Number, float> onLanceCollision = delegate { };
+		Player player;
 
 		void Start()
 		{
-			playerData = GetComponentInParent<Player>().Data;
+			player = GetComponentInParent<Player>();
 		}
 
 		void OnCollisionEnter(Collision other)
 		{
 			//If this object gets hit by the opponents lance
-			if (other.collider == playerData.GetOpponent().LanceCollider)
+			if (other.collider == player.GetOpponent().LanceCollider)
 			{
-				onLanceCollision(playerData.No, playerData.Horse.Vel.magnitude);
+				onLanceCollision(player.No, player.Horse.Vel.magnitude);
 			}
 		}
 	}

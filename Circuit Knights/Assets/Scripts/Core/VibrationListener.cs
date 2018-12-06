@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using CircuitKnights.Controllers;
-using CircuitKnights.Objects;
+using CircuitKnights.Players;
 
 namespace CircuitKnights
 {
-	public class VibrationListener : MonoBehaviour
+    public class VibrationListener : MonoBehaviour
 	{
 		//listens to damageable on hit events and vibrates accordingly
 
@@ -17,7 +17,7 @@ namespace CircuitKnights
 			ShieldHealth.OnShieldHit += DoVibrate;
 		}
 
-		void DoVibrate(PlayerData.PlayerNumber playerNo, float impact)
+		void DoVibrate(Player.Number playerNo, float impact)
 		{
 			VibrationController.Instance.VibrateOn(playerNo, impact, 0f);
 		}

@@ -3,14 +3,13 @@
 //9 Nov 2018
 
 using UnityEngine;
-using CircuitKnights.Objects;
-using CircuitKnights.Variables;
 using System;
 using UnityEngine.Assertions;
+using CircuitKnights.Players;
 
 namespace CircuitKnights
 {
-	[RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Collider))]
 	public class TorsoHealth : Damageable
 	{
         //Torso doesn't break apart upon death
@@ -18,8 +17,8 @@ namespace CircuitKnights
 
         ////Events
         //Death event broadcast; Broadcast an event upon death of this limb to whomever wants to tune in
-        public static event Action<PlayerData.PlayerNumber, float> OnTorsoHit = delegate { };
-        public static event Action<PlayerData.PlayerNumber> OnTorsoDeath = delegate { };  //Params: PlayerNo
+        public static event Action<Player.Number, float> OnTorsoHit = delegate { };
+        public static event Action<Player.Number> OnTorsoDeath = delegate { };  //Params: PlayerNo
 
 
 		void Awake()
@@ -29,32 +28,32 @@ namespace CircuitKnights
         }
         void Start()
         {
-            playerData = GetComponentInParent<Player>().Data;
-            opponentData = playerData.GetOpponent();
-            Assert.IsNotNull(playerData, "Player data not found!");
-            Assert.IsNotNull(opponentData, "Opponent data not found!");
+            player = GetComponentInParent<Player>();
+            opponent = GetComponentInParent<Player>().GetOpponent();
+            Assert.IsNotNull(player, "Player not found!");
+            Assert.IsNotNull(opponent, "Opponent not found!");
         }
 
 
         void OnCollisionEnter(Collision other)
         {
-            if (other.collider == opponentData.LanceCollider)	//Must have collided with the opponent's lance
+            if (other.collider == opponent.LanceCollider)	//Must have collided with the opponent's lance
             {
 				if (!isInvincible)	//if first limb to be hit
 				{
                     //Calculate impact; impact is the amount of damage based on the speed of the horse and lance attack rating
                     float attackMultiplier;
-                    var attack = opponentData.LanceData.Attack;
+                    var attack = opponent.Lance.Attack;
                     var impact = CalculateImpact(attack, out attackMultiplier);
 
                     //This damageable is first hit; set the rest to temp invincibility
-                    SetIFrames(playerData.No);
+                    SetIFrames(player.No);
 
                     //Limb takes damage
                     TakeDamage(impact);
 
                     //Let ether know
-                    OnTorsoHit(playerData.No, attackMultiplier);
+                    OnTorsoHit(player.No, attackMultiplier);
 
                     //Knockback
                     // playerData.ImpactHandler.Execute(attackMultiplier);
@@ -65,9 +64,9 @@ namespace CircuitKnights
 
 		public override void TakeDamage(float damage)
 		{
-			playerData.TorsoHP -= damage;
+			player.TorsoHP -= damage;
 
-            if (playerData.TorsoHP <= 0)
+            if (player.TorsoHP <= 0)
                 Death();
 		}
 
@@ -77,18 +76,16 @@ namespace CircuitKnights
             ////Kill player
 
 			//Ragdoll by turning off the player's animator
-            playerData.Animator.enabled = false;
+            player.Animator.enabled = false;
 
             //Let the ether know this player has lost
-            OnTorsoDeath(playerData.No);
+            OnTorsoDeath(player.No);
                 //TODO Camera locks onto this player
                 //TODO Slow motion etc
 
             //Finally disable this object so no more commands will be received
             this.gameObject.SetActive(false);
         }
-
-
 
 	}
 }

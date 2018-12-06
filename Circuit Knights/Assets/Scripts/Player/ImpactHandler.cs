@@ -3,13 +3,12 @@
 //29 Nov 2018
 
 using UnityEngine;
-using CircuitKnights.Objects;
-using System;
 using System.Collections;
+using CircuitKnights.Players;
 
 namespace CircuitKnights.Controllers
 {
-	public class ImpactHandler : MonoBehaviour
+    public class ImpactHandler : MonoBehaviour
 	{
         [SerializeField]
         [TextArea]
@@ -17,7 +16,7 @@ namespace CircuitKnights.Controllers
         	"Place this on each player's root object. Handles anything to do with being struck by the lance"
 			+ "ie. animation, slowmotion, vibration, audio, particles...";
 
-        PlayerData playerData;
+        Player player;
 
 
 		[Header("Animation")]
@@ -58,8 +57,8 @@ namespace CircuitKnights.Controllers
 
         void Awake()
 		{
-			playerData = GetComponent<Player>().Data;
-			anim = playerData.Animator;
+			player = GetComponent<Player>();
+			anim = player.Animator;
             slowMotionController = SlowMotionController.Instance;
             vibrationController = VibrationController.Instance;
         }
@@ -68,15 +67,15 @@ namespace CircuitKnights.Controllers
 		{
 			////1. Knocked back
 			//Disable IK controllers
-			playerData.IKShieldHold.enabled = false;
-			playerData.IKLanceHolder.enabled = false;
-			playerData.IKLook.enabled = false;
+			player.IKShieldHolder.enabled = false;
+			player.IKLanceHolder.enabled = false;
+			player.IKLook.enabled = false;
 
 			//Parent shield and lance to arms
-			var origLeftHand = playerData.ShieldData.gameObject.transform.parent;
-			var origRightHand = playerData.LanceData.gameObject.transform.parent;
-			playerData.ShieldData.gameObject.transform.SetParent(leftHandBone);
-			playerData.LanceData.gameObject.transform.SetParent(rightHandBone);
+			var origLeftHand = player.Shield.gameObject.transform.parent;
+			var origRightHand = player.Lance.gameObject.transform.parent;
+			player.Shield.gameObject.transform.SetParent(leftHandBone);
+			player.Lance.gameObject.transform.SetParent(rightHandBone);
 
 
 
@@ -92,7 +91,7 @@ namespace CircuitKnights.Controllers
             //Vibration
             var vibrateSpeed = Map(impact, impactVibrationDeadzone, 1f, 0f, maxVibrationSpeed);
             var vibrateDuration = Map(impact, impactVibrationDeadzone, 1f, 0f, maxSlowMoDuration);
-            vibrationController.VibrateOn(playerData.No, vibrateSpeed, 0f, vibrateDuration);
+            vibrationController.VibrateOn(player.No, vibrateSpeed, 0f, vibrateDuration);
 
 			//Audio
 
@@ -101,13 +100,13 @@ namespace CircuitKnights.Controllers
 
 			////3. Recovery
 			//Re-enable IK controllers
-			playerData.IKShieldHold.enabled = false;
-			playerData.IKLanceHolder.enabled = false;
-			playerData.IKLook.enabled = false;
+			player.IKShieldHolder.enabled = false;
+			player.IKLanceHolder.enabled = false;
+			player.IKLook.enabled = false;
 
 			//Reset shield and lance to arms
-			playerData.ShieldData.gameObject.transform.SetParent(origLeftHand);
-			playerData.LanceData.gameObject.transform.SetParent(origRightHand);
+			player.Shield.gameObject.transform.SetParent(origLeftHand);
+			player.Lance.gameObject.transform.SetParent(origRightHand);
 		}
 
 		private IEnumerator AnimateKnockBack()

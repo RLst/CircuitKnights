@@ -1,30 +1,30 @@
-﻿////DuckBike
-////Tony Le
-////8 Nov 2018
+﻿// //DuckBike
+// //Tony Le
+// //8 Nov 2018
 
 
-//using UnityEngine;
-//using CircuitKnights;
-//using System.Collections.Generic;
-//using System;
-//using CircuitKnights.Objects;
-//using CircuitKnights.Controllers;
+// using UnityEngine;
+// using CircuitKnights;
+// using System.Collections.Generic;
+// using System;
+// using CircuitKnights.Objects;
+// using CircuitKnights.Controllers;
 
-//namespace CircuitKnights.Tests
-//{
+// namespace CircuitKnights.Tests
+// {
 //    public class PlayerWithEquipmentSwitching : MonoBehaviour
 //    {
 //        //// Sets references for player's lance, shield, horse so that the can be retrieved from the player's SO
 //        [TextArea][Multiline] string description =
 //            "Sets all critical references inside the instance of Player.";
-//		[SerializeField] PlayerData playerData;
-//		[SerializeField] Camera camera;
+// 		[SerializeField] PlayerData playerData;
+// 		[SerializeField] Camera camera;
 
 
 //        [Header("Equipment")]
 
-//		// [SerializeField] LanceData lanceData;
-//		// [SerializeField] ShieldData shieldData;
+// 		// [SerializeField] LanceData lanceData;
+// 		// [SerializeField] ShieldData shieldData;
 //        // [SerializeField] HorseData horseData;
 
 //        //Test - Weapon switching
@@ -49,7 +49,7 @@
 
 
 //        [Header("Colliders")]
-//		[SerializeField] Collider headCollider;
+// 		[SerializeField] Collider headCollider;
 //        [SerializeField] Collider torsoCollider;
 //        [SerializeField] Collider leftArmCollider;
 //        [SerializeField] Collider rightArmCollider;
@@ -94,9 +94,9 @@
 
 //            //Tricky bastard! Set both this and playerData
 //            playerData.Horse = playerMover = this.GetComponent<Horse>();
-//			playerData.Animator = playerAnimator;
-//			// playerData.Animator = playerAnimator = this.GetComponentInChildren<Animator>();
-//			playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
+// 			playerData.Animator = playerAnimator;
+// 			// playerData.Animator = playerAnimator = this.GetComponentInChildren<Animator>();
+// 			playerData.ShieldController = this.shieldController = GetComponentInChildren<ShieldController>();
 //            playerData.IKLanceHolder = this.IKLanceHolder = GetComponentInChildren<PlayerIKHoldLance>();
 //            playerData.IKShieldHold = this.IKShieldHolder = GetComponentInChildren<PlayerIKHoldShield>();
 //            playerData.IKLook = this.IKLook = GetComponentInChildren<PlayerIKLook>();
@@ -106,7 +106,7 @@
 //        {
 //            // SetPlayerData();
 //            SetPlayerColliders();
-//            // MountAllEquipment();
+//            MountAllEquipment();
 //        }
 
 //        void Update()
@@ -199,4 +199,4 @@
 //        // }
 //        //Test - Equipment switching
 //    }
-//}
+// }

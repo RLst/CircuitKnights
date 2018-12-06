@@ -4,7 +4,7 @@
 
 using System;
 using System.Collections;
-using CircuitKnights.Objects;
+using CircuitKnights.Players;
 using CircuitKnights.Variables;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -16,7 +16,7 @@ namespace CircuitKnights.Controllers
     {
         #region Singleton
         public static VibrationController Instance { get; private set; }
-        private void Awake()
+        void Awake()
         {
             //Setup singleton
             if (Instance == null)
@@ -42,12 +42,12 @@ namespace CircuitKnights.Controllers
         {
             if (isVibrationOn.Value == true)
             {
-                StartCoroutine(RampDownVibration((PlayerData.PlayerNumber)1, defaultVibrationSpeed, defaultVibrationSpeed, defaultVibrationDuration));
-                StartCoroutine(RampDownVibration((PlayerData.PlayerNumber)2, defaultVibrationSpeed, defaultVibrationSpeed, defaultVibrationDuration));
+                StartCoroutine(RampDownVibration((Player.Number)1, defaultVibrationSpeed, defaultVibrationSpeed, defaultVibrationDuration));
+                StartCoroutine(RampDownVibration((Player.Number)2, defaultVibrationSpeed, defaultVibrationSpeed, defaultVibrationDuration));
             }
         }
 
-        public void VibrateOn(PlayerData.PlayerNumber player)
+        public void VibrateOn(Player.Number player)
         //Default vibration on one controller, both motors, default speed and duration
         {
             if (isVibrationOn.Value == true)
@@ -56,7 +56,7 @@ namespace CircuitKnights.Controllers
             }
         }
 
-        public void VibrateOn(PlayerData.PlayerNumber player, float heavyVibrateSpeed, float lightVibrateSpeed)
+        public void VibrateOn(Player.Number player, float heavyVibrateSpeed, float lightVibrateSpeed)
         //Vibration on one controller forever
         {
             if (isVibrationOn.Value == true)
@@ -65,7 +65,7 @@ namespace CircuitKnights.Controllers
             }
         }
 
-        public void VibrateOn(PlayerData.PlayerNumber player, float heavyVibrateSpeed, float lightVibrateSpeed, float rampDownDuration)
+        public void VibrateOn(Player.Number player, float heavyVibrateSpeed, float lightVibrateSpeed, float rampDownDuration)
         //Vibration on one controller ramping down for a set amount of duration
         {
             if (isVibrationOn.Value == true)
@@ -74,7 +74,7 @@ namespace CircuitKnights.Controllers
             }
         }
 
-        public void VibrateOff(PlayerData.PlayerNumber player)
+        public void VibrateOff(Player.Number player)
         //Shuts down vibration on one controller
         {
             if (isVibrationOn.Value == true)
@@ -84,7 +84,7 @@ namespace CircuitKnights.Controllers
         }
 
 
-        IEnumerator RampDownVibration(PlayerData.PlayerNumber player, float heavyVibrateSpeed, float lightVibrateSpeed, float defaultVibrationDuration)
+        IEnumerator RampDownVibration(Player.Number player, float heavyVibrateSpeed, float lightVibrateSpeed, float defaultVibrationDuration)
         {
             float i = 1f;
             while (i > 0f)

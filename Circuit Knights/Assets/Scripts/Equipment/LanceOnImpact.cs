@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using CircuitKnights.Variables;
-using CircuitKnights;
-using CircuitKnights.Objects;
-using XInputDotNetPure;
 using CircuitKnights.Controllers;
 
 //Brent D'Auria
-namespace CircuitKnights { 
+namespace CircuitKnights
+{
     public class LanceOnImpact : MonoBehaviour {
 
         [SerializeField] BoolVariable isVibration;

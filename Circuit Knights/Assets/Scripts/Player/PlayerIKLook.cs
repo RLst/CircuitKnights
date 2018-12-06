@@ -1,13 +1,12 @@
-﻿using CircuitKnights.Objects;
-using CircuitKnights.Variables;
+﻿using CircuitKnights.Players;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace CircuitKnights.Controllers
 {
-	public class PlayerIKLook : MonoBehaviour
+    public class PlayerIKLook : MonoBehaviour
 	{
-		[Multiline]
+		[TextArea][SerializeField]
 		public string description =
 			"Controls where the player looks." +
 			"Should be set to the opponent at gameplay." +

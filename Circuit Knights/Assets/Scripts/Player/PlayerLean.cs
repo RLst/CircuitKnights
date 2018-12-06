@@ -1,9 +1,9 @@
-﻿using CircuitKnights.Objects;
+﻿using CircuitKnights.Players;
 using UnityEngine;
 
 namespace CircuitKnights
 {
-	[RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(Player))]
 	public class PlayerLean : MonoBehaviour
 	{
 		// [SerializeField]
@@ -11,7 +11,7 @@ namespace CircuitKnights
 		// string description =
 		// 	"Attach to root object.";
 
-		PlayerData playerData;
+		Player player;
 		Animator animator;
 		PlayerInput playerInput;
 		float leanAxis;
@@ -20,7 +20,7 @@ namespace CircuitKnights
 		{
 			animator = GetComponentInChildren<Animator>();
 			playerInput = GetComponent<PlayerInput>();
-			playerData = GetComponent<Player>().Data;
+			player = GetComponent<Player>();
 		}
 
 		void Update()
@@ -31,7 +31,7 @@ namespace CircuitKnights
 		private void DoLean()
 		{
 			var desiredLeanAxis = -playerInput.LeanLeft + playerInput.LeanRight;
-			leanAxis = Mathf.Lerp(leanAxis, desiredLeanAxis, playerData.LeanInertia);
+			leanAxis = Mathf.Lerp(leanAxis, desiredLeanAxis, player.LeanInertia);
 			animator.SetFloat("LeanAxis", leanAxis);
 		}
 	}

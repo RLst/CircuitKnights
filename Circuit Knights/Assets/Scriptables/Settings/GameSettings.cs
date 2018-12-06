@@ -2,9 +2,7 @@
 //Tony Le
 //26 Oct 2018
 
-using System;
-using System.Linq;
-using CircuitKnights.Objects;
+using CircuitKnights.Players;
 using CircuitKnights.Variables;
 using UnityEngine;
 
@@ -16,25 +14,21 @@ namespace CircuitKnights
         //[Multiline] [SerializeField] string description = "Holds the game settings";
 
         #region Singleton
-        private static GameSettings _instance;
-        public static GameSettings Instance
+        public static GameSettings Instance { get; private set; }
+        void Awake()
         {
-            get {
-                return _instance;
-            }
-        }
+            if (Instance == null)
+                Instance = this;
+            else 
+                Destroy(gameObject);
 
-        public static void InitializeFromDefault(GameSettings settings)
-        {
-            if (_instance) DestroyImmediate(_instance);
-            _instance = Instantiate(settings);
-            _instance.hideFlags = HideFlags.HideAndDontSave;
+            Reset();
         }
         #endregion
 
         #region Players
-        public PlayerData PlayerOne;
-        public PlayerData PlayerTwo;
+        public Player PlayerOne;
+        public Player PlayerTwo;
 
         // public PlayerData[] Players { get; set; }
         #endregion
@@ -70,12 +64,6 @@ namespace CircuitKnights
 			return false;
 		}
 
-		void Awake()
-		{
-            _instance = this;
-            Reset();
-		}
-
 		public void Reset()
 		{
             ////Reset everything back to zero
@@ -84,10 +72,10 @@ namespace CircuitKnights
 			Round = 0;
 
             //Players and Shields
-            PlayerOne.ResetStats();
-            PlayerTwo.ResetStats();
-            PlayerOne.ShieldData.ResetHP();
-            PlayerTwo.ShieldData.ResetHP();
+            // PlayerOne.ResetStats();
+            // PlayerTwo.ResetStats();
+            // PlayerOne.Shield.ResetHP();
+            // PlayerTwo.Shield.ResetHP();
 		}
 
 		public void BeginNewRound()

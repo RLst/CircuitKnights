@@ -3,14 +3,13 @@
 //1 Nov 2018
 
 using UnityEngine;
-using CircuitKnights.Objects;
 using CircuitKnights.Events;
 using System.Collections;
-using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using XboxCtrlrInput;
 using UnityEngine.Assertions;
+using CircuitKnights.Players;
 
 namespace CircuitKnights
 {
@@ -22,8 +21,8 @@ namespace CircuitKnights
         //    "Monolithic class that controls the entirety of the main gameplay.";
 
         #region Player References
-        PlayerData playerOne;
-        PlayerData playerTwo;
+        Player playerOne;
+        Player playerTwo;
         #endregion
 
         [Header("GUI")]
@@ -247,8 +246,9 @@ namespace CircuitKnights
         {
             var p1 = GameSettings.Instance.PlayerOne;
             var p2 = GameSettings.Instance.PlayerTwo;
-            var p1Facing = p1.Root.TransformDirection(Vector3.forward);
-            var directionToP2 = Vector3.Normalize(p2.Root.position - p1.Root.position);
+
+            var p1Facing = p1.transform.TransformDirection(Vector3.forward);
+            var directionToP2 = Vector3.Normalize(p2.transform.position - p1.transform.position);
             if (Vector3.Dot(p1Facing, directionToP2) < 0f)
             {
                 return true;    //Players have passed

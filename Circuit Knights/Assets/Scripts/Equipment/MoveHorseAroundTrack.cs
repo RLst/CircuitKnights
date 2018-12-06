@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using CircuitKnights.Controllers;
 using CircuitKnights.Events;
-using CircuitKnights.Objects;
+using CircuitKnights.Gear;
+using CircuitKnights.Players;
 using UnityEngine;
 
 namespace CircuitKnights
@@ -48,11 +48,11 @@ namespace CircuitKnights
             Transform nextEndPoint;
             if (GameSettings.Instance.Round % 2 == 1)   //If the round is odd
             {
-                nextEndPoint = endPoints[(int)player.Data.No];
+                nextEndPoint = endPoints[(int)player.No];
             }
             else    //If the round is even
             {
-                nextEndPoint = endPoints[(1 - (int)player.Data.No)];
+                nextEndPoint = endPoints[(1 - (int)player.No)];
             }
             // Debug.Log("Next End Point: "+nextEndPoint);
 

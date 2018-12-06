@@ -3,29 +3,17 @@
 //12 Nov 2018
 
 using UnityEngine;
-using CircuitKnights.Objects;
 
-namespace CircuitKnights.Tests
+namespace CircuitKnights.Gear
 {
-    public class Equipment : MonoBehaviour
+    public abstract class Equipment : MonoBehaviour
     {
         //[TextArea][SerializeField]
         //string description =
         //    "Sets current object as a particular kind of equipment and mounting point.";
         //Temp
-        public ObjectData objectData;
-        public Transform mountPoint;	//Default mount point?
-
-
-        // void Start()
-        // {
-        //     if (mountpoint != null)
-        //     {
-        //         Equip();
-
-        //     }
-        // }
-
+        // public ObjectData objectData;
+        protected Transform mountPoint;	//Default mount point?
 
         internal void Equip()
         {

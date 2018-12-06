@@ -3,20 +3,19 @@
 //7 Nov 2018
 
 using UnityEngine;
-using CircuitKnights.Objects;
-using CircuitKnights.Variables;
-using System;
 using CircuitKnights.Events;
+using CircuitKnights.Players;
 
 namespace CircuitKnights
 {
-	// [RequireComponent(typeof(Rigidbody))]
-	public class DamageHandler : MonoBehaviour
+    // [RequireComponent(typeof(Rigidbody))]
+    public class DamageHandler : MonoBehaviour
 	//TODO change to PlayerDamageHandler?
 	{
 
 		#region Player
-		PlayerData playerData;     //The player this object belongs to
+		Player player;     //The player this object belongs to
+
 		[Header("Damageables")]
 		[SerializeField] Damageable headHealth;
 		[SerializeField] Damageable torsoHealth;
@@ -47,7 +46,7 @@ namespace CircuitKnights
         void Start()
 		{
             RegisterForCollisionEvents();
-            playerData = GetComponentInChildren<Player>().Data;
+            player = GetComponentInChildren<Player>();
         }
 
         private void RegisterForCollisionEvents()

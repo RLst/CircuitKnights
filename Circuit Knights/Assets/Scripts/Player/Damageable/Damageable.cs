@@ -4,16 +4,15 @@
 
 using System;
 using System.Collections;
-using CircuitKnights.Objects;
+using CircuitKnights.Players;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace CircuitKnights
 {
-	public abstract class Damageable : MonoBehaviour
+    public abstract class Damageable : MonoBehaviour
 	{
-		protected PlayerData playerData;
-		protected PlayerData opponentData;
+		protected Player player;
+		protected Player opponent;
 
 
 		public abstract void TakeDamage(float damage);
@@ -22,9 +21,9 @@ namespace CircuitKnights
 
         protected float CalculateImpact(float attack, out float attackMultiplier)
         {
-            var minSpeed = playerData.Horse.MinSpeed;
-            var maxSpeed = playerData.Horse.MaxSpeed;
-            var currentVelocity = playerData.Horse.Vel.magnitude;
+            var minSpeed = player.Horse.MinSpeed;
+            var maxSpeed = player.Horse.MaxSpeed;
+            var currentVelocity = player.Horse.Vel.magnitude;
 
             var baseAttack = attack;
 			//Attack multiplier based on speed
@@ -39,23 +38,23 @@ namespace CircuitKnights
 		//otherwise the lance can just swing across multiple limbs and damage them all.
 		//Only the first damageable hit will be affected.
 		//Static just in case each Health script creates different OnFirstHits
-		protected static event Action<PlayerData.PlayerNumber> OnFirstHit = delegate { };    //Params(playerNo, impact)
+		protected static event Action<Player.Number> OnFirstHit = delegate { };    //Params(playerNo, impact)
 		protected bool isInvincible = false;
 		const float invincibilityTime = 1f;		//1 second of invincibility should be enough right?
-		protected void SetIFrames(PlayerData.PlayerNumber playerHit)
+		protected void SetIFrames(Player.Number playerHit)
 		{
             if(gameObject.activeInHierarchy)
 			    StartCoroutine(IFramesRoutine(playerHit));
 		}
-		protected IEnumerator IFramesRoutine(PlayerData.PlayerNumber playerNoHit)
+		protected IEnumerator IFramesRoutine(Player.Number playerHit)
 		{
-			if (playerNoHit == playerData.No)
+			if (playerHit == player.No)
 			{
 				//Make this invicible for a period of time
 				isInvincible = true;
-                Debug.Log("Player " + playerNoHit + " invincible! "+Time.time);
+                Debug.Log("Player " + playerHit + " invincible! "+Time.time);
 				yield return new WaitForSeconds(invincibilityTime);
-                Debug.Log("Player " + playerNoHit + " not Invincible! "+Time.time);
+                Debug.Log("Player " + playerHit + " not Invincible! "+Time.time);
 				isInvincible = false;
 			}
 		}

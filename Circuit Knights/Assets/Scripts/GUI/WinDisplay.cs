@@ -1,10 +1,9 @@
-﻿using CircuitKnights;
-using UnityEngine;
-using CircuitKnights.Objects;
+﻿using UnityEngine;
 
 //Brent D'Auria
 
-namespace CircuitKnights {
+namespace CircuitKnights
+{
     public class WinDisplay : MonoBehaviour {
 
         //GameSettings.Instance.isDraw;

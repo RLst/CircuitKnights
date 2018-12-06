@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using CircuitKnights.Controllers;
-using CircuitKnights.Objects;
+using CircuitKnights.Players;
 
 namespace CircuitKnights
 {
@@ -20,7 +20,7 @@ namespace CircuitKnights
 			ShieldHealth.OnShieldHit += DoSlowMo;
 		}
 
-		void DoSlowMo(PlayerData.PlayerNumber playerNo, float impact)
+		void DoSlowMo(Player.Number playerNo, float impact)
 		{
             var slowMoSpeed = Map(impact, impactSlowMoDeadzone, 1f, minSlowMoSpeed, 1f);
             var slowMoDuration = Map(impact, impactSlowMoDeadzone, 1f, 0f, maxSlowMoDuration);
