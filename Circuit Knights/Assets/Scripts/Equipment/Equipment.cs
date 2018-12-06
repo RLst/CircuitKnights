@@ -13,7 +13,7 @@ namespace CircuitKnights.Gear
         //    "Sets current object as a particular kind of equipment and mounting point.";
         //Temp
         // public ObjectData objectData;
-        protected Transform mountPoint;	//Default mount point?
+        [SerializeField] protected Transform mountPoint;	//Default mount point?
 
         internal void Equip()
         {

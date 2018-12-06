@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scriptables\Variables\Vector3Variable.cs" />
      <Compile Include="Assets\Scripts\AudioControler.cs" />
      <Compile Include="Assets\Scripts\Core\DrawGizmo.cs" />
+     <Compile Include="Assets\Scripts\Core\Game.cs" />
      <Compile Include="Assets\Scripts\Core\GameCoordinator.cs" />
      <Compile Include="Assets\Scripts\Core\RandomClashSound.cs" />
      <Compile Include="Assets\Scripts\Core\RoundEndController.cs" />

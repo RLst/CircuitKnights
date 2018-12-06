@@ -111,7 +111,15 @@ namespace CircuitKnights.Players
         void Start()
         {
             CacheControllers();
+            InitEquipment();
             MountAllEquipment();
+        }
+
+        private void InitEquipment()
+        {
+            currentLance = lances[lanceIDX];
+            currentShield = shields[shieldIDX];
+            currentHorse = horses[horseIDX];
         }
 
         private void CacheControllers()
@@ -132,7 +140,7 @@ namespace CircuitKnights.Players
 
         private void TestSwitchLancesTick()
         {
-            Debug.Log("current index: " + lanceIDX);
+            // Debug.Log("current index: " + lanceIDX);
 
             //BETA RUSH
             if (Input.GetKeyDown(KeyCode.I))
