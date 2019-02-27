@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circuit Knights", "Assembly-CSharp.csproj", "{AA98771E-44DA-5C87-A058-CE0E1AAD190C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{AA98771E-44DA-5C87-A058-CE0E1AAD190C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circuit Knights", "Assembly-CSharp-firstpass.csproj", "{3DC3AF34-A093-A8A9-D96A-263B7768B75D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{3DC3AF34-A093-A8A9-D96A-263B7768B75D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circuit Knights", "Assembly-CSharp-Editor-firstpass.csproj", "{B8BD0281-49FF-0239-9CC3-39C7C001EE2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{B8BD0281-49FF-0239-9CC3-39C7C001EE2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circuit Knights", "Assembly-CSharp-Editor.csproj", "{0A0C3E2D-7945-9E71-F7A5-3C80A520C4AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{0A0C3E2D-7945-9E71-F7A5-3C80A520C4AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
